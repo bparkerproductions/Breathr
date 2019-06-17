@@ -1,0 +1,94 @@
+/*
+ * Media Query Mixins
+ */
+
+@mixin atTiny() {
+  @media screen and (max-width: $TINY) {
+    @content;
+  }
+}
+
+@mixin atTinyUp() {
+  @media screen and (min-width: $TINY) {
+    @content;
+  }
+}
+
+@mixin atSmall() {
+  @media screen and (max-width: $SMALL) {
+    @content;
+  }
+}
+
+@mixin atSmallUp() {
+  @media screen and (min-width: $SMALL) {
+    @content;
+  }
+}
+
+@mixin atTabletUp() {
+  @media screen and (min-width: $TABLET) {
+    @content;
+  }
+}
+
+@mixin atTablet() {
+  @media screen and (max-width: $TABLET) {
+    @content;
+  }
+}
+
+@mixin atMedium() {
+  @media screen and (max-width: $MEDIUM) {
+    @content;
+  }
+}
+
+@mixin atMediumUp() {
+  @media screen and (min-width: $MEDIUM) {
+    @content;
+  }
+}
+
+@mixin atLaptop() {
+  @media screen and (max-width: $LAPTOP) {
+    @content;
+  }
+}
+
+@mixin atLaptopUp() {
+  @media screen and (min-width: $LAPTOP) {
+    @content;
+  }
+}
+
+@mixin atLarge() {
+  @media screen and (max-width: $LARGE) {
+    @content;
+  }
+}
+
+@mixin atLargeUp() {
+  @media screen and (min-width: $LARGE) {
+    @content;
+  }
+}
+
+@mixin atCustomUp($bp) {
+  @media screen and (min-width: $bp) {
+    @content;
+  }
+}
+
+@mixin atCustom($bp) {
+  @media screen and (max-width: $bp) {
+    @content;
+  }
+}
+
+//Browser specific queries
+@mixin ifIE() {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}

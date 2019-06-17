@@ -1,0 +1,35 @@
+@mixin mr-small() {
+  margin-right: $SPC-SMALL-PLUS;
+
+  @include atMedium {
+    margin-right: $SPC-SMALL;
+  }
+}
+
+@mixin mr-medium() {
+  margin-right: $SPC-MED;
+
+  @include atMedium {
+    margin-right: $SPC-SMALL-PLUS;
+  }
+}
+
+@mixin mr-custom($large, $small) {
+  margin-right: $large;
+
+  @include atMedium {
+    margin-right: $small;
+  }
+}
+
+@mixin mr-custom-full($large, $medium, $small) {
+  margin-right: $large;
+
+  @include atMedium {
+    margin-right: $medium;
+  }
+
+  @include atSmall {
+    margin-right: $small;
+  }
+}

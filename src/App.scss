@@ -1,0 +1,18 @@
+/*
+ * Import global styles and mixins
+ */
+
+//mixins
+@import "style/global/mixins/main";
+
+//framework and helpers
+@import "style/global/variables/main";
+@import "style/global/framework/helpers/helper-classes";
+@import "style/global/framework/typography";
+
+//extends
+@import "style/global/extends/general";
+
+//global
+@import "style/global/main";
+

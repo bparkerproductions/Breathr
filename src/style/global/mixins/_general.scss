@@ -1,0 +1,39 @@
+/* stylelint-disable */
+/*
+ * APP general mixins
+ */
+
+@mixin allText() {
+  h1, h2, h3, h4, h5, h6, span,
+  li, a, ul, ol, p, i, b {
+    @content;
+  }
+}
+
+@mixin allHeaders() {
+  h1, h2, h3, h4, h5, h6 {
+    @content;
+  }
+}
+
+@mixin allInputs() {
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    @content;
+  }
+}
+
+@mixin font-smoothing() {
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin font($family) {
+  font-family: $family, Helvetica, Arial, sans-serif;
+}
+

@@ -1,0 +1,8 @@
+@mixin font-scale($scale) {
+  h1 { font-size: $scale*1.982em; }
+	h2 { font-size: $scale*1.762em; }
+	h3 { font-size: $scale*1.566em; }
+	h4 { font-size: $scale*1.392em; }
+	h5 { font-size: $scale*1.238em; }
+	h6 { font-size: $scale*1.1em; }
+}

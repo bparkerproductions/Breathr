@@ -1,0 +1,54 @@
+/*
+ * Global APP styles
+ */
+html,
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+i {
+  @include font("Font Awesome\ 5 Pro");
+
+  font-weight: 900;
+}
+
+@include allInputs {
+  @include font-smoothing;
+}
+
+@include allHeaders {
+  color: $header-color;
+}
+
+//default line-height
+@include allText {
+  line-height: $LINE-HEIGHT;
+
+  @include font-smoothing;
+
+  @include atSmall {
+    line-height: $MOBILE-LINE-HEIGHT;
+  }
+}
+
+//set sizes
+.inner-container {
+  max-width: $CONTAINER;
+
+  @include atSmall {
+    max-width: $CONTAINER-SMALL;
+    padding: 0 15px;
+  }
+}
+
+p {
+  font-size: $PARA_FONT_SIZE;
+
+  @include atSmall {
+    font-size: $SMALL_PARA_FONT_SIZE;
+  }
+}
+

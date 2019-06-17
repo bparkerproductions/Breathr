@@ -1,0 +1,24 @@
+@mixin color-bullet($color) {
+  padding-left: 1em;
+  position: relative;
+
+  &::before {
+    content: "• ";
+    color: $color;
+    font-size: 20px;
+    position: absolute;
+    top: -3px;
+    left: 0;
+  }
+}
+
+@mixin scrollbar($color, $size) {
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color;
+  }
+}

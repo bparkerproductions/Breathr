@@ -1,0 +1,13 @@
+//positioning classes
+.column-center {
+  @include column-center;
+}
+
+.hard-center {
+  @include hard-center;
+}
+
+.column-hard-center {
+  @include column-hard-center;
+}
+

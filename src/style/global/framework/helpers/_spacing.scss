@@ -1,0 +1,40 @@
+//spacing
+.spacer-small {
+  @include spacer-small;
+}
+
+.spacer-medium {
+  @include spacer-medium;
+}
+
+.mb-small {
+  @include mb-small;
+}
+
+.mb-medium {
+  @include mb-medium;
+}
+
+.mt-small {
+  @include mt-small;
+}
+
+.mt-medium {
+  @include mt-medium;
+}
+
+.mr-small {
+  @include mr-small;
+}
+
+.mr-medium {
+  @include mr-medium;
+}
+
+.ml-small {
+  @include ml-small;
+}
+
+.ml-medium {
+  @include ml-medium;
+}
