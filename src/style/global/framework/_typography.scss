@@ -1,6 +1,8 @@
 /* stylelint-disable */
 body {
-	font-size: $BASE-FONT_SIZE;
+  font-size: $BASE-FONT_SIZE;
+  
+  @include font('Lato');
 }
 
 @include font-scale($FONT_SCALE);

@@ -1,0 +1,18 @@
+.intro-card {
+  background-color: $dark;
+  padding: 50px 0;
+
+  @include allText {
+    color: $white;
+  }
+
+  .title {
+    margin: 10px 0 0 0;
+  }
+
+  .content {
+    @include atMediumUp {
+      width: 70%;
+    }
+  }
+}
