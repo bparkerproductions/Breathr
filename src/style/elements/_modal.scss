@@ -1,9 +1,19 @@
-.intro-card {
+.modal {
   background-color: $dark;
   padding: 50px 0;
 
   @include allText {
     color: $white;
+  }
+
+  .head {
+    display: flex;
+    justify-content: flex-end;
+
+    .close {
+      font-size: 1.5em;
+      cursor: pointer;
+    }
   }
 
   .title {

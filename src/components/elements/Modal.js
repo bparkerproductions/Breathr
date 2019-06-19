@@ -1,22 +1,54 @@
 import React from 'react';
 
-const Modal = () => {
-  return (
-    <section className="card intro-card column-center">
-      <div className="inner-container">
-        <div className="content">
-        <div className="header-container bottom-line">
-          <h2 className="title">Welcome to Breathr!</h2>
-        </div>
-        <p>This is a simple web app that lets you choose and collect your favorite sounds, and meditate to them. No special subscriptions, no extras. </p>
-        <p className="bold">Want to get started?</p>
+class Modal extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      toggled: true
+    }
+
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+  toggleModal() {
+    this.setState({toggled:false});
+  }
+  renderButton() {
+    if(this.props.showButton) {
+      return (
         <div className="button-container mt-small">
-        <button className="button">Get To It</button>
+          <button onClick={this.toggleModal} className="button">
+            {this.props.buttonText}
+          </button>
         </div>
-        </div>
-      </div>
-    </section>
-  );
+      );
+    }
+    else {
+      return null;
+    }
+  }
+  render() {
+    if(this.state.toggled) {
+      return (
+        <section className="card modal column-center">
+          <div className="inner-container">
+            <div className="head">
+              <i onClick={this.toggleModal}
+                 className="far fa-times-circle close">
+              </i>
+            </div>
+            <div className="content">
+              {this.props.children}
+            </div>
+            {this.renderButton()}
+          </div>
+        </section>
+      );
+    }
+    else {
+      return null;
+    }
+  }
 }
 
 export default Modal;
