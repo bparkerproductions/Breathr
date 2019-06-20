@@ -20,13 +20,17 @@ class TimerControls extends React.Component {
   togglePause() {
     this.setState({paused: !this.state.paused})
   }
-
+  timerStarted(start) {
+    this.toggleTimer();
+    start();
+  }
   timerStart(start) {
     if(!this.state.timerStarted) {
       return (
-        <div onClick={this.toggleTimer} className="timer-start">
+        <div onClick={() => {this.timerStarted(start)}}
+        className="timer-start">
           <p>Start Timer?</p>
-          <i onClick={start} className="fas fa-clock"></i>
+          <i  className="fas fa-clock start-timer"></i>
         </div>
       );
     }
@@ -42,13 +46,19 @@ class TimerControls extends React.Component {
             <React.Fragment>
               {this.timerStart(start)}
 
-              <Timer.Minutes />
-              <span className="time-label">m</span>
+              <div className="main-timer">
+                <span className="time">
+                  <Timer.Minutes />
+                </span>
+                <span className="time-label">m</span>
 
-              <span className="seperator">:</span>
+                <span className="seperator">:</span>
 
-              <Timer.Seconds />
-              <span className="time-label">s</span>
+                <span className="time">
+                  <Timer.Seconds />
+                </span>
+                <span className="time-label">s</span>
+              </div>
 
               <TimerPlayback
               started={this.state.timerStarted}

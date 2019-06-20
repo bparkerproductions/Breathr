@@ -1,0 +1,10 @@
+.timer {
+  background: $grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @import "main-timer";
+  @import "start-timer";
+  @import "timer-controls";
+}

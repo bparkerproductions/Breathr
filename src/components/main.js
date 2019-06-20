@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from './elements/Modal';
 import Navbar from './global/Navbar';
-import TimerControls from './app/TimerControls';
+import TimerControls from './app/Timer/TimerControls';
 
 class App extends React.Component {
   render() {
