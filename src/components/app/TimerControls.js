@@ -1,32 +1,26 @@
 import React from 'react';
 import Timer from 'react-compound-timer';
+import TimerPlayback from './TimerPlayback';
 
 class TimerControls extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      timerStarted: false
+      timerStarted: false,
+      paused: false
     }
 
     this.toggleTimer = this.toggleTimer.bind(this);
+    this.togglePause = this.togglePause.bind(this);
   }
   toggleTimer() {
     this.setState({timerStarted: true})
   }
-  timerControls(pause, resume) {
-    if(this.state.timerStarted) {
-      return (
-        <div className="timer-controls">
-          <i onClick={pause} className="far fa-pause-circle"></i>
-          <i onClick={resume} className="far fa-play-circle"></i>
-        </div>
-      );
-    }
-    else {
-      return null;
-    }
+  togglePause() {
+    this.setState({paused: !this.state.paused})
   }
+
   timerStart(start) {
     if(!this.state.timerStarted) {
       return (
@@ -44,14 +38,26 @@ class TimerControls extends React.Component {
     return (
       <section className="timer">
         <Timer startImmediately={false}>
-          {({start, pause, resume}) => (
+          {({start, pause, resume, reset}) => (
             <React.Fragment>
-              <Timer.Minutes />m
-              <span className="seperator">:</span>
-              <Timer.Seconds />s
-
               {this.timerStart(start)}
-              {this.timerControls(pause, resume)}
+
+              <Timer.Minutes />
+              <span className="time-label">m</span>
+
+              <span className="seperator">:</span>
+
+              <Timer.Seconds />
+              <span className="time-label">s</span>
+
+              <TimerPlayback
+              started={this.state.timerStarted}
+              paused={this.state.paused}
+              togglePauseCallback={this.togglePause}
+              pauseCallback={pause}
+              resumeCallback={resume}
+              resetCallback={reset}>
+              </TimerPlayback>
             </React.Fragment>
           )}
         </Timer>
