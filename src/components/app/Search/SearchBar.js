@@ -9,9 +9,10 @@ class SearchBar extends React.Component {
     }
 
     this.toggleInput = this.toggleInput.bind(this);
+    this.trackInput = this.trackInput.bind(this);
   }
   trackInput(event) {
-    console.log(event.target.value);
+    this.props.searchCallback(event.target.value);
   }
   toggleInput() {
     this.setState({inputToggled: !this.state.inputToggled})
@@ -31,7 +32,7 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div className="search-input-container">
-        <div className="search-icon">
+        <div title="toggle search bar" className="search-icon">
           <i onClick={this.toggleInput} className="fas fa-search"></i>
         </div>
         <div className="search-input">

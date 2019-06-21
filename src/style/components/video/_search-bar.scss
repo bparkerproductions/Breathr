@@ -1,7 +1,7 @@
 .search-input-container {
   display: flex;
 
-  @extend %input-full-width;
+  @extend %inputFullWidth;
 
   .search-icon {
     i,
