@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import youtube from '../../../apis/youtube';
+import VideoResult from './VideoResult';
 import _ from 'lodash';
 
 class Search extends React.Component {
@@ -8,7 +9,8 @@ class Search extends React.Component {
     super(props);
 
     this.state = {
-      searchResult: null
+      searchResult: null,
+      videos: null
     }
 
     this.updateSearchResult = this.updateSearchResult.bind(this);
@@ -19,30 +21,21 @@ class Search extends React.Component {
     this.getVideoResults();
   }
   async getVideoResults() {
-    youtube.get('/search', {
+    const response = await youtube.get('/search', {
       params: {
         q: this.state.searchResult
       }
-    })
-  }
-  renderResults() {
-    if(this.state.searchResult) {
-      return (
-        <div className="video-results">
-          <p>Video results here</p>
-        </div>
-      )
-    }
-    else {
-      return <p>Search Video...</p>
-    }
+    });
+
+    this.setState({videos: response.data.items});
   }
   render() {
     return (
       <section id="video-search" className="column-center">
         <div className="inner-container">
           <SearchBar searchCallback={this.updateSearchResult}></SearchBar>
-          {this.renderResults()}
+          <VideoResult searchResult={this.state.searchResult}
+          videos={this.state.videos}></VideoResult>
         </div>
       </section>
     )

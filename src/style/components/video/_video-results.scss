@@ -1,0 +1,17 @@
+.video-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .video-preview {
+    flex-basis: 33%;
+    border-top: 5px solid $light-blue;
+    cursor: pointer;
+
+    @extend %bounceUp;
+
+    img {
+      width: 100%;
+    }
+  }
+}

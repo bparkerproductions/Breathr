@@ -12,11 +12,8 @@
   border: 1px solid rgba($white, 0.2);
   color: $white;
   font-size: $size;
-  transition: all 0.3s ease;
   cursor: pointer;
 
-  &:hover {
-    transform: translateY(-2px);
-  }
+  @extend %bounceUp;
 }
 

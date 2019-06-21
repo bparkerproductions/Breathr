@@ -6,11 +6,8 @@
   border-radius: 50px;
   background-color: $light-blue;
   cursor: pointer;
-  transition: all 0.35s ease;
 
-  &:hover {
-    transform: translateY(-3px);
-  }
+  @extend %bounceUp;
 
   &:focus {
     outline: none;
