@@ -1,27 +1,16 @@
 .timer-start {
   @include hard-center;
+  @include ui-button(1em);
 
-  cursor: pointer;
-  transition: all 0.35s ease;
   padding: 0 30px;
-  margin-right: 10px;
-
-  &:hover {
-    background-color: $light-blue;
-
-    .start-timer,
-    p {
-      color: $white;
-    }
-  }
 
   .start-timer,
   p {
+    color: $white;
     transition: all 0.35s ease;
   }
 
   .start-timer {
-    color: $dark;
     margin: 0 5px;
   }
 }

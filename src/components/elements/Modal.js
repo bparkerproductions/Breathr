@@ -30,7 +30,7 @@ class Modal extends React.Component {
   render() {
     if(this.state.toggled) {
       return (
-        <section className="card modal column-center">
+          <section key="modal" className="card modal column-center">
           <div className="inner-container">
             <div className="head">
               <i onClick={this.toggleModal}

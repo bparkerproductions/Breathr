@@ -6,3 +6,17 @@
   padding: 22.5px;
 }
 
+@mixin ui-button($size) {
+  background-color: $light-blue;
+  padding: 7.5px;
+  border: 1px solid rgba($white, 0.2);
+  color: $white;
+  font-size: $size;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+

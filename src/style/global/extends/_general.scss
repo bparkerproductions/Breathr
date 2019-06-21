@@ -9,3 +9,13 @@
   padding-top: 7.5px;
 }
 
+%input-full-width {
+  form {
+    height: 100%;
+    overflow: hidden;
+
+    input {
+      height: 100%;
+    }
+  }
+}

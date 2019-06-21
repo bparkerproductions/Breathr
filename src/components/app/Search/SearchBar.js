@@ -1,14 +1,41 @@
 import React from 'react';
 
 class SearchBar extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      inputToggled: true
+    }
+
+    this.toggleInput = this.toggleInput.bind(this);
+  }
+  trackInput(event) {
+    console.log(event.target.value);
+  }
+  toggleInput() {
+    this.setState({inputToggled: !this.state.inputToggled})
+  }
+  renderForm() {
+    if(this.state.inputToggled) {
+      return (
+        <form>
+          <input type="text" onChange={this.trackInput}></input>
+        </form>
+      )
+    }
+    else {
+      return null;
+    }
+  }
   render() {
     return (
       <div className="search-input-container">
         <div className="search-icon">
-          <i class="fas fa-search"></i>
+          <i onClick={this.toggleInput} className="fas fa-search"></i>
         </div>
-        <div class="search-input">
-          <input type="test"></input>
+        <div className="search-input">
+          {this.renderForm()}
         </div>
       </div>
     )

@@ -1,0 +1,26 @@
+.slide-from-top-enter {
+  transition: all 0.25s ease;
+  transform: translateY(-100vh);
+}
+
+.slide-from-top-enter.slide-from-top-enter-active {
+  transform: translateY(0);
+}
+
+.slide-from-top-leave {
+  transform: translateY(0);
+}
+
+.slide-from-top-leave.slide-from-top-leave-active {
+  transition: all 0.25s ease;
+  transform: translateY(-100vh);
+}
+
+.slide-from-top-appear {
+  transition: all 0.25s ease;
+  transform: translateY(-100vh);
+}
+
+.slide-from-top-appear.slide-from-top-appear-active {
+  transform: translateY(0);
+}

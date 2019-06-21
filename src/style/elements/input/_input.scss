@@ -1,0 +1,14 @@
+/*
+ * General input global styles
+ */
+
+ input[type="text"] {
+   background-color: rgba($dark, 0.25);
+   border: 0;
+   padding-left: 20px;
+   color: $white;
+
+   &:focus {
+     outline: none;
+   }
+ }
