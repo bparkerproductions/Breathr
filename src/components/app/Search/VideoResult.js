@@ -6,7 +6,7 @@ class VideoResult extends React.Component {
     return (
       <div className="video-results">
         {this.props.videos.map(video => {
-          return <VideoItem video={video}></VideoItem>
+          return <VideoItem key={video.etag} video={video}></VideoItem>
         })}
       </div>
     )

@@ -3,4 +3,9 @@
 
   @import "search-bar";
   @import "video-results";
+
+  .inner-container {
+    min-width: 80%;
+    overflow: hidden;
+  }
 }

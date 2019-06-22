@@ -2,13 +2,28 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-top: 20px;
 
   .video-preview {
     flex-basis: 33%;
     border-top: 5px solid $light-blue;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    height: 200px;
 
-    @extend %bounceUp;
+
+    @import "parts/overlay-preview";
+
+   @extend %bounceUp;
+   @extend %bgImage;
+
+    &:hover {
+      .overlay-preview {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
 
     img {
       width: 100%;
