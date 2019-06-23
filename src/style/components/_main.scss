@@ -1,3 +1,8 @@
-@import "navbar";
-@import "timer/timer";
-@import "video/video";
+main {
+  margin-top: 65px;
+
+  @import "video-render";
+  @import "navbar";
+  @import "timer/timer";
+  @import "video/video";
+}

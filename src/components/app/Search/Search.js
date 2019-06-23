@@ -23,7 +23,7 @@ class Search extends React.Component {
   async getVideoResults() {
     const response = await youtube.get('/search', {
       params: {
-        q: this.state.searchResult
+        q: this.state.searchResult + 'relaxing audio'
       }
     });
 

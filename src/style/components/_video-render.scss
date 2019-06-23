@@ -1,0 +1,31 @@
+.video-render {
+  height: 100%;
+	width: 100%;
+	position: fixed;
+  top: 0;
+  left: 0;
+	z-index: -3;
+
+	@include atTablet {
+	  left: -50%;
+	}
+
+  iframe {
+    margin-top: -150px;
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  height: 1220px;
+    width: 1550px;
+	  pointer-events: none;
+    z-index: 3;
+
+    @include atLargeUp {
+      width: 1700px;
+    }
+
+    @include atLargerUp {
+      width: 2000px;
+    }
+  }
+}

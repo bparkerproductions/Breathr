@@ -1,5 +1,5 @@
 .modal {
-  background-color: $dark;
+  background-color: rgba($dark, 0.2);
   padding: 50px 0;
 
   @include allText {

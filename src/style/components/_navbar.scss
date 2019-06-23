@@ -1,4 +1,7 @@
 nav.main-nav {
-  background-color: rgba($grey, 0.2);
-  border-bottom: 1px solid rgba($grey, 0.5);
+  background-color: $dark;
+  position: fixed;
+  width: 100%;
+  z-index: 3;
+  top: 0;
 }

@@ -14,13 +14,16 @@ class SearchBar extends React.Component {
   trackInput(event) {
     this.props.searchCallback(event.target.value);
   }
+  handleSubmit(e) {
+    e.preventDefault();
+  }
   toggleInput() {
     this.setState({inputToggled: !this.state.inputToggled})
   }
   renderForm() {
     if(this.state.inputToggled) {
       return (
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <input type="text" onChange={this.trackInput}></input>
         </form>
       )
