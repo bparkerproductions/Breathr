@@ -7,6 +7,10 @@ export default axios.create({
   params: {
     part: 'snippet',
     maxResults: 10,
-    key: YOUTUBE_KEY
+    videoEmbeddable: true,
+    type: 'video',
+    videoDefinition: 'high',
+    videoDuration: 'long',
+    key: YOUTUBE_KEY,
   }
 });
