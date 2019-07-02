@@ -12,6 +12,10 @@
     i,
     svg {
       @include ui-button(1.7em);
+
+      &:hover {
+        transform: translateY(0);
+      }
     }
   }
 }

@@ -6,9 +6,9 @@
   padding: 22.5px;
 }
 
-@mixin ui-button($size) {
+@mixin ui-button($size, $padding:7.5px) {
   background-color: $light-blue;
-  padding: 7.5px;
+  padding: $padding;
   border: 1px solid rgba($white, 0.2);
   color: $white;
   font-size: $size;

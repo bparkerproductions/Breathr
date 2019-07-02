@@ -1,0 +1,10 @@
+.app-toggles {
+  display: flex;
+
+  .ui-button {
+    @include ui-button(1em, 10px);
+
+    background-color: transparent;
+    color: $light-blue;
+  }
+}

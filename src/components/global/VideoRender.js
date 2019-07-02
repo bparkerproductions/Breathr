@@ -1,7 +1,8 @@
 import React from 'react';
 import Youtube from 'react-youtube';
+import { connect } from 'react-redux';
 
-const VideoRender = ({selectedVideo}) => {
+const VideoRender = (props) => {
   const options = {
     playerVars: {
       loop: 1,
@@ -17,11 +18,11 @@ const VideoRender = ({selectedVideo}) => {
     }
   }
 
-  if(selectedVideo) {
+  if(props.selectedVideo) {
     return (
       <div className="video-render">
         <Youtube
-        videoId={selectedVideo}
+        videoId={props.selectedVideo}
         opts={options}>
         </Youtube>
       </div>
@@ -32,4 +33,8 @@ const VideoRender = ({selectedVideo}) => {
   }
 }
 
-export default VideoRender;
+const mapStateToProps = (state) => {
+  return { selectedVideo: state.selectedVideo };
+}
+
+export default connect(mapStateToProps)(VideoRender);

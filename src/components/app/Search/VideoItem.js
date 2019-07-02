@@ -1,9 +1,8 @@
 import React from 'react';
-import SelectedVideoContext from './../../../contexts/SelectedVideo';
+import { connect } from 'react-redux';
+import { selectVideo } from '../../../actions';
 
 class VideoItem extends React.Component {
-  static contextType = SelectedVideoContext;
-
   constructor(props) {
     super(props);
 
@@ -17,7 +16,8 @@ class VideoItem extends React.Component {
     }
   }
   selectVideo() {
-    this.context(this.props.video.id.videoId);
+    let videoID = this.props.video.id.videoId;
+    this.props.selectVideo(videoID)
   }
   render() {
     return (
@@ -35,4 +35,11 @@ class VideoItem extends React.Component {
   }
 }
 
-export default VideoItem;
+const mapStateToProps = state => {
+  console.log(state);
+  return { selectedVideo: state.selectedVideo };
+}
+
+export default connect(mapStateToProps, {
+  selectVideo
+})(VideoItem);

@@ -38,6 +38,9 @@ class TimerControls extends React.Component {
       return null;
     }
   }
+  getTimeFormat(value) {
+    return `${(value < 10 ? `0${value}` : value)}`;
+  }
   render() {
     return (
       <section className="timer">
@@ -55,7 +58,7 @@ class TimerControls extends React.Component {
                 <span className="seperator">:</span>
 
                 <span className="time">
-                  <Timer.Seconds />
+                  <Timer.Seconds formatValue={(value) => this.getTimeFormat(value)}/>
                 </span>
                 <span className="time-label">s</span>
               </div>

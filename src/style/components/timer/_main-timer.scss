@@ -1,11 +1,10 @@
 .main-timer {
   display: flex;
   align-items: flex-end;
+  color: $white;
 
   .time {
     font-size: 4em;
-    color: $white;
-    text-shadow: 2px 2px 4px rgba($white, 0.35);
     line-height: 1;
   }
 
@@ -13,12 +12,10 @@
     font-size: 1.25em;
     font-weight: 700;
     margin-left: 3.5px;
-    color: $dark;
   }
 
   .seperator {
     line-height: 1.5;
-    color: $dark;
     font-size: 3em;
     margin: 0 7.5px;
   }

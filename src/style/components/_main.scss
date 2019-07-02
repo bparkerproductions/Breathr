@@ -1,6 +1,7 @@
 main {
   margin-top: 65px;
 
+  @import "app-toggles";
   @import "video-render";
   @import "navbar";
   @import "timer/timer";
