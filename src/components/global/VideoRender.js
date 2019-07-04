@@ -18,11 +18,16 @@ const VideoRender = (props) => {
     }
   }
 
-  if(props.selectedVideo) {
+  function getSelected() {
+    let selected = props.selectedVideo
+    return  selected ? selected : props.defaultVideo;
+  }
+
+  if(props.selectedVideo || props.defaultVideo) {
     return (
       <div className="video-render">
         <Youtube
-        videoId={props.selectedVideo}
+        videoId={getSelected()}
         opts={options}>
         </Youtube>
       </div>
@@ -34,7 +39,10 @@ const VideoRender = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  return { selectedVideo: state.selectedVideo };
+  return {
+    selectedVideo: state.selectedVideo,
+    defaultVideo: state.defaultVideo
+  };
 }
 
 export default connect(mapStateToProps)(VideoRender);

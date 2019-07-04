@@ -30,7 +30,7 @@ class AppToggles extends React.Component {
         </div>
         <div onClick={()=>{this.toggleIcon('collection')}}
         className={this.getIconClasses('collection')}>
-          <i className="fas fa-music"></i>
+          <i className="fas fa-bookmark"></i>
         </div>
       </aside>
     )

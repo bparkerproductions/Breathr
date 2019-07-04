@@ -47,6 +47,10 @@ const videosReducer = () => {
   ]
 };
 
+const defaultVideoReducer = () => {
+  return 'tXc4C9kQll0';
+}
+
 const selectedVideoReducer = (selectedVideo=null, action) => {
   if(action.type == 'VIDEO_SELECTED') return action.payload;
   else return selectedVideo;
@@ -54,5 +58,6 @@ const selectedVideoReducer = (selectedVideo=null, action) => {
 
 export default combineReducers({
   videos: videosReducer,
-  selectedVideo: selectedVideoReducer
+  selectedVideo: selectedVideoReducer,
+  defaultVideo: defaultVideoReducer
 });

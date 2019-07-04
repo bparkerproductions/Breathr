@@ -5,10 +5,18 @@
 }
 
 .notification-card {
-  background-color: $grey;
+  background-color: rgba($dark, 0.5);
   padding: 20px 10px;
   margin-top: 10px;
   border-top: 6px solid $light-blue;
+
+  &.error {
+    border-color: $red;
+  }
+
+  p {
+    color: $white;
+  }
 
   @include hard-center;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
-import AppToggles from './../app/Toggles/AppToggles';
+import AppToggles from './../app/Controls/AppToggles';
+import VideoControls from './../app/Controls/VideoControls';
 
 class Navbar extends React.Component {
   render() {
@@ -9,7 +10,12 @@ class Navbar extends React.Component {
           <div className="left"></div>
 
           <div className="right">
-            <AppToggles></AppToggles>
+            <div className="navbar-col">
+              <VideoControls></VideoControls>
+            </div>
+            <div className="navbar-col">
+              <AppToggles></AppToggles>
+            </div>
           </div>
         </div>
       </nav>

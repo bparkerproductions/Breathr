@@ -11,12 +11,11 @@
     position: relative;
     overflow: hidden;
     height: 200px;
-
+    margin-bottom: 5px;
+    @extend %bounceUp;
+    @extend %bgImage;
 
     @import "parts/overlay-preview";
-
-   @extend %bounceUp;
-   @extend %bgImage;
 
     &:hover {
       .overlay-preview {

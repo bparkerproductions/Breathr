@@ -11,4 +11,17 @@ nav.main-nav {
     display: flex;
     justify-content: space-between;
   }
+
+  .right {
+    display: flex;
+
+    .navbar-col {
+      padding: 0 7.5px;
+      border-left: 1px solid rgba($white, 0.25);
+
+      &:first-child {
+        border-left: 0;
+      }
+    }
+  }
 }
