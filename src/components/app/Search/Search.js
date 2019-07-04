@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import youtube from '../../../apis/youtube';
-import VideoResult from './VideoResult';
+import VideoResult from '../Video/VideoResult';
 import _ from 'lodash';
 
 class Search extends React.Component {

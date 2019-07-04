@@ -4,6 +4,7 @@ import Navbar from './global/Navbar';
 import TimerControls from './app/Timer/TimerControls';
 import VideoRender from './global/VideoRender';
 import Search from './app/Search/Search';
+import Collection from './app/Video/Collection';
 
 class App extends React.Component {
   render() {
@@ -19,6 +20,7 @@ class App extends React.Component {
         </Modal> */}
         <TimerControls></TimerControls>
         <Search></Search>
+        <Collection></Collection>
         <VideoRender></VideoRender>
       </main>
     );
