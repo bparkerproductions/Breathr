@@ -10,12 +10,8 @@ class Navbar extends React.Component {
           <div className="left"></div>
 
           <div className="right">
-            <div className="navbar-col">
-              <VideoControls></VideoControls>
-            </div>
-            <div className="navbar-col">
-              <AppToggles></AppToggles>
-            </div>
+            <VideoControls></VideoControls>
+            <AppToggles></AppToggles>
           </div>
         </div>
       </nav>

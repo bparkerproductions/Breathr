@@ -48,7 +48,7 @@ const videosReducer = () => {
 };
 
 const defaultVideoReducer = () => {
-  return 'tXc4C9kQll0';
+  return '';
 }
 
 const selectedVideoReducer = (selectedVideo=null, action) => {
