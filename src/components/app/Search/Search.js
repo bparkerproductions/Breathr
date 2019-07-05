@@ -30,15 +30,18 @@ class Search extends React.Component {
     this.setState({videos: response.data.items});
   }
   render() {
-    return (
-      <section id="video-search" className="column-center">
-        <div className="inner-container">
-          <SearchBar searchCallback={this.updateSearchResult}></SearchBar>
-          <VideoResult searchResult={this.state.searchResult}
-          videos={this.state.videos}></VideoResult>
-        </div>
-      </section>
-    )
+    if(this.props.show) {
+      return (
+        <section id="video-search" className="column-center">
+          <div className="inner-container">
+            <SearchBar searchCallback={this.updateSearchResult}></SearchBar>
+            <VideoResult searchResult={this.state.searchResult}
+            videos={this.state.videos}></VideoResult>
+          </div>
+        </section>
+      )
+    }
+    else return null;
   }
 }
 

@@ -1,13 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { toggleSearch, toggleTimer, toggleCollection } from './../../../actions';
 
 class AppToggles extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      search: true,
-      timer: true,
-      collection: false
+      search: this.props.isSearch,
+      timer: this.props.isTimer,
+      collection: this.props.isCollection
     }
   }
   getIconClasses(toggleType) {
@@ -16,6 +18,11 @@ class AppToggles extends React.Component {
   toggleIcon(toggleType) {
     let selectedType = this.state[toggleType];
     this.setState({[toggleType]: !selectedType});
+
+    //set it in global store now
+    if(toggleType === 'search') this.props.toggleSearch();
+    if(toggleType === 'timer') this.props.toggleTimer();
+    if(toggleType === 'collection') this.props.toggleCollection();
   }
   render() {
     return (
@@ -37,4 +44,16 @@ class AppToggles extends React.Component {
   }
 }
 
-export default AppToggles;
+const mapStateToProps = state => {
+  return {
+    isSearch: state.isSearchToggled,
+    isTimer: state.isTimerToggled,
+    isCollection: state.isCollectionToggled
+  };
+}
+
+export default connect(mapStateToProps, {
+  toggleSearch,
+  toggleTimer,
+  toggleCollection
+})(AppToggles);

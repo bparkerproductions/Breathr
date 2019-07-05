@@ -1,6 +1,7 @@
 /*
  * Global APP styles
  */
+
 html,
 body {
   width: 100%;
@@ -37,6 +38,10 @@ i {
 //set sizes
 .inner-container {
   max-width: $CONTAINER;
+
+  @include atLargeUp {
+    max-width: 1200px;
+  }
 
   @include atSmall {
     max-width: $CONTAINER-SMALL;

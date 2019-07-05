@@ -1,17 +1,12 @@
 #video-search,
 #video-collection {
-  //@import "video-results";
-}
-
-#video-search,
-#video-collection {
   @include spacer-medium;
 
   @import "search-bar";
   @import "video-results";
 
   .inner-container {
-    min-width: 80%;
+    width: 100%;
     overflow: hidden;
   }
 }

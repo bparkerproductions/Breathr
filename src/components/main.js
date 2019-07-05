@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import Modal from './elements/Modal';
 import Navbar from './global/Navbar';
 import TimerControls from './app/Timer/TimerControls';
@@ -18,13 +20,21 @@ class App extends React.Component {
           <p>This is a simple web app that lets you choose and collect your favorite sounds, and meditate to them. No special subscriptions, no extras. </p>
           <p className="bold">Want to get started?</p>
         </Modal> */}
-        <TimerControls></TimerControls>
-        <Search></Search>
-        <Collection></Collection>
+        <TimerControls show={this.props.showTimer}></TimerControls>
+        <Search show={this.props.showSearch}></Search>
+        <Collection show={this.props.showCollection}></Collection>
         <VideoRender></VideoRender>
       </main>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    showSearch: state.isSearchToggled,
+    showTimer: state.isTimerToggled,
+    showCollection: state.isCollectionToggled
+  };
+}
+
+export default connect(mapStateToProps)(App);

@@ -42,40 +42,43 @@ class TimerControls extends React.Component {
     return `${(value < 10 ? `0${value}` : value)}`;
   }
   render() {
-    return (
-      <section className="timer">
-        <Timer startImmediately={false}>
-          {({start, pause, resume, reset}) => (
-            <React.Fragment>
-              {this.timerStart(start)}
+    if(this.props.show) {
+      return (
+        <section className="timer">
+          <Timer startImmediately={false}>
+            {({start, pause, resume, reset}) => (
+              <React.Fragment>
+                {this.timerStart(start)}
 
-              <div className="main-timer">
-                <span className="time">
-                  <Timer.Minutes />
-                </span>
-                <span className="time-label">m</span>
+                <div className="main-timer">
+                  <span className="time">
+                    <Timer.Minutes />
+                  </span>
+                  <span className="time-label">m</span>
 
-                <span className="seperator">:</span>
+                  <span className="seperator">:</span>
 
-                <span className="time">
-                  <Timer.Seconds formatValue={(value) => this.getTimeFormat(value)}/>
-                </span>
-                <span className="time-label">s</span>
-              </div>
+                  <span className="time">
+                    <Timer.Seconds formatValue={(value) => this.getTimeFormat(value)}/>
+                  </span>
+                  <span className="time-label">s</span>
+                </div>
 
-              <TimerPlayback
-              started={this.state.timerStarted}
-              paused={this.state.paused}
-              togglePauseCallback={this.togglePause}
-              pauseCallback={pause}
-              resumeCallback={resume}
-              resetCallback={reset}>
-              </TimerPlayback>
-            </React.Fragment>
-          )}
-        </Timer>
-      </section>
-    );
+                <TimerPlayback
+                started={this.state.timerStarted}
+                paused={this.state.paused}
+                togglePauseCallback={this.togglePause}
+                pauseCallback={pause}
+                resumeCallback={resume}
+                resetCallback={reset}>
+                </TimerPlayback>
+              </React.Fragment>
+            )}
+          </Timer>
+        </section>
+      );
+    }
+    else return null;
   }
 }
 
