@@ -2,9 +2,11 @@ import { combineReducers } from 'redux';
 import videoList from './videoList';
 import appToggles from './appToggles';
 
-const setVideoReducer = (target, action) => {
+const setVideoReducer = (player=null, action) => {
   let isPlayer = action.type === 'SET_VIDEO_PLAYER';
-  return isPlayer ? action.payload : null;
+
+  if(isPlayer) player = action.payload;
+  return player;
 };
 
 

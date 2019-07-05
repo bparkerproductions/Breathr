@@ -23,7 +23,6 @@ class AppToggles extends React.Component {
     this.setState({ muted: !this.state.muted });
 
     let currentVolume = this.state.muted ? this.state.volume : 0;
-    console.log(currentVolume);
     this.props.videoPlayer.setVolume(currentVolume);
   }
   getMuteClass() {
