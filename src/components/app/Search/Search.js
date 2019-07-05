@@ -2,7 +2,7 @@ import React from 'react';
 import SearchBar from './SearchBar';
 import youtube from '../../../apis/youtube';
 import VideoResult from '../Video/VideoResult';
-import _ from 'lodash';
+import { debounce } from 'lodash';
 
 class Search extends React.Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class Search extends React.Component {
     }
 
     this.updateSearchResult = this.updateSearchResult.bind(this);
-    this.getVideoResults = _.debounce(this.getVideoResults.bind(this), 1000);
+    this.getVideoResults = debounce(this.getVideoResults.bind(this), 1000);
   }
   updateSearchResult(userInput) {
     this.setState({searchResult: userInput})

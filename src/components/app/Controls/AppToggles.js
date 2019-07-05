@@ -11,7 +11,7 @@ class AppToggles extends React.Component {
     }
   }
   getIconClasses(toggleType) {
-    return this.state[toggleType] ? 'ui-button' : 'ui-button disabled';
+    return this.state[toggleType] ? 'ui-button' : 'ui-button turned-off';
   }
   toggleIcon(toggleType) {
     let selectedType = this.state[toggleType];

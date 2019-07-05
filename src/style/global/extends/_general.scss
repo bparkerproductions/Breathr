@@ -52,3 +52,8 @@
   background-size: cover;
   background-position: center;
 }
+
+%disabled {
+  pointer-events: none;
+  opacity: 0.2;
+}

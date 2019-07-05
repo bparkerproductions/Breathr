@@ -1,6 +1,7 @@
 import React from 'react';
 import Youtube from 'react-youtube';
 import { connect } from 'react-redux';
+import { setVideoPlayer } from './../../actions';
 
 const VideoRender = (props) => {
   const options = {
@@ -23,12 +24,18 @@ const VideoRender = (props) => {
     return  selected ? selected : props.defaultVideo;
   }
 
+  function setPlayingVideo(event) {
+    props.setVideoPlayer(event.target);
+  }
+
   if(props.selectedVideo || props.defaultVideo) {
     return (
       <div className="video-render">
         <Youtube
         videoId={getSelected()}
-        opts={options}>
+        opts={options}
+        onReady={setPlayingVideo}
+        onStateChange={setPlayingVideo}>
         </Youtube>
       </div>
     );
@@ -45,4 +52,6 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps)(VideoRender);
+export default connect(mapStateToProps, {
+  setVideoPlayer
+})(VideoRender);

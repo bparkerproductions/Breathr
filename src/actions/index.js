@@ -4,3 +4,10 @@ export const selectVideo = video => {
     payload: video
   }
 }
+
+export const setVideoPlayer = videoTarget => {
+  return {
+    type: 'SET_VIDEO_PLAYER',
+    payload: videoTarget
+  }
+}
