@@ -42,7 +42,7 @@ class TimerControls extends React.Component {
     return `${(value < 10 ? `0${value}` : value)}`;
   }
   render() {
-    if(this.props.show) {
+    if(this.props.show && this.props.allToggled) {
       return (
         <section className="timer">
           <Timer startImmediately={false}>

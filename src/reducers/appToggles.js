@@ -13,8 +13,14 @@ const toggleCollectionReducer = (toggled=false, action) => {
   return toggled;
 }
 
+const toggleAllReducer = (toggled=true, action) => {
+  if(action.type === 'TOGGLE_ALL') toggled = !toggled;
+  return toggled;
+}
+
 export default {
   toggleSearchReducer,
   toggleTimerReducer,
-  toggleCollectionReducer
+  toggleCollectionReducer,
+  toggleAllReducer
 }

@@ -53,7 +53,7 @@ class AppToggles extends React.Component {
 
   render() {
     return (
-      <aside className="navbar-col video-controls">
+      <aside id="video-controls" className="navbar-col">
         <div className="ui-button" onClick={this.togglePause}>
           <i className={`far fa-pause-circle ${this.getPauseOrPlay()}`}></i>
         </div>

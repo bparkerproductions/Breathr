@@ -29,3 +29,9 @@ export const toggleCollection = () => {
     type: 'TOGGLE_COLLECTION'
   }
 }
+
+export const toggleAll = () => {
+  return {
+    type: 'TOGGLE_ALL'
+  }
+}

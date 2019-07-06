@@ -20,9 +20,21 @@ class App extends React.Component {
           <p>This is a simple web app that lets you choose and collect your favorite sounds, and meditate to them. No special subscriptions, no extras. </p>
           <p className="bold">Want to get started?</p>
         </Modal> */}
-        <TimerControls show={this.props.showTimer}></TimerControls>
-        <Search show={this.props.showSearch}></Search>
-        <Collection show={this.props.showCollection}></Collection>
+        <TimerControls
+          allToggled={this.props.allToggled}
+          show={this.props.showTimer}>
+        </TimerControls>
+
+        <Search
+          allToggled={this.props.allToggled}
+          show={this.props.showSearch}>
+        </Search>
+
+        <Collection
+          allToggled={this.props.allToggled}
+          show={this.props.showCollection}>
+        </Collection>
+
         <VideoRender></VideoRender>
       </main>
     );
@@ -33,7 +45,8 @@ const mapStateToProps = state => {
   return {
     showSearch: state.isSearchToggled,
     showTimer: state.isTimerToggled,
-    showCollection: state.isCollectionToggled
+    showCollection: state.isCollectionToggled,
+    allToggled: state.allToggled
   };
 }
 

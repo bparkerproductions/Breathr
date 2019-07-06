@@ -30,7 +30,7 @@ class Search extends React.Component {
     this.setState({videos: response.data.items});
   }
   render() {
-    if(this.props.show) {
+    if(this.props.show && this.props.allToggled) {
       return (
         <section id="video-search" className="column-center">
           <div className="inner-container">

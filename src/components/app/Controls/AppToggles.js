@@ -26,7 +26,7 @@ class AppToggles extends React.Component {
   }
   render() {
     return (
-      <aside className="app-toggles navbar-col">
+      <aside id="app-toggles" className="navbar-col">
         <div onClick={()=>{this.toggleIcon('search')}}
         className={this.getIconClasses('search')}>
           <i className="fas fa-search"></i>

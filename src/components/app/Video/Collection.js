@@ -1,10 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import VideoResult from './VideoResult';
 
 const Collection = (props) => {
-  if(props.show) {
+  if(props.show && props.allToggled) {
     return (
       <section id="video-collection" className="column-center">
         <div className="inner-container">
@@ -20,8 +19,4 @@ const Collection = (props) => {
   else return null;
 }
 
-const mapStateToProps = (state) => {
-  return { selectedVideo: state.selectedVideo };
-}
-
-export default connect(mapStateToProps)(Collection);
+export default Collection;

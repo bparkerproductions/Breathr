@@ -17,5 +17,6 @@ export default combineReducers({
   videoPlayer: setVideoReducer,
   isSearchToggled: appToggles.toggleSearchReducer,
   isTimerToggled: appToggles.toggleTimerReducer,
-  isCollectionToggled: appToggles.toggleCollectionReducer
+  isCollectionToggled: appToggles.toggleCollectionReducer,
+  allToggled: appToggles.toggleAllReducer
 });
