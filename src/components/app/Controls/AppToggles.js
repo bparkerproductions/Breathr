@@ -2,46 +2,34 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { toggleSearch, toggleTimer, toggleCollection } from './../../../actions';
 
-class AppToggles extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      search: this.props.isSearch,
-      timer: this.props.isTimer,
-      collection: this.props.isCollection
-    }
+const AppToggles = (props) => {
+  function getIconClasses(toggleType) {
+    return props[toggleType] ? 'ui-button' : 'ui-button turned-off';
   }
-  getIconClasses(toggleType) {
-    return this.state[toggleType] ? 'ui-button' : 'ui-button turned-off';
-  }
-  toggleIcon(toggleType) {
-    let selectedType = this.state[toggleType];
-    this.setState({[toggleType]: !selectedType});
 
+  function toggleIcon(toggleType) {
     //set it in global store now
-    if(toggleType === 'search') this.props.toggleSearch();
-    if(toggleType === 'timer') this.props.toggleTimer();
-    if(toggleType === 'collection') this.props.toggleCollection();
+    if(toggleType === 'search') props.toggleSearch();
+    if(toggleType === 'timer') props.toggleTimer();
+    if(toggleType === 'collection') props.toggleCollection();
   }
-  render() {
-    return (
-      <aside id="app-toggles" className="navbar-col">
-        <div onClick={()=>{this.toggleIcon('search')}}
-        className={this.getIconClasses('search')}>
-          <i className="fas fa-search"></i>
-        </div>
-        <div onClick={()=>{this.toggleIcon('timer')}}
-        className={this.getIconClasses('timer')}>
-          <i className="fas fa-clock"></i>
-        </div>
-        <div onClick={()=>{this.toggleIcon('collection')}}
-        className={this.getIconClasses('collection')}>
-          <i className="fas fa-bookmark"></i>
-        </div>
-      </aside>
-    )
-  }
+
+  return (
+    <aside id="app-toggles" className="navbar-col">
+      <div onClick={()=>{toggleIcon('search')}}
+      className={getIconClasses('isSearch')}>
+        <i className="fas fa-search"></i>
+      </div>
+      <div onClick={()=>{toggleIcon('timer')}}
+      className={getIconClasses('isTimer')}>
+        <i className="fas fa-clock"></i>
+      </div>
+      <div onClick={()=>{toggleIcon('collection')}}
+      className={getIconClasses('isCollection')}>
+        <i className="fas fa-bookmark"></i>
+      </div>
+    </aside>
+  )
 }
 
 const mapStateToProps = state => {

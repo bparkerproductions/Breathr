@@ -1,0 +1,16 @@
+.component-controls {
+  margin-bottom: 7.5px;
+  display: flex;
+  justify-content: flex-end;
+  @extend %bounceUp;
+
+  .ui-button {
+    cursor: pointer;
+
+    svg,
+    i {
+      color: $white;
+      font-size: 16px;
+    }
+  }
+}
