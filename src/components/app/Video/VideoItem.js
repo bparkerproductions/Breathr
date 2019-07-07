@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectVideo, addToCollection } from '../../../actions';
+import { selectVideo, addToCollection, removeFromCollection } from '../../../actions';
 
 class VideoItem extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class VideoItem extends React.Component {
 
     this.selectVideo = this.selectVideo.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
-    this.handleSubtract = this.handleSubtract.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   bgImage() {
@@ -20,7 +20,7 @@ class VideoItem extends React.Component {
 
   selectVideo() {
     let videoID = this.props.video.id.videoId;
-    this.props.selectVideo(videoID)
+    this.props.selectVideo(videoID);
   }
 
   handleAdd(e) {
@@ -28,8 +28,10 @@ class VideoItem extends React.Component {
     this.props.addToCollection(this.props.video);
   }
 
-  handleSubtract(e) {
+  handleRemove(e) {
     e.stopPropagation();
+    let videoID = this.props.video.id.videoId;
+    this.props.removeFromCollection(videoID);
   }
 
   renderControls() {
@@ -42,7 +44,7 @@ class VideoItem extends React.Component {
     }
     else {
       return (
-        <div className="ui-button">
+        <div className="ui-button" onClick={this.handleRemove}>
           <i title="remove from collection" className="fas fa-minus-circle red"></i>
         </div>
       )
@@ -74,5 +76,6 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   selectVideo,
-  addToCollection
+  addToCollection,
+  removeFromCollection
 })(VideoItem);

@@ -19,6 +19,13 @@ export const addToCollection = videoObj => {
   }
 }
 
+export const removeFromCollection = videoID => {
+  return {
+    type: 'REMOVE_FROM_COLLECTION',
+    payload: videoID
+  }
+}
+
 export const toggleSearch = () => {
   return {
     type: 'TOGGLE_SEARCH'
