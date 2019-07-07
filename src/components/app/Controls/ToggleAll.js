@@ -26,7 +26,8 @@ class ToggleAll extends React.Component {
     return (
       <aside id="toggle-all" className="navbar-col">
         <div className="ui-button larger">
-          <i onClick={this.toggleAll}
+          <i title="Toggle visibility"
+             onClick={this.toggleAll}
              className={`white ${this.getToggleAllClass()}`}></i>
         </div>
       </aside>

@@ -1,23 +1,28 @@
-import defaultVideos from './data/defaultVideos';
+import { getInitialVideos, store, getFirstVideo } from './../helpers/localStore';
 
-const videosReducer = (initialVideos=defaultVideos, action) => {
+const videosReducer = (initialVideos=getInitialVideos('videoList'), action) => {
   if(action.type === 'ADD_TO_COLLECTION') {
 
     //first check if video is already in collection
-    return [...initialVideos, action.payload];
+    let newState = [...initialVideos, action.payload];
+    store(newState, 'videoList');
+    return newState;
   }
 
   if(action.type === 'REMOVE_FROM_COLLECTION') {
-    return initialVideos.filter(video => {
+    let newState = initialVideos.filter(video => {
       return action.payload !== video.id.videoId;
-    })
+    });
+    store(newState, 'videoList');
+    return newState;
   }
 
   return initialVideos;
 };
 
 const defaultVideoReducer = () => {
-  return 'tXc4C9kQll0';
+  let firstItem = getFirstVideo('videoList');
+  return firstItem ? firstItem : 'tXc4C9kQll0';
 }
 
 const selectedVideoReducer = (selectedVideo=null, action) => {
