@@ -12,6 +12,13 @@ export const setVideoPlayer = videoTarget => {
   }
 }
 
+export const addToCollection = videoObj => {
+  return {
+    type: 'ADD_TO_COLLECTION',
+    payload: videoObj
+  }
+}
+
 export const toggleSearch = () => {
   return {
     type: 'TOGGLE_SEARCH'

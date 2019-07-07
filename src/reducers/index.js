@@ -3,10 +3,7 @@ import videoList from './videoList';
 import appToggles from './appToggles';
 
 const setVideoReducer = (player=null, action) => {
-  let isPlayer = action.type === 'SET_VIDEO_PLAYER';
-
-  if(isPlayer) player = action.payload;
-  return player;
+  return action.type === 'SET_VIDEO_PLAYER' ? action.payload : player;
 };
 
 

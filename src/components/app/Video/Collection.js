@@ -13,7 +13,11 @@ const Collection = (props) => {
             <i className="fas fa-bookmark icon"></i>
             <h3 className="white">Your Collection</h3>
           </header>
-          <VideoResult grabFromCollection={true}></VideoResult>
+
+          <VideoResult
+            grabFromCollection={true}
+            canRemove={true}>
+          </VideoResult>
         </div>
       </section>
     )

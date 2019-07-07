@@ -9,7 +9,14 @@ class VideoResult extends React.Component {
       return (
         <div className="video-results">
           {loopObj.map(video => {
-            return <VideoItem key={video.etag} video={video}></VideoItem>
+            return (
+              <VideoItem
+                key={video.etag}
+                canAdd={this.props.canAdd}
+                canRemove={this.props.canRemove}
+                video={video}>
+              </VideoItem>
+            )
           })}
         </div>
       )

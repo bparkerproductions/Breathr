@@ -38,8 +38,11 @@ class Search extends React.Component {
           <div className="inner-container">
             <ComponentControls toggleType="search"></ComponentControls>
             <SearchBar searchCallback={this.updateSearchResult}></SearchBar>
-            <VideoResult searchResult={this.state.searchResult}
-            videos={this.state.videos}></VideoResult>
+            <VideoResult
+              searchResult={this.state.searchResult}
+              videos={this.state.videos}
+              canAdd={true}>
+            </VideoResult>
           </div>
         </section>
       )
