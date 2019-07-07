@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { selectVideo, addToCollection, removeFromCollection } from '../../../actions';
+import { NotificationManager } from 'react-notifications';
 
 class VideoItem extends React.Component {
   constructor(props) {
@@ -23,15 +24,40 @@ class VideoItem extends React.Component {
     this.props.selectVideo(videoID);
   }
 
+  doesVideoExist() {
+    let currentVideos = this.props.videos;
+    for(let i=0; i<currentVideos.length; i++) {
+      let videoID = currentVideos[i].id.videoId;
+      let selectedVideoID = this.props.video.id.videoId;
+
+      if(videoID === selectedVideoID) return true; //already exists
+    }
+
+    return false; //doesn't exist yet
+  }
+
   handleAdd(e) {
     e.stopPropagation();
-    this.props.addToCollection(this.props.video);
+
+    if(!this.doesVideoExist()) {
+      this.props.addToCollection(this.props.video);
+
+      let successMessage = 'Your video has successfully been added to your collection!';
+      NotificationManager.success(successMessage, 'Video Added!', 2000)
+    }
+    else {
+      let warningMessage = 'This video is already in your collection!';
+      NotificationManager.warning(warningMessage, false, 2000)
+    }
   }
 
   handleRemove(e) {
     e.stopPropagation();
     let videoID = this.props.video.id.videoId;
     this.props.removeFromCollection(videoID);
+
+    let successMessage = 'Your video has successfully been removed from your collection!';
+    NotificationManager.success(successMessage, 'Video Removed!', 2000)
   }
 
   renderControls() {
@@ -71,7 +97,10 @@ class VideoItem extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { selectedVideo: state.selectedVideo };
+  return {
+    selectedVideo: state.selectedVideo,
+    videos: state.videos
+  };
 }
 
 export default connect(mapStateToProps, {

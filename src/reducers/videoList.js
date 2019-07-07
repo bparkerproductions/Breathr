@@ -1,22 +1,10 @@
 import defaultVideos from './data/defaultVideos';
 
-function doesVideoExist(initialVideos, action) {
-  for(let i=0; i<initialVideos.length; i++) {
-    let videoID = initialVideos[i].id.videoId;
-    let selectedVideoID = action.payload.id.videoId;
-
-    if(videoID === selectedVideoID) return true; //already exists
-  }
-
-  return false; //doesn't exist yet
-}
-
 const videosReducer = (initialVideos=defaultVideos, action) => {
   if(action.type === 'ADD_TO_COLLECTION') {
 
     //first check if video is already in collection
-    let exists = doesVideoExist(initialVideos, action);
-    return exists ? initialVideos : [...initialVideos, action.payload];
+    return [...initialVideos, action.payload];
   }
 
   if(action.type === 'REMOVE_FROM_COLLECTION') {

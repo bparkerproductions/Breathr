@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {NotificationContainer} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 import Modal from './elements/Modal';
 import Navbar from './global/Navbar';
@@ -12,6 +14,7 @@ class App extends React.Component {
   render() {
     return (
       <main>
+        <NotificationContainer></NotificationContainer>
         <Navbar />
         {/* <Modal showButton={true} buttonText="Let's get to it">
           <div className="header-container bottom-line">
