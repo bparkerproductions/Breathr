@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 350px;
+  box-sizing: border-box;
+  @extend %animationTuckAway;
 
   @import "main-timer";
   @import "start-timer";

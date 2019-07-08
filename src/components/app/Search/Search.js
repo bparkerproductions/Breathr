@@ -2,7 +2,7 @@ import React from 'react';
 import { debounce } from 'lodash';
 
 import SearchBar from './SearchBar';
-import youtube from '../../../apis/youtube';
+import youtube from '../../../helpers/apis/youtube';
 import VideoResult from '../Video/VideoResult';
 import ComponentControls from './../Controls/ComponentControls';
 
@@ -31,23 +31,24 @@ class Search extends React.Component {
 
     this.setState({videos: response.data.items});
   }
+  getVideoClasses() {
+    let show = this.props.show && this.props.allToggled;
+    return show ? 'column-center' : 'column-center hidden';
+  }
   render() {
-    if(this.props.show && this.props.allToggled) {
-      return (
-        <section id="video-search" className="column-center">
-          <div className="inner-container">
-            <ComponentControls toggleType="search"></ComponentControls>
-            <SearchBar searchCallback={this.updateSearchResult}></SearchBar>
-            <VideoResult
-              searchResult={this.state.searchResult}
-              videos={this.state.videos}
-              canAdd={true}>
-            </VideoResult>
-          </div>
-        </section>
-      )
-    }
-    else return null;
+    return (
+      <section id="video-search" className={this.getVideoClasses()}>
+        <div className="inner-container">
+          <ComponentControls toggleType="search"></ComponentControls>
+          <SearchBar searchCallback={this.updateSearchResult}></SearchBar>
+          <VideoResult
+            searchResult={this.state.searchResult}
+            videos={this.state.videos}
+            canAdd={true}>
+          </VideoResult>
+        </div>
+      </section>
+    )
   }
 }
 

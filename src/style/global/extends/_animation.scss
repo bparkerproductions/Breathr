@@ -1,0 +1,23 @@
+%animationTuckAway {
+  transition: all 0.45s ease;
+  transform: translate(0, 0);
+  opacity: 1;
+
+  &.hidden {
+    height: 0;
+    opacity: 0;
+    transform: translate(100vw, -175vh);
+
+    @include atSmall {
+      transform: translate(0, -100vh);
+    }
+  }
+}
+
+%animationBounceUp {
+  transition: all 0.35s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}

@@ -13,7 +13,6 @@
   color: $white;
   font-size: $size;
   cursor: pointer;
-
-  @extend %bounceUp;
+  @extend %animationBounceUp;
 }
 

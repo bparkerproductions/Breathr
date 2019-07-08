@@ -7,7 +7,7 @@
   background-color: $light-blue;
   cursor: pointer;
 
-  @extend %bounceUp;
+  @extend %animationBounceUp;
 
   &:focus {
     outline: none;

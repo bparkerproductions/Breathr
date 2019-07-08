@@ -3,7 +3,7 @@
   margin-bottom: 7.5px;
   display: flex;
   justify-content: flex-end;
-  @extend %bounceUp;
+  @extend %animationBounceUp;
 
   .ui-button {
     cursor: pointer;

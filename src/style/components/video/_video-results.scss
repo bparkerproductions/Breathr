@@ -17,7 +17,7 @@
     margin-bottom: 5px;
     padding: 5px 7.5px;
     box-sizing: border-box;
-    @extend %bounceUp;
+    @extend %animationBounceUp;
     @extend %bgImage;
 
     @import "parts/overlay-preview";

@@ -1,3 +1,6 @@
+//Import ALL extends
+@import "animation";
+
 %fontAwesome {
   font-weight: 900;
 
@@ -28,14 +31,6 @@
     input {
       width: 100%;
     }
-  }
-}
-
-%bounceUp {
-  transition: all 0.35s ease;
-
-  &:hover {
-    transform: translateY(-2px);
   }
 }
 

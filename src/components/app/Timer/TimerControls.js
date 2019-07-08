@@ -11,7 +11,7 @@ class TimerControls extends React.Component {
 
     this.state = {
       timerStarted: false,
-      paused: false
+      paused: false,
     }
 
     this.toggleTimer = this.toggleTimer.bind(this);
@@ -37,7 +37,7 @@ class TimerControls extends React.Component {
         <div onClick={() => {this.timerStarted(start)}}
         className="timer-start">
           <p>Start Timer?</p>
-          <i  className="fas fa-clock start-timer"></i>
+          <i className="fas fa-clock start-timer"></i>
         </div>
       );
     }
@@ -48,49 +48,54 @@ class TimerControls extends React.Component {
     return `${(value < 10 ? `0${value}` : value)}`;
   }
 
+  getTimerContainerClass() {
+    let show = this.props.show && this.props.allToggled;
+    return show ? 'timer' : 'timer hidden';
+  }
+  getTimerClass() {
+    return this.state.timerStarted ? 'main-timer' : 'main-timer hidden';
+  }
+
   render() {
-    if(this.props.show && this.props.allToggled) {
-      return (
-        <section className="timer">
-          <Timer startImmediately={false}>
-            {({start, pause, resume, reset}) => (
-              <React.Fragment>
-                <div className="timer-container">
-                  <ComponentControls toggleType="timer"></ComponentControls>
-                  {this.timerStart(start)}
+    return (
+      <section className={this.getTimerContainerClass()}>
+        <Timer startImmediately={false}>
+          {({start, pause, resume, reset}) => (
+            <React.Fragment>
+              <div className="timer-container">
+                <ComponentControls toggleType="timer"></ComponentControls>
+                {this.timerStart(start)}
 
-                  <div className="main-timer">
-                    <span className="time">
-                      <Timer.Minutes />
-                    </span>
-                    <span className="time-label">m</span>
+                <div className={this.getTimerClass()}>
+                  <span className="time">
+                    <Timer.Minutes />
+                  </span>
+                  <span className="time-label">m</span>
 
-                    <span className="seperator">:</span>
+                  <span className="seperator">:</span>
 
-                    <span className="time">
-                      <Timer.Seconds
-                        formatValue={(value) => this.getTimeFormat(value)}
-                      />
-                    </span>
-                    <span className="time-label">s</span>
-                  </div>
+                  <span className="time">
+                    <Timer.Seconds
+                      formatValue={(value) => this.getTimeFormat(value)}
+                    />
+                  </span>
+                  <span className="time-label">s</span>
                 </div>
+              </div>
 
-                <TimerPlayback
+              <TimerPlayback
                 started={this.state.timerStarted}
                 paused={this.state.paused}
                 togglePauseCallback={this.togglePause}
                 pauseCallback={pause}
                 resumeCallback={resume}
                 resetCallback={reset}>
-                </TimerPlayback>
-              </React.Fragment>
-            )}
-          </Timer>
-        </section>
-      );
-    }
-    else return null;
+              </TimerPlayback>
+            </React.Fragment>
+          )}
+        </Timer>
+      </section>
+    );
   }
 }
 

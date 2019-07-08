@@ -1,9 +1,12 @@
 #video-search,
 #video-collection {
-  @include spacer-medium;
-
   @import "search-bar";
   @import "video-results";
+
+  @include spacer-medium;
+
+  height: 500px;
+  @extend %animationTuckAway;
 
   .inner-container {
     width: 100%;
