@@ -3,13 +3,21 @@
   @import "search-bar";
   @import "video-results";
 
-  @include spacer-medium;
+  padding-bottom: $SPC-MED;
 
-  height: 500px;
+  height: 200px;
   @extend %animationTuckAway;
+
+  &.searched {
+    height: 500px;
+  }
 
   .inner-container {
     width: 100%;
     overflow: hidden;
   }
+}
+
+#video-collection {
+  height: 500px;
 }

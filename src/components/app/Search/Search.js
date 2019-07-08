@@ -31,9 +31,16 @@ class Search extends React.Component {
 
     this.setState({videos: response.data.items});
   }
-  getVideoClasses() {
+  getShowClasses() {
     let show = this.props.show && this.props.allToggled;
-    return show ? 'column-center' : 'column-center hidden';
+    return show ? 'column-center ' : 'column-center hidden ';
+  }
+  getSearchedClasses() {
+    let videos = this.state.videos === null ? false : this.state.videos.length;
+    return this.state.searchResult && videos ? 'searched ' : '';
+  }
+  getVideoClasses() {
+    return this.getShowClasses() + this.getSearchedClasses();
   }
   render() {
     return (

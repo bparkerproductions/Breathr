@@ -49,7 +49,7 @@ const mapStateToProps = state => {
     showSearch: state.isSearchToggled,
     showTimer: state.isTimerToggled,
     showCollection: state.isCollectionToggled,
-    allToggled: state.allToggled
+    allToggled: state.allToggled,
   };
 }
 

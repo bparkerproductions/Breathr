@@ -4,7 +4,8 @@
   opacity: 1;
 
   &.hidden {
-    height: 0;
+    height: 0 !important;
+    padding: 0;
     opacity: 0;
     transform: translate(100vw, -175vh);
 
