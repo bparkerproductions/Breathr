@@ -15,6 +15,15 @@ nav.main-nav {
   .right {
     display: flex;
 
+    @include atSmall {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .app-toggle-group {
+      display: flex;
+    }
+
     .navbar-col {
       padding: 0 7.5px;
       border-left: 1px solid rgba($white, 0.25);

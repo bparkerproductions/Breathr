@@ -3,10 +3,10 @@
   align-items: flex-end;
   color: $white;
   transition: all 0.35s ease;
-  transform: translateY(0);
+  transform: translateX(0);
 
   &.hidden {
-    transform: translateY(-400px);
+    transform: translateX(-200vh);
   }
 
   .time {

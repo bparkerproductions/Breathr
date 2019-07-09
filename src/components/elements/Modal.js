@@ -1,54 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class Modal extends React.Component {
-  constructor(props) {
-    super(props);
+export const Modal = (props) => {
+  const [toggled, setToggled] = useState(true);
 
-    this.state = {
-      toggled: true
-    }
-
-    this.toggleModal = this.toggleModal.bind(this);
+  function toggleModal() {
+    setToggled(false);
   }
-  toggleModal() {
-    this.setState({toggled:false});
-  }
-  renderButton() {
-    if(this.props.showButton) {
+  function renderButton() {
+    if(props.showButton) {
       return (
         <div className="button-container mt-small">
-          <button onClick={this.toggleModal} className="button">
-            {this.props.buttonText}
+          <button onClick={toggleModal} className="button">
+            {props.buttonText}
           </button>
         </div>
       );
     }
-    else {
-      return null;
-    }
+    else return null;
   }
-  render() {
-    if(this.state.toggled) {
+  function renderCloseButton() {
+    if(props.showClose) {
       return (
-          <section key="modal" className="modal column-center">
-          <div className="inner-container">
-            <div className="head">
-              <i onClick={this.toggleModal}
-                 className="far fa-times-circle close">
-              </i>
-            </div>
-            <div className="content">
-              {this.props.children}
-            </div>
-            {this.renderButton()}
-          </div>
-        </section>
-      );
+        <i onClick={toggleModal}
+          className="far fa-times-circle close">
+        </i>
+      )
     }
-    else {
-      return null;
-    }
+    else return null;
   }
+  function getModalClassNames() {
+    return toggled ? 'modal column-center' : 'modal column-center hidden';
+  }
+
+  //setToggled({toggled: true});
+  return (
+    <section key="modal" className={getModalClassNames()}>
+      <div className="inner-container">
+        <div className="head">
+          {renderCloseButton()}
+        </div>
+        <div className="content">
+          {props.children}
+        </div>
+        {renderButton()}
+      </div>
+    </section>
+  );
 }
 
 export default Modal;

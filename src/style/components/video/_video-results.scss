@@ -1,26 +1,45 @@
 .video-results {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-top: 20px;
   max-height: 500px;
   overflow-y: scroll;
   @include scrollbar($purple, 4px);
 
+  @include atTablet {
+    justify-content: space-between;
+  }
+
   .video-preview {
-    flex-basis: 33%;
+    @import "parts/overlay-preview";
+
+    flex-basis: 32.66%;
     border-top: 5px solid $light-blue;
     cursor: pointer;
     position: relative;
     overflow: hidden;
     height: 200px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     padding: 5px 7.5px;
     box-sizing: border-box;
     @extend %animationBounceUp;
     @extend %bgImage;
 
-    @import "parts/overlay-preview";
+    @include atTablet {
+      margin: 0 0 7.5px 0;
+      flex-basis: 49.5%;
+    }
+
+    @include atSmall {
+      flex-basis: 100%;
+    }
+
+    &:nth-child(3n+2) {
+      @include atTabletUp {
+        margin: 0 1%;
+      }
+    }
 
     &:hover {
       .overlay-preview {

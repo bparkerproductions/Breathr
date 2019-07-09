@@ -6,6 +6,10 @@
   box-sizing: border-box;
   @extend %animationTuckAway;
 
+  @include atSmall {
+    height: 300px;
+  }
+
   @import "main-timer";
   @import "start-timer";
   @import "timer-controls";

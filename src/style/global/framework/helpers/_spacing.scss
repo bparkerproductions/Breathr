@@ -7,12 +7,20 @@
   @include spacer-medium;
 }
 
+.mb-tiny {
+  margin-bottom: 10px;
+}
+
 .mb-small {
   @include mb-small;
 }
 
 .mb-medium {
   @include mb-medium;
+}
+
+.mt-tiny {
+  margin-top: 10px;
 }
 
 .mt-small {

@@ -8,8 +8,12 @@
   height: 200px;
   @extend %animationTuckAway;
 
+  @include atSmall {
+    margin-top: $SPC-MED;
+  }
+
   &.searched {
-    height: 500px;
+    height: 600px;
   }
 
   .inner-container {
@@ -19,5 +23,5 @@
 }
 
 #video-collection {
-  height: 500px;
+  height: 600px;
 }

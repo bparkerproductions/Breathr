@@ -12,8 +12,10 @@ class Navbar extends React.Component {
 
           <div className="right">
             <VideoControls />
-            <AppToggles />
-            <ToggleAll />
+            <div className="app-toggle-group">
+              <AppToggles />
+              <ToggleAll />
+            </div>
           </div>
         </div>
       </nav>

@@ -5,6 +5,10 @@
   height: 5px;
   overflow: hidden;
 
+  @include atSmall {
+    min-width: 175px;
+  }
+
   .rangeslider__handle {
     background-color: $purple;
     box-shadow: none;
