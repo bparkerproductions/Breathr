@@ -20,8 +20,8 @@ const VideoRender = (props) => {
   }
 
   function getSelected() {
-    let selected = props.selectedVideo
-    return  selected ? selected : props.defaultVideo;
+    let selected = props.selectedVideo;
+    return selected ? selected : props.defaultVideo;
   }
 
   function setPlayingVideo(event) {
@@ -46,7 +46,8 @@ const VideoRender = (props) => {
 const mapStateToProps = (state) => {
   return {
     selectedVideo: state.selectedVideo,
-    defaultVideo: state.defaultVideo
+    defaultVideo: state.defaultVideo,
+    videoPlayer: state.videoPlayer
   };
 }
 

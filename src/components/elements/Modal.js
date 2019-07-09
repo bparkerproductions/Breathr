@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export const Modal = (props) => {
+const Modal = props => {
   const [toggled, setToggled] = useState(true);
 
   function toggleModal() {
@@ -22,19 +22,18 @@ export const Modal = (props) => {
     if(props.showClose) {
       return (
         <i onClick={toggleModal}
-          className="far fa-times-circle close">
+           className="far fa-times-circle close">
         </i>
       )
     }
     else return null;
   }
-  function getModalClassNames() {
-    return toggled ? 'modal column-center' : 'modal column-center hidden';
+  function isModalHidden() {
+    return toggled && props.closedFromOuter ? '' : 'hidden ';
   }
 
-  //setToggled({toggled: true});
   return (
-    <section key="modal" className={getModalClassNames()}>
+    <section className={`modal column-center mobile-fixed ${isModalHidden()}`}>
       <div className="inner-container">
         <div className="head">
           {renderCloseButton()}

@@ -1,8 +1,12 @@
 import defaultVideos from './../reducers/data/defaultVideos';
 
 export function getInitialVideos(storageObj) {
-  //check localStorage for videos, else return default list
   let currentStore = JSON.parse(localStorage.getItem(storageObj));
+
+  //if nothing exists, populate store with default videos
+  if(currentStore === null) store(defaultVideos, 'videoList');
+
+  //return either default videos, or whatever is in the store
   return currentStore === null ? defaultVideos : JSON.parse(currentStore)
 }
 
