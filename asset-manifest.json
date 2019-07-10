@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/breathr/static/css/main.5e45ed64.chunk.css",
+    "main.js": "/breathr/static/js/main.40bfa8f8.chunk.js",
+    "main.js.map": "/breathr/static/js/main.40bfa8f8.chunk.js.map",
+    "runtime~main.js": "/breathr/static/js/runtime~main.ddee89be.js",
+    "runtime~main.js.map": "/breathr/static/js/runtime~main.ddee89be.js.map",
+    "static/css/2.1ea22c00.chunk.css": "/breathr/static/css/2.1ea22c00.chunk.css",
+    "static/js/2.c91f41cd.chunk.js": "/breathr/static/js/2.c91f41cd.chunk.js",
+    "static/js/2.c91f41cd.chunk.js.map": "/breathr/static/js/2.c91f41cd.chunk.js.map",
+    "index.html": "/breathr/index.html",
+    "precache-manifest.794487c62c7dc8bbd88ed5a78f4cb5c3.js": "/breathr/precache-manifest.794487c62c7dc8bbd88ed5a78f4cb5c3.js",
+    "service-worker.js": "/breathr/service-worker.js",
+    "static/css/2.1ea22c00.chunk.css.map": "/breathr/static/css/2.1ea22c00.chunk.css.map",
+    "static/css/main.5e45ed64.chunk.css.map": "/breathr/static/css/main.5e45ed64.chunk.css.map",
+    "static/media/notifications.css": "/breathr/static/media/notification.c0d3c94c.eot"
+  }
+}
