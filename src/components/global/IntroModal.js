@@ -29,6 +29,7 @@ const IntroModal = (props) => {
     return (
       <Modal
         showClose={false}
+        firstVisitOnly={true}
         showButton={false}
         closedFromOuter={toggled}
         buttonText="Let's get to it">
@@ -42,7 +43,10 @@ const IntroModal = (props) => {
   }
   else {
     return (
-      <Modal showButton={false} closedFromOuter={toggled}>
+      <Modal
+        showButton={false}
+        closedFromOuter={toggled}
+        firstVisitOnly={false}>
         <div className="header-container bottom-line">
           <h2 className="title">Welcome to Breathr!</h2>
         </div>

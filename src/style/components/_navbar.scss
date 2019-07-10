@@ -37,4 +37,12 @@ nav.main-nav {
       }
     }
   }
+
+  .left {
+    .navbar-col {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+  }
 }

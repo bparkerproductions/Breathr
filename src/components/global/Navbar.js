@@ -8,7 +8,15 @@ class Navbar extends React.Component {
     return (
       <nav className="column-center main-nav">
         <div className="inner-container">
-          <div className="left"></div>
+          <div className="left">
+            <div className="navbar-col">
+              <a className="white link"
+                target="_blank"
+                href="https://github.com/bparkerproductions/Breathr">
+                Contribute
+              </a>
+            </div>
+          </div>
 
           <div className="right">
             <VideoControls />
