@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "homepage": "http://bparkerproductions.github.io/Breathr",
+=======
+  "homepage": "http://bparkerproductions.github.io/breathr",
+>>>>>>> 010d902f4ecd074ae6a7bfd017a1bc6446696105
   "name": "breather",
   "version": "0.1.0",
   "private": true,
