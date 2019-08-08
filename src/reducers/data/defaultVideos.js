@@ -14,20 +14,6 @@ export default [
     }
   },
   {
-    etag: 'Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/JarNzVTZYsxCvpuR1gy7-hWR1zA',
-    id: {
-      videoId: 'tXc4C9kQll0'
-    },
-    snippet: {
-      title: 'COZY ATMOSPHERE - Heavy Blizzard Sounds for Sleep, Relax, Study',
-      thumbnails: {
-        medium: {
-          url: 'https://i.ytimg.com/vi/tXc4C9kQll0/mqdefault.jpg'
-        }
-      }
-    }
-  },
-  {
     etag: 'Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/Y4otUWKi-iq2TMOOXwGNz0eE0Vo',
     id: {
       videoId: 'c9pQYOGIWM8'

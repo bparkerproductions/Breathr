@@ -22,7 +22,7 @@ const videosReducer = (initialVideos=getInitialVideos('videoList'), action) => {
 
 const defaultVideoReducer = () => {
   let firstItem = getFirstVideo('videoList');
-  return firstItem ? firstItem : 'tXc4C9kQll0';
+  return firstItem ? firstItem : 'Ftm2uv7-Ybw';
 }
 
 const selectedVideoReducer = (selectedVideo=null, action) => {
