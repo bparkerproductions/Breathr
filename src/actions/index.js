@@ -49,3 +49,9 @@ export const toggleAll = () => {
     type: 'TOGGLE_ALL'
   }
 }
+
+export const incrementSecond = () => {
+  return {
+    type: 'INCREMENT_SECOND'
+  }
+}

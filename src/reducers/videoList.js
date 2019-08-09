@@ -1,4 +1,5 @@
-import { getInitialVideos, store, getFirstVideo } from './../helpers/localStore';
+import { store } from '../helpers/store/general';
+import { getInitialVideos, getFirstVideo } from '../helpers/store/videoStore';
 
 const videosReducer = (initialVideos=getInitialVideos('videoList'), action) => {
   if(action.type === 'ADD_TO_COLLECTION') {

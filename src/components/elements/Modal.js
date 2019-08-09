@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { checkVisitCount } from './../../helpers/localStore';
+import { checkVisitCount } from '../../helpers/store/general';
 
 const Modal = props => {
   const [toggled, setToggled] = useState(true);

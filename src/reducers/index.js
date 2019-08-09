@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import videoList from './videoList';
 import appToggles from './appToggles';
+import timer from './timer';
 
 const setVideoReducer = (player=null, action) => {
   return action.type === 'SET_VIDEO_PLAYER' ? action.payload : player;
@@ -15,5 +16,6 @@ export default combineReducers({
   isSearchToggled: appToggles.toggleSearchReducer,
   isTimerToggled: appToggles.toggleTimerReducer,
   isCollectionToggled: appToggles.toggleCollectionReducer,
-  allToggled: appToggles.toggleAllReducer
+  allToggled: appToggles.toggleAllReducer,
+  totalMinutes: timer.totalMinutesReducer
 });
