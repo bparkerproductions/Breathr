@@ -16,6 +16,8 @@ class Navbar extends React.Component {
                 href="https://github.com/bparkerproductions/Breathr">
                 Contribute
               </a>
+            </div>
+            <div className="navbar-col">
               <DailyMinutes></DailyMinutes>
             </div>
           </div>

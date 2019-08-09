@@ -12,6 +12,21 @@ nav.main-nav {
     justify-content: space-between;
   }
 
+  .navbar-col {
+    padding: 0 7.5px;
+    border-left: 1px solid rgba($white, 0.15);
+    display: flex;
+    align-items: center;
+
+    &:first-child {
+      border-left: 0;
+    }
+
+    &#video-controls {
+      margin-right: 10px;
+    }
+  }
+
   .right {
     display: flex;
 
@@ -23,26 +38,13 @@ nav.main-nav {
     .app-toggle-group {
       display: flex;
     }
-
-    .navbar-col {
-      padding: 0 7.5px;
-      border-left: 1px solid rgba($white, 0.25);
-
-      &:first-child {
-        border-left: 0;
-      }
-
-      &#video-controls {
-        margin-right: 10px;
-      }
-    }
   }
 
   .left {
+    display: flex;
+
     .navbar-col {
-      display: flex;
-      align-items: center;
-      height: 100%;
+      padding: 0 15px;
     }
   }
 }

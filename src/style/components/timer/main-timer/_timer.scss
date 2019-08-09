@@ -1,18 +1,16 @@
 .timer {
+  @import "main-timer";
+  @import "start-timer";
+  @import "timer-controls";
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 350px;
   box-sizing: border-box;
+  padding-top: $SPC_MED;
   @extend %animationTuckAway;
 
   @include atSmall {
     height: 300px;
   }
-
-  @import "main-timer";
-  @import "start-timer";
-  @import "timer-controls";
-
-  padding-top: $SPC_MED;
 }

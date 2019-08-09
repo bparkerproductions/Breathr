@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const DailyMinutes = (props) => {
   return (
-    <time>
+    <time class="daily-minutes">
       <span className="minute">
         {Math.floor(props.totalMinutes/10)}
       </span>
