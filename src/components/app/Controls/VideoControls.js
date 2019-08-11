@@ -55,10 +55,10 @@ class AppToggles extends React.Component {
     return (
       <aside id="video-controls" className="navbar-col">
         <div className="ui-button" onClick={this.togglePause}>
-          <i className={`far fa-pause-circle ${this.getPauseOrPlay()}`}></i>
+          <i title="Pause or play video" className={`far fa-pause-circle ${this.getPauseOrPlay()}`}></i>
         </div>
         <div className={`ui-button ${this.volumeDisabled()}`} onClick={this.toggleMuted}>
-          <i className={this.getMuteClass()}></i>
+          <i title="video volume" className={this.getMuteClass()}></i>
         </div>
 
         <div className={`hard-center slider-container ${this.sliderDisabled()}`}>

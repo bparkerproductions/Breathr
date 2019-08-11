@@ -18,15 +18,15 @@ const AppToggles = (props) => {
     <aside id="app-toggles" className="navbar-col">
       <div onClick={()=>{toggleIcon('search')}}
       className={getIconClasses('isSearch')}>
-        <i className="fas fa-search"></i>
+        <i title="Toggle video search" className="fas fa-search"></i>
       </div>
       <div onClick={()=>{toggleIcon('timer')}}
       className={getIconClasses('isTimer')}>
-        <i className="fas fa-clock"></i>
+        <i title="Toggle timer" className="fas fa-clock"></i>
       </div>
       <div onClick={()=>{toggleIcon('collection')}}
       className={getIconClasses('isCollection')}>
-        <i className="fas fa-bookmark"></i>
+        <i title="Toggle your collection" className="fas fa-bookmark"></i>
       </div>
     </aside>
   )

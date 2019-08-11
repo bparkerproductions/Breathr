@@ -1,0 +1,20 @@
+.left {
+  display: flex;
+  transform: translateY(-100vh);
+  height: 0;
+
+  @include atTablet {
+    order: 1;
+  }
+
+  .navbar-col {
+    padding: 0 15px;
+  }
+
+  .mobile-content {
+    display: flex;
+    // @include atTablet {
+    //   display: none;
+    // }
+  }
+}

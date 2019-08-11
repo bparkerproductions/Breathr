@@ -1,0 +1,19 @@
+.mobile-toggle {
+  display: flex;
+  align-items: center;
+  margin-right: 12.5px;
+
+  @include atTabletUp {
+    display: none;
+  }
+
+  @include atSmall {
+    margin-top: 7px;
+    align-items: flex-start;
+  }
+
+  i {
+    color: $white;
+    font-size: 1.35em;
+  }
+}

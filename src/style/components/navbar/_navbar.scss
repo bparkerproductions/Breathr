@@ -1,4 +1,6 @@
 nav.main-nav {
+  @import "navbar-left";
+
   background-color: $dark;
   position: fixed;
   width: 100%;
@@ -10,6 +12,10 @@ nav.main-nav {
     width: 100%;
     display: flex;
     justify-content: space-between;
+
+    @include atTablet {
+      flex-direction: column;
+    }
   }
 
   .navbar-col {
@@ -28,23 +34,22 @@ nav.main-nav {
   }
 
   .right {
+    @import "parts/mobile-toggle";
+
     display: flex;
 
-    @include atSmall {
-      flex-direction: column;
-      width: 100%;
+    .video-content {
+      @include atSmallUp {
+        display: flex;
+      }
+    }
+
+    @include atTablet {
+      order: 0;
     }
 
     .app-toggle-group {
       display: flex;
-    }
-  }
-
-  .left {
-    display: flex;
-
-    .navbar-col {
-      padding: 0 15px;
     }
   }
 }
