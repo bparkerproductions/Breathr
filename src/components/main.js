@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NotificationContainer } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
-import { incrementVisitCount } from '../helpers/store/general';
+import { incrementVisitCount, createTimeTrack } from '../helpers/store/general';
 
 import Navbar from './global/Navbar';
 import IntroModal from './global/IntroModal';
@@ -15,6 +15,7 @@ class App extends React.Component {
   componentDidMount() {
     //increment localstorage visit count by one
     incrementVisitCount();
+    createTimeTrack();
   }
 
   render() {
