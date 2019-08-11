@@ -1,7 +1,7 @@
 .mobile-toggle {
   display: flex;
   align-items: center;
-  margin-right: 12.5px;
+  width: 35px;
 
   @include atTabletUp {
     display: none;

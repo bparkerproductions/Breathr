@@ -1,7 +1,33 @@
 .left {
   display: flex;
-  transform: translateY(-100vh);
-  height: 0;
+  transition: all 0.2s ease;
+
+  @include atTablet {
+    transform: translateY(-100vh);
+    height: 0;
+  }
+
+  .mobile-content {
+    display: flex;
+    transition: all 0.2s ease;
+
+    @include atTablet {
+      transform: translateX(-125vw);
+    }
+  }
+
+  &.show {
+    transform: translateY(0);
+    height: 50px;
+
+    @include atTablet {
+      padding-top: 12.5px;
+    }
+
+    .mobile-content {
+      transform: translateX(0);
+    }
+  }
 
   @include atTablet {
     order: 1;
@@ -9,12 +35,9 @@
 
   .navbar-col {
     padding: 0 15px;
-  }
 
-  .mobile-content {
-    display: flex;
-    // @include atTablet {
-    //   display: none;
-    // }
+    @include atTablet {
+      border: 0;
+    }
   }
 }
