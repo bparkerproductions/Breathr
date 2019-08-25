@@ -1,21 +1,21 @@
 {
-  "homepage": "https://www.breathr.io",
+  "homepage": "https://bparkerproductions.github.io/Breath.io/",
   "name": "bparkerproductions",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.18.0",
-    "lodash": "^4.17.11",
+    "axios": "^0.18.1",
+    "lodash": "^4.17.15",
     "node-sass": "^4.12.0",
-    "react": "^16.8.6",
-    "react-compound-timer": "^1.0.13",
-    "react-dom": "^16.8.6",
+    "react": "^16.9.0",
+    "react-compound-timer": "^1.1.4",
+    "react-dom": "^16.9.0",
     "react-notifications": "^1.4.3",
     "react-rangeslider": "^2.2.0",
     "react-redux": "^7.1.0",
     "react-scripts": "3.0.1",
     "react-youtube": "^7.9.0",
-    "redux": "^4.0.1"
+    "redux": "^4.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -40,6 +40,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^2.1.1"
   }
 }
