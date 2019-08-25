@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.db99b33a.chunk.css",
-    "main.js": "/static/js/main.20c7124b.chunk.js",
-    "main.js.map": "/static/js/main.20c7124b.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
-    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/css/2.f08e6d2d.chunk.css": "/static/css/2.f08e6d2d.chunk.css",
-    "static/js/2.a25635cd.chunk.js": "/static/js/2.a25635cd.chunk.js",
-    "static/js/2.a25635cd.chunk.js.map": "/static/js/2.a25635cd.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.8adb8d6bde1d99f7bf191092d9f3982c.js": "/precache-manifest.8adb8d6bde1d99f7bf191092d9f3982c.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.f08e6d2d.chunk.css.map": "/static/css/2.f08e6d2d.chunk.css.map",
-    "static/css/main.db99b33a.chunk.css.map": "/static/css/main.db99b33a.chunk.css.map",
-    "static/media/notifications.css": "/static/media/notification.c0d3c94c.eot"
+    "main.css": "/Breath.io/static/css/main.db99b33a.chunk.css",
+    "main.js": "/Breath.io/static/js/main.e095b3cc.chunk.js",
+    "main.js.map": "/Breath.io/static/js/main.e095b3cc.chunk.js.map",
+    "runtime~main.js": "/Breath.io/static/js/runtime~main.7fd21dbb.js",
+    "runtime~main.js.map": "/Breath.io/static/js/runtime~main.7fd21dbb.js.map",
+    "static/css/2.4ef1c65f.chunk.css": "/Breath.io/static/css/2.4ef1c65f.chunk.css",
+    "static/js/2.c0beb5ea.chunk.js": "/Breath.io/static/js/2.c0beb5ea.chunk.js",
+    "static/js/2.c0beb5ea.chunk.js.map": "/Breath.io/static/js/2.c0beb5ea.chunk.js.map",
+    "index.html": "/Breath.io/index.html",
+    "precache-manifest.1545e63d1ada28b617f5547e770e4f33.js": "/Breath.io/precache-manifest.1545e63d1ada28b617f5547e770e4f33.js",
+    "service-worker.js": "/Breath.io/service-worker.js",
+    "static/css/2.4ef1c65f.chunk.css.map": "/Breath.io/static/css/2.4ef1c65f.chunk.css.map",
+    "static/css/main.db99b33a.chunk.css.map": "/Breath.io/static/css/main.db99b33a.chunk.css.map",
+    "static/media/notifications.css": "/Breath.io/static/media/notification.c0d3c94c.eot"
   }
 }
