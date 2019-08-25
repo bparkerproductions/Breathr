@@ -4,7 +4,7 @@ const toolTip = (props) => {
 
   if(props.toggledOuter) {
     return (
-      <div className="tooltip">
+      <aside className="tooltip">
         <div className="triangle"></div>
         <div className="head">
           <i className="far fa-times-circle"></i>
@@ -12,7 +12,7 @@ const toolTip = (props) => {
         <div className="tooltip-content">
           {props.children}
         </div>
-      </div>
+      </aside>
     )
   }
   else return null;

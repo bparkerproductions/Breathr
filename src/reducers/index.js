@@ -17,5 +17,6 @@ export default combineReducers({
   isTimerToggled: appToggles.toggleTimerReducer,
   isCollectionToggled: appToggles.toggleCollectionReducer,
   allToggled: appToggles.toggleAllReducer,
-  totalMinutes: timer.totalMinutesReducer
+  totalSeconds: timer.totalSecondsReducer,
+  secondsForDay: timer.secondsForDay
 });

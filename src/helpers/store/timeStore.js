@@ -1,4 +1,5 @@
 import { store, getData } from './general';
+import { createTimeTrack } from './general';
 
 export function storeSeconds(seconds) {
   store(seconds, 'totalSeconds');
@@ -9,12 +10,24 @@ export function getTotalSeconds() {
   return getData('totalSeconds') === '[]' ? 0 : getData('totalSeconds');
 }
 
+export function getFormattedDate(date) {
+  return date.toISOString().slice(0, 10);
+}
+
 export function storeTime() {
   //get current date, then create new entry in localstorage
   //with the current MM-DD-YYY timestamp + total seconds for the day
+  let timeTrack = getData('timeTrack') === '{}' ? JSON.parse(getData('timeTrack')) : getData('timeTrack');
 
-  let today = new Date().toISOString().slice(0, 10);
-  let timeTrack = getData('timeTrack');
-  timeTrack[today] = getTotalSeconds();
+  if(timeTrack[getFormattedDate(new Date())] === undefined) {
+    timeTrack[getFormattedDate(new Date())] = 0;
+  }
+  timeTrack[getFormattedDate(new Date())]++;
   localStorage.setItem('timeTrack', JSON.stringify(timeTrack));
+}
+
+export function getTimeForDay() {
+  createTimeTrack();
+
+  return getData('timeTrack')[getFormattedDate(new Date())];
 }

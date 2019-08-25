@@ -1,19 +1,19 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import ToolTip from './../../elements/ToolTip';
 
 const DailyMinutes = (props) => {
   const [tooltipToggled, toggleTooltip] = useState(false);
+
   function getMinutes() {
-    return Math.floor(props.totalMinutes/10);
+    return Math.floor(props.secondsForDay/60);
   }
   function toggleTooltipState() {
     toggleTooltip(!tooltipToggled);
   }
   return (
     <time onClick={toggleTooltipState} className="daily-minutes">
-      <ToolTip
-      toggledOuter={tooltipToggled}>
+      <ToolTip toggledOuter={tooltipToggled}>
         <p>
           <span>You have logged</span>
           <span className="emphasize">{getMinutes()}</span>
@@ -30,7 +30,7 @@ const DailyMinutes = (props) => {
 
 const mapStateToProps = state => {
   return {
-    totalMinutes: state.totalMinutes
+    secondsForDay: state.secondsForDay
   };
 }
 
