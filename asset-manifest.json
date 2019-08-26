@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/Breath.io/static/css/main.db99b33a.chunk.css",
-    "main.js": "/Breath.io/static/js/main.e095b3cc.chunk.js",
-    "main.js.map": "/Breath.io/static/js/main.e095b3cc.chunk.js.map",
-    "runtime~main.js": "/Breath.io/static/js/runtime~main.7fd21dbb.js",
-    "runtime~main.js.map": "/Breath.io/static/js/runtime~main.7fd21dbb.js.map",
-    "static/css/2.4ef1c65f.chunk.css": "/Breath.io/static/css/2.4ef1c65f.chunk.css",
-    "static/js/2.c0beb5ea.chunk.js": "/Breath.io/static/js/2.c0beb5ea.chunk.js",
-    "static/js/2.c0beb5ea.chunk.js.map": "/Breath.io/static/js/2.c0beb5ea.chunk.js.map",
-    "index.html": "/Breath.io/index.html",
-    "precache-manifest.1545e63d1ada28b617f5547e770e4f33.js": "/Breath.io/precache-manifest.1545e63d1ada28b617f5547e770e4f33.js",
-    "service-worker.js": "/Breath.io/service-worker.js",
-    "static/css/2.4ef1c65f.chunk.css.map": "/Breath.io/static/css/2.4ef1c65f.chunk.css.map",
-    "static/css/main.db99b33a.chunk.css.map": "/Breath.io/static/css/main.db99b33a.chunk.css.map",
-    "static/media/notifications.css": "/Breath.io/static/media/notification.c0d3c94c.eot"
+    "main.css": "/Breathr/static/css/main.db99b33a.chunk.css",
+    "main.js": "/Breathr/static/js/main.934535fd.chunk.js",
+    "main.js.map": "/Breathr/static/js/main.934535fd.chunk.js.map",
+    "runtime~main.js": "/Breathr/static/js/runtime~main.bd68d097.js",
+    "runtime~main.js.map": "/Breathr/static/js/runtime~main.bd68d097.js.map",
+    "static/css/2.fedfc1c4.chunk.css": "/Breathr/static/css/2.fedfc1c4.chunk.css",
+    "static/js/2.d1385295.chunk.js": "/Breathr/static/js/2.d1385295.chunk.js",
+    "static/js/2.d1385295.chunk.js.map": "/Breathr/static/js/2.d1385295.chunk.js.map",
+    "index.html": "/Breathr/index.html",
+    "precache-manifest.256518694deaf6fb608b79c5eb1f57b9.js": "/Breathr/precache-manifest.256518694deaf6fb608b79c5eb1f57b9.js",
+    "service-worker.js": "/Breathr/service-worker.js",
+    "static/css/2.fedfc1c4.chunk.css.map": "/Breathr/static/css/2.fedfc1c4.chunk.css.map",
+    "static/css/main.db99b33a.chunk.css.map": "/Breathr/static/css/main.db99b33a.chunk.css.map",
+    "static/media/notifications.css": "/Breathr/static/media/notification.c0d3c94c.eot"
   }
 }
