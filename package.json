@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "ajv": "^6.10.2",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "inherits": "^2.0.4",
     "lodash": "^4.17.15",
     "node-sass": "^4.12.0",
