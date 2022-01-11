@@ -1,20 +1,20 @@
-import React, {useState} from 'react';
-import AppToggles from './../app/Controls/AppToggles';
-import VideoControls from './../app/Controls/VideoControls';
-import DailyMinutes from './../app/Timer/DailyMinutes';
-import ToggleAll from './../app/Controls/ToggleAll';
+import React, {useState} from 'react'
+import AppToggles from './../app/Controls/AppToggles'
+import VideoControls from './../app/Controls/VideoControls'
+import DailyMinutes from './../app/Timer/DailyMinutes'
+import ToggleAll from './../app/Controls/ToggleAll'
 
 const Navbar = (props) => {
-  const [contentToggled, setContent] = useState(false);
+  const [contentToggled, setContent] = useState(false)
 
   function toggleContent() {
-    setContent(!contentToggled);
+    setContent(!contentToggled)
   }
   function isToggled() {
-    return contentToggled ? 'show' : '';
+    return contentToggled ? 'show' : ''
   }
   function getToggledState() {
-    return contentToggled ? 'fas fa-times-circle' : 'fas fa-bars';
+    return contentToggled ? 'fas fa-times-circle' : 'fas fa-bars'
   }
   return (
     <nav className="column-center main-nav">
@@ -24,6 +24,7 @@ const Navbar = (props) => {
             <div className="navbar-col">
               <a className="white link"
                 target="_blank"
+                rel="noopener noreferrer"
                 href="https://github.com/bparkerproductions/Breathr">
                 Contribute
               </a>
@@ -48,7 +49,7 @@ const Navbar = (props) => {
         </div>
       </div>
     </nav>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar

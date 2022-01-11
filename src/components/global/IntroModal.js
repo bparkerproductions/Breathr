@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import Modal from './../elements/Modal';
+import React, { useState } from 'react'
+import Modal from './../elements/Modal'
 
 const IntroModal = (props) => {
-  const [toggled, setToggled] = useState(true);
+  const [toggled, setToggled] = useState(true)
 
   function isMobile() {
-    if(window.innerWidth <= 1024) return true;
-    else return false;
+    if(window.innerWidth <= 1024) return true
+    else return false
   }
 
   function playVideo() {
-    props.videoPlayer.playVideo();
-    setToggled(false);
+    props.videoPlayer.playVideo()
+    setToggled(false)
   }
 
   function startVideoSection() {
@@ -22,7 +22,7 @@ const IntroModal = (props) => {
           <i className="fas fa-play-circle"></i>
         </div>
       </div>
-    );
+    )
   }
 
   if(!isMobile()) {
@@ -58,4 +58,4 @@ const IntroModal = (props) => {
   }
 }
 
-export default IntroModal;
+export default IntroModal

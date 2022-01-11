@@ -1,35 +1,35 @@
-import { store } from '../helpers/store/general';
-import { getInitialVideos, getFirstVideo } from '../helpers/store/videoStore';
+import { store } from '../helpers/store/general'
+import { getInitialVideos, getFirstVideo } from '../helpers/store/videoStore'
 
 const videosReducer = (initialVideos=getInitialVideos('videoList'), action) => {
-  if(action.type === 'ADD_TO_COLLECTION') {
+  if (action.type === 'ADD_TO_COLLECTION') {
 
     //first check if video is already in collection
-    let newState = [...initialVideos, action.payload];
-    store(newState, 'videoList');
-    return newState;
+    let newState = [...initialVideos, action.payload]
+    store(newState, 'videoList')
+    return newState
   }
 
-  if(action.type === 'REMOVE_FROM_COLLECTION') {
+  if (action.type === 'REMOVE_FROM_COLLECTION') {
     let newState = initialVideos.filter(video => {
-      return action.payload !== video.id.videoId;
-    });
-    store(newState, 'videoList');
-    return newState;
+      return action.payload !== video.id.videoId
+    })
+    store(newState, 'videoList')
+    return newState
   }
 
-  return initialVideos;
-};
+  return initialVideos
+}
 
 const defaultVideoReducer = () => {
-  let firstItem = getFirstVideo('videoList');
-  return firstItem ? firstItem : 'Ftm2uv7-Ybw';
+  let firstItem = getFirstVideo('videoList')
+  return firstItem ? firstItem : 'Ftm2uv7-Ybw'
 }
 
 const selectedVideoReducer = (selectedVideo=null, action) => {
-  if(action.type === 'VIDEO_SELECTED') return action.payload;
-  else return selectedVideo;
-};
+  if (action.type === 'VIDEO_SELECTED') return action.payload
+  else return selectedVideo
+}
 
 export default {
   videosReducer,

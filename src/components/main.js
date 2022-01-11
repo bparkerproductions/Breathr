@@ -1,21 +1,21 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { NotificationContainer } from 'react-notifications';
-import 'react-notifications/lib/notifications.css';
-import { incrementVisitCount, createTimeTrack } from '../helpers/store/general';
+import React from 'react'
+import { connect } from 'react-redux'
+import { NotificationContainer } from 'react-notifications'
+import 'react-notifications/lib/notifications.css'
+import { incrementVisitCount, createTimeTrack } from '../helpers/store/general'
 
-import Navbar from './global/Navbar';
-import IntroModal from './global/IntroModal';
-import VideoRender from './global/VideoRender';
-import TimerControls from './app/Timer/TimerControls';
-import Search from './app/Search/Search';
-import Collection from './app/Video/Collection';
+import Navbar from './global/Navbar'
+import IntroModal from './global/IntroModal'
+import VideoRender from './global/VideoRender'
+import TimerControls from './app/Timer/TimerControls'
+import Search from './app/Search/Search'
+import Collection from './app/Video/Collection'
 
 class App extends React.Component {
   componentDidMount() {
     //increment localstorage visit count by one
-    incrementVisitCount();
-    createTimeTrack();
+    incrementVisitCount()
+    createTimeTrack()
   }
 
   render() {
@@ -41,7 +41,7 @@ class App extends React.Component {
 
         <VideoRender></VideoRender>
       </main>
-    );
+    )
   }
 }
 
@@ -52,7 +52,7 @@ const mapStateToProps = state => {
     showCollection: state.isCollectionToggled,
     allToggled: state.allToggled,
     videoPlayer: state.videoPlayer
-  };
+  }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(App)

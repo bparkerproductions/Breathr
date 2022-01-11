@@ -1,5 +1,5 @@
 export function checkVisitCount() {
-  return getData('visitAmounts');
+  return getData('visitAmounts')
 }
 
 export function incrementVisitCount() {
