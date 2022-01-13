@@ -7,6 +7,7 @@ const Modal = props => {
   function toggleModal() {
     setToggled(false)
   }
+
   function renderButton() {
     if (props.showButton) {
       return (
@@ -19,6 +20,7 @@ const Modal = props => {
     }
     else return null
   }
+
   function renderCloseButton() {
     if (props.showClose) {
       return (
@@ -29,6 +31,7 @@ const Modal = props => {
     }
     else return null
   }
+  
   function isModalHidden() {
     return toggled && props.closedFromOuter ? '' : 'hidden '
   }

@@ -15,7 +15,6 @@ const toggleCollectionReducer = (toggled=false, action) => {
 
 const toggleAllReducer = (toggled=true, action) => {
   if (action.type === 'TOGGLE_ALL') toggled = !toggled
-  console.log('called')
   return toggled
 }
 
