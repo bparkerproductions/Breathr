@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
 const SearchBar = (props) => {
   function trackInput(event) {
-    props.searchCallback(event.target.value);
+    props.searchCallback(event.target.value)
   }
   function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
   }
 
   return (
@@ -22,4 +22,4 @@ const SearchBar = (props) => {
   )
 }
 
-export default SearchBar;
+export default SearchBar
