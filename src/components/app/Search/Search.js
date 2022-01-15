@@ -1,62 +1,55 @@
-import React from 'react';
-import { debounce } from 'lodash';
+import React, {useState} from 'react'
+import SearchBar from './SearchBar'
+import youtube from '../../../helpers/apis/youtube'
+import VideoResult from '../Video/VideoResult'
+import ComponentControls from './../Controls/ComponentControls'
 
-import SearchBar from './SearchBar';
-import youtube from '../../../helpers/apis/youtube';
-import VideoResult from '../Video/VideoResult';
-import ComponentControls from './../Controls/ComponentControls';
+const Search = (props) => {
+  const [searchResult, setSearchResult] = useState(null)
+  const [videos, setVideos] = useState(null)
 
-class Search extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      searchResult: null,
-      videos: null
-    }
-
-    this.updateSearchResult = this.updateSearchResult.bind(this);
-    this.getVideoResults = debounce(this.getVideoResults.bind(this), 1000);
+  function updateSearchResult(userInput) {
+    setSearchResult(userInput)
+    getVideoResults()
   }
-  updateSearchResult(userInput) {
-    this.setState({searchResult: userInput})
-    this.getVideoResults();
-  }
-  async getVideoResults() {
+
+  async function getVideoResults() {
     const response = await youtube.get('/search', {
       params: {
-        q: this.state.searchResult + ' relaxing audio'
+        q: searchResult + ' relaxing audio'
       }
-    });
+    })
 
-    this.setState({videos: response.data.items});
+    setVideos(response.data.items)
   }
-  getShowClasses() {
-    let show = this.props.show && this.props.allToggled;
-    return show ? 'column-center ' : 'column-center hidden ';
+
+  function getShowClasses() {
+    let show = props.show && props.allToggled
+    return show ? 'column-center ' : 'column-center hidden '
   }
-  getSearchedClasses() {
-    let videos = this.state.videos === null ? false : this.state.videos.length;
-    return this.state.searchResult && videos ? 'searched ' : '';
+
+  function getSearchedClasses() {
+    return searchResult && (videos ? videos.length : false) ? 'searched ' : ''
   }
-  getVideoClasses() {
-    return this.getShowClasses() + this.getSearchedClasses();
+
+  function getVideoClasses() {
+    return getShowClasses() + getSearchedClasses()
   }
-  render() {
-    return (
-      <section id="video-search" className={this.getVideoClasses()}>
-        <div className="inner-container">
-          <ComponentControls toggleType="search"></ComponentControls>
-          <SearchBar searchCallback={this.updateSearchResult}></SearchBar>
-          <VideoResult
-            searchResult={this.state.searchResult}
-            videos={this.state.videos}
-            canAdd={true}>
-          </VideoResult>
-        </div>
-      </section>
-    )
-  }
+
+  return (
+    <section id="video-search" className={getVideoClasses()}>
+      <div className="inner-container">
+        <ComponentControls toggleType="search"></ComponentControls>
+        <SearchBar searchCallback={updateSearchResult}></SearchBar>
+        <VideoResult
+          searchResult={searchResult}
+          videos={videos}
+          canAdd={true}>
+        </VideoResult>
+      </div>
+    </section>
+  )
 }
 
-export default Search;
+
+export default Search
