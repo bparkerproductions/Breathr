@@ -11,38 +11,36 @@ import TimerControls from './app/Timer/TimerControls'
 import Search from './app/Search/Search'
 import Collection from './app/Video/Collection'
 
-class App extends React.Component {
-  componentDidMount() {
+const App = (props) => {
+  function componentDidMount() {
     //increment localstorage visit count by one
     incrementVisitCount()
     createTimeTrack()
   }
 
-  render() {
-    return (
-      <main>
-        <NotificationContainer></NotificationContainer>
-        <Navbar />
-        <IntroModal videoPlayer={this.props.videoPlayer}></IntroModal>
-        <TimerControls
-          allToggled={this.props.allToggled}
-          show={this.props.showTimer}>
-        </TimerControls>
+  return (
+    <main>
+      <NotificationContainer></NotificationContainer>
+      <Navbar />
+      <IntroModal videoPlayer={props.videoPlayer}></IntroModal>
+      <TimerControls
+        allToggled={props.allToggled}
+        show={props.showTimer}>
+      </TimerControls>
 
-        <Search
-          allToggled={this.props.allToggled}
-          show={this.props.showSearch}>
-        </Search>
+      <Search
+        allToggled={props.allToggled}
+        show={props.showSearch}>
+      </Search>
 
-        <Collection
-          allToggled={this.props.allToggled}
-          show={this.props.showCollection}>
-        </Collection>
+      <Collection
+        allToggled={props.allToggled}
+        show={props.showCollection}>
+      </Collection>
 
-        <VideoRender></VideoRender>
-      </main>
-    )
-  }
+      <VideoRender></VideoRender>
+    </main>
+  )
 }
 
 const mapStateToProps = state => {

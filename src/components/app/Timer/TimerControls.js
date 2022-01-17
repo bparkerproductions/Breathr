@@ -9,18 +9,10 @@ import { incrementSecond } from './../../../actions'
 const TimerControls = (props) => {
   const [isTimerStarted, setIsTimerStarted] = useState(false)
   const [paused, setPaused] = useState(false)
-  const [interval, setInterval] = useState(null)
-
-  function toggleTimer() {
-    setIsTimerStarted(true)
-  }
-
-  function togglePause() {
-    setPaused(!paused)
-  }
+  const [interval, setTimeInterval] = useState(null)
 
   function timerStarted(start) {
-    toggleTimer()
+    setIsTimerStarted(true)
     start()
   }
 
@@ -37,42 +29,32 @@ const TimerControls = (props) => {
     else return null
   }
 
-  function getTimeFormat(value) {
-    return `${(value < 10 ? `0${value}` : value)}`
-  }
-
   function getTimerContainerClass() {
-    let show = props.show && props.allToggled
-    return show ? 'timer' : 'timer hidden'
+    return props.show && props.allToggled ? 'timer' : 'timer hidden'
   }
 
-  function getTimerClass() {
-    return isTimerStarted ? 'main-timer' : 'main-timer hidden'
+  function setReset(reset) {
+    clearInterval(interval)
+    // reset()
   }
 
   function startTracking() {
-    let trackInterval = setInterval(() => {
-      props.incrementSecond()
-    }, 1000)
+    setTimeInterval(setInterval(() => props.incrementSecond(), 1000))
+  }
 
-    setInterval(trackInterval)
-  }
-  function stopTracking() {
-    clearInterval(interval)
-  }
   return (
     <section className={getTimerContainerClass()}>
       <Timer
         onStart={() => startTracking()}
         onResume={() => startTracking()}
-        onPause={() => stopTracking()}
+        onPause={() => clearInterval(interval)}
         startImmediately={false}>
         {({start, pause, resume, reset}) => (
           <React.Fragment>
             <div className="timer-container">
               <ComponentControls toggleType="timer"></ComponentControls>
               {timerStart(start)}
-              <div className={getTimerClass()}>
+              <div className={isTimerStarted ? 'main-timer' : 'main-timer hidden'}>
                 <span className="time">
                   <Timer.Minutes />
                 </span>
@@ -82,7 +64,7 @@ const TimerControls = (props) => {
 
                 <span className="time">
                   <Timer.Seconds
-                    formatValue={(value) => getTimeFormat(value)}
+                    formatValue={value => value < 10 ? `0${value}` : value}
                   />
                 </span>
                 <span className="time-label">s</span>
@@ -92,10 +74,10 @@ const TimerControls = (props) => {
             <TimerPlayback
               started={isTimerStarted}
               paused={paused}
-              togglePauseCallback={togglePause}
+              togglePauseCallback={() => setPaused(!paused)}
               pauseCallback={pause}
               resumeCallback={resume}
-              resetCallback={reset}>
+              resetCallback={() => setReset()}>
             </TimerPlayback>
           </React.Fragment>
         )}

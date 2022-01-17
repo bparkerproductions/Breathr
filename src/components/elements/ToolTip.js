@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const toolTip = (props) => {
 
@@ -15,7 +15,7 @@ const toolTip = (props) => {
       </aside>
     )
   }
-  else return null;
+  else return null
 }
 
-export default toolTip;
+export default toolTip
