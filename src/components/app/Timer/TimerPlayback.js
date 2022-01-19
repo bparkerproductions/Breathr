@@ -18,13 +18,13 @@ const TimerPlayback = (props) => {
     }
   }
 
-  function timerControls(pause, resume, reset) {
+  function timerControls() {
     if(props.started) {
       return (
         <div className="timer-controls">
-          {getPlayOrPause(pause, resume)}
+          {getPlayOrPause(props.pauseCallback, props.resumeCallback)}
           <div className="reset">
-            <i onClick={reset} className="fas fa-undo"></i>
+            <i onClick={resetTimer} className="fas fa-undo"></i>
           </div>
         </div>
       )
@@ -32,9 +32,17 @@ const TimerPlayback = (props) => {
     else return null
   }
 
+  function resetTimer() {
+    // props.stopCallback()
+    clearInterval(props.interval)
+    props.togglePauseCallback()
+    props.pauseCallback()
+    props.resetCallback()
+  }
+
   return (
     <div className="playback">
-      {timerControls(props.pauseCallback, props.resumeCallback, props.resetCallback)}
+      {timerControls()}
     </div>
   )
 }

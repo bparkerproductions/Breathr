@@ -33,11 +33,6 @@ const TimerControls = (props) => {
     return props.show && props.allToggled ? 'timer' : 'timer hidden'
   }
 
-  function setReset(reset) {
-    clearInterval(interval)
-    // reset()
-  }
-
   function startTracking() {
     setTimeInterval(setInterval(() => props.incrementSecond(), 1000))
   }
@@ -49,7 +44,7 @@ const TimerControls = (props) => {
         onResume={() => startTracking()}
         onPause={() => clearInterval(interval)}
         startImmediately={false}>
-        {({start, pause, resume, reset}) => (
+        {({start, pause, resume, reset, stop}) => (
           <React.Fragment>
             <div className="timer-container">
               <ComponentControls toggleType="timer"></ComponentControls>
@@ -72,12 +67,14 @@ const TimerControls = (props) => {
             </div>
 
             <TimerPlayback
+              interval={interval}
               started={isTimerStarted}
               paused={paused}
               togglePauseCallback={() => setPaused(!paused)}
+              stopCallback={stop}
               pauseCallback={pause}
               resumeCallback={resume}
-              resetCallback={() => setReset()}>
+              resetCallback={reset}>
             </TimerPlayback>
           </React.Fragment>
         )}
