@@ -8,17 +8,29 @@ const DailyMinutes = (props) => {
   function getMinutes() {
     return Math.floor(props.secondsForDay/60)
   }
+
   function toggleTooltipState() {
     toggleTooltip(!tooltipToggled)
+  }
+
+  function getMessage() {
+    if (props.secondsForDay < 60) {
+      return (
+        <p>You haven't logged any time yet. Go ahead and start the timer to start tracking.</p>
+      )
+    }
+    return (
+      <p>
+        <span>You have logged</span>
+        <span className="emphasize">{getMinutes()}</span>
+        <span>minutes today. Keep going!</span>
+      </p>
+    )
   }
   return (
     <time onClick={toggleTooltipState} className="daily-minutes">
       <ToolTip toggledOuter={tooltipToggled}>
-        <p>
-          <span>You have logged</span>
-          <span className="emphasize">{getMinutes()}</span>
-          <span>minutes today. Keep going!</span>
-        </p>
+        {getMessage()}
       </ToolTip>
       <span className="minute">
         {getMinutes()}
