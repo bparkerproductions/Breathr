@@ -16,7 +16,7 @@ const Search = (props) => {
   async function getVideoResults() {
     const response = await youtube.get('/search', {
       params: {
-        q: searchResult + ' relaxing audio'
+        q: searchResult + ' audio'
       }
     })
 
@@ -50,6 +50,5 @@ const Search = (props) => {
     </section>
   )
 }
-
 
 export default Search

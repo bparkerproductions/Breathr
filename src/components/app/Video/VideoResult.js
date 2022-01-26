@@ -3,17 +3,17 @@ import { connect } from 'react-redux'
 
 import VideoItem from './VideoItem'
 
-class VideoResult extends React.Component {
-  renderResults(loopObj, isCollection=false) {
-    if(loopObj.length) {
+const VideoResult = props => {
+  function renderResults(loopObj, isCollection=false) {
+    if (loopObj.length) {
       return (
         <div className="video-results">
           {loopObj.map(video => {
             return (
               <VideoItem
                 key={video.etag}
-                canAdd={this.props.canAdd}
-                canRemove={this.props.canRemove}
+                canAdd={props.canAdd}
+                canRemove={props.canRemove}
                 video={video}>
               </VideoItem>
             )
@@ -22,8 +22,8 @@ class VideoResult extends React.Component {
       )
     }
     else {
-      let noSearch = 'Nothing came up for your search :( Maybe try again with a different term'
-      let noCollection = 'You have nothing in your collection :( Head over to the search bar and find some!'
+      let noSearch = 'Nothing came up for your search. Maybe try again with a different term'
+      let noCollection = 'You have nothing in your collection. Head over to the search bar and find some!'
 
       return (
         <div className="notification-card error">
@@ -32,14 +32,15 @@ class VideoResult extends React.Component {
       )
     }
   }
-  render() {
-    let anyVideos = this.props.videos !== null
 
-    if(this.props.searchResult && anyVideos) {
-      return this.renderResults(this.props.videos)
+  function renderVideo() {
+    let anyVideos = props.videos !== null
+
+    if(props.searchResult && anyVideos) {
+      return renderResults(props.videos)
     }
-    else if(this.props.grabFromCollection) {
-      return this.renderResults(this.props.collectionVideos, true)
+    else if(props.grabFromCollection) {
+      return renderResults(props.collectionVideos, true)
     }
     else {
       return (
@@ -49,6 +50,10 @@ class VideoResult extends React.Component {
       )
     }
   }
+
+  return (
+    <div>{renderVideo()}</div>
+  )
 }
 
 const mapStateToProps = (state) => {
