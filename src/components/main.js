@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { NotificationContainer } from 'react-notifications'
 import 'react-notifications/lib/notifications.css'
@@ -12,11 +12,10 @@ import Search from './app/Search/Search'
 import Collection from './app/Video/Collection'
 
 const App = (props) => {
-  function componentDidMount() {
-    //increment localstorage visit count by one
+  useEffect(() => {
     incrementVisitCount()
     createTimeTrack()
-  }
+  })
 
   return (
     <main>

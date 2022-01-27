@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Modal from './../elements/Modal'
+import { checkVisitCount } from '../../helpers/store/general'
 
 const IntroModal = (props) => {
   const [toggled, setToggled] = useState(true)
 
   function isMobile() {
-    if(window.innerWidth <= 1024) return true
+    if (window.innerWidth <= 1024) return true
     else return false
   }
 
@@ -25,37 +26,30 @@ const IntroModal = (props) => {
     )
   }
 
-  if(!isMobile()) {
-    return (
-      <Modal
-        showClose={false}
-        firstVisitOnly={true}
-        showButton={false}
-        closedFromOuter={toggled}
-        buttonText="Let's get to it">
-        <div className="header-container bottom-line">
-          <h2 className="title">Welcome to Breathr!</h2>
-        </div>
-        <p>Breathr is a simple web app that lets you choose and collect your favorite sounds for meditation. No special subscriptions, no extras. </p>
-        {startVideoSection()}
-      </Modal>
-    )
+  function title() {
+    return checkVisitCount() > 1 ? 'Welcome Back!' : 'Welcome to Breathr!'
   }
-  else {
-    return (
-      <Modal
-        showButton={false}
-        closedFromOuter={toggled}
-        firstVisitOnly={false}>
-        <div className="header-container bottom-line">
-          <h2 className="title">Welcome to Breathr!</h2>
-        </div>
-        <p>This is a simple web app that lets you choose and collect your favorite sounds for meditation. You are on a <strong className="emphasize">mobile device</strong>, so you will need to click the play button below in order to get started with streaming videos. </p>
 
-        {startVideoSection()}
-      </Modal>
-    )
+  function description() {
+    const welcomeMessage = 'To continue enjoying your sounds, just click the play button below.'
+    const firstTimeMessage = 'Breathr is a simple web app that lets you choose and collect your favorite sounds for meditation. No special subscriptions, no extras.'
+    return checkVisitCount() > 1 ? welcomeMessage : firstTimeMessage
   }
+
+  return (
+    <Modal
+      showClose={false}
+      firstVisitOnly={false}
+      showButton={false}
+      closedFromOuter={toggled}
+      buttonText="Let's get to it">
+      <div className="header-container bottom-line">
+        <h2 className="title">{title()}</h2>
+      </div>
+      <p>{description()}</p>
+      {startVideoSection()}
+    </Modal>
+  )
 }
 
 export default IntroModal

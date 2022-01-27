@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 const VideoControls = props => {
   const [muted, setMuted] = useState(false)
-  const [paused, setPaused] = useState(false)
+  const [paused, setPaused] = useState(true)
   const [volume, changeVolume] = useState(100)
 
   const muteClass = (muted || volume === 0) ? 'fas fa-volume-off' : 'fas fa-volume-up'

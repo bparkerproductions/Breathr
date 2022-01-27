@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { checkVisitCount } from '../../helpers/store/general'
 
 const Modal = props => {
   const [toggled, setToggled] = useState(true)
@@ -36,22 +35,19 @@ const Modal = props => {
     return toggled && props.closedFromOuter ? '' : 'hidden '
   }
 
-  if (checkVisitCount() === 1) {
-    return (
-      <section className={`modal column-center mobile-fixed ${isModalHidden()}`}>
-        <div className="inner-container">
-          <div className="head">
-            {renderCloseButton()}
-          </div>
-          <div className="content">
-            { props.children }
-          </div>
-          {renderButton()}
+  return (
+    <section className={`modal column-center mobile-fixed ${isModalHidden()}`}>
+      <div className="inner-container">
+        <div className="head">
+          {renderCloseButton()}
         </div>
-      </section>
-    )
-  }
-  else return null
+        <div className="content">
+          { props.children }
+        </div>
+        {renderButton()}
+      </div>
+    </section>
+  )
 }
 
 export default Modal

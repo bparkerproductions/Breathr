@@ -1,5 +1,5 @@
-import axios from 'axios';
-console.log(process.env)
+import axios from 'axios'
+
 export default axios.create({
   baseURL: 'https://www.googleapis.com/youtube/v3',
   params: {
@@ -11,4 +11,4 @@ export default axios.create({
     videoDuration: 'long',
     key: process.env.REACT_APP_YOUTUBE_KEY,
   }
-});
+})
