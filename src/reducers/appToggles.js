@@ -1,10 +1,10 @@
 const toggleSearchReducer = (toggled=true, action) => {
-  if(action.type === 'TOGGLE_SEARCH') toggled = !toggled
+  if (action.type === 'TOGGLE_SEARCH') toggled = !toggled
   return toggled
 }
 
 const toggleTimerReducer = (toggled=true, action) => {
-  if(action.type === 'TOGGLE_TIMER') toggled = !toggled
+  if (action.type === 'TOGGLE_TIMER') toggled = !toggled
   return toggled
 }
 

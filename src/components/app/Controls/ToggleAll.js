@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { connect } from 'react-redux'
 
-import { toggleAll } from './../../../actions'
+import { toggleAll } from './../../../actions/appToggles'
 
 const ToggleAll = (props) => {
   const [allToggled, setToggled] = useState(true)

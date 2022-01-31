@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { toggleSearch, toggleTimer, toggleCollection } from './../../../actions';
+import { toggleSearch, toggleTimer, toggleCollection } from './../../../actions/appToggles'
 
 const AppToggles = (props) => {
   function getIconClasses(toggleType) {

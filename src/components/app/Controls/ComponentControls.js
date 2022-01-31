@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { toggleSearch, toggleCollection, toggleTimer } from './../../../actions';
+import { toggleSearch, toggleCollection, toggleTimer } from './../../../actions/appToggles'
 
 const ComponentControls = (props) => {
   function handleClick() {

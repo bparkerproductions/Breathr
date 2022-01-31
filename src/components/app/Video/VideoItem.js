@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { selectVideo, addToCollection, removeFromCollection } from '../../../actions'
+import { selectVideo, addToCollection, removeFromCollection } from '../../../actions/videoList'
 import { NotificationManager } from 'react-notifications'
 
 const VideoItem = (props) => {
