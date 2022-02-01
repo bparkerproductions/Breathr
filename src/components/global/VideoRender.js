@@ -2,37 +2,18 @@ import React from 'react'
 import Youtube from 'react-youtube'
 import { connect } from 'react-redux'
 import { setVideoPlayer } from './../../actions'
+import { options } from './../../helpers/apis/youtube'
 
-const VideoRender = (props) => {
-  const options = {
-    playerVars: {
-      loop: 1,
-      autoplay: 1,
-      start: 60,
-      frameborder: 0,
-      controls: 0,
-      color: 'white',
-      disablekb: 1,
-      enablejsapi: 1,
-      iv_load_policy: 3,
-      modestbranding: 1
-    }
-  }
-
-  function getSelected() {
-    let selected = props.selectedVideo
-    return selected ? selected : props.defaultVideo
-  }
-
+const VideoRender = props => {
   function setPlayingVideo(event) {
     props.setVideoPlayer(event.target)
   }
 
-  if(props.selectedVideo || props.defaultVideo) {
+  if (props.selectedVideo || props.defaultVideo) {
     return (
       <div className="video-render">
         <Youtube
-        videoId={getSelected()}
+        videoId={props.selectedVideo || props.defaultVideo}
         opts={options}
         onReady={setPlayingVideo}
         onStateChange={setPlayingVideo}>
