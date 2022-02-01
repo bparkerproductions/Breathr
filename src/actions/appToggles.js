@@ -21,3 +21,10 @@ export const toggleAll = () => {
     type: 'TOGGLE_ALL'
   }
 }
+
+export const setPaused = paused => {
+  return {
+    type: 'SET_PAUSED',
+    payload: paused
+  }
+}

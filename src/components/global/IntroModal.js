@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import Modal from './../elements/Modal'
+import { connect } from 'react-redux'
 import { checkVisitCount } from '../../helpers/store/general'
+import { setPaused } from './../../actions/appToggles'
 
 const IntroModal = (props) => {
   const [toggled, setToggled] = useState(true)
 
-  function isMobile() {
-    if (window.innerWidth <= 1024) return true
-    else return false
-  }
+  useEffect(() => {
+    if (!props.paused) setToggled(false)
+  })
 
   function playVideo() {
     props.videoPlayer.playVideo()
+    props.setPaused()
     setToggled(false)
   }
 
@@ -41,15 +43,22 @@ const IntroModal = (props) => {
       showClose={false}
       firstVisitOnly={false}
       showButton={false}
-      closedFromOuter={toggled}
+      closedFromOuter={toggled && props.paused}
       buttonText="Let's get to it">
-      <div className="header-container bottom-line">
-        <h2 className="title">{title()}</h2>
-      </div>
-      <p>{description()}</p>
+        <div className="header-container bottom-line">
+          <h2 className="title">{title()}</h2>
+        </div>
+        <p>{description()}</p>
       {startVideoSection()}
     </Modal>
   )
 }
+const mapStateToProps = state => {
+  return {
+    paused: state.paused,
+  }
+}
 
-export default IntroModal
+export default connect(mapStateToProps, {
+  setPaused
+})(IntroModal)

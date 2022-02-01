@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
 import { connect } from 'react-redux'
+import { setPaused } from './../../../actions/appToggles'
 
 const VideoControls = props => {
   const [muted, setMuted] = useState(false)
-  const [paused, setPaused] = useState(true)
   const [volume, changeVolume] = useState(100)
 
   const muteClass = (muted || volume === 0) ? 'fas fa-volume-off' : 'fas fa-volume-up'
-  const getPauseOrPlay = paused ? 'fas fa-play' : 'far fa-pause-circle'
+  const getPauseOrPlay = props.paused ? 'fas fa-play' : 'far fa-pause-circle'
 
   function toggleMuted() {
     setMuted(!muted)
@@ -23,8 +23,8 @@ const VideoControls = props => {
   }
 
   function togglePause() {
-    setPaused(!paused)
-    !paused ? props.videoPlayer.pauseVideo() : props.videoPlayer.playVideo()
+    props.setPaused(!props.paused)
+    !props.paused ? props.videoPlayer.pauseVideo() : props.videoPlayer.playVideo()
   }
 
   return (
@@ -48,7 +48,12 @@ const VideoControls = props => {
 }
 
 const mapStateToProps = state => {
-  return { videoPlayer: state.videoPlayer }
+  return {
+    paused: state.paused,
+    videoPlayer: state.videoPlayer
+  }
 }
 
-export default connect(mapStateToProps)(VideoControls)
+export default connect(mapStateToProps, {
+  setPaused
+})(VideoControls)
