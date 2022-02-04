@@ -7,10 +7,6 @@ import { setPaused } from './../../actions/appToggles'
 const IntroModal = (props) => {
   const [toggled, setToggled] = useState(true)
 
-  useEffect(() => {
-    if (!props.paused) setToggled(false)
-  })
-
   function playVideo() {
     props.videoPlayer.playVideo()
     props.setPaused()

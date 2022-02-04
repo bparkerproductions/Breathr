@@ -27,8 +27,7 @@ const VideoRender = props => {
 const mapStateToProps = (state) => {
   return {
     selectedVideo: state.selectedVideo,
-    defaultVideo: state.defaultVideo,
-    videoPlayer: state.videoPlayer
+    defaultVideo: state.defaultVideo
   }
 }
 

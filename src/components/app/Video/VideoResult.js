@@ -36,10 +36,10 @@ const VideoResult = props => {
   function renderVideo() {
     let anyVideos = props.videos !== null
 
-    if(props.searchResult && anyVideos) {
+    if (props.searchResult && anyVideos) {
       return renderResults(props.videos)
     }
-    else if(props.grabFromCollection) {
+    else if (props.grabFromCollection) {
       return renderResults(props.collectionVideos, true)
     }
     else {

@@ -3,19 +3,15 @@ import { connect } from 'react-redux'
 import { selectVideo, addToCollection, removeFromCollection } from '../../../actions/videoList'
 import { NotificationManager } from 'react-notifications'
 
-const VideoItem = (props) => {
+const VideoItem = props => {
   function bgImage() {
     return {
       backgroundImage: 'url(' + props.video.snippet.thumbnails.medium.url + ')'
     }
   }
 
-  function selectVideo() {
-    props.selectVideo(props.video.id.videoId)
-  }
-
   function doesVideoExist() {
-    for(let i=0; i<props.videos.length; i++) {
+    for (let i=0; i<props.videos.length; i++) {
       let videoID = props.videos[i].id.videoId
       let selectedVideoID = props.video.id.videoId
 
@@ -66,8 +62,14 @@ const VideoItem = (props) => {
     }
   }
 
+  function videoSelected() {
+    props.selectVideo(props.video.id.videoId)
+    console.log(props.videoPlayer)
+    props.videoPlayer.playVideo()
+  }
+
   return (
-    <div onClick={selectVideo} style={bgImage()} className="video-preview">
+    <div onClick={videoSelected} style={bgImage()} className="video-preview">
       <div className="video-controls">
         {renderControls()}
       </div>
@@ -86,7 +88,8 @@ const VideoItem = (props) => {
 const mapStateToProps = state => {
   return {
     selectedVideo: state.selectedVideo,
-    videos: state.videos
+    videos: state.videos,
+    videoPlayer: state.videoPlayer
   }
 }
 

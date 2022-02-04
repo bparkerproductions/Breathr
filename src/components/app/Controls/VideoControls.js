@@ -13,7 +13,7 @@ const VideoControls = props => {
 
   function toggleMuted() {
     setMuted(!muted)
-    muted ? props.videoPlayer.setVolume(100) : props.videoPlayer.setVolume(0)
+    muted ? props.videoPlayer.setVolume(volume) : props.videoPlayer.setVolume(0)
   }
   
   function handleVolumeChange(value) {
