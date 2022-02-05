@@ -8,16 +8,6 @@ nav.main-nav {
   top: 0;
   padding: 10px 0;
 
-  .inner-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-
-    @include atTablet {
-      flex-direction: column;
-    }
-  }
-
   .navbar-col {
     padding: 0 7.5px;
     border-left: 1px solid rgba($white, 0.15);
