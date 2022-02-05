@@ -26,7 +26,7 @@ i {
   color: $header-color;
 }
 
-//default line-height
+// Default line-height
 @include allText {
   line-height: $LINE-HEIGHT;
 
@@ -36,26 +36,3 @@ i {
     line-height: $MOBILE-LINE-HEIGHT;
   }
 }
-
-//set sizes
-.inner-container {
-  max-width: $CONTAINER;
-
-  @include atLargeUp {
-    max-width: 1200px;
-  }
-
-  @include atSmall {
-    max-width: $CONTAINER-SMALL;
-    padding: 0 15px;
-  }
-}
-
-p {
-  font-size: $PARA_FONT_SIZE;
-
-  @include atSmall {
-    font-size: $SMALL_PARA_FONT_SIZE;
-  }
-}
-
