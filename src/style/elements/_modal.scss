@@ -1,5 +1,4 @@
 .modal {
-  background-color: rgba($dark, 0.75);
   padding: 50px 0;
   height: 350px;
   @extend %animationSlideUp;
@@ -11,6 +10,13 @@
   @include atSmall {
     margin-top: 100px;
     height: 100vh;
+  }
+
+  .inner-container {
+    min-width: 50%;
+    padding: 45px 60px;
+    background-color: rgba($light-blue, 0.6);
+    border-radius: 5px;
   }
 
   &.mobile-fixed {
@@ -43,18 +49,6 @@
     p {
       @include atSmall {
         line-height: 1.3;
-      }
-    }
-  }
-
-  .modal-icon {
-    i,
-    svg {
-      color: $light-blue;
-      font-size: 3.5em;
-
-      @include atTabletUp {
-        cursor: pointer;
       }
     }
   }

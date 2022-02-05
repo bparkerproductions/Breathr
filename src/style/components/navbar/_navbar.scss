@@ -1,7 +1,7 @@
 nav.main-nav {
   @import "navbar-left";
 
-  background-color: $dark;
+  background-color: rgba($light-blue, 0.15);
   position: fixed;
   width: 100%;
   z-index: 3;

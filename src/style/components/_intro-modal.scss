@@ -1,0 +1,24 @@
+.content.intro-modal {
+  .play-container {
+    display: flex;
+  }
+
+  .play-item {
+    background-color: rgba($purple, 0.5);
+    border: 1px solid $purple;
+    padding: 15px;
+    border-radius: 3px;
+
+    @include column-center;
+
+    &__title {
+      font-size: 14px;
+      margin-bottom: 7.5px;
+      color: $white;
+    }
+
+    &__icon {
+      font-size: 2em;
+    }
+  }
+}

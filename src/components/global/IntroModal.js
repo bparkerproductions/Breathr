@@ -16,9 +16,11 @@ const IntroModal = (props) => {
   function startVideoSection() {
     return (
       <div className="play-container mt-small">
-        <strong onClick={playVideo} className="emphasize">Start Video Now</strong>
-        <div onClick={playVideo} className="modal-icon mt-small">
-          <i className="fas fa-play-circle"></i>
+        <div className="play-item">
+          <strong onClick={playVideo} className="play-item__title">Start Video Now</strong>
+          <div onClick={playVideo} className="play-item__icon">
+            <i className="fas fa-play-circle"></i>
+          </div>
         </div>
       </div>
     )
@@ -39,13 +41,14 @@ const IntroModal = (props) => {
       showClose={false}
       firstVisitOnly={false}
       showButton={false}
+      contentClasses="intro-modal"
       closedFromOuter={toggled && props.paused}
       buttonText="Let's get to it">
         <div className="header-container bottom-line">
           <h2 className="title">{title()}</h2>
         </div>
         <p>{description()}</p>
-      {startVideoSection()}
+        {startVideoSection()}
     </Modal>
   )
 }

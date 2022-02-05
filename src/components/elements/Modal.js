@@ -41,7 +41,7 @@ const Modal = props => {
         <div className="head">
           {renderCloseButton()}
         </div>
-        <div className="content">
+        <div className={`content ${props.contentClasses}`}>
           { props.children }
         </div>
         {renderButton()}
