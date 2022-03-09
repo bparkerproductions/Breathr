@@ -5,6 +5,11 @@
   justify-content: flex-end;
   @extend %animationBounceUp;
 
+  .mute-icon {
+    width: 48px;
+    margin-top: 3px;
+  }
+
   .ui-button {
     cursor: pointer;
 

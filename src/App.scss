@@ -2,24 +2,9 @@
  * Import global styles and mixins
  */
 
-
-@import "../node_modules/bootstrap/scss/functions";
-
-// Include any default variable overrides here
 @import "style/global/variables/main";
 
-// Include remainder of required Bootstrap stylesheets
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
-
-// Include any optional Bootstrap components as you like
-@import "../node_modules/bootstrap/scss/root";
-@import "../node_modules/bootstrap/scss/reboot";
-@import "../node_modules/bootstrap/scss/containers";
-@import "../node_modules/bootstrap/scss/grid";
-@import "../node_modules/bootstrap/scss/utilities";
-
-// Add additional custom code here
+@import "../node_modules/bootstrap/scss/bootstrap";
 
 // Mixins
 @import "style/global/mixins/main";
