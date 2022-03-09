@@ -16,9 +16,9 @@ const IntroModal = (props) => {
   function startVideoSection() {
     return (
       <div className="play-container mt-small">
-        <div className="play-item">
-          <strong onClick={playVideo} className="play-item__title">Start Video Now</strong>
-          <div onClick={playVideo} className="play-item__icon">
+        <div onClick={playVideo} className="play-item">
+          <strong className="play-item__title">Start Video Now</strong>
+          <div className="play-item__icon">
             <i className="fas fa-play-circle"></i>
           </div>
         </div>
