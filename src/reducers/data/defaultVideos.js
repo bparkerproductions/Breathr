@@ -1,4 +1,4 @@
-export default [
+const defaultVideos = [
   {
     etag: 'Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/2Ds1rRJWjRLXEJ2fQcsLM_Am2gs',
     id: {
@@ -28,3 +28,5 @@ export default [
     }
   },
 ]
+
+export default defaultVideos

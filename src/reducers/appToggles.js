@@ -23,10 +23,12 @@ const togglePauseReducer = (paused=true, action) => {
   return paused
 }
 
-export default {
+const appToggleReducers = {
   toggleSearchReducer,
   toggleTimerReducer,
   toggleCollectionReducer,
   toggleAllReducer,
   togglePauseReducer
 }
+
+export default  appToggleReducers

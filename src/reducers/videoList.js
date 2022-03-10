@@ -31,8 +31,10 @@ const selectedVideoReducer = (selectedVideo=null, action) => {
   else return selectedVideo
 }
 
-export default {
+const videoListReducers = {
   videosReducer,
   defaultVideoReducer,
   selectedVideoReducer
 }
+
+export default videoListReducers
