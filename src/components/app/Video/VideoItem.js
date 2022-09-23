@@ -49,7 +49,7 @@ const VideoItem = props => {
     if(props.canAdd) {
       return (
         <div className="ui-button" onClick={handleAdd}>
-          <i title="add to collection" className="fas fa-plus-circle"></i>
+          <i title="Add to collection" className="fas fa-plus-circle"></i>
         </div>
       )
     }

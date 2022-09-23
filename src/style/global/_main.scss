@@ -9,7 +9,7 @@ body {
   padding: 0;
   overflow-x: hidden;
 
-  @include scrollbar($purple, 5px);
+  @include scrollbar($secondary, 5px);
 }
 
 i {
@@ -23,7 +23,7 @@ i {
 }
 
 @include allHeaders {
-  color: $header-color;
+  color: $header;
 }
 
 //default line-height

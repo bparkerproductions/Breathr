@@ -10,11 +10,11 @@
 
     svg,
     i {
-      color: $purple;
+      color: $secondary;
       font-size: 16px;
 
       &.red {
-        color: $red;
+        color: $danger;
       }
     }
   }

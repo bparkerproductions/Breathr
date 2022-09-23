@@ -8,10 +8,10 @@
   background-color: rgba($dark, 0.5);
   padding: 20px 10px;
   margin-top: 10px;
-  border-top: 6px solid $light-blue;
+  border-top: 6px solid $primary;
 
   &.error {
-    border-color: $red;
+    border-color: $danger;
   }
 
   p {

@@ -10,7 +10,7 @@
   }
 
   .rangeslider__handle {
-    background-color: $purple;
+    background-color: $secondary;
     box-shadow: none;
     border: none;
     width: 22px;
@@ -28,7 +28,7 @@
 
   .rangeslider__fill {
     height: 5px;
-    background-color: $light-blue;
+    background-color: $primary;
     box-shadow: none;
 
     &:focus {

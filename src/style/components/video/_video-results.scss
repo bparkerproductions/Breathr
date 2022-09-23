@@ -5,7 +5,7 @@
   margin-top: 20px;
   max-height: 500px;
   overflow-y: scroll;
-  @include scrollbar($purple, 4px);
+  @include scrollbar($secondary, 4px);
 
   @include atTablet {
     justify-content: space-between;
@@ -15,7 +15,7 @@
     @import "parts/overlay-preview";
 
     flex-basis: 32.66%;
-    border-top: 5px solid $light-blue;
+    border-top: 5px solid $primary;
     cursor: pointer;
     position: relative;
     overflow: hidden;

@@ -2,9 +2,9 @@
   font-weight: 700;
 }
 
-//colors
+// Colors
 .light-blue {
-  color: $light-blue;
+  color: $primary;
 }
 
 .dark {
@@ -17,20 +17,20 @@
 
 .emphasize {
   font-weight: 700;
-  color: $purple;
+  color: $secondary;
 }
 
-//links
+// Links
 a.link {
   text-decoration: none;
   font-size: 16px;
   transition: all 0.25s ease;
 
   &:hover {
-    color: $purple;
+    color: $secondary;
   }
 
-  //hide on mobile for now
+  // Hide on mobile for now
   @include atSmall {
     display: none;
   }
