@@ -4,7 +4,7 @@ import { getInitialVideos, getFirstVideo } from '../helpers/store/videoStore'
 const videosReducer = (initialVideos=getInitialVideos('videoList'), action) => {
   if (action.type === 'ADD_TO_COLLECTION') {
 
-    //first check if video is already in collection
+    // First check if video is already in collection
     let newState = [...initialVideos, action.payload]
     store(newState, 'videoList')
     return newState
@@ -22,8 +22,7 @@ const videosReducer = (initialVideos=getInitialVideos('videoList'), action) => {
 }
 
 const defaultVideoReducer = () => {
-  let firstItem = getFirstVideo('videoList')
-  return firstItem ? firstItem : 'Ftm2uv7-Ybw'
+  return getFirstVideo('videoList') || 'Ftm2uv7-Ybw'
 }
 
 const selectedVideoReducer = (selectedVideo=null, action) => {

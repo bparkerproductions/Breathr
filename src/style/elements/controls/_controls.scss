@@ -19,3 +19,12 @@
     }
   }
 }
+
+.video-controls {
+  background-color: rgba($dark, 0.75);
+  border-radius: 0 0 0 3px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 2.5px 10px;
+}

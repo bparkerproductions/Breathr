@@ -13,10 +13,11 @@ const VideoRender = props => {
     return (
       <div className="video-render">
         <Youtube
-        videoId={props.selectedVideo || props.defaultVideo}
-        opts={options}
-        onReady={setPlayingVideo}
-        onStateChange={setPlayingVideo}>
+          videoId={props.selectedVideo || props.defaultVideo}
+          opts={options}
+          onReady={setPlayingVideo}
+          onStateChange={setPlayingVideo}
+        >
         </Youtube>
       </div>
     )

@@ -18,17 +18,18 @@ const toggleAllReducer = (toggled=true, action) => {
   return toggled
 }
 
-const togglePauseReducer = (paused=true, action) => {
-  if (action.type === 'SET_PAUSED') paused = !paused
+const setPausedReducer = (paused=true, action) => {
+  if (action.type === 'SET_PAUSED') return action.payload
   return paused
 }
+
 
 const appToggleReducers = {
   toggleSearchReducer,
   toggleTimerReducer,
   toggleCollectionReducer,
   toggleAllReducer,
-  togglePauseReducer
+  setPausedReducer
 }
 
-export default  appToggleReducers
+export default appToggleReducers

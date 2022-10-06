@@ -9,7 +9,7 @@ const IntroModal = (props) => {
 
   function playVideo() {
     props.videoPlayer.playVideo()
-    props.setPaused()
+    props.setPaused(false)
     setToggled(false)
   }
 

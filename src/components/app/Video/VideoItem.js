@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { selectVideo, addToCollection, removeFromCollection } from '../../../actions/videoList'
+import { setPaused } from './../../../actions/appToggles'
 import { NotificationManager } from 'react-notifications'
 
 const VideoItem = props => {
@@ -11,14 +12,14 @@ const VideoItem = props => {
   }
 
   function doesVideoExist() {
-    for (let i=0; i<props.videos.length; i++) {
+    for (let i = 0; i < props.videos.length; i++) {
       let videoID = props.videos[i].id.videoId
       let selectedVideoID = props.video.id.videoId
 
-      if (videoID === selectedVideoID) return true //already exists
+      if (videoID === selectedVideoID) return true
     }
 
-    return false //doesn't exist yet
+    return false
   }
 
   function handleAdd(e) {
@@ -46,7 +47,7 @@ const VideoItem = props => {
   }
 
   function renderControls() {
-    if(props.canAdd) {
+    if(!doesVideoExist()) {
       return (
         <div className="ui-button" onClick={handleAdd}>
           <i title="Add to collection" className="fas fa-plus-circle"></i>
@@ -64,8 +65,12 @@ const VideoItem = props => {
 
   function videoSelected() {
     props.selectVideo(props.video.id.videoId)
-    console.log(props.videoPlayer)
-    props.videoPlayer.playVideo()
+
+    const isPlaying = props.videoPlayer.getPlayerState() === 1 || false
+    // props.setPaused(isPlaying)
+
+    if (props.paused) props.videoPlayer.playVideo()
+    else props.videoPlayer.pauseVideo()
   }
 
   return (
@@ -77,9 +82,6 @@ const VideoItem = props => {
         <p className="white title">
           {props.video.snippet.title}
         </p>
-        <div className="icon-container">
-          <i className="fas fa-play"></i>
-        </div>
       </div>
     </div>
   )
@@ -87,6 +89,7 @@ const VideoItem = props => {
 
 const mapStateToProps = state => {
   return {
+    paused: state.paused,
     selectedVideo: state.selectedVideo,
     videos: state.videos,
     videoPlayer: state.videoPlayer
@@ -96,5 +99,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   selectVideo,
   addToCollection,
-  removeFromCollection
+  removeFromCollection,
+  setPaused
 })(VideoItem)

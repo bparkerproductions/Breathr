@@ -22,7 +22,7 @@ export const toggleAll = () => {
   }
 }
 
-export const setPaused = paused => {
+export const setPaused = (paused=true) => {
   return {
     type: 'SET_PAUSED',
     payload: paused
