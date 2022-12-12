@@ -67,7 +67,7 @@ const VideoItem = props => {
     props.selectVideo(props.video.id.videoId)
 
     const isPlaying = props.videoPlayer.getPlayerState() === 1 || false
-    // props.setPaused(isPlaying)
+    props.setPaused(!isPlaying)
 
     if (props.paused) props.videoPlayer.playVideo()
     else props.videoPlayer.pauseVideo()
