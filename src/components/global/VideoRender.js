@@ -11,7 +11,8 @@ const VideoRender = props => {
    * when the player state is set as playing
    */
   function setPlayingVideo(event) {
-    if (event.target.getPlayerState() === 1) {
+    console.log(event.target.getPlayerState())
+    if (event.target.getPlayerState() === 3) {
       props.setVideoPlayer(event.target)
     }
   }

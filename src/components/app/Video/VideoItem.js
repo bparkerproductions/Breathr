@@ -5,8 +5,12 @@ import { setPaused } from './../../../actions/appToggles'
 import { NotificationManager } from 'react-notifications'
 
 const VideoItem = props => {
+  /**
+   * Call useEffect function when  props.videoPlayer changes 
+   * (it means a video was selected and its already in its "loaded" state)
+   */
   useEffect(() => {
-    setVideoVolume()
+    setVideoState()
   }, [props.videoPlayer])
 
   function bgImage() {
@@ -92,8 +96,10 @@ const VideoItem = props => {
    * When the props.videoPlayer prop changes, useEffect will call this
    * function to set play/pause state and volume
    */
-  function setVideoVolume() {
-    props.videoPlayer.setVolume(props.videoVolume)
+  function setVideoState() {
+    if (props.videoPlayer) {
+      props.videoPlayer.setVolume(props.videoVolume)
+    }
   }
 
   return (
