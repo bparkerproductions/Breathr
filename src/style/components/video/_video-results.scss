@@ -51,5 +51,18 @@
     img {
       width: 100%;
     }
+
+    .control-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+
+      i {
+        color: $primary;
+        font-size: 3rem;
+      }
+    }
   }
 }

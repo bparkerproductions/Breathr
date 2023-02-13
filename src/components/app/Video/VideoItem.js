@@ -13,6 +13,10 @@ const VideoItem = props => {
     setVideoState()
   }, [props.videoPlayer])
 
+  const [isPlaying, setIsPlaying] = useState(true)
+
+  const getPauseOrPlay = isPlaying ? 'fas fa-play' : 'far fa-pause-circle'
+
   function bgImage() {
     return {
       backgroundImage: 'url(' + props.video.snippet.thumbnails.medium.url + ')'
@@ -24,8 +28,8 @@ const VideoItem = props => {
    */
   function doesVideoExist() {
     for (let i = 0; i < props.videos.length; i++) {
-      let videoID = props.videos[i].id.videoId
-      let selectedVideoID = props.video.id.videoId
+      const videoID = props.videos[i].id.videoId
+      const selectedVideoID = props.video.id.videoId
 
       if (videoID === selectedVideoID) return true
     }
@@ -87,7 +91,18 @@ const VideoItem = props => {
   function videoSelected() {
     props.selectVideo(props.video.id.videoId)
 
-    props.videoPlayer.playVideo()
+    const videoIsPlaying = props.videoPlayer.getPlayerState() === 1
+
+    if (videoIsPlaying) {
+      props.videoPlayer.pauseVideo()
+      videoStatePaused()
+    }
+    else {
+      props.videoPlayer.playVideo()
+      videoStatePlaying()
+    }
+
+    // Set volume prop
     const volume = props.videoPlayer.getVolume()
     props.setVideoVolume(volume)
   }
@@ -99,11 +114,34 @@ const VideoItem = props => {
   function setVideoState() {
     if (props.videoPlayer) {
       props.videoPlayer.setVolume(props.videoVolume)
+
+      const playingVideoID = props.videoPlayer.getVideoData().video_id
+      const selectedVideoID = props.video.id.videoId
+
+      // Update local state for video item play icon
+      if (playingVideoID === selectedVideoID) {
+        videoStatePlaying()
+      } else {
+        videoStatePaused()
+      }
     }
+  }
+
+  function videoStatePlaying() {
+    props.setPaused(false)
+    setIsPlaying(false) 
+  }
+
+  function videoStatePaused() {
+    props.setPaused(true)
+    setIsPlaying(true)
   }
 
   return (
     <div onClick={videoSelected} style={bgImage()} className="video-preview">
+      <div className="control-container">
+        <i className={getPauseOrPlay}></i>
+      </div>
       <div className="video-controls">
         {renderControls()}
       </div>
