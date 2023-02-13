@@ -3,8 +3,15 @@ import videoList from './videoList'
 import appToggles from './appToggles'
 import timer from './timer'
 
+/**
+ * Set event.target of the Youtube API Iframe to videoPlayer
+ */
 const setVideoReducer = (player=null, action) => {
   return action.type === 'SET_VIDEO_PLAYER' ? action.payload : player
+}
+
+const setVideoVolumeReducer = (volume=100, action) => {
+  return action.type === 'SET_VIDEO_VOLUME' ? action.payload : volume;
 }
 
 export default combineReducers({
@@ -12,6 +19,7 @@ export default combineReducers({
   selectedVideo: videoList.selectedVideoReducer,
   defaultVideo: videoList.defaultVideoReducer,
   videoPlayer: setVideoReducer,
+  videoVolume: setVideoVolumeReducer,
   isSearchToggled: appToggles.toggleSearchReducer,
   isTimerToggled: appToggles.toggleTimerReducer,
   isCollectionToggled: appToggles.toggleCollectionReducer,

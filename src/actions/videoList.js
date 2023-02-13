@@ -18,3 +18,10 @@ export const selectVideo = video => {
     payload: video
   }
 }
+
+export const setVideoVolume = volume => {
+  return {
+    type: 'SET_VIDEO_VOLUME',
+    payload: volume
+  }
+}

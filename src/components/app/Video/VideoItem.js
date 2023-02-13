@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { selectVideo, addToCollection, removeFromCollection } from '../../../actions/videoList'
+import { selectVideo, addToCollection, removeFromCollection, setVideoVolume } from '../../../actions/videoList'
 import { setPaused } from './../../../actions/appToggles'
 import { NotificationManager } from 'react-notifications'
 
 const VideoItem = props => {
+  useEffect(() => {
+    setVideoVolume()
+  }, [props.videoPlayer])
+
   function bgImage() {
     return {
       backgroundImage: 'url(' + props.video.snippet.thumbnails.medium.url + ')'
@@ -78,11 +82,18 @@ const VideoItem = props => {
    */
   function videoSelected() {
     props.selectVideo(props.video.id.videoId)
-    // props.setPaused(!isPlaying)
 
     props.videoPlayer.playVideo()
     const volume = props.videoPlayer.getVolume()
-    props.videoPlayer.setVolume(volume)
+    props.setVideoVolume(volume)
+  }
+
+  /**
+   * When the props.videoPlayer prop changes, useEffect will call this
+   * function to set play/pause state and volume
+   */
+  function setVideoVolume() {
+    props.videoPlayer.setVolume(props.videoVolume)
   }
 
   return (
@@ -104,6 +115,7 @@ const mapStateToProps = state => {
     paused: state.paused,
     selectedVideo: state.selectedVideo,
     videos: state.videos,
+    videoVolume: state.videoVolume,
     videoPlayer: state.videoPlayer
   }
 }
@@ -112,5 +124,6 @@ export default connect(mapStateToProps, {
   selectVideo,
   addToCollection,
   removeFromCollection,
-  setPaused
+  setPaused,
+  setVideoVolume
 })(VideoItem)
