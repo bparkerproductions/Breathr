@@ -11,6 +11,9 @@ const VideoItem = props => {
     }
   }
 
+  /**
+   * Check if video already exists in collection
+   */
   function doesVideoExist() {
     for (let i = 0; i < props.videos.length; i++) {
       let videoID = props.videos[i].id.videoId
@@ -22,10 +25,13 @@ const VideoItem = props => {
     return false
   }
 
+  /**
+   * Add a video to the collection if it exists, otherwise throw a warning message
+   */
   function handleAdd(e) {
     e.stopPropagation()
 
-    if(!doesVideoExist()) {
+    if (!doesVideoExist()) {
       props.addToCollection(props.video)
 
       let successMessage = 'Your video has successfully been added to your collection!'
@@ -37,6 +43,9 @@ const VideoItem = props => {
     }
   }
 
+  /**
+   * Remove a video from a collection by calling the removeFromCollection action
+   */
   function handleRemove(e) {
     e.stopPropagation()
     let videoID = props.video.id.videoId
@@ -63,14 +72,17 @@ const VideoItem = props => {
     }
   }
 
+  /**
+   * Actions to perform when a new video is selected: 
+   * Select a new video, set play/pause state and volume state
+   */
   function videoSelected() {
     props.selectVideo(props.video.id.videoId)
+    // props.setPaused(!isPlaying)
 
-    const isPlaying = props.videoPlayer.getPlayerState() === 1 || false
-    props.setPaused(!isPlaying)
-
-    if (props.paused) props.videoPlayer.playVideo()
-    else props.videoPlayer.pauseVideo()
+    props.videoPlayer.playVideo()
+    const volume = props.videoPlayer.getVolume()
+    props.videoPlayer.setVolume(volume)
   }
 
   return (

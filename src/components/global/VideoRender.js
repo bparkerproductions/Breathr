@@ -5,8 +5,15 @@ import { setVideoPlayer } from './../../actions'
 import { options } from './../../helpers/apis/youtube'
 
 const VideoRender = props => {
+
+  /**
+   * When the iframe is loaded, call the setVideoPlayer action 
+   * when the player state is set as playing
+   */
   function setPlayingVideo(event) {
-    props.setVideoPlayer(event.target)
+    if (event.target.getPlayerState() === 1) {
+      props.setVideoPlayer(event.target)
+    }
   }
 
   if (props.selectedVideo || props.defaultVideo) {
