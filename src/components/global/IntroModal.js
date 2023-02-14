@@ -31,30 +31,36 @@ const IntroModal = (props) => {
   }
 
   function description() {
-    const welcomeMessage = 'To continue enjoying your sounds, just click the play button below.'
-    const firstTimeMessage = 'Breathr is a simple web app that lets you choose and collect your favorite sounds for meditation. No special subscriptions, no extras.'
+    const welcomeMessage = 'Click the button to continue enjoying your personalized sounds..'
+    const firstTimeMessage = 'Breathr lets you choose and collect your favorite soundscapes/moods for meditation and relaxation. No special subscriptions, no extras.'
     return checkVisitCount() > 1 ? welcomeMessage : firstTimeMessage
   }
 
-  return (
-    <Modal
-      showClose={false}
-      firstVisitOnly={false}
-      showButton={false}
-      contentClasses="intro-modal"
-      closedFromOuter={toggled && props.paused}
-      buttonText="Let's get to it">
-        <div className="header-container bottom-line">
-          <h2 className="title">{title()}</h2>
-        </div>
-        <p>{description()}</p>
-        {startVideoSection()}
-    </Modal>
-  )
+  if (props.videosPlayed === 0) {
+    return (
+      <Modal
+        showClose={false}
+        firstVisitOnly={false}
+        showButton={false}
+        contentClasses="intro-modal"
+        closedFromOuter={toggled && props.paused}
+        buttonText="Let's get to it">
+          <div className="header-container bottom-line">
+            <h2 className="title">{title()}</h2>
+          </div>
+          <p>{description()}</p>
+          {startVideoSection()}
+      </Modal>
+    )
+  }
+  else {
+    return <div></div>
+  }
 }
 const mapStateToProps = state => {
   return {
     paused: state.paused,
+    videosPlayed: state.videosPlayed,
   }
 }
 

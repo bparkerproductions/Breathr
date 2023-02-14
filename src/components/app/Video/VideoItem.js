@@ -112,6 +112,9 @@ const VideoItem = props => {
    * function to set play/pause state and volume
    */
   function setVideoState() {
+    // No state needs to be updated until a video is played
+    if (props.videosPlayed === 0) return
+
     if (props.videoPlayer) {
       props.videoPlayer.setVolume(props.videoVolume)
 
@@ -119,7 +122,7 @@ const VideoItem = props => {
       const selectedVideoID = props.video.id.videoId
 
       // Update local state for video item play icon
-      const isVideoStatePlaying = props.videosPlayed > 0 && (playingVideoID === selectedVideoID)
+      const isVideoStatePlaying = (playingVideoID === selectedVideoID)
 
       if (isVideoStatePlaying) {
         props.setPaused(true)
