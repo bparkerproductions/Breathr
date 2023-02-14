@@ -97,11 +97,13 @@ const VideoItem = props => {
 
     if (videoIsPlaying) {
       props.videoPlayer.pauseVideo()
-      videoStatePaused()
+      props.setPaused(true)
+      setIsPlaying(true)
     }
     else {
       props.videoPlayer.playVideo()
-      videoStatePlaying()
+      props.setPaused(false)
+      setIsPlaying(false)
     }
 
     // Set volume prop
@@ -122,18 +124,15 @@ const VideoItem = props => {
 
       // Update local state for video item play icon
       const isVideoStatePlaying = props.videosPlayed > 0 && (playingVideoID === selectedVideoID)
-      isVideoStatePlaying ? videoStatePlaying() : videoStatePaused()
+
+      if (isVideoStatePlaying) {
+        props.setPaused(true)
+        setIsPlaying(false) 
+      } else {
+        props.setPaused(false)
+        setIsPlaying(true)
+      }
     }
-  }
-
-  function videoStatePlaying() {
-    props.setPaused(false)
-    setIsPlaying(false) 
-  }
-
-  function videoStatePaused() {
-    props.setPaused(true)
-    setIsPlaying(true)
   }
 
   return (
