@@ -3,11 +3,18 @@ import Modal from './../elements/Modal'
 import { connect } from 'react-redux'
 import { checkVisitCount } from '../../helpers/store/general'
 import { setPaused } from './../../actions/appToggles'
+import { incrementVideosPlayed } from './../../actions'
 
 const IntroModal = (props) => {
   const [toggled, setToggled] = useState(true)
 
   function playVideo() {
+    // The only time a video count can be incremented is when initially clicking the 
+    // play button on app load (it will start playing the default selected video)
+    if (props.videosPlayed === 0) {
+      props.incrementVideosPlayed()
+    } 
+
     props.videoPlayer.playVideo()
     props.setPaused(false)
     setToggled(false)
@@ -65,5 +72,6 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, {
-  setPaused
+  setPaused,
+  incrementVideosPlayed
 })(IntroModal)
