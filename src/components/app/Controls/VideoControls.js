@@ -2,24 +2,39 @@ import React, { useState } from 'react'
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
 import { connect } from 'react-redux'
+import { setVideoVolume } from './../../../actions/videoList'
 import { setPaused } from './../../../actions/appToggles'
 
 const VideoControls = props => {
   const [muted, setMuted] = useState(false)
-  const [volume, changeVolume] = useState(100)
+  const [localSliderVolume, setLocalSliderVolume] = useState(props.videoVolume)
 
-  const muteClass = (muted || volume === 0) ? 'fas fa-volume-off' : 'fas fa-volume-up'
+  const muteClass = (muted || props.videoVolume === 0) ? 'fas fa-volume-off' : 'fas fa-volume-up'
   const getPauseOrPlay = props.paused ? 'fas fa-play' : 'far fa-pause-circle'
 
   function toggleMuted() {
     setMuted(!muted)
-    muted ? props.videoPlayer.setVolume(volume) : props.videoPlayer.setVolume(0)
+    setLocalSliderVolume(props.videoVolume)
+
+    // Apps volume state needs to be 0 but I use local state here 
+    // to reset the volume when it's unmuted
+    muted ? handleVolumeChange(localSliderVolume) : muteVolume()
   }
-  
+
+  /**
+   * Set UI state to muted and also update the redux store's volume to be 0
+   */
+  function muteVolume() {
+    props.setVideoVolume(0)
+    props.videoPlayer.setVolume(0)
+  }
+
+  /**
+   * Set UI state to the new volume and also update the redux store's volume to be the new value
+   */
   function handleVolumeChange(value) {
-    changeVolume(value)
-    props.videoPlayer.setVolume(volume)
-    return volume
+    props.setVideoVolume(value)
+    props.videoPlayer.setVolume(value)
   }
 
   function togglePause() {
@@ -38,7 +53,7 @@ const VideoControls = props => {
 
       <div className={`hard-center slider-container ${muted ? 'disabled' : ''}`}>
         <Slider
-          value={volume}
+          value={props.videoVolume}
           onChange={handleVolumeChange}
           tooltip={false}>
         </Slider>
@@ -50,10 +65,12 @@ const VideoControls = props => {
 const mapStateToProps = state => {
   return {
     paused: state.paused,
+    videoVolume: state.videoVolume,
     videoPlayer: state.videoPlayer
   }
 }
 
 export default connect(mapStateToProps, {
-  setPaused
+  setPaused,
+  setVideoVolume,
 })(VideoControls)
