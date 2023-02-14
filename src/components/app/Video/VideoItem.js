@@ -119,11 +119,9 @@ const VideoItem = props => {
       const selectedVideoID = props.video.id.videoId
 
       // Update local state for video item play icon
-      if (playingVideoID === selectedVideoID) {
-        videoStatePlaying()
-      } else {
-        videoStatePaused()
-      }
+      const videoIsPlaying = props.videoPlayer.getPlayerState() === 3
+      const isVideoStatePlaying = videoIsPlaying && (playingVideoID === selectedVideoID)
+      isVideoStatePlaying ? videoStatePlaying() : videoStatePaused()
     }
   }
 
