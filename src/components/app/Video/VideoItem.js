@@ -14,6 +14,15 @@ const VideoItem = props => {
     setVideoState()
   }, [props.videoPlayer])
 
+  useEffect(() => {
+    if (props.videosPlayed === 0) return
+
+    const playingVideoID = props.videoPlayer.getVideoData().video_id
+    const selectedVideoID = props.video.id.videoId
+
+    if (playingVideoID === selectedVideoID) pauseOrPlayVideo()
+  }, [props.paused])
+
   const [isPlaying, setIsPlaying] = useState(true)
 
   const getPauseOrPlay = isPlaying ? 'fas fa-play' : 'far fa-pause-circle'
@@ -93,18 +102,7 @@ const VideoItem = props => {
     props.incrementVideosPlayed()
     props.selectVideo(props.video.id.videoId)
 
-    const videoIsPlaying = props.videoPlayer.getPlayerState() === 1
-
-    if (videoIsPlaying) {
-      props.videoPlayer.pauseVideo()
-      props.setPaused(true)
-      setIsPlaying(true)
-    }
-    else {
-      props.videoPlayer.playVideo()
-      props.setPaused(false)
-      setIsPlaying(false)
-    }
+    pauseOrPlayVideo()
   }
 
   /**
@@ -131,6 +129,24 @@ const VideoItem = props => {
         props.setPaused(false)
         setIsPlaying(true)
       }
+    }
+  }
+
+  /**
+   * Check if the state of the iframe is playing, pause or play based on that
+   */
+  function pauseOrPlayVideo() {
+    const videoIsPlaying = props.videoPlayer.getPlayerState() === 1
+
+    if (videoIsPlaying) {
+      props.videoPlayer.pauseVideo()
+      props.setPaused(true)
+      setIsPlaying(true)
+    }
+    else {
+      props.videoPlayer.playVideo()
+      props.setPaused(false)
+      setIsPlaying(false)
     }
   }
 

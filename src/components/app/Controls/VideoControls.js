@@ -3,6 +3,7 @@ import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
 import { connect } from 'react-redux'
 import { setVideoVolume } from './../../../actions/videoList'
+import { incrementVideosPlayed } from './../../../actions'
 import { setPaused } from './../../../actions/appToggles'
 
 const VideoControls = props => {
@@ -38,6 +39,13 @@ const VideoControls = props => {
   }
 
   function togglePause() {
+
+    // The only time a video count can be incremented is when initially clicking the 
+    // play button on app load (it will start playing the default selected video)
+    if (props.videosPlayed === 0) {
+      props.incrementVideosPlayed()
+    }
+
     props.setPaused(!props.paused)
     !props.paused ? props.videoPlayer.pauseVideo() : props.videoPlayer.playVideo()
   }
@@ -66,11 +74,13 @@ const mapStateToProps = state => {
   return {
     paused: state.paused,
     videoVolume: state.videoVolume,
-    videoPlayer: state.videoPlayer
+    videoPlayer: state.videoPlayer,
+    videosPlayed: state.videosPlayed,
   }
 }
 
 export default connect(mapStateToProps, {
   setPaused,
   setVideoVolume,
+  incrementVideosPlayed,
 })(VideoControls)
