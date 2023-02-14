@@ -12,7 +12,6 @@ export const incrementSecond = () => {
 }
 
 export const incrementVideosPlayed = () => {
-  console.log('called')
   return {
     type: 'INCREMENT_VIDEOS_PLAYED'
   }
