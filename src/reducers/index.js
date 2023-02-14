@@ -11,7 +11,14 @@ const setVideoReducer = (player=null, action) => {
 }
 
 const setVideoVolumeReducer = (volume=100, action) => {
-  return action.type === 'SET_VIDEO_VOLUME' ? action.payload : volume;
+  return action.type === 'SET_VIDEO_VOLUME' ? action.payload : volume
+}
+
+const videosPlayed = (state = 0, action) => {
+  
+  if (action.type === 'INCREMENT_VIDEOS_PLAYED') {
+    return state+=1
+  } else return state
 }
 
 export default combineReducers({
@@ -20,6 +27,7 @@ export default combineReducers({
   defaultVideo: videoList.defaultVideoReducer,
   videoPlayer: setVideoReducer,
   videoVolume: setVideoVolumeReducer,
+  videosPlayed,
   isSearchToggled: appToggles.toggleSearchReducer,
   isTimerToggled: appToggles.toggleTimerReducer,
   isCollectionToggled: appToggles.toggleCollectionReducer,

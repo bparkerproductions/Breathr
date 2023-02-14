@@ -10,3 +10,10 @@ export const incrementSecond = () => {
     type: 'INCREMENT_SECOND'
   }
 }
+
+export const incrementVideosPlayed = () => {
+  console.log('called')
+  return {
+    type: 'INCREMENT_VIDEOS_PLAYED'
+  }
+}

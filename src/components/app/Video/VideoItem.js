@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { selectVideo, addToCollection, removeFromCollection, setVideoVolume } from '../../../actions/videoList'
+import { incrementVideosPlayed } from './../../../actions'
 import { setPaused } from './../../../actions/appToggles'
 import { NotificationManager } from 'react-notifications'
 
@@ -89,6 +90,7 @@ const VideoItem = props => {
    * Select a new video, set play/pause state and volume state
    */
   function videoSelected() {
+    props.incrementVideosPlayed()
     props.selectVideo(props.video.id.videoId)
 
     const videoIsPlaying = props.videoPlayer.getPlayerState() === 1
@@ -119,9 +121,10 @@ const VideoItem = props => {
       const selectedVideoID = props.video.id.videoId
 
       // Update local state for video item play icon
-      const videoIsPlaying = props.videoPlayer.getPlayerState() === 3
-      const isVideoStatePlaying = videoIsPlaying && (playingVideoID === selectedVideoID)
+      const isVideoStatePlaying = (playingVideoID === selectedVideoID)
       isVideoStatePlaying ? videoStatePlaying() : videoStatePaused()
+
+      const isDefaultVideo = props.defaultVideo === selectedVideoID
     }
   }
 
@@ -157,8 +160,10 @@ const mapStateToProps = state => {
     paused: state.paused,
     selectedVideo: state.selectedVideo,
     videos: state.videos,
+    videosPlayed: state.videosPlayed,
     videoVolume: state.videoVolume,
-    videoPlayer: state.videoPlayer
+    videoPlayer: state.videoPlayer,
+    defaultVideo: state.defaultVideo
   }
 }
 
@@ -167,5 +172,6 @@ export default connect(mapStateToProps, {
   addToCollection,
   removeFromCollection,
   setPaused,
-  setVideoVolume
+  setVideoVolume,
+  incrementVideosPlayed
 })(VideoItem)
