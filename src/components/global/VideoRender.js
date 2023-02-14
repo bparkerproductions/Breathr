@@ -11,9 +11,7 @@ const VideoRender = props => {
    * when the player state is set as playing
    */
   function setPlayingVideo(event) {
-    if (event.target.getPlayerState() === 3) {
-      props.setVideoPlayer(event.target)
-    }
+    props.setVideoPlayer(event.target)
   }
 
   if (props.selectedVideo || props.defaultVideo) {
@@ -23,7 +21,6 @@ const VideoRender = props => {
           videoId={props.selectedVideo || props.defaultVideo}
           opts={options}
           onReady={setPlayingVideo}
-          onStateChange={setPlayingVideo}
         >
         </Youtube>
       </div>
