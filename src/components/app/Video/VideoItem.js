@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { selectVideo, addToCollection, removeFromCollection, setVideoVolume } from '../../../actions/videoList'
+import { selectVideo, addToCollection, removeFromCollection } from '../../../actions/videoList'
 import { incrementVideosPlayed } from './../../../actions'
 import { setPaused } from './../../../actions/appToggles'
 import { NotificationManager } from 'react-notifications'
@@ -105,10 +105,6 @@ const VideoItem = props => {
       props.setPaused(false)
       setIsPlaying(false)
     }
-
-    // Set volume prop
-    const volume = props.videoPlayer.getVolume()
-    props.setVideoVolume(volume)
   }
 
   /**
@@ -169,6 +165,5 @@ export default connect(mapStateToProps, {
   addToCollection,
   removeFromCollection,
   setPaused,
-  setVideoVolume,
   incrementVideosPlayed
 })(VideoItem)
