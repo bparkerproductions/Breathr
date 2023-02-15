@@ -12,3 +12,13 @@ export const options = {
     modestbranding: 1
   }
 }
+
+export default {
+  part: 'snippet',
+  maxResults: '9',
+  videoEmbeddable: 'true',
+  type: 'video',
+  videoDefinition: 'high',
+  videoDuration: 'long',
+  key: process.env.REACT_APP_YOUTUBE_KEY
+}

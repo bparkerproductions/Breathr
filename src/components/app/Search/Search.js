@@ -14,7 +14,16 @@ const Search = (props) => {
   }
 
   async function getVideoResults(q) {
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=9&videoEmbeddable=true&type=video&videoDefinition=high&videoDuration=long&q=${q + ' audio'}&key=${process.env.REACT_APP_YOUTUBE_KEY}`
+    const url = `https://www.googleapis.com/youtube/v3/search?
+    part=${youtube.part}&
+    maxResults=${youtube.maxResults}&
+    videoEmbeddable=${youtube.videoEmbeddable}&
+    type=${youtube.type}&
+    videoDefinition=${youtube.videoDefinition}&
+    videoDuration=${youtube.videoDuration}&
+    q=${q + ' audio'}&
+    key=${youtube.key}`
+    .replace(/\s/g, '')
 
     fetch(url)
     .then(response => response.json())
