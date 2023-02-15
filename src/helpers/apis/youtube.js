@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export const options = {
   playerVars: {
     loop: 1,
@@ -14,16 +12,3 @@ export const options = {
     modestbranding: 1
   }
 }
-
-export default axios.create({
-  baseURL: 'https://www.googleapis.com/youtube/v3',
-  params: {
-    part: 'snippet',
-    maxResults: 9,
-    videoEmbeddable: true,
-    type: 'video',
-    videoDefinition: 'high',
-    videoDuration: 'long',
-    key: process.env.REACT_APP_YOUTUBE_KEY,
-  }
-})

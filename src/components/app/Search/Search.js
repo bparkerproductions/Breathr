@@ -14,13 +14,13 @@ const Search = (props) => {
   }
 
   async function getVideoResults(q) {
-    const response = await youtube.get('/search', {
-      params: {
-        q: q + ' audio'
-      }
-    })
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=9&videoEmbeddable=true&type=video&videoDefinition=high&videoDuration=long&q=${q + ' audio'}&key=${process.env.REACT_APP_YOUTUBE_KEY}`
 
-    setVideos(response.data.items)
+    fetch(url)
+    .then(response => response.json())
+    .then(response => {
+      setVideos(response.items)
+    })
   }
 
   function getShowClasses() {
