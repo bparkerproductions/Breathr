@@ -11,18 +11,23 @@ const VideoItem = props => {
    * (it means a video was selected and its already in its "loaded" state)
    */
   useEffect(() => {
-    console.log('set video state', props.videoPlayer)
     setVideoState()
   }, [props.videoPlayer])
 
+  /**
+   * Used to update each videoItem when the outside play/pause is activated
+   */
   useEffect(() => {
     if (props.videosPlayed === 0) return
-    // console.log('pause or play video')
 
     const playingVideoID = props.videoPlayer.getVideoData().video_id
     const selectedVideoID = props.video.id.videoId
 
-    if (playingVideoID === selectedVideoID) pauseOrPlayVideo()
+    const videoIsPlaying = props.videoPlayer.getPlayerState() === 1
+
+    if (playingVideoID === selectedVideoID) {
+      videoIsPlaying ? setIsPlaying(true) : setIsPlaying(false)
+    }
   }, [props.paused])
 
   const [isPlaying, setIsPlaying] = useState(true)
@@ -43,7 +48,18 @@ const VideoItem = props => {
     props.incrementVideosPlayed()
     props.selectVideo(props.video.id.videoId)
 
-    pauseOrPlayVideo()
+    const videoIsPlaying = props.videoPlayer.getPlayerState() === 1
+
+    if (videoIsPlaying) {
+      props.videoPlayer.pauseVideo()
+      props.setPaused(true)
+      setIsPlaying(true)
+    }
+    else {
+      props.videoPlayer.playVideo()
+      props.setPaused(false)
+      setIsPlaying(false)
+    }
   }
 
   /**
@@ -62,34 +78,16 @@ const VideoItem = props => {
 
       // Update local state for video item play icon
       const isVideoStatePlaying = (playingVideoID === selectedVideoID)
+      const videoIsPlaying = props.videoPlayer.getPlayerState() === 1
 
       if (isVideoStatePlaying) {
         // Pause video
-        props.setPaused(true)
         setIsPlaying(false) 
       } else {
-        // Play Video
+        // Play
         props.setPaused(false)
         setIsPlaying(true)
       }
-    }
-  }
-
-  /**
-   * Check if the state of the iframe is playing, pause or play based on that
-   */
-  function pauseOrPlayVideo() {
-    const videoIsPlaying = props.videoPlayer.getPlayerState() === 1
-
-    if (videoIsPlaying) {
-      props.videoPlayer.pauseVideo()
-      props.setPaused(true)
-      setIsPlaying(true)
-    }
-    else {
-      props.videoPlayer.playVideo()
-      props.setPaused(false)
-      setIsPlaying(false)
     }
   }
 
