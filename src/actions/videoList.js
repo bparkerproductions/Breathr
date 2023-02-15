@@ -1,3 +1,6 @@
+/**
+ * Called when the "add to collection" button is clicked
+ */
 export const addToCollection = videoObj => {
   return {
     type: 'ADD_TO_COLLECTION',
@@ -5,6 +8,9 @@ export const addToCollection = videoObj => {
   }
 }
 
+/**
+ * Called when the "remove from collection" button is clicked
+ */
 export const removeFromCollection = videoID => {
   return {
     type: 'REMOVE_FROM_COLLECTION',
@@ -12,6 +18,9 @@ export const removeFromCollection = videoID => {
   }
 }
 
+/**
+ * Called when a video preview is clicked and a new video in the iframe should be loaded
+ */
 export const selectVideo = video => {
   return {
     type: 'VIDEO_SELECTED',
@@ -19,6 +28,9 @@ export const selectVideo = video => {
   }
 }
 
+/**
+ * Called when a control for changing volume or muting a video is activated
+ */
 export const setVideoVolume = volume => {
   return {
     type: 'SET_VIDEO_VOLUME',

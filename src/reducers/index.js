@@ -10,12 +10,17 @@ const setVideoReducer = (player=null, action) => {
   return action.type === 'SET_VIDEO_PLAYER' ? action.payload : player
 }
 
+/**
+ * Sets the volume state used to update the youtube video and volume slider
+ */
 const setVideoVolumeReducer = (volume=100, action) => {
   return action.type === 'SET_VIDEO_VOLUME' ? action.payload : volume
 }
 
-const videosPlayed = (state = 0, action) => {
-  
+/**
+ * Sets the state for amount of videos played in a session
+ */
+const videosPlayed = (state=0, action) => {
   if (action.type === 'INCREMENT_VIDEOS_PLAYED') {
     return state+=1
   } else return state
