@@ -10,13 +10,13 @@ const Search = (props) => {
 
   function updateSearchResult(userInput) {
     setSearchResult(userInput)
-    getVideoResults()
+    getVideoResults(userInput)
   }
 
-  async function getVideoResults() {
+  async function getVideoResults(q) {
     const response = await youtube.get('/search', {
       params: {
-        q: searchResult + ' audio'
+        q: q + ' audio'
       }
     })
 
