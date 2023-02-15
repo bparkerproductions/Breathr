@@ -1,13 +1,13 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
 import { toggleSearch, toggleCollection, toggleTimer } from './../../../actions/appToggles'
 
-const ComponentControls = (props) => {
+const ComponentControls = props => {
   function handleClick() {
-    if(props.toggleType === 'search') props.toggleSearch();
-    if(props.toggleType === 'collection') props.toggleCollection();
-    if(props.toggleType === 'timer') props.toggleTimer();
+    if (props.toggleType === 'search') props.toggleSearch()
+    if (props.toggleType === 'collection') props.toggleCollection()
+    if (props.toggleType === 'timer') props.toggleTimer()
   }
 
   return (
@@ -25,4 +25,4 @@ export default connect(mapStateToProps, {
   toggleCollection,
   toggleSearch,
   toggleTimer
-})(ComponentControls);
+})(ComponentControls)

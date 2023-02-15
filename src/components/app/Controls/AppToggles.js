@@ -7,11 +7,13 @@ const AppToggles = (props) => {
     return props[toggleType] ? 'ui-button' : 'ui-button turned-off';
   }
 
+  /**
+   * Toggle either Search, Timer, or Collection. Update redux state to reflect
+   */
   function toggleIcon(toggleType) {
-    //set it in global store now
-    if(toggleType === 'search') props.toggleSearch();
-    if(toggleType === 'timer') props.toggleTimer();
-    if(toggleType === 'collection') props.toggleCollection();
+    if (toggleType === 'search') props.toggleSearch();
+    if (toggleType === 'timer') props.toggleTimer();
+    if (toggleType === 'collection') props.toggleCollection();
   }
 
   return (
@@ -33,11 +35,7 @@ const AppToggles = (props) => {
 }
 
 const mapStateToProps = state => {
-  return {
-    isSearch: state.isSearchToggled,
-    isTimer: state.isTimerToggled,
-    isCollection: state.isCollectionToggled
-  };
+  return {}
 }
 
 export default connect(mapStateToProps, {

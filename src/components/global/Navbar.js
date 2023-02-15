@@ -4,22 +4,17 @@ import VideoControls from './../app/Controls/VideoControls'
 import DailyMinutes from './../app/Timer/DailyMinutes'
 import ToggleAll from './../app/Controls/ToggleAll'
 
-const Navbar = (props) => {
+const Navbar = props => {
   const [contentToggled, setContent] = useState(false)
 
-  function toggleContent() {
-    setContent(!contentToggled)
-  }
-  function isToggled() {
-    return contentToggled ? 'show' : ''
-  }
   function getToggledState() {
     return contentToggled ? 'fas fa-times-circle' : 'fas fa-bars'
   }
+
   return (
     <nav className="column-center main-nav">
       <div className="inner-container">
-        <div className={`left ${isToggled()}`}>
+        <div className={`left ${contentToggled ? 'show' : ''}`}>
           <div className="mobile-content">
             <div className="navbar-col">
               <a className="white link"
@@ -36,7 +31,7 @@ const Navbar = (props) => {
         </div>
 
         <div className="right">
-          <div onClick={toggleContent} className="mobile-toggle">
+          <div onClick={() => setContent(!contentToggled)} className="mobile-toggle">
             <i className={getToggledState()}></i>
           </div>
           <div className="video-content">

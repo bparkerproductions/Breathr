@@ -33,7 +33,6 @@ const TimerPlayback = (props) => {
   }
 
   function resetTimer() {
-    // props.stopCallback()
     clearInterval(props.interval)
     props.togglePauseCallback()
     props.pauseCallback()

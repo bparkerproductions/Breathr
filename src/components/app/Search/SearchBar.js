@@ -3,12 +3,12 @@ import React, {useState} from 'react'
 const SearchBar = (props) => {
   const [searchQuery, setSearchQuery] = useState('')
 
+  /**
+   * Call the search callback, the logic to rerender the videos with new results
+   * is in the parent <Search /> component
+   */
   function trackInput() {
     props.searchCallback(searchQuery)
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault()
   }
 
   function updateSearchQuery(event) {
@@ -16,9 +16,7 @@ const SearchBar = (props) => {
   }
 
   function handleKeyDown(event) {
-    if (event.key === 'Enter') {
-      trackInput()
-    }
+    if (event.key === 'Enter') trackInput()
   }
 
   return (
@@ -27,7 +25,7 @@ const SearchBar = (props) => {
         <i className="fas fa-search"></i>
       </div>
       <div className="search-input">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={ e => e.preventDefault() }>
           <input type="text" onKeyDown={handleKeyDown} onChange={updateSearchQuery}></input>
         </form>
       </div>

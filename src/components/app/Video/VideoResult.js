@@ -10,12 +10,7 @@ const VideoResult = props => {
         <div className="video-results">
           {loopObj.map(video => {
             return (
-              <VideoItem
-                key={video.etag}
-                canAdd={props.canAdd}
-                canRemove={props.canRemove}
-                video={video}>
-              </VideoItem>
+              <VideoItem key={video.etag} video={video}></VideoItem>
             )
           })}
         </div>
@@ -33,10 +28,12 @@ const VideoResult = props => {
     }
   }
 
+  /**
+   * This can render 3 states: Search results, collections, and the non search state
+   */
   function renderVideo() {
-    let anyVideos = props.videos !== null
-
-    if (props.searchResult && anyVideos) {
+    console.log('render video')
+    if (props.searchResult && (props.videos !== null)) {
       return renderResults(props.videos)
     }
     else if (props.grabFromCollection) {

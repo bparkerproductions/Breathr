@@ -3,7 +3,6 @@ import { NotificationManager } from 'react-notifications'
 import { connect } from 'react-redux'
 import { removeFromCollection, addToCollection } from '../../../actions/videoList'
 
-
 const CollectionControls = props => {
    /**
    * Check if video already exists in collection

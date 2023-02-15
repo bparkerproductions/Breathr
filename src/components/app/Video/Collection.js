@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-import VideoResult from './VideoResult';
-import ComponentControls from './../Controls/ComponentControls';
+import VideoResult from './VideoResult'
+import ComponentControls from './../Controls/ComponentControls'
 
 const Collection = (props) => {
   function getCollectionClasses() {
-    let show = props.show && props.allToggled;
-    return show ? 'column-center' : 'column-center hidden';
+    const show = props.show && props.allToggled
+    return show ? 'column-center' : 'column-center hidden'
   }
   return (
     <section id="video-collection" className={getCollectionClasses()}>

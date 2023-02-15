@@ -50,7 +50,7 @@ const IntroModal = (props) => {
         firstVisitOnly={false}
         showButton={false}
         contentClasses="intro-modal"
-        closedFromOuter={toggled && props.paused}
+        closedFromOuter={true}
         buttonText="Let's get to it">
           <div className="header-container bottom-line">
             <h2 className="title">{title()}</h2>
@@ -60,13 +60,10 @@ const IntroModal = (props) => {
       </Modal>
     )
   }
-  else {
-    return <div></div>
-  }
+  else return null
 }
 const mapStateToProps = state => {
   return {
-    paused: state.paused,
     videosPlayed: state.videosPlayed,
   }
 }

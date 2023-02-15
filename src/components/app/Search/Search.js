@@ -13,6 +13,9 @@ const Search = (props) => {
     getVideoResults(userInput)
   }
 
+  /**
+   * Fetch results from the YouTube API, set videos when results are returned
+   */
   async function getVideoResults(q) {
     const url = `https://www.googleapis.com/youtube/v3/search?
     part=${youtube.part}&
@@ -32,17 +35,10 @@ const Search = (props) => {
     })
   }
 
-  function getShowClasses() {
-    let show = props.show && props.allToggled
-    return show ? 'column-center ' : 'column-center hidden '
-  }
-
-  function getSearchedClasses() {
-    return searchResult && (videos ? videos.length : false) ? 'searched ' : ''
-  }
-
   function getVideoClasses() {
-    return getShowClasses() + getSearchedClasses()
+    const searchedClasses = searchResult && (videos ? 'searched ' : '')
+    const showClasses = (props.show && props.allToggled) ? 'column-center ' : 'column-center hidden '
+    return showClasses + searchedClasses
   }
 
   return (

@@ -11,11 +11,13 @@ const VideoItem = props => {
    * (it means a video was selected and its already in its "loaded" state)
    */
   useEffect(() => {
+    console.log('set video state', props.videoPlayer)
     setVideoState()
   }, [props.videoPlayer])
 
   useEffect(() => {
     if (props.videosPlayed === 0) return
+    // console.log('pause or play video')
 
     const playingVideoID = props.videoPlayer.getVideoData().video_id
     const selectedVideoID = props.video.id.videoId
@@ -62,9 +64,11 @@ const VideoItem = props => {
       const isVideoStatePlaying = (playingVideoID === selectedVideoID)
 
       if (isVideoStatePlaying) {
+        // Pause video
         props.setPaused(true)
         setIsPlaying(false) 
       } else {
+        // Play Video
         props.setPaused(false)
         setIsPlaying(true)
       }

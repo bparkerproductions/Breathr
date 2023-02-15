@@ -9,10 +9,12 @@ const ToggleAll = (props) => {
   function getToggleAllClass() {
     return allToggled ? 'fas fa-eye-slash' : 'fas fa-eye'
   }
+
   function toggleAll() {
     setToggled(!allToggled)
     props.toggleAll()
   }
+
   return (
     <aside id="toggle-all" className="navbar-col">
       <div className="ui-button larger">
