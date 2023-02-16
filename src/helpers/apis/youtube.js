@@ -1,7 +1,6 @@
 export const options = {
   playerVars: {
     loop: 1,
-    autoplay: 1,
     start: 60,
     frameborder: 0,
     controls: 0,
