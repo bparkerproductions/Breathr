@@ -17,14 +17,6 @@ const Navbar = props => {
         <div className={`left ${contentToggled ? 'show' : ''}`}>
           <div className="mobile-content">
             <div className="navbar-col">
-              <a className="white link"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://github.com/bparkerproductions/Breathr">
-                Contribute
-              </a>
-            </div>
-            <div className="navbar-col">
               <DailyMinutes></DailyMinutes>
             </div>
           </div>
