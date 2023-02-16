@@ -1,12 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import { render, screen } from '@testing-library/react'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
 import App from './App'
+import reducers from './reducers'
 
-it('renders without crashing', () => {
-  const div = document.createElement('div')
-  ReactDOM.render(<App />, div)
-
-  expect(div.innerHTML).toContain('Hi there!')
-
-  ReactDOM.unmountComponentAtNode(div)
-}) 
+test('Renders timer with text', () => {
+  render(
+    <Provider store={createStore(reducers)}>
+      <App />
+    </Provider>
+  )
+  const linkElement = screen.getByText(/Start Timer/i)
+  expect(linkElement).toBeInTheDocument()
+});
