@@ -35,7 +35,11 @@ const AppToggles = (props) => {
 }
 
 const mapStateToProps = state => {
-  return {}
+  return {
+    isSearch: state.isSearchToggled,
+    isTimer: state.isTimerToggled,
+    isCollection: state.isCollectionToggled
+  }
 }
 
 export default connect(mapStateToProps, {
