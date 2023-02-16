@@ -8,6 +8,10 @@ const Search = (props) => {
   const [searchResult, setSearchResult] = useState(null)
   const [videos, setVideos] = useState(null)
 
+  /**
+   * When a search is entered, this callback is called from the <SearchBar > Component.
+   * Updates video results and sets new search result query
+   */
   function updateSearchResult(userInput) {
     setSearchResult(userInput)
     getVideoResults(userInput)
@@ -35,6 +39,10 @@ const Search = (props) => {
     })
   }
 
+  /**
+   * searchedClasses: if search result and videos are true, add 'searched' class
+   * showClasses: set hidden based on whether the component is toggled or not
+   */
   function getVideoClasses() {
     const searchedClasses = searchResult && (videos ? 'searched ' : '')
     const showClasses = (props.show && props.allToggled) ? 'column-center ' : 'column-center hidden '

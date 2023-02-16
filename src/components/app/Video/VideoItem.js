@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 import CollectionControls from './../Controls/Collection'
 import { selectVideo } from '../../../actions/videoList'
 import { incrementVideosPlayed } from './../../../actions'
@@ -11,21 +11,24 @@ const VideoItem = props => {
    * (it means a video was selected and its already in its "loaded" state)
    */
   useEffect(() => {
-    setVideoState()
-  }, [props.videoPlayer])
+    // Only run this when video is in its buffering state
+    if (props.videoPlayer && props.videoPlayer.getPlayerState() === 3) {
+      setVideoState()
+    }
+  }, [useSelector( state => state.videoPlayer )])
 
   /**
    * Used to update each videoItem when the outside play/pause is activated
    */
   useEffect(() => {
+    if (!isCurrentVideo()) return
+
     if (props.videosPlayed === 0) return
 
     const videoIsPlaying = props.videoPlayer.getPlayerState() === 1
 
-    if (isCurrentVideo()) {
-      videoIsPlaying ? setIsPlaying(false) : setIsPlaying(true)
-    }
-  }, [props.paused])
+    videoIsPlaying ? setIsPlaying(false) : setIsPlaying(true)
+  }, [useSelector( state => state.paused )])
 
   const [isPlaying, setIsPlaying] = useState(false)
 
@@ -37,7 +40,12 @@ const VideoItem = props => {
     }
   }
 
+  /**
+   * Compare ID of current video in component with what is selected
+   */
   function isCurrentVideo() {
+    if (!props.videoPlayer) return
+
     const playingVideoID = props.videoPlayer.getVideoData().video_id
     const selectedVideoID = props.video.id.videoId
 
@@ -49,10 +57,15 @@ const VideoItem = props => {
    * Select a new video, set play/pause state and volume state
    */
   function videoSelected() {
-    if (!isCurrentVideo()) props.incrementVideosPlayed()
+    if (isCurrentVideo()) {
+      pauseOrPlay()
+    } else {
+      props.incrementVideosPlayed()
+      props.selectVideo(props.video.id.videoId)
+    }
+  }
 
-    props.selectVideo(props.video.id.videoId)
-
+  function pauseOrPlay() {
     const videoIsPlaying = props.videoPlayer.getPlayerState() === 1
 
     if (videoIsPlaying) {

@@ -39,7 +39,6 @@ const VideoControls = props => {
   }
 
   function togglePause() {
-
     // The only time a video count can be incremented is when initially clicking the 
     // play button on app load (it will start playing the default selected video)
     if (props.videosPlayed === 0) {
