@@ -20,12 +20,9 @@ const VideoItem = props => {
   useEffect(() => {
     if (props.videosPlayed === 0) return
 
-    const playingVideoID = props.videoPlayer.getVideoData().video_id
-    const selectedVideoID = props.video.id.videoId
-
     const videoIsPlaying = props.videoPlayer.getPlayerState() === 1
 
-    if (playingVideoID === selectedVideoID) {
+    if (isCurrentVideo()) {
       videoIsPlaying ? setIsPlaying(false) : setIsPlaying(true)
     }
   }, [props.paused])
@@ -40,12 +37,20 @@ const VideoItem = props => {
     }
   }
 
+  function isCurrentVideo() {
+    const playingVideoID = props.videoPlayer.getVideoData().video_id
+    const selectedVideoID = props.video.id.videoId
+
+    return playingVideoID === selectedVideoID
+  }
+
   /**
    * Actions to perform when a new video is selected: 
    * Select a new video, set play/pause state and volume state
    */
   function videoSelected() {
-    props.incrementVideosPlayed()
+    if (!isCurrentVideo()) props.incrementVideosPlayed()
+
     props.selectVideo(props.video.id.videoId)
 
     const videoIsPlaying = props.videoPlayer.getPlayerState() === 1
@@ -73,14 +78,8 @@ const VideoItem = props => {
     if (props.videoPlayer) {
       props.videoPlayer.setVolume(props.videoVolume)
 
-      const playingVideoID = props.videoPlayer.getVideoData().video_id
-      const selectedVideoID = props.video.id.videoId
-
       // Update local state for video item play icon
-      const isVideoStatePlaying = (playingVideoID === selectedVideoID)
-      const videoIsPlaying = props.videoPlayer.getPlayerState() === 1
-
-      if (isVideoStatePlaying) {
+      if (isCurrentVideo()) {
         // Pause video
         setIsPlaying(true) 
       } else {
