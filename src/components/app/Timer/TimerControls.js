@@ -71,6 +71,7 @@ const TimerControls = (props) => {
               started={isTimerStarted}
               paused={paused}
               togglePauseCallback={() => setPaused(!paused)}
+              setPausedCallback={() => setPaused(true)}
               stopCallback={stop}
               pauseCallback={pause}
               resumeCallback={resume}

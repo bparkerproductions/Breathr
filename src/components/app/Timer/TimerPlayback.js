@@ -19,7 +19,7 @@ const TimerPlayback = (props) => {
   }
 
   function timerControls() {
-    if(props.started) {
+    if (props.started) {
       return (
         <div className="timer-controls">
           {getPlayOrPause(props.pauseCallback, props.resumeCallback)}
@@ -34,7 +34,7 @@ const TimerPlayback = (props) => {
 
   function resetTimer() {
     clearInterval(props.interval)
-    props.togglePauseCallback()
+    props.setPausedCallback()
     props.pauseCallback()
     props.resetCallback()
   }
