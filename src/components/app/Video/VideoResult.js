@@ -32,7 +32,6 @@ const VideoResult = props => {
    * This can render 3 states: Search results, collections, and the non search state
    */
   function renderVideo() {
-    console.log('render video')
     if (props.searchResult && (props.videos !== null)) {
       return renderResults(props.videos)
     }

@@ -7,7 +7,7 @@ import { setPaused } from './../../../actions/appToggles'
 
 const VideoItem = props => {
   /**
-   * Call useEffect function when  props.videoPlayer changes 
+   * Call useEffect function when props.videoPlayer changes 
    * (it means a video was selected and its already in its "loaded" state)
    */
   useEffect(() => {
@@ -26,13 +26,13 @@ const VideoItem = props => {
     const videoIsPlaying = props.videoPlayer.getPlayerState() === 1
 
     if (playingVideoID === selectedVideoID) {
-      videoIsPlaying ? setIsPlaying(true) : setIsPlaying(false)
+      videoIsPlaying ? setIsPlaying(false) : setIsPlaying(true)
     }
   }, [props.paused])
 
-  const [isPlaying, setIsPlaying] = useState(true)
+  const [isPlaying, setIsPlaying] = useState(false)
 
-  const getPauseOrPlay = isPlaying ? 'fas fa-play' : 'far fa-pause-circle'
+  const getPauseOrPlay = isPlaying ?  'far fa-pause-circle' : 'fas fa-play'
 
   function bgImage() {
     return {
@@ -53,12 +53,12 @@ const VideoItem = props => {
     if (videoIsPlaying) {
       props.videoPlayer.pauseVideo()
       props.setPaused(true)
-      setIsPlaying(true)
+      setIsPlaying(false)
     }
     else {
       props.videoPlayer.playVideo()
       props.setPaused(false)
-      setIsPlaying(false)
+      setIsPlaying(true)
     }
   }
 
@@ -82,11 +82,11 @@ const VideoItem = props => {
 
       if (isVideoStatePlaying) {
         // Pause video
-        setIsPlaying(false) 
+        setIsPlaying(true) 
       } else {
         // Play
         props.setPaused(false)
-        setIsPlaying(true)
+        setIsPlaying(false)
       }
     }
   }
