@@ -1,0 +1,23 @@
+.column-center {
+  @include column-center;
+}
+
+.hard-center {
+  @include hard-center;
+}
+
+.button {
+  @include button-size-normal;
+}
+
+.button.large {
+  @include button-size-large;
+}
+
+.disabled {
+  @extend %disabled;
+}
+
+.turned-off {
+  opacity: 0.5;
+}

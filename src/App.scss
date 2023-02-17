@@ -1,25 +1,23 @@
-/*
- * Import global styles and mixins
- */
 
-//mixins
+
+// Mixins
 @import "style/global/mixins/main";
 
-//framework and helpers
+// Framework and helpers
 @import "style/global/variables";
-@import "style/global/framework/helpers/helper-classes";
+@import "style/global/helper-classes";
 
 // Extends
 @import "style/global/extends";
 
-//global
+// Global
 @import "style/global/main";
 
-//elements
+// Elements
 @import "style/elements/main";
 
-//component styles
+// Component styles
 @import "style/components/main";
 
-//import animations
+// Animations
 @import "style/animations";

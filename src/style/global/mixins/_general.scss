@@ -25,13 +25,6 @@
   align-items: center;
 }
 
-@mixin column-hard-center {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 /*
  * UI Elements
  */

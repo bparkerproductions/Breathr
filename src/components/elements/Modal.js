@@ -10,7 +10,7 @@ const Modal = props => {
   function renderButton() {
     if (props.showButton) {
       return (
-        <div className="button-container mt-small">
+        <div className="button-container">
           <button onClick={toggleModal} className="button">
             { props.buttonText }
           </button>
