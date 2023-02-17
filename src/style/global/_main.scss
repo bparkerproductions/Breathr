@@ -8,8 +8,10 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  font-size: $BASE-FONT_SIZE;
 
   @include scrollbar($secondary, 5px);
+  @include font('Lato');
 }
 
 i {
@@ -37,7 +39,6 @@ i {
   }
 }
 
-//set sizes
 .inner-container {
   max-width: $CONTAINER;
 

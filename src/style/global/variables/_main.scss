@@ -1,7 +1,11 @@
 @import "breakpoints";
 @import "colors";
 @import "spacers";
-@import "type";
+
+// Typography
+$BASE_FONT_SIZE: 18px;
+$PARA_FONT_SIZE: 1em;
+$SMALL_PARA_FONT_SIZE: 1em;
 
 // Container widths
 $CONTAINER: 85%;
