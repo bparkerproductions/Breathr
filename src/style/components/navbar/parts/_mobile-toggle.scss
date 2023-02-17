@@ -3,11 +3,11 @@
   align-items: center;
   width: 35px;
 
-  @include atTabletUp {
+  @include media-breakpoint-up(lg) {
     display: none;
   }
 
-  @include atSmall {
+  @include media-breakpoint-down(sm) {
     margin-top: 7px;
     align-items: flex-start;
   }

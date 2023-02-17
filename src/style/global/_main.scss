@@ -15,7 +15,7 @@ body {
   @include scrollbar($secondary, 5px);
   @include font('Lato');
 
-  @include atSmall {
+  @include media-breakpoint-down(sm) {
     line-height: $MOBILE-LINE-HEIGHT;
   }
 }
@@ -33,20 +33,12 @@ h1, h2, h3, h4, h5, h6 {
 .inner-container {
   max-width: $CONTAINER;
 
-  @include atLargeUp {
+  @include media-breakpoint-up(xl) {
     max-width: 1200px;
   }
 
-  @include atSmall {
+  @include media-breakpoint-down(sm) {
     max-width: $CONTAINER-SMALL;
     padding: 0 15px;
-  }
-}
-
-p {
-  font-size: $PARA_FONT_SIZE;
-
-  @include atSmall {
-    font-size: $SMALL_PARA_FONT_SIZE;
   }
 }

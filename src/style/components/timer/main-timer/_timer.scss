@@ -10,7 +10,7 @@
   padding-top: $SPC_MED;
   @extend %animationTuckAway;
 
-  @include atSmall {
+  @include media-breakpoint-down(sm) {
     height: 300px;
   }
 }

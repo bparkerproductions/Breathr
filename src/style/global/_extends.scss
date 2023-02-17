@@ -27,7 +27,7 @@
     opacity: 0;
     transform: translate(100vw, -175vh);
 
-    @include atSmall {
+    @include media-breakpoint-down(sm) {
       transform: translate(0, -100vh);
     }
   }
@@ -44,7 +44,7 @@
 }
 
 %animationBounceUp {
-  @include atTabletUp {
+  @include media-breakpoint-up(lg) {
     transition: all 0.35s ease;
 
     &:hover {

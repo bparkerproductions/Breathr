@@ -8,7 +8,7 @@
   height: 200px;
   @extend %animationTuckAway;
 
-  @include atSmall {
+  @include media-breakpoint-down(sm) {
     margin-top: $SPC-MED;
   }
 

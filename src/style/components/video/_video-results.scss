@@ -7,7 +7,7 @@
   overflow-y: scroll;
   @include scrollbar($secondary, 4px);
 
-  @include atTablet {
+  @include media-breakpoint-down(lg) {
     justify-content: space-between;
   }
 
@@ -28,17 +28,17 @@
     background-position: center;
     @extend %animationBounceUp;
 
-    @include atTablet {
+    @include media-breakpoint-down(lg) {
       margin: 0 0 7.5px 0;
       flex-basis: 49.5%;
     }
 
-    @include atSmall {
+    @include media-breakpoint-down(sm) {
       flex-basis: 100%;
     }
 
     &:nth-child(3n+2) {
-      @include atTabletUp {
+      @include media-breakpoint-up(lg) {
         margin: 0 1%;
       }
     }

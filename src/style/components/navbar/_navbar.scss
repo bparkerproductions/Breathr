@@ -13,7 +13,7 @@ nav.main-nav {
     display: flex;
     justify-content: space-between;
 
-    @include atTablet {
+    @include media-breakpoint-down(lg) {
       flex-direction: column;
     }
   }
@@ -39,12 +39,12 @@ nav.main-nav {
     display: flex;
 
     .video-content {
-      @include atSmallUp {
+      @include media-breakpoint-up(sm) {
         display: flex;
       }
     }
 
-    @include atTablet {
+    @include media-breakpoint-down(lg) {
       order: 0;
     }
 

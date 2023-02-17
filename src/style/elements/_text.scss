@@ -31,7 +31,7 @@ a.link {
   }
 
   // Hide on mobile for now
-  @include atSmall {
+  @include media-breakpoint-down(sm) {
     display: none;
   }
 }

@@ -5,7 +5,7 @@
   height: 5px;
   overflow: hidden;
 
-  @include atSmall {
+  @include media-breakpoint-down(sm) {
     min-width: 175px;
   }
 

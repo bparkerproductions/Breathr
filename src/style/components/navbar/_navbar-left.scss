@@ -2,7 +2,7 @@
   display: flex;
   transition: all 0.2s ease;
 
-  @include atTablet {
+  @include media-breakpoint-down(lg) {
     transform: translateY(-100vh);
     height: 0;
   }
@@ -11,7 +11,7 @@
     display: flex;
     transition: all 0.2s ease;
 
-    @include atTablet {
+    @include media-breakpoint-down(lg) {
       transform: translateX(-125vw);
     }
   }
@@ -20,7 +20,7 @@
     transform: translateY(0);
     height: 50px;
 
-    @include atTablet {
+    @include media-breakpoint-down(lg) {
       padding-top: 12.5px;
     }
 
@@ -29,14 +29,14 @@
     }
   }
 
-  @include atTablet {
+  @include media-breakpoint-down(lg) {
     order: 1;
   }
 
   .navbar-col {
     padding: 0 15px;
 
-    @include atTablet {
+    @include media-breakpoint-down(lg) {
       border: 0;
     }
   }

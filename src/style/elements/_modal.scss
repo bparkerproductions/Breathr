@@ -4,7 +4,7 @@
   color: $white;
   @extend %animationSlideUp;
 
-  @include atSmall {
+  @include media-breakpoint-down(sm) {
     margin-top: 100px;
     height: 100vh;
   }
@@ -17,7 +17,7 @@
   }
 
   &.mobile-fixed {
-    @include atTablet {
+    @include media-breakpoint-down(lg) {
       z-index: 2;
       position: fixed;
       top: 0;
@@ -40,12 +40,12 @@
   }
 
   .content {
-    @include atMediumUp {
+    @include media-breakpoint-up(lg) {
       width: 70%;
     }
 
     p {
-      @include atSmall {
+      @include media-breakpoint-down(sm) {
         line-height: 1.3;
       }
     }
