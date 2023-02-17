@@ -41,10 +41,6 @@
     box-sizing: border-box;
     width: 100%;
 
-    @include allHeaders {
-      margin: 0;
-    }
-
     p {
       margin: 0;
       font-size: 14px;

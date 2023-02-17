@@ -9,9 +9,15 @@ body {
   padding: 0;
   overflow-x: hidden;
   font-size: $BASE-FONT_SIZE;
+  line-height: $LINE-HEIGHT;
 
+  @include font-smoothing;
   @include scrollbar($secondary, 5px);
   @include font('Lato');
+
+  @include atSmall {
+    line-height: $MOBILE-LINE-HEIGHT;
+  }
 }
 
 i {
@@ -20,23 +26,8 @@ i {
   font-weight: 900;
 }
 
-@include allInputs {
-  @include font-smoothing;
-}
-
-@include allHeaders {
+h1, h2, h3, h4, h5, h6 {
   color: $header;
-}
-
-//default line-height
-@include allText {
-  line-height: $LINE-HEIGHT;
-
-  @include font-smoothing;
-
-  @include atSmall {
-    line-height: $MOBILE-LINE-HEIGHT;
-  }
 }
 
 .inner-container {
@@ -59,4 +50,3 @@ p {
     font-size: $SMALL_PARA_FONT_SIZE;
   }
 }
-

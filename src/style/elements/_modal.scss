@@ -1,11 +1,8 @@
 .modal {
   padding: 50px 0;
   height: 350px;
+  color: $white;
   @extend %animationSlideUp;
-
-  @include allText {
-    color: $white;
-  }
 
   @include atSmall {
     margin-top: 100px;
@@ -39,6 +36,7 @@
 
   .title {
     margin: 10px 0 0 0;
+    color: $white;
   }
 
   .content {
