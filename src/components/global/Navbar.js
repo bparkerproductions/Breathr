@@ -13,7 +13,7 @@ const Navbar = props => {
 
   return (
     <nav className="column-center main-nav">
-      <div className="inner-container">
+      <div className="container">
         <div className={`left ${contentToggled ? 'show' : ''}`}>
           <div className="mobile-content">
             <div className="navbar-col">

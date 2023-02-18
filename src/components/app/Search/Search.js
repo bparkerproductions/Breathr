@@ -51,7 +51,7 @@ const Search = (props) => {
 
   return (
     <section id="video-search" className={getVideoClasses()}>
-      <div className="inner-container">
+      <div className="container">
         <ComponentControls toggleType="search"></ComponentControls>
         <SearchBar searchCallback={updateSearchResult}></SearchBar>
         <VideoResult

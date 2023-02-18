@@ -10,7 +10,7 @@ const Collection = (props) => {
   }
   return (
     <section id="video-collection" className={getCollectionClasses()}>
-      <div className="inner-container">
+      <div className="container">
         <ComponentControls toggleType="collection"></ComponentControls>
         <header className="general">
           <i className="fas fa-bookmark icon"></i>

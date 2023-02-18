@@ -37,7 +37,7 @@ const Modal = props => {
 
   return (
     <section className={`modal column-center mobile-fixed ${isModalHidden()}`}>
-      <div className="inner-container">
+      <div className="container">
         <div className="head">
           {renderCloseButton()}
         </div>

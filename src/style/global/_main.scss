@@ -29,16 +29,3 @@ i {
 h1, h2, h3, h4, h5, h6 {
   color: $header;
 }
-
-.inner-container {
-  max-width: $CONTAINER;
-
-  @include media-breakpoint-up(xl) {
-    max-width: 1200px;
-  }
-
-  @include media-breakpoint-down(sm) {
-    max-width: $CONTAINER-SMALL;
-    padding: 0 15px;
-  }
-}
