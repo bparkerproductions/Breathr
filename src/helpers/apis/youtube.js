@@ -14,7 +14,7 @@ export const options = {
   }
 }
 
-export default {
+const videoOptions = {
   part: 'snippet',
   maxResults: '9',
   videoEmbeddable: 'true',
@@ -23,3 +23,5 @@ export default {
   videoDuration: 'long',
   key: process.env.REACT_APP_YOUTUBE_KEY
 }
+
+export default videoOptions;

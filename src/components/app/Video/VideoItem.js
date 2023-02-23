@@ -10,16 +10,18 @@ const VideoItem = props => {
    * Call useEffect function when props.videoPlayer changes 
    * (it means a video was selected and its already in its "loaded" state)
    */
+  const videoPlayer = useSelector( state => state.videoPlayer )
   useEffect(() => {
     // Only run this when video is in its buffering state
     if (props.videoPlayer && props.videoPlayer.getPlayerState() === 3) {
       setVideoState()
     }
-  }, [useSelector( state => state.videoPlayer )])
+  }, [videoPlayer])
 
   /**
    * Used to update each videoItem when the outside play/pause is activated
    */
+  const paused = useSelector( state => state.paused )
   useEffect(() => {
     if (!isCurrentVideo()) return
 
@@ -28,7 +30,7 @@ const VideoItem = props => {
     const videoIsPlaying = props.videoPlayer.getPlayerState() === 1
 
     videoIsPlaying ? setIsPlaying(false) : setIsPlaying(true)
-  }, [useSelector( state => state.paused )])
+  }, [paused])
 
   const [isPlaying, setIsPlaying] = useState(false)
 

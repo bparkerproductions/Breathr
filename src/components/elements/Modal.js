@@ -10,7 +10,7 @@ const Modal = props => {
   function renderButton() {
     if (props.showButton) {
       return (
-        <div className="button-container">
+        <div className="modal__button-container">
           <button onClick={toggleModal} className="button">
             { props.buttonText }
           </button>
@@ -36,15 +36,17 @@ const Modal = props => {
   }
 
   return (
-    <section className={`modal column-center mobile-fixed ${isModalHidden()}`}>
+    <section className={`modal-container column-center mobile-fixed ${isModalHidden()}`}>
       <div className="container">
-        <div className="head">
-          {renderCloseButton()}
+        <div className="modal">
+          <div className="modal__head d-flex justify-content-end">
+            {renderCloseButton()}
+          </div>
+          <div className={`modal__content ${props.contentClasses}`}>
+            { props.children }
+          </div>
+          {renderButton()}
         </div>
-        <div className={`content ${props.contentClasses}`}>
-          { props.children }
-        </div>
-        {renderButton()}
       </div>
     </section>
   )

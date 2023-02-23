@@ -4,17 +4,9 @@
   @import "video-results";
 
   padding-bottom: $SPC-MED;
-
   height: 200px;
+
   @extend %animationTuckAway;
-
-  @include media-breakpoint-down(sm) {
-    margin-top: $SPC-MED;
-  }
-
-  &.searched {
-    height: 600px;
-  }
 
   .container {
     width: 100%;
@@ -22,6 +14,7 @@
   }
 }
 
+#video-search.searched,
 #video-collection {
   height: 600px;
 }

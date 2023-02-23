@@ -1,4 +1,4 @@
-.modal {
+.modal-container {
   padding: 50px 0;
   height: 350px;
   color: $white;
@@ -9,11 +9,16 @@
     height: 100vh;
   }
 
-  .container {
+  .modal {
     min-width: 50%;
     padding: 45px 60px;
     background-color: rgba($primary, 0.6);
     border-radius: 5px;
+
+    &__head .close {
+      font-size: 1.5em;
+      cursor: pointer;
+    }
   }
 
   &.mobile-fixed {
@@ -24,30 +29,8 @@
     }
   }
 
-  .head {
-    display: flex;
-    justify-content: flex-end;
-
-    .close {
-      font-size: 1.5em;
-      cursor: pointer;
-    }
-  }
-
   .title {
     margin: 10px 0 0 0;
     color: $white;
-  }
-
-  .content {
-    @include media-breakpoint-up(lg) {
-      width: 70%;
-    }
-
-    p {
-      @include media-breakpoint-down(sm) {
-        line-height: 1.3;
-      }
-    }
   }
 }
