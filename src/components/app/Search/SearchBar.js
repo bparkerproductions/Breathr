@@ -20,13 +20,18 @@ const SearchBar = (props) => {
   }
 
   return (
-    <div className="search-input-container">
-      <div className="search-icon" onClick={trackInput}>
-        <i className="fas fa-search"></i>
+    <div className="search-input-container d-flex">
+      <div className="search-icon d-flex align-items-center me-3 text-white ui-button" onClick={trackInput}>
+        <i className="fas fa-search fa-lg"></i>
       </div>
-      <div className="search-input">
-        <form onSubmit={ e => e.preventDefault() }>
-          <input type="text" onKeyDown={handleKeyDown} onChange={updateSearchQuery}></input>
+      <div className="search-input w-100">
+        <form onSubmit={ e => e.preventDefault() } className="w-100">
+          <input 
+            type="text"
+            className="w-100"
+            onKeyDown={handleKeyDown}
+            onChange={updateSearchQuery}
+          />
         </form>
       </div>
     </div>

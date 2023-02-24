@@ -12,9 +12,9 @@ const Collection = (props) => {
     <section id="video-collection" className={getCollectionClasses()}>
       <div className="container">
         <ComponentControls toggleType="collection"></ComponentControls>
-        <header className="general">
-          <i className="fas fa-bookmark icon"></i>
-          <h3 className="white">Your Collection</h3>
+        <header className="general py-3">
+          <i className="fas fa-bookmark icon fa-lg text-white me-2"></i>
+          <h3 className="text-white m-0">Your Collection</h3>
         </header>
 
         <VideoResult

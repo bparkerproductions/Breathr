@@ -29,7 +29,7 @@ const IntroModal = (props) => {
 
   if (props.videosPlayed === 0) {
     return (
-      <div class="d-flex justify-content-center">
+      <div className="d-flex justify-content-center">
         <Modal
           showClose={false}
           firstVisitOnly={false}
@@ -42,17 +42,17 @@ const IntroModal = (props) => {
               <hr />
             </div>
 
-            <div class="row">
-              <div class="col-12 col-lg-6">
+            <div className="row">
+              <div className="col-12 col-lg-6">
                 <p>{description()}</p>
                 <div className="play-container d-flex">
                   <button onClick={playVideo} className="btn btn-primary py-3 px-4 text-dark">
-                    <span class="fw-bold text-white">Start Video Now</span>
+                    <span className="fw-bold text-white">Start Video Now</span>
                     <i className="fas fa-play ms-2 fa-lg text-dark ms-3"></i>
                   </button>
                 </div>
               </div>
-              <div class="col-12 col-lg-6 mt-3 border-start">
+              <div className="col-12 col-lg-6 mt-3 border-start">
                 Open Collection
               </div>
             </div>

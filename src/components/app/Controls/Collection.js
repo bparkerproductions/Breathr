@@ -51,14 +51,14 @@ const CollectionControls = props => {
   if (!doesVideoExist()) {
     return (
       <div className="ui-button" onClick={handleAdd}>
-        <i title="Add to collection" className="fas fa-plus-circle"></i>
+        <i title="Add to collection" className="fas fa-plus-circle text-primary"></i>
       </div>
     )
   }
   else {
     return (
       <div className="ui-button" onClick={handleRemove}>
-        <i title="remove from collection" className="fas fa-minus-circle red"></i>
+        <i title="remove from collection" className="fas fa-minus-circle text-danger"></i>
       </div>
     )
   }

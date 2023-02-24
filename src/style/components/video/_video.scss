@@ -1,16 +1,66 @@
 #video-search,
 #video-collection {
-  @import "search-bar";
-  @import "video-results";
-
   padding-bottom: $SPC-MED;
   height: 200px;
 
   @extend %animationTuckAway;
 
-  .container {
-    width: 100%;
-    overflow: hidden;
+  .video-results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 20px;
+    max-height: 500px;
+    overflow-y: scroll;
+    @include scrollbar($secondary, 4px);
+  
+    @include media-breakpoint-down(lg) {
+      justify-content: space-between;
+    }
+  
+    .video-preview {
+      @import "parts/overlay-preview";
+  
+      flex-basis: 32.66%;
+      border-top: 5px solid $primary;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      height: 200px;
+      margin-bottom: 10px;
+      padding: 5px 7.5px;
+      box-sizing: border-box;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      @extend %animationBounceUp;
+  
+      @include media-breakpoint-down(lg) {
+        margin: 0 0 7.5px 0;
+        flex-basis: 49.5%;
+      }
+  
+      @include media-breakpoint-down(sm) {
+        flex-basis: 100%;
+      }
+  
+      &:nth-child(3n+2) {
+        @include media-breakpoint-up(lg) {
+          margin: 0 1%;
+        }
+      }
+  
+      &:hover {
+        .overlay-preview {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+  
+      img {
+        width: 100%;
+      }
+    }
   }
 }
 

@@ -3,10 +3,14 @@
  */
 
  input[type="text"] {
-   background-color: rgba($dark, 0.25);
-   border: 0;
+   background-color: $light;
+   border: 2px solid rgba($secondary, 0.35);
+   font-size: 1rem;
    padding-left: 20px;
-   color: $white;
+   color: $dark;
+   padding: 10px 20px;
+   border-radius: 30px;
+   box-sizing: border-box;
 
    &:focus {
      outline: none;

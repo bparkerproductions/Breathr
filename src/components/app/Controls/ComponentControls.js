@@ -13,7 +13,7 @@ const ComponentControls = props => {
   return (
     <div className="component-controls">
       <div onClick={handleClick} className="ui-button">
-        <i title="minimize" className="far fa-window-minimize"></i>
+        <i title="minimize" className="far fa-window-minimize text-secondary"></i>
       </div>
     </div>
   )

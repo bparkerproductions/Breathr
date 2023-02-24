@@ -16,16 +16,6 @@ nav.main-nav {
     }
   }
 
-  .container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-
-    @include media-breakpoint-down(lg) {
-      flex-direction: column;
-    }
-  }
-
   .navbar-col {
     display: flex;
     align-items: center;

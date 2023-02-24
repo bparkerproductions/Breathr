@@ -20,6 +20,10 @@ body {
   }
 }
 
+.container {
+  box-sizing: border-box;
+}
+
 i {
   @include font("Font Awesome\ 5 Pro");
 

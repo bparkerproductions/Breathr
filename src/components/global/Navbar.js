@@ -13,7 +13,7 @@ const Navbar = props => {
 
   return (
     <nav className="column-center main-nav">
-      <div className="container">
+      <div className="container d-flex flex-column flex-lg-row justify-content-between">
         <div className={`left ps-3 ${contentToggled ? 'show' : ''}`}>
           <div className="mobile-content">
             <div className="navbar-col">

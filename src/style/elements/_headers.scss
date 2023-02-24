@@ -1,12 +1,7 @@
 header.general {
-  background-color: $dark;
+  background-color: rgba($primary, 0.9);
   padding: 10px 35px;
   display: flex;
   align-items: center;
-
-  .icon {
-    color: $white;
-    font-size: 1.5em;
-    margin-right: 15px;
-  }
+  border-bottom: 2px solid rgba($secondary, 0.85);
 }

@@ -106,8 +106,8 @@ const VideoItem = props => {
 
   return (
     <div onClick={videoSelected} style={bgImage()} className="video-preview">
-      <div className="control-container">
-        <i className={getPauseOrPlay}></i>
+      <div className="control-container d-flex align-items-center justify-content-center w-100 h-100">
+        <i className={`${getPauseOrPlay} text-primary fa-3x`}></i>
       </div>
       <div className="video-controls">
         <CollectionControls 
