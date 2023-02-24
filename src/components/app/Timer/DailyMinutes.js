@@ -32,10 +32,10 @@ const DailyMinutes = (props) => {
       <ToolTip toggledOuter={tooltipToggled}>
         {getMessage()}
       </ToolTip>
-      <span className="minute">
+      <span className="minute text-white">
         {getMinutes()}
       </span>
-      <span className="label">m</span>
+      <span className="label text-white">m</span>
     </time>
   )
 }

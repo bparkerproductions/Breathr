@@ -3,21 +3,6 @@
   margin-bottom: 7.5px;
   display: flex;
   justify-content: flex-end;
-  @extend %animationBounceUp;
-
-  .ui-button {
-    cursor: pointer;
-
-    svg,
-    i {
-      color: $secondary;
-      font-size: 16px;
-
-      &.red {
-        color: $danger;
-      }
-    }
-  }
 }
 
 .video-controls {

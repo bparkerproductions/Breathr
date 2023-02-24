@@ -1,2 +1,8 @@
-.button {
+.btn,
+.ui-button {
+  @extend %animationBounceUp;  
+}
+
+.ui-button {
+  cursor: pointer;
 }

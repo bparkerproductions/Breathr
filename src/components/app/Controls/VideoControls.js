@@ -50,11 +50,11 @@ const VideoControls = props => {
   }
 
   return (
-    <aside id="video-controls" className="navbar-col">
-      <div className="ui-button" onClick={togglePause}>
+    <aside id="video-controls" className="navbar-col py-2 py-lg-3 mt-3 mt-sm-0 ps-3 ps-lg-0 me-4 pe-3">
+      <div className="ui-button fa-lg me-3" onClick={togglePause}>
         <i title="Pause or play video" className={getPauseOrPlay}></i>
       </div>
-      <div onClick={toggleMuted} className="ui-button">
+      <div onClick={toggleMuted} className="ui-button me-2">
         <i title="video volume" className={muteClass}></i>
       </div>
 

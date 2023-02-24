@@ -14,7 +14,7 @@ const Navbar = props => {
   return (
     <nav className="column-center main-nav">
       <div className="container">
-        <div className={`left ${contentToggled ? 'show' : ''}`}>
+        <div className={`left ps-3 ${contentToggled ? 'show' : ''}`}>
           <div className="mobile-content">
             <div className="navbar-col">
               <DailyMinutes></DailyMinutes>
@@ -23,12 +23,12 @@ const Navbar = props => {
         </div>
 
         <div className="right">
-          <div onClick={() => setContent(!contentToggled)} className="mobile-toggle">
+          <div onClick={() => setContent(!contentToggled)} className="mobile-toggle my-3 mt-lg-0 ps-3 ps-lg-0">
             <i className={getToggledState()}></i>
           </div>
-          <div className="video-content">
+          <div className="video-content h-100">
             <VideoControls />
-            <div className="app-toggle-group">
+            <div className="app-toggle-group d-flex ps-3 py-2 py-lg-3">
               <AppToggles />
               <ToggleAll />
             </div>
