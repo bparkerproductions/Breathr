@@ -1,8 +1,11 @@
-.btn,
-.ui-button {
+.btn {
   @extend %animationBounceUp;  
 }
 
 .ui-button {
   cursor: pointer;
+
+  &:not(.no-bounce) {
+    @extend %animationBounceUp; 
+  }
 }

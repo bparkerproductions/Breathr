@@ -3,6 +3,7 @@ import AppToggles from './../app/Controls/AppToggles'
 import VideoControls from './../app/Controls/VideoControls'
 import DailyMinutes from './../app/Timer/DailyMinutes'
 import ToggleAll from './../app/Controls/ToggleAll'
+import NowPlaying from './../app/Video/NowPlaying'
 
 const Navbar = props => {
   const [contentToggled, setContent] = useState(false)
@@ -27,6 +28,7 @@ const Navbar = props => {
             <i className={getToggledState()}></i>
           </div>
           <div className="video-content h-100">
+            <NowPlaying />
             <VideoControls />
             <div className="app-toggle-group d-flex ps-3 py-2 py-lg-3">
               <AppToggles />

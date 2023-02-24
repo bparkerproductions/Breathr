@@ -10,7 +10,8 @@ nav.main-nav {
     color: $white;
   }
 
-  .app-toggle-group {
+  .app-toggle-group,
+  #video-controls {
     @include media-breakpoint-up(lg) {
       border-left: 1px solid rgba($dark, 0.25);
     }

@@ -17,10 +17,10 @@ const ToggleAll = (props) => {
 
   return (
     <aside id="toggle-all" className="navbar-col">
-      <div className="ui-button larger">
+      <div className="ui-button">
         <i title="Toggle visibility"
            onClick={toggleAll}
-           className={`white ${getToggleAllClass()}`}></i>
+           className={`fa-2x ms-3 ${getToggleAllClass()}`}></i>
       </div>
     </aside>
   )
