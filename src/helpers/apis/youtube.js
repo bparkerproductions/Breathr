@@ -4,6 +4,7 @@ export const options = {
   playerVars: {
     loop: 1,
     start: 60,
+    rel: 0,
     frameborder: 0,
     controls: 0,
     color: 'white',
