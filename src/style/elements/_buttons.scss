@@ -1,15 +1,2 @@
 .button {
-  border: none;
-  color: $white;
-  font-weight: 600;
-  font-size: 1em;
-  border-radius: 50px;
-  background-color: $primary;
-  cursor: pointer;
-
-  @extend %animationBounceUp;
-
-  &:focus {
-    outline: none;
-  }
 }

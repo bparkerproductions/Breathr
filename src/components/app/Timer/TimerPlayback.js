@@ -2,17 +2,18 @@ import React from 'react'
 
 const TimerPlayback = (props) => {
   function getPlayOrPause(pause, resume) {
-    if(!props.paused) {
+    const buttonClasses = "btn btn-primary text-white";
+    if (!props.paused) {
       return (
-        <div onClick={props.togglePauseCallback} className="pause">
-          <i onClick={pause} className="far fa-pause-circle"></i>
+        <div onClick={props.togglePauseCallback} className={`pause ${buttonClasses}`}>
+          <i onClick={pause} className="far fa-pause-circle fa-lg"></i>
         </div>
       )
     }
     else {
       return (
-        <div onClick={props.togglePauseCallback} className="resume">
-          <i onClick={resume} className="far fa-play-circle"></i>
+        <div onClick={props.togglePauseCallback} className={`resume ${buttonClasses}`}>
+          <i onClick={resume} className="far fa-play-circle fa-lg"></i>
         </div>
       )
     }
@@ -23,8 +24,8 @@ const TimerPlayback = (props) => {
       return (
         <div className="timer-controls">
           {getPlayOrPause(props.pauseCallback, props.resumeCallback)}
-          <div className="reset">
-            <i onClick={resetTimer} className="fas fa-undo"></i>
+          <div className="reset btn btn-primary text-white ms-2">
+            <i onClick={resetTimer} className="fas fa-undo fa-lg"></i>
           </div>
         </div>
       )

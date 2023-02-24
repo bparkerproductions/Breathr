@@ -20,9 +20,9 @@ const TimerControls = (props) => {
     if(!isTimerStarted) {
       return (
         <div onClick={() => {timerStarted(start)}}
-        className="timer-start">
+        className="timer-start btn btn-primary rounded-0 text-white d-flex align-items-center justify-content-center">
           <p>Start Timer?</p>
-          <i className="fas fa-clock start-timer"></i>
+          <i className="fas fa-clock start-timer fa-lg ms-2"></i>
         </div>
       )
     }

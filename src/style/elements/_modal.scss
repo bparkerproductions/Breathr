@@ -12,8 +12,9 @@
   .modal {
     min-width: 50%;
     padding: 45px 60px;
-    background-color: rgba($primary, 0.6);
+    background-color: rgba($grey, 0.9);
     border-radius: 5px;
+    color: $dark;
 
     &__head .close {
       font-size: 1.5em;
@@ -27,10 +28,5 @@
       position: fixed;
       top: 0;
     }
-  }
-
-  .title {
-    margin: 10px 0 0 0;
-    color: $white;
   }
 }

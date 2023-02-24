@@ -50,13 +50,3 @@
 @mixin button-size-large() {
   padding: 22.5px;
 }
-
-@mixin ui-button($size, $padding:7.5px) {
-  background-color: $primary;
-  padding: $padding;
-  border: 1px solid rgba($white, 0.2);
-  color: $white;
-  font-size: $size;
-  cursor: pointer;
-  @extend %animationBounceUp;
-}

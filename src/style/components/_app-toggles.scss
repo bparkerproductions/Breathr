@@ -1,7 +1,5 @@
 .navbar-col {
   .ui-button {
-    @include ui-button(1em, 10px);
-
     background-color: transparent;
     color: $primary;
     border: none;

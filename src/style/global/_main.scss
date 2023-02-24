@@ -13,7 +13,7 @@ body {
 
   @include font-smoothing;
   @include scrollbar($secondary, 5px);
-  @include font('Lato');
+  @include font('Inter');
 
   @include media-breakpoint-down(sm) {
     line-height: $MOBILE-LINE-HEIGHT;

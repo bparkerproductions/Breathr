@@ -38,7 +38,7 @@ const Modal = props => {
   return (
     <section className={`modal-container column-center mobile-fixed ${isModalHidden()}`}>
       <div className="container">
-        <div className="modal">
+        <div className="modal border">
           <div className="modal__head d-flex justify-content-end">
             {renderCloseButton()}
           </div>

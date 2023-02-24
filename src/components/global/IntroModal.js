@@ -17,19 +17,6 @@ const IntroModal = (props) => {
     props.setPaused(false)
   }
 
-  function startVideoSection() {
-    return (
-      <div className="play-container d-flex">
-        <div onClick={playVideo} className="play-item">
-          <strong className="play-item__title">Start Video Now</strong>
-          <div className="play-item__icon">
-            <i className="fas fa-play-circle"></i>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
   function title() {
     return checkVisitCount() > 1 ? 'Welcome Back!' : 'Welcome to Breathr!'
   }
@@ -42,19 +29,35 @@ const IntroModal = (props) => {
 
   if (props.videosPlayed === 0) {
     return (
-      <Modal
-        showClose={false}
-        firstVisitOnly={false}
-        showButton={false}
-        contentClasses="intro-modal"
-        closedFromOuter={true}
-        buttonText="Let's get to it">
-          <div className="header-container bottom-line">
-            <h2 className="title">{title()}</h2>
-          </div>
-          <p>{description()}</p>
-          {startVideoSection()}
-      </Modal>
+      <div class="d-flex justify-content-center">
+        <Modal
+          showClose={false}
+          firstVisitOnly={false}
+          showButton={false}
+          contentClasses="intro-modal"
+          closedFromOuter={true}
+          buttonText="Let's get to it">
+            <div className="header-container">
+              <h2 className="title text-dark">{title()}</h2>
+              <hr />
+            </div>
+
+            <div class="row">
+              <div class="col-12 col-lg-6">
+                <p>{description()}</p>
+                <div className="play-container d-flex">
+                  <button onClick={playVideo} className="btn btn-primary py-3 px-4 text-dark">
+                    <span class="fw-bold text-white">Start Video Now</span>
+                    <i className="fas fa-play ms-2 fa-lg text-dark ms-3"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-12 col-lg-6 mt-3 border-start">
+                Open Collection
+              </div>
+            </div>
+        </Modal>
+      </div>
     )
   }
   else return null
