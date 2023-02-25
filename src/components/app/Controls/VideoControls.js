@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { setVideoVolume } from './../../../actions/videoList'
 import { incrementVideosPlayed } from './../../../actions'
 import { setPaused } from './../../../actions/appToggles'
+import CycleVideos from './CycleVideos'
 
 const VideoControls = props => {
   const [muted, setMuted] = useState(false)
@@ -51,6 +52,8 @@ const VideoControls = props => {
 
   return (
     <aside id="video-controls" className="navbar-col py-2 py-lg-3 mt-3 mt-sm-0 ps-3 pe-3">
+      <CycleVideos />
+
       <div className="ms-2 d-flex">
         <div className="ui-button fa-lg me-3" onClick={togglePause}>
           <i title="Pause or play video" className={getPauseOrPlay}></i>
