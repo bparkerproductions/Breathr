@@ -16,15 +16,19 @@
   opacity: 0.2;
 }
 
+/** Animations **/
+
 %animationTuckAway {
   transition: all 0.45s ease;
   transform: translate(0, 0);
   opacity: 1;
+  pointer-events: all;
 
   &.hidden {
     height: 0 !important;
     padding: 0;
     opacity: 0;
+    pointer-events: none;
     transform: translate(100vw, -175vh);
 
     @include media-breakpoint-down(sm) {
@@ -36,10 +40,12 @@
 %animationSlideUp {
   transition: all 0.45s ease;
   transform: translateY(0);
+  pointer-events: all;
 
   &.hidden {
     height: 0;
     transform: translateY(-200vw);
+    pointer-events: none;
   }
 }
 

@@ -17,8 +17,8 @@ const VideoResult = props => {
       )
     }
     else {
-      let noSearch = 'Nothing came up for your search. Maybe try again with a different term'
-      let noCollection = 'You have nothing in your collection. Head over to the search bar and find some!'
+      const noSearch = 'Nothing came up for your search. Maybe try again with a different term'
+      const noCollection = 'You have nothing in your collection. Head over to the search bar and find some!'
 
       return (
         <div className="notification-card error">

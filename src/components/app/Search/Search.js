@@ -50,7 +50,7 @@ const Search = (props) => {
   }
 
   return (
-    <section id="video-search" className={getVideoClasses()}>
+    <section id="video-search" className={`${getVideoClasses()} mt-5`}>
       <div className="container">
         <ComponentControls toggleType="search"></ComponentControls>
         <SearchBar searchCallback={updateSearchResult}></SearchBar>
