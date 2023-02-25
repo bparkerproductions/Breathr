@@ -38,48 +38,50 @@ const TimerControls = (props) => {
   }
 
   return (
-    <section className={getTimerContainerClass()}>
-      <Timer
-        onStart={() => startTracking()}
-        onResume={() => startTracking()}
-        onPause={() => clearInterval(interval)}
-        startImmediately={false}>
-        {({start, pause, resume, reset, stop}) => (
-          <React.Fragment>
-            <div className="timer-container">
-              <ComponentControls toggleType="timer"></ComponentControls>
-              {timerStart(start)}
-              <div className={isTimerStarted ? 'main-timer' : 'main-timer hidden'}>
-                <span className="time">
-                  <Timer.Minutes />
-                </span>
-                <span className="time-label">m</span>
+    <section className={`${getTimerContainerClass()} container `}>
+      <div className="clock-container">
+        <Timer
+          onStart={() => startTracking()}
+          onResume={() => startTracking()}
+          onPause={() => clearInterval(interval)}
+          startImmediately={false}>
+          {({start, pause, resume, reset, stop}) => (
+            <React.Fragment>
+              <div className="clock-container">
+                <ComponentControls toggleType="timer"></ComponentControls>
+                {timerStart(start)}
+                <div className={isTimerStarted ? 'main-timer' : 'main-timer hidden'}>
+                  <span className="time">
+                    <Timer.Minutes />
+                  </span>
+                  <span className="time-label">m</span>
 
-                <span className="seperator">:</span>
+                  <span className="seperator">:</span>
 
-                <span className="time">
-                  <Timer.Seconds
-                    formatValue={value => value < 10 ? `0${value}` : value}
-                  />
-                </span>
-                <span className="time-label">s</span>
+                  <span className="time">
+                    <Timer.Seconds
+                      formatValue={value => value < 10 ? `0${value}` : value}
+                    />
+                  </span>
+                  <span className="time-label">s</span>
+                </div>
               </div>
-            </div>
 
-            <TimerPlayback
-              interval={interval}
-              started={isTimerStarted}
-              paused={paused}
-              togglePauseCallback={() => setPaused(!paused)}
-              setPausedCallback={() => setPaused(true)}
-              stopCallback={stop}
-              pauseCallback={pause}
-              resumeCallback={resume}
-              resetCallback={reset}>
-            </TimerPlayback>
-          </React.Fragment>
-        )}
-      </Timer>
+              <TimerPlayback
+                interval={interval}
+                started={isTimerStarted}
+                paused={paused}
+                togglePauseCallback={() => setPaused(!paused)}
+                setPausedCallback={() => setPaused(true)}
+                stopCallback={stop}
+                pauseCallback={pause}
+                resumeCallback={resume}
+                resetCallback={reset}>
+              </TimerPlayback>
+            </React.Fragment>
+          )}
+        </Timer>
+      </div>
     </section>
   )
 }

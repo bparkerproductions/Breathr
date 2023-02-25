@@ -19,8 +19,6 @@
     }
   
     .video-preview {
-      @import "parts/overlay-preview";
-  
       flex-basis: 32.66%;
       border-top: 5px solid $primary;
       cursor: pointer;
@@ -56,9 +54,31 @@
           transform: translateX(0);
         }
       }
-  
-      img {
-        width: 100%;
+
+      .overlay-preview {
+        background-color: rgba($dark, 0.35);
+        z-index: 2;
+        padding-right: 20px;
+        padding-left: 20px;
+        box-sizing: border-box;
+        transition: all 0.5s ease;
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+      
+        @extend %absoluteFill;
+      
+        .icon-container {
+          @include hard-center;
+          @extend %absoluteFill;
+      
+          i,
+          svg {
+            font-size: 2.5em;
+            color: $primary;
+            opacity: 0.85;
+          }
+        }
       }
     }
   }

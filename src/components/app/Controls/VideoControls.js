@@ -51,11 +51,13 @@ const VideoControls = props => {
 
   return (
     <aside id="video-controls" className="navbar-col py-2 py-lg-3 mt-3 mt-sm-0 ps-3 pe-3">
-      <div className="ui-button fa-lg me-3" onClick={togglePause}>
-        <i title="Pause or play video" className={getPauseOrPlay}></i>
-      </div>
-      <div onClick={toggleMuted} className="ui-button me-2">
-        <i title="video volume" className={muteClass}></i>
+      <div className="ms-2 d-flex">
+        <div className="ui-button fa-lg me-3" onClick={togglePause}>
+          <i title="Pause or play video" className={getPauseOrPlay}></i>
+        </div>
+        <div onClick={toggleMuted} className="ui-button me-2">
+          <i title="video volume" className={muteClass}></i>
+        </div>
       </div>
 
       <div className={`hard-center slider-container ${muted ? 'disabled' : ''}`}>

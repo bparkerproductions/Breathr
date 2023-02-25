@@ -22,7 +22,7 @@ const TimerPlayback = (props) => {
   function timerControls() {
     if (props.started) {
       return (
-        <div className="timer-controls">
+        <div className="timer-controls d-flex justify-content-center">
           {getPlayOrPause(props.pauseCallback, props.resumeCallback)}
           <div className="reset btn btn-primary text-white ms-2">
             <i onClick={resetTimer} className="fas fa-undo fa-lg"></i>

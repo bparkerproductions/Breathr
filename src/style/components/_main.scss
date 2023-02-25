@@ -3,7 +3,7 @@ main {
 
   @import "video-render";
   @import "navbar";
-  @import "timer/main-timer/timer";
-  @import "timer/daily-minutes";
-  @import "video/video";
+  @import "timer";
+  @import "daily-minutes";
+  @import "video";
 }

@@ -1,0 +1,51 @@
+.timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 350px;
+  box-sizing: border-box;
+  padding-top: 65px;
+  @extend %animationTuckAway;
+
+  @include media-breakpoint-down(sm) {
+    height: 300px;
+  }
+
+  .timer-controls {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+    padding: 12.5px 0;
+  
+    @extend %borderTop;
+  }
+
+  .main-timer {
+    display: flex;
+    align-items: flex-end;
+    color: $white;
+    transition: all 0.35s ease;
+    transform: translateX(0);
+  
+    &.hidden {
+      transform: translateX(-200vh);
+    }
+  
+    .time {
+      font-size: 4em;
+      line-height: 1;
+    }
+  
+    .time-label {
+      font-size: 1.25em;
+      font-weight: 700;
+      margin-left: 3.5px;
+    }
+  
+    .seperator {
+      line-height: 1.5;
+      font-size: 3em;
+      margin: 0 7.5px;
+    }
+  }
+}
