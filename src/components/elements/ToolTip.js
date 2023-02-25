@@ -1,16 +1,31 @@
-import React from 'react'
+import React, { useEffect, useCallback } from 'react'
+import { connect } from 'react-redux'
 
-const toolTip = (props) => {
+const ToolTip = ({ toggledOuter, children, closeTooltip }) => {
 
-  if(props.toggledOuter) {
+  const handleClick = useCallback(() => {
+    if (closeTooltip) closeTooltip()
+  }, [closeTooltip])
+
+  useEffect(() => {
+    window.addEventListener('click', handleClick)
+
+    return () => {
+      window.removeEventListener('click', handleClick)
+    }
+  }, [handleClick])
+
+  if (toggledOuter) {
     return (
-      <aside className="tooltip">
+      <aside onClick={e => e.stopPropagation()} className="tooltip">
         <div className="triangle"></div>
         <div className="head">
-          <i className="far fa-times-circle"></i>
+          <div onClick={() => closeTooltip()}>
+            <i className="far fa-times-circle cursor-pointer"></i>
+          </div>
         </div>
         <div className="tooltip-content">
-          {props.children}
+          {children}
         </div>
       </aside>
     )
@@ -18,4 +33,10 @@ const toolTip = (props) => {
   else return null
 }
 
-export default toolTip
+const mapStateToProps = state => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, {
+})(ToolTip)

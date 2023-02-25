@@ -13,6 +13,11 @@ const DailyMinutes = (props) => {
     toggleTooltip(!tooltipToggled)
   }
 
+  function tooltipActivated(e) {
+    e.stopPropagation()
+    toggleTooltip(!tooltipToggled)
+  }
+
   function getMessage() {
     if (props.secondsForDay < 60) {
       return (
@@ -29,13 +34,19 @@ const DailyMinutes = (props) => {
   }
   return (
     <time onClick={toggleTooltipState} className="daily-minutes">
-      <ToolTip toggledOuter={tooltipToggled}>
+      <ToolTip 
+        toggledOuter={tooltipToggled}
+        closeTooltip={() => toggleTooltip(false)}
+      >
         {getMessage()}
       </ToolTip>
-      <span className="minute text-white">
-        {getMinutes()}
-      </span>
-      <span className="label text-white">m</span>
+
+      <div onClick={tooltipActivated} className="cursor-pointer">
+        <span className="minute text-white">
+          {getMinutes()}
+        </span>
+        <span className="label text-white">m</span>
+      </div>
     </time>
   )
 }
