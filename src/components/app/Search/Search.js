@@ -39,6 +39,10 @@ const Search = (props) => {
     })
   }
 
+  async function urlSearch(q) {
+    console.log('search', q)
+  }
+
   /**
    * searchedClasses: if search result and videos are true, add 'searched' class
    * showClasses: set hidden based on whether the component is toggled or not
@@ -53,12 +57,16 @@ const Search = (props) => {
     <section id="video-search" className={`${getVideoClasses()} mt-5`}>
       <div className="container">
         <ComponentControls toggleType="search"></ComponentControls>
-        <SearchBar searchCallback={updateSearchResult}></SearchBar>
+        <SearchBar 
+          searchCallback={updateSearchResult}
+          urlSearchCallback={urlSearch}
+        />
         <VideoResult
           searchResult={searchResult}
           videos={videos}
-          canAdd={true}>
-        </VideoResult>
+          canAdd={true}
+        />
+        
       </div>
     </section>
   )

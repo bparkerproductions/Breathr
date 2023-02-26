@@ -28,7 +28,9 @@ const Navbar = props => {
             <i className={getToggledState()}></i>
           </div>
           <div className="video-content h-100">
-            <NowPlaying />
+            <div className="navbar-col">
+              <NowPlaying />
+            </div>
             <VideoControls />
             <div className="app-toggle-group d-flex ps-3 py-2 py-lg-3">
               <AppToggles />

@@ -23,7 +23,7 @@ const NowPlaying = props => {
   }
 
   return (
-    <div id="nowPlaying" className="navbar-col ms-3 ms-lg-0 me-3 pe-3 position-relative">
+    <div id="nowPlaying" className="ms-3 ms-lg-0 me-2 pe-2 position-relative">
       <div onClick={tooltipActivated}>
         <i className="fas fa-info-circle fa-lg ui-button no-bounce mt-1" title="Get information about the current video"></i>
       </div>
