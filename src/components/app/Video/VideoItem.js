@@ -48,7 +48,7 @@ const VideoItem = props => {
     if (!props.videoPlayer) return
 
     const playingVideoID = props.videoPlayer.getVideoData().video_id
-    const selectedVideoID = props.video.id.videoId
+    const selectedVideoID = props.video.id.videoId || props.video.id
 
     return playingVideoID === selectedVideoID
   }
