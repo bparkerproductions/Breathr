@@ -16,6 +16,7 @@ export const options = {
 }
 
 const videoOptions = {
+  base: 'https://www.googleapis.com/youtube/v3',
   part: 'snippet',
   maxResults: '9',
   videoEmbeddable: 'true',

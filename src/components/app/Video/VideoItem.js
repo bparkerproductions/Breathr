@@ -62,7 +62,7 @@ const VideoItem = props => {
       pauseOrPlay()
     } else {
       props.incrementVideosPlayed()
-      props.selectVideo(props.video.id.videoId)
+      props.selectVideo(props.video.id.videoId || props.video.id)
     }
   }
 

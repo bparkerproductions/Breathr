@@ -12,16 +12,20 @@ const Search = (props) => {
    * When a search is entered, this callback is called from the <SearchBar > Component.
    * Updates video results and sets new search result query
    */
-  function updateSearchResult(userInput) {
+  function updateSearchResult(userInput, type) {
     setSearchResult(userInput)
-    getVideoResults(userInput)
+
+    if (type === 'search')
+      getVideoResults(userInput)
+    if (type === 'url')
+      urlSearch(userInput)
   }
 
   /**
    * Fetch results from the YouTube API, set videos when results are returned
    */
   async function getVideoResults(q) {
-    const url = `https://www.googleapis.com/youtube/v3/search?
+    const url = `${youtube.base}/search?
     part=${youtube.part}&
     maxResults=${youtube.maxResults}&
     videoEmbeddable=${youtube.videoEmbeddable}&
@@ -40,7 +44,21 @@ const Search = (props) => {
   }
 
   async function urlSearch(q) {
-    console.log('search', q)
+    const parseId = q.split('v=')[1]
+
+    if (parseId) {
+      const url = `${youtube.base}/videos?
+      id=${parseId}&
+      part=${youtube.part}&
+      key=${youtube.key}`
+      .replace(/\s/g, '')
+
+      fetch(url)
+      .then(response => response.json())
+      .then(response => {
+        setVideos(response.items)
+      })
+    }
   }
 
   /**
@@ -58,8 +76,8 @@ const Search = (props) => {
       <div className="container">
         <ComponentControls toggleType="search"></ComponentControls>
         <SearchBar 
-          searchCallback={updateSearchResult}
-          urlSearchCallback={urlSearch}
+          searchCallback={userInput => updateSearchResult(userInput, 'search')}
+          urlSearchCallback={userInput => updateSearchResult(userInput, 'url')}
         />
         <VideoResult
           searchResult={searchResult}
