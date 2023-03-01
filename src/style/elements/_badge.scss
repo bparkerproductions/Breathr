@@ -1,0 +1,8 @@
+.badge {
+  background-color: rgba($primary, 0.8);
+  color: $white;
+  font-size: 13.5px;
+  cursor: pointer;
+
+  @extend %animationBounceUp;
+}

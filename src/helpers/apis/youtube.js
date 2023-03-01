@@ -1,5 +1,3 @@
-
-
 export const options = {
   playerVars: {
     loop: 1,
