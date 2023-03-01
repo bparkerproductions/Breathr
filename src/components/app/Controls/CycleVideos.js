@@ -6,7 +6,7 @@ import { incrementVideosPlayed } from './../../../actions'
 const CycleVideos = (props) => {
 
   function isDisabled() {
-    return props.videosPlayed > 0 ? '' : 'disabled'
+    return props.videosPlayed === 0 || props.collectionVideos.length <= 1 ? 'disabled' : ''
   }
 
   function nextVideo() {

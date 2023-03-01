@@ -58,6 +58,9 @@ const VideoItem = props => {
    * Select a new video, set play/pause state and volume state
    */
   function videoSelected() {
+    // Initially increment the video count even if the default video is already selected then played
+    if (props.videosPlayed === 0) props.incrementVideosPlayed()
+    
     if (isCurrentVideo()) {
       pauseOrPlay()
     } else {
