@@ -3,6 +3,7 @@ import SearchSuggestions from './SearchSuggestions'
 
 const SearchBar = (props) => {
   const [searchQuery, setSearchQuery] = useState('')
+  const [searchedQuery, setSearchedQuery] = useState('')
   const [searchingByUrl, setSearchingByUrl] = useState(false)
 
   /**
@@ -10,6 +11,9 @@ const SearchBar = (props) => {
    * is in the parent <Search /> component
    */
   function trackInput() {
+    // Set this value once the value is actually searched
+    setSearchedQuery(searchQuery)
+
     if (searchingByUrl)
       props.urlSearchCallback(searchQuery)
     else
@@ -20,9 +24,22 @@ const SearchBar = (props) => {
     if (event.key === 'Enter') trackInput()
   }
 
+  /**
+   * A value was passed down from searchSuggestions, populate and search for it
+   */
+  function populateSearchFromSuggestion(word) {
+    if (searchingByUrl) return
+
+    setSearchQuery(word)
+    props.searchCallback(word, 'search')
+  }
+
   return (
     <div className="search-input-container">
-      <SearchSuggestions />
+      <SearchSuggestions 
+        fill={populateSearchFromSuggestion}
+        searchChanged={searchedQuery}
+      />
       <div className="d-flex">
         <div className="search-icon d-flex align-items-center me-3 text-white ui-button" onClick={trackInput}>
           <i className="fas fa-search fa-lg"></i>
@@ -41,6 +58,7 @@ const SearchBar = (props) => {
               className="w-100"
               placeholder={searchingByUrl ? 'Enter Youtube URL' : 'Search videos'}
               onKeyDown={handleKeyDown}
+              value={searchQuery}
               onChange={event => setSearchQuery(event.target.value)}
             />
           </form>

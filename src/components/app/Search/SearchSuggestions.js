@@ -38,6 +38,10 @@ const SearchSuggestions = (props) => {
     getThesaurusCategories(randomTerm)
   }, [getThesaurusCategories])
 
+  useEffect(() => {
+    getThesaurusCategories(props.searchChanged)
+  }, [props.searchChanged, getThesaurusCategories])
+
   function getRandomTerm() {
     const randomInt = Math.floor(Math.random() * (suggestions.length-1))
     const randomTerm = suggestions[randomInt]
@@ -48,13 +52,36 @@ const SearchSuggestions = (props) => {
     return(
       categories.map(category => {
         const id = Math.floor(Math.random() * 10000)
-        return <li key={category + id} className="badge mx-1 py-1 px-2 mb-1">{category}</li>
-      })
-    )
+        return (
+          <li 
+            key={category + id}
+            className="badge mx-1 py-1 px-2 mb-1"
+            onClick={itemClicked}
+          >{category}
+          </li>
+        )
+        })
+      )
+  }
+
+  /**
+   * Populate and search for the suggestion when its clicked on
+   */
+  function itemClicked(event) {
+    props.fill(event.target.textContent)
+  }
+
+  /**
+   * Dont show suggestions if there are no results or if it's "off"
+   */
+  function isDisabled() {
+    return !categories.length ? 'disabled' : ''
   }
 
   return (
-    <div className="mb-3 d-flex align-items-center">
+    <div 
+      className={`mb-3 d-flex align-items-center ${isDisabled()}`}
+    >
       <i 
         className="fas fa-lightbulb fa-lg text-secondary me-3 cursor-pointer"
         title="Search Suggestions"
