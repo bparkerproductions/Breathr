@@ -17,24 +17,27 @@ const CycleVideos = (props) => {
     let newVideo = null
 
     for (let i = 0; i < props.collectionVideos.length; i++) {
-      if (props.collectionVideos[i].id.videoId === currentlyPlaying) {
+      const id = props.collectionVideos[i].id.videoId || props.collectionVideos[i].id
+
+      if (id === currentlyPlaying) {
         if (i === props.collectionVideos.length-1) newVideo = props.collectionVideos[0]
         else newVideo = props.collectionVideos[i+1]
       }
     }
 
-    selectVideo(newVideo.id.videoId)
+    selectVideo(newVideo.id.videoId || newVideo.id)
   }
 
   function previousVideo() {
     // Video is still loading, don't allow next video actions
     if (props.videoPlayer.getPlayerState() === 3) return
-    
+
     const currentlyPlaying = props.videoPlayer.getVideoData().video_id
     let newVideo = null
 
     for (let i = 0; i < props.collectionVideos.length; i++) {
-      if (props.collectionVideos[i].id.videoId === currentlyPlaying) {
+      const id = props.collectionVideos[i].id.videoId || props.collectionVideos[i].id
+      if (id === currentlyPlaying) {
         if (i === 0) {
           newVideo = props.collectionVideos[props.collectionVideos.length-1]
         }
@@ -42,7 +45,7 @@ const CycleVideos = (props) => {
       }
     }
 
-    selectVideo(newVideo.id.videoId)
+    selectVideo(newVideo.id.videoId || newVideo.id)
   }
 
   function selectVideo(id) {
