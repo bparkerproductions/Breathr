@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
+import { connect } from 'react-redux'
 import SearchBar from './SearchBar'
 import youtube from '../../../helpers/apis/youtube'
 import VideoResult from '../Video/VideoResult'
 import ComponentControls from './../Controls/ComponentControls'
+import { saveSearchedVideos } from './../../../actions/videoList'
 
 const Search = (props) => {
   const [searchResult, setSearchResult] = useState(null)
@@ -40,6 +42,7 @@ const Search = (props) => {
     .then(response => response.json())
     .then(response => {
       setVideos(response.items)
+      saveSearchedVideos(response.items)
     })
   }
 
@@ -57,6 +60,7 @@ const Search = (props) => {
       .then(response => response.json())
       .then(response => {
         setVideos(response.items)
+        saveSearchedVideos(response.items)
       })
     }
   }
@@ -90,4 +94,10 @@ const Search = (props) => {
   )
 }
 
-export default Search
+const mapStateToProps = state => {
+  return {}
+}
+
+export default connect(mapStateToProps, {
+  saveSearchedVideos,
+})(Search)

@@ -23,6 +23,19 @@ const videosReducer = (initialVideos=getInitialVideos('videoList'), action) => {
 }
 
 /**
+ * When videos are searched, save the results
+ */
+const searchedVideosReducer = (initialVideos=null, action) => {
+  console.log(action.type)
+  if (action.type === 'SAVE_SEARCHED_VIDEOS') {
+    console.log('a', action.payload)
+    return initialVideos || action.payload
+  }
+
+  return initialVideos
+}
+
+/**
  * Grab the first collection video saved or the default rainforest video
  */
 const defaultVideoReducer = () => {
@@ -40,7 +53,8 @@ const selectedVideoReducer = (selectedVideo=null, action) => {
 const videoListReducers = {
   videosReducer,
   defaultVideoReducer,
-  selectedVideoReducer
+  selectedVideoReducer,
+  searchedVideosReducer
 }
 
 export default videoListReducers

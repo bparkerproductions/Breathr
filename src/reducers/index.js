@@ -29,6 +29,7 @@ const videosPlayed = (state=0, action) => {
 export default combineReducers({
   videos: videoList.videosReducer,
   selectedVideo: videoList.selectedVideoReducer,
+  searchedVideos: videoList.searchedVideosReducer,
   defaultVideo: videoList.defaultVideoReducer,
   videoPlayer: setVideoReducer,
   videoVolume: setVideoVolumeReducer,

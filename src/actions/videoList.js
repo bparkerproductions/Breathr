@@ -19,6 +19,16 @@ export const removeFromCollection = videoID => {
 }
 
 /**
+ * Called when a search is made and videos should be saved
+ */
+export const saveSearchedVideos = videos => {
+  return {
+    type: 'SAVE_SEARCHED_VIDEOS',
+    payload: videos
+  }
+}
+
+/**
  * Called when a video preview is clicked and a new video in the iframe should be loaded
  */
 export const selectVideo = video => {
