@@ -6,8 +6,9 @@ const DailyMinutes = (props) => {
   const [tooltipToggled, toggleTooltip] = useState(false)
 
   function getMinutes() {
-    return Math.floor(props.secondsForDay/60)
+    return Math.floor(props.secondsForDay/60);
   }
+
 
   function toggleTooltipState() {
     toggleTooltip(!tooltipToggled)
@@ -26,9 +27,8 @@ const DailyMinutes = (props) => {
     }
     return (
       <p>
-        <span>You have logged</span>
-        <span className="emphasize">{getMinutes()}</span>
-        <span>minutes today. Keep going!</span>
+        You have logged<span className="emphasize">{getMinutes()}</span>
+        { getMinutes() > 1 ? "minutes" : "minute" } today. Keep going!
       </p>
     )
   }
