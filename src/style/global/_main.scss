@@ -12,12 +12,7 @@ body {
   line-height: $LINE-HEIGHT;
 
   @include font-smoothing;
-  @include scrollbar($secondary, 5px);
   @include font('Inter');
-
-  @include media-breakpoint-down(sm) {
-    line-height: $MOBILE-LINE-HEIGHT;
-  }
 }
 
 .container {

@@ -9,6 +9,33 @@ const Collection = (props) => {
     const show = props.show && props.allToggled
     return show ? 'column-center' : 'column-center hidden'
   }
+
+  function renderCollection() {
+    // Placeholder until backend
+    const isAuthenticated = false;
+
+    if (isAuthenticated) {
+      return (
+        <VideoResult
+          grabFromCollection={true}
+          canRemove={true}>
+        </VideoResult>
+      )
+    }
+    else {
+      return (
+        <div className="card">
+          <div class="card-head">
+            Your Collection
+          </div>
+          <div className="card-body">
+            <p className="mb-0">Want to save soundscapes? <a href="#">Sign up for a free account</a></p>
+          </div>
+        </div>
+      )
+    }
+  }
+
   return (
     <section id="video-collection" className={getCollectionClasses()}>
       <div className="container">
@@ -22,10 +49,8 @@ const Collection = (props) => {
           </div>
         </header>
 
-        <VideoResult
-          grabFromCollection={true}
-          canRemove={true}>
-        </VideoResult>
+        {renderCollection()}
+
       </div>
     </section>
   )

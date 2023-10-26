@@ -5,6 +5,7 @@ import { checkVisitCount } from '../../helpers/store/general'
 import { setPaused } from './../../actions/appToggles'
 import { incrementVideosPlayed } from './../../actions'
 import { toggleCollection } from './../../actions/appToggles'
+import Button from '@mui/joy/Button'
 
 
 const IntroModal = (props) => {
@@ -53,14 +54,12 @@ const IntroModal = (props) => {
             <div>
               <p>{description()}</p>
               <div className="play-container d-flex flex-column flex-md-row">
-                <button onClick={playVideo} className="btn btn-primary py-3 px-4 text-dark mb-2 mb-md-0 border">
-                  <span className="fw-bold text-white">Start Video Now</span>
-                  <i className="fas fa-play ms-2 fa-lg text-white ms-3"></i>
-                </button>
-                <button onClick={openCollection} className="btn btn-secondary fw-bold text-white py-3 px-4 ms-0 ms-md-2 border">
+                <Button onClick={playVideo} variant="solid">Start Video Now</Button>
+
+                {/* <button onClick={openCollection} className="btn btn-secondary fw-bold text-white py-3 px-4 ms-0 ms-md-2 border">
                   Open Collection
                   <i className="fas fa-bookmark ms-2 fa-lg text-white ms-3"></i>
-                </button>
+                </button> */}
               </div>
             </div>
         </Modal>

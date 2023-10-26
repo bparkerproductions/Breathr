@@ -1,21 +1,8 @@
 nav.main-nav {
-  background-color: rgba($primary, 0.95);
-  border-bottom: 2px solid rgba($dark, 0.5);
   position: fixed;
   width: 100%;
   z-index: 3;
   top: 0;
-
-  .ui-button {
-    color: $white;
-  }
-
-  .app-toggle-group,
-  #video-controls {
-    @include media-breakpoint-up(lg) {
-      border-left: 1px solid rgba($dark, 0.25);
-    }
-  }
 
   .navbar-col {
     display: flex;
@@ -27,30 +14,6 @@ nav.main-nav {
       display: flex;
       align-items: center;
       width: 35px;
-    
-      @include media-breakpoint-up(lg) {
-        display: none;
-      }
-    
-      @include media-breakpoint-down(sm) {
-        margin-top: 7px;
-        align-items: flex-start;
-      }
-    
-      i {
-        color: $white;
-        font-size: 1.35em;
-      }
-    }
-
-    .video-content {
-      @include media-breakpoint-up(sm) {
-        display: flex;
-      }
-    }
-
-    @include media-breakpoint-down(lg) {
-      order: 0;
     }
   }
 
@@ -58,35 +21,18 @@ nav.main-nav {
     display: flex;
     transition: all 0.2s ease;
   
-    @include media-breakpoint-down(lg) {
-      transform: translateY(-100vh);
-      height: 0;
-    }
-  
     .mobile-content {
       display: flex;
       transition: all 0.2s ease;
-  
-      @include media-breakpoint-down(lg) {
-        transform: translateX(-125vw);
-      }
     }
   
     &.show {
       transform: translateY(0);
       height: 50px;
   
-      @include media-breakpoint-down(lg) {
-        padding-top: 12.5px;
-      }
-  
       .mobile-content {
         transform: translateX(0);
       }
-    }
-  
-    @include media-breakpoint-down(lg) {
-      order: 1;
     }
   }
 }

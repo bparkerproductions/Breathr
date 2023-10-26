@@ -1,10 +1,6 @@
 main {
   margin-top: 165px;
 
-  @include media-breakpoint-up(lg) {
-    margin-top: 75px;
-  }
-
   @import "video-render";
   @import "navbar";
   @import "timer";

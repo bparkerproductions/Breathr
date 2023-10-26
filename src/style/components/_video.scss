@@ -12,15 +12,9 @@
     margin-top: 20px;
     max-height: 500px;
     overflow-y: scroll;
-    @include scrollbar($secondary, 4px);
-  
-    @include media-breakpoint-down(lg) {
-      justify-content: space-between;
-    }
   
     .video-preview {
       flex-basis: 32.66%;
-      border-top: 5px solid $primary;
       cursor: pointer;
       position: relative;
       overflow: hidden;
@@ -33,21 +27,6 @@
       background-position: center;
       @extend %animationBounceUp;
   
-      @include media-breakpoint-down(lg) {
-        margin: 0 0 7.5px 0;
-        flex-basis: 49.5%;
-      }
-  
-      @include media-breakpoint-down(sm) {
-        flex-basis: 100%;
-      }
-  
-      &:nth-child(3n+2) {
-        @include media-breakpoint-up(lg) {
-          margin: 0 1%;
-        }
-      }
-  
       &:hover {
         .overlay-preview {
           opacity: 1;
@@ -56,7 +35,6 @@
       }
 
       .overlay-preview {
-        background-color: rgba($dark, 0.35);
         z-index: 2;
         padding-right: 20px;
         padding-left: 20px;
@@ -75,7 +53,6 @@
           i,
           svg {
             font-size: 2.5em;
-            color: $primary;
             opacity: 0.85;
           }
         }

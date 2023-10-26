@@ -4,12 +4,7 @@
   margin: 0;
   height: 5px;
 
-  @include media-breakpoint-down(sm) {
-    min-width: 175px;
-  }
-
   .rangeslider__handle {
-    background-color: $secondary;
     box-shadow: none;
     border: none;
     width: 15px;
@@ -27,7 +22,6 @@
 
   .rangeslider__fill {
     height: 5px;
-    background-color: $light;
     box-shadow: none;
 
     &:focus {

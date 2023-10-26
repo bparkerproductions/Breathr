@@ -1,9 +1,4 @@
 .notification-container {
-  .title {
-    font-weight: 700;
-    color: $white;
-  }
-
   .message {
     font-size: 15px;
     line-height: 1.3;
@@ -12,9 +7,5 @@
 
   .notification {
     box-shadow: none;
-
-    &.notification-success {
-      background-color: rgba($primary, 0.75);
-    }
   }
 }

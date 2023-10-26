@@ -1,32 +1,16 @@
 .modal-container {
   padding: 50px 0;
   height: 350px;
-  color: $white;
   @extend %animationSlideUp;
-
-  @include media-breakpoint-down(sm) {
-    margin-top: 100px;
-    height: 100vh;
-  }
 
   .modal {
     min-width: 50%;
     padding: 45px 60px;
-    background-color: rgba($grey, 0.9);
     border-radius: 5px;
-    color: $dark;
 
     &__head .close {
       font-size: 1.5em;
       cursor: pointer;
-    }
-  }
-
-  &.mobile-fixed {
-    @include media-breakpoint-down(lg) {
-      z-index: 2;
-      position: fixed;
-      top: 0;
     }
   }
 }
