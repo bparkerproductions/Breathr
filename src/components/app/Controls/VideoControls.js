@@ -64,11 +64,11 @@ const VideoControls = props => {
       </div>
 
       <div className={`hard-center slider-container ${muted ? 'disabled' : ''}`}>
-        <Slider
+        {/* <Slider
           value={props.videoVolume}
           onChange={handleVolumeChange}
           tooltip={false}>
-        </Slider>
+        </Slider> */}
       </div>
     </aside>
   )
