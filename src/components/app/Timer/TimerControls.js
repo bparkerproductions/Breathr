@@ -1,15 +1,30 @@
-import React, {useState} from 'react'
-import Timer from 'react-compound-timer'
+import React, {useEffect, useState} from 'react'
 import { connect } from 'react-redux'
 
 import TimerPlayback from './TimerPlayback'
 import ComponentControls from './../Controls/ComponentControls'
 import { incrementSecond } from './../../../actions'
+import Button from '@mui/joy/Button';
 
 const TimerControls = (props) => {
   const [isTimerStarted, setIsTimerStarted] = useState(false)
-  const [paused, setPaused] = useState(false)
-  const [interval, setTimeInterval] = useState(null)
+  const [time, setTime] = useState(0)
+  const [start, setStart] = useState(false)
+  const [timeInterval, setTimeInterval] = useState(false)
+
+  useEffect(() => {
+
+    if(start) {
+      setTimeInterval(setInterval(() => {
+        setTime(prevTime => prevTime + 1)
+        props.incrementSecond()
+      }, 1000))
+    } else {
+      clearInterval(timeInterval)
+    }
+
+    return () => clearInterval(timeInterval)
+  }, [start])
 
   function timerStarted(start) {
     setIsTimerStarted(true)
@@ -29,58 +44,28 @@ const TimerControls = (props) => {
     else return null
   }
 
-  function getTimerContainerClass() {
-    return props.show && props.allToggled ? 'timer' : 'timer hidden'
+  function getSeconds() {
+    return ("0" + Math.floor((time % 60))).slice(-2)
   }
 
-  function startTracking() {
-    setTimeInterval(setInterval(() => props.incrementSecond(), 1000))
+  function getMinutes() {
+    return ("0" + Math.floor(((time / 60) % 60))).slice(-2)
+  }
+
+  function resetStopwatch() {
+    setTime(0)
+    setStart(false)
   }
 
   return (
-    <section className={`${getTimerContainerClass()} container `}>
+    <section className={` container `}>
       <div className="clock-container">
-        <Timer
-          onStart={() => startTracking()}
-          onResume={() => startTracking()}
-          onPause={() => clearInterval(interval)}
-          startImmediately={false}>
-          {({start, pause, resume, reset, stop}) => (
-            <React.Fragment>
-              <div className="clock-container">
-                <ComponentControls toggleType="timer"></ComponentControls>
-                {timerStart(start)}
-                <div className={isTimerStarted ? 'main-timer' : 'main-timer hidden'}>
-                  <span className="time">
-                    <Timer.Minutes />
-                  </span>
-                  <span className="time-label">m</span>
-
-                  <span className="seperator">:</span>
-
-                  <span className="time">
-                    <Timer.Seconds
-                      formatValue={value => value < 10 ? `0${value}` : value}
-                    />
-                  </span>
-                  <span className="time-label">s</span>
-                </div>
-              </div>
-
-              <TimerPlayback
-                interval={interval}
-                started={isTimerStarted}
-                paused={paused}
-                togglePauseCallback={() => setPaused(!paused)}
-                setPausedCallback={() => setPaused(true)}
-                stopCallback={stop}
-                pauseCallback={pause}
-                resumeCallback={resume}
-                resetCallback={reset}>
-              </TimerPlayback>
-            </React.Fragment>
-          )}
-        </Timer>
+        <h1>Stopwatch</h1>
+        <h1>{getMinutes()}m</h1>
+        <h1>{getSeconds()}s</h1>
+        <Button onClick={() => setStart(true)}>Start</Button>
+        <Button onClick={() => setStart(false)}>Stop</Button>
+        <Button onClick={ resetStopwatch }>Reset</Button>
       </div>
     </section>
   )

@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import Slider from 'react-rangeslider'
-import 'react-rangeslider/lib/index.css'
 import { connect } from 'react-redux'
 import { setVideoVolume } from './../../../actions/videoList'
 import { incrementVideosPlayed } from './../../../actions'
