@@ -4,7 +4,18 @@ import { connect } from 'react-redux'
 import TimerPlayback from './TimerPlayback'
 import ComponentControls from './../Controls/ComponentControls'
 import { incrementSecond } from './../../../actions'
-import Button from '@mui/joy/Button';
+
+import Button from '@mui/joy/Button'
+import Grid from '@mui/joy/Grid'
+import Card from '@mui/joy/Card'
+import Container from '@mui/joy/Container'
+import Typography from '@mui/joy/Typography'
+import Divider from '@mui/joy/Divider'
+import CardActions from '@mui/joy/CardActions'
+import CardContent from '@mui/joy/CardContent'
+import { Box } from '@mui/system'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
 
 const TimerControls = (props) => {
   const [isTimerStarted, setIsTimerStarted] = useState(false)
@@ -31,19 +42,6 @@ const TimerControls = (props) => {
     start()
   }
 
-  function timerStart(start) {
-    if(!isTimerStarted) {
-      return (
-        <div onClick={() => {timerStarted(start)}}
-        className="timer-start btn btn-primary rounded-0 text-white d-flex align-items-center justify-content-center">
-          <p>Start Timer?</p>
-          <i className="fas fa-clock start-timer fa-lg ms-2"></i>
-        </div>
-      )
-    }
-    else return null
-  }
-
   function getSeconds() {
     return ("0" + Math.floor((time % 60))).slice(-2)
   }
@@ -58,16 +56,38 @@ const TimerControls = (props) => {
   }
 
   return (
-    <section className={` container `}>
-      <div className="clock-container">
-        <h1>Stopwatch</h1>
-        <h1>{getMinutes()}m</h1>
-        <h1>{getSeconds()}s</h1>
-        <Button onClick={() => setStart(true)}>Start</Button>
-        <Button onClick={() => setStart(false)}>Stop</Button>
-        <Button onClick={ resetStopwatch }>Reset</Button>
-      </div>
-    </section>
+    <Container component="section">
+      <Card variant="solid" color="primary" invertedColors="true" sx={{
+      "--Card-padding": "29px",
+      "--Card-radius": "12px",
+      mx: "auto",
+      maxWidth: "50%"
+    }}>
+          <Typography level="title-sm">Start Timing</Typography>
+          <Divider />
+          <Typography level="h2" color="primary">
+            <span>{getMinutes()}m</span> : <span>{getSeconds()}s</span>
+          </Typography>
+
+          <CardActions>
+            <Button
+              onClick={() => setStart(true)}
+              size="sm"
+              startDecorator={<FontAwesomeIcon icon={faPlay} />}>
+                Start
+            </Button>
+            <Button
+              onClick={() => setStart(false)}
+              size="sm"
+              startDecorator={<FontAwesomeIcon icon={faStop} />}
+            >Stop</Button>
+            <Button
+              onClick={ resetStopwatch }
+              size="sm"
+            >Reset</Button>
+          </CardActions>
+      </Card>
+    </Container>
   )
 }
 

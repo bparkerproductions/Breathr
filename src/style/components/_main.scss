@@ -1,9 +1,6 @@
 main {
-  margin-top: 165px;
-
   @import "video-render";
   @import "navbar";
-  @import "timer";
   @import "daily-minutes";
   @import "video";
 }
