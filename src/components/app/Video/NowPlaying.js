@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import ToolTip from '../../elements/ToolTip'
 
+import Box from '@mui/joy/Box';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+
 const NowPlaying = props => {
   const [tooltipToggled, toggleTooltip] = useState(false)
 
@@ -24,9 +28,9 @@ const NowPlaying = props => {
 
   return (
     <div id="nowPlaying" className="ms-3 ms-lg-0 me-2 pe-2 position-relative">
-      <div onClick={tooltipActivated}>
-        <i className="fas fa-info-circle fa-lg ui-button no-bounce mt-1" title="Get information about the current video"></i>
-      </div>
+      <Box onClick={tooltipActivated}>
+        <FontAwesomeIcon icon={faInfoCircle} />
+      </Box>
       <ToolTip 
         toggledOuter={tooltipToggled} 
         closeTooltip={() => { toggleTooltip(false) }}

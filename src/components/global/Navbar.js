@@ -5,6 +5,14 @@ import DailyMinutes from './../app/Timer/DailyMinutes'
 import ToggleAll from './../app/Controls/ToggleAll'
 import NowPlaying from './../app/Video/NowPlaying'
 
+import Typography from '@mui/joy/Typography'
+import Stack from '@mui/joy/Stack'
+import Box from '@mui/joy/Box'
+import Button from '@mui/joy/Button'
+import AppBar from '@mui/material/AppBar'
+import Grid from '@mui/joy/Grid'
+import Toolbar from '@mui/material/Toolbar'
+
 const Navbar = props => {
   const [contentToggled, setContent] = useState(false)
 
@@ -13,33 +21,28 @@ const Navbar = props => {
   }
 
   return (
-    <nav className="column-center main-nav">
-      <div className="container d-flex flex-column flex-lg-row justify-content-between">
-        <div className={`left ps-3 ${contentToggled ? 'show' : ''}`}>
-          <div className="mobile-content">
-            <div className="navbar-col">
+    <AppBar>
+        <Grid container>
+          <Grid xs={6}>
+            <Typography>
               <DailyMinutes></DailyMinutes>
-            </div>
-          </div>
-        </div>
+            </Typography>
+          </Grid>
 
-        <div className="right">
-          <div onClick={() => setContent(!contentToggled)} className="mobile-toggle my-3 mt-lg-0 ps-3 ps-lg-0">
+          {/* <div onClick={() => setContent(!contentToggled)} className="mobile-toggle my-3 mt-lg-0 ps-3 ps-lg-0">
             <i className={getToggledState()}></i>
-          </div>
-          <div className="video-content h-100">
-            <div className="navbar-col">
+          </div> */}
+
+          <Grid xs={6}>
+            <Stack direction="row" spacing={2}>
               <NowPlaying />
-            </div>
-            <VideoControls />
-            <div className="app-toggle-group d-flex ps-3 py-2 py-lg-3">
+              <VideoControls />
               <AppToggles />
               <ToggleAll />
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
+            </Stack>
+          </Grid>
+        </Grid>
+    </AppBar>
   )
 }
 

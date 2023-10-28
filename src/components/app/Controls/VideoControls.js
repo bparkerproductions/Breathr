@@ -5,12 +5,53 @@ import { incrementVideosPlayed } from './../../../actions'
 import { setPaused } from './../../../actions/appToggles'
 import CycleVideos from './CycleVideos'
 
+import Box from '@mui/joy/Box'
+import Stack from '@mui/joy/Stack'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faVolumeOff, faVolumeHigh, faPlay, faPauseCircle } from '@fortawesome/free-solid-svg-icons'
+
 const VideoControls = props => {
   const [muted, setMuted] = useState(false)
   const [localSliderVolume, setLocalSliderVolume] = useState(props.videoVolume)
 
   const muteClass = (muted || props.videoVolume === 0) ? 'fas fa-volume-off' : 'fas fa-volume-up'
-  const getPauseOrPlay = props.paused ? 'fas fa-play' : 'far fa-pause-circle'
+
+  function getPauseOrPlay() {
+    if (props.paused) {
+      return (
+        <FontAwesomeIcon
+          icon={faPlay}
+          title="Pause Video"
+        />
+      )
+    } else {
+      return (
+        <FontAwesomeIcon
+          icon={faPauseCircle}
+          title="Play Video"
+        />
+      )
+    }
+  }
+
+  function getMuteOrPlay() {
+    if (muted || props.videoVolume === 0) {
+      return (
+        <FontAwesomeIcon
+          icon={faVolumeOff}
+          title="Turn the volume back on"
+        />
+      )
+    }
+    else {
+      return (
+        <FontAwesomeIcon
+          icon={faVolumeHigh}
+          title="Mute volume"
+        />
+      )
+    }
+  }
 
   function toggleMuted() {
     setMuted(!muted)
@@ -49,26 +90,26 @@ const VideoControls = props => {
   }
 
   return (
-    <aside id="video-controls" className="navbar-col py-2 py-lg-3 mt-3 mt-sm-0 ps-3 pe-3">
-      <CycleVideos />
+    <Box id="video-controls">
 
-      <div className="ms-2 d-flex">
-        <div className="ui-button fa-lg me-3" onClick={togglePause}>
-          <i title="Pause or play video" className={getPauseOrPlay}></i>
-        </div>
-        <div onClick={toggleMuted} className="ui-button me-2">
-          <i title="video volume" className={muteClass}></i>
-        </div>
-      </div>
+      <Stack direction="row" spacing={1.5}>
+        <CycleVideos />
+        <Box onClick={togglePause}>
+          {getPauseOrPlay()}
+        </Box>
+        <Box onClick={toggleMuted}>
+          {getMuteOrPlay()}
+        </Box>
+      </Stack>
 
-      <div className={`hard-center slider-container ${muted ? 'disabled' : ''}`}>
+      <Box className={muted || 'disabled'}>
         {/* <Slider
           value={props.videoVolume}
           onChange={handleVolumeChange}
           tooltip={false}>
         </Slider> */}
-      </div>
-    </aside>
+      </Box>
+    </Box>
   )
 }
 

@@ -3,7 +3,12 @@ import { connect } from 'react-redux'
 import { selectVideo } from '../../../actions/videoList'
 import { incrementVideosPlayed } from './../../../actions'
 
+import Stack from '@mui/joy/Stack';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStepBackward, faStepForward } from '@fortawesome/free-solid-svg-icons'
+
 const CycleVideos = (props) => {
+  
 
   function isDisabled() {
     return props.videosPlayed === 0 || props.collectionVideos.length <= 1 ? 'disabled' : ''
@@ -54,25 +59,21 @@ const CycleVideos = (props) => {
   }
 
   return (
-    <div className={`d-flex me-3 mt-1 ${isDisabled()}`}>
-      <div className="ui-button me-1">
-        <i
-          onClick={previousVideo}
-          className="fas fa-step-backward fa-lg"
-          title="Go to previous video"
-        >
-        </i>
-      </div>
+    <Stack direction="row" spacing={1.5} className={isDisabled()}>
+      <FontAwesomeIcon
+        onClick={previousVideo}
+        icon={faStepBackward}
+        size="lg"
+        title="Go to previous video"
+      />
 
-      <div className="ui-button ms-1">
-        <i
-          onClick={nextVideo}
-          className="fas fa-step-forward fa-lg"
-          title="Go to next video"
-        >
-        </i>
-      </div>
-    </div>
+      <FontAwesomeIcon
+        onClick={nextVideo}
+        icon={faStepForward}
+        size="lg"
+        title="Go to next video"
+      />
+    </Stack>
   )
 }
 
