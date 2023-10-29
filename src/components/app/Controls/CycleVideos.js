@@ -8,8 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStepBackward, faStepForward } from '@fortawesome/free-solid-svg-icons'
 
 const CycleVideos = (props) => {
-  
-
   function isDisabled() {
     return props.videosPlayed === 0 || props.collectionVideos.length <= 1 ? 'disabled' : ''
   }
@@ -63,6 +61,7 @@ const CycleVideos = (props) => {
       <FontAwesomeIcon
         onClick={previousVideo}
         icon={faStepBackward}
+        className="ui-button"
         size="lg"
         title="Go to previous video"
       />
@@ -70,6 +69,7 @@ const CycleVideos = (props) => {
       <FontAwesomeIcon
         onClick={nextVideo}
         icon={faStepForward}
+        className="ui-button"
         size="lg"
         title="Go to next video"
       />

@@ -1,13 +1,36 @@
 import React, {useState} from 'react'
 import { connect } from 'react-redux'
-
 import { toggleAll } from './../../../actions/appToggles'
+
+import Box from '@mui/joy/Box'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons'
 
 const ToggleAll = (props) => {
   const [allToggled, setToggled] = useState(true)
 
   function getToggleAllClass() {
-    return allToggled ? 'fas fa-eye-slash' : 'fas fa-eye'
+    if (allToggled) {
+      return (
+        <FontAwesomeIcon
+          onClick={toggleAll}
+          icon={faEyeSlash}
+          title="Untoggle"
+          size="lg"
+          className="ui-button"
+        />
+      )
+    } else {
+      return (
+        <FontAwesomeIcon
+          onClick={toggleAll}
+          icon={faEye}
+          title="Toggle"
+          size="lg"
+          className="ui-button"
+        />
+      )
+    }
   }
 
   function toggleAll() {
@@ -16,13 +39,9 @@ const ToggleAll = (props) => {
   }
 
   return (
-    <aside id="toggle-all" className="navbar-col">
-      <div className="ui-button">
-        <i title="Toggle visibility"
-           onClick={toggleAll}
-           className={`fa-2x ms-3 ${getToggleAllClass()}`}></i>
-      </div>
-    </aside>
+    <Box id="toggle-all">
+      {getToggleAllClass()}
+    </Box>
   )
 }
 

@@ -21,6 +21,8 @@ const VideoControls = props => {
       return (
         <FontAwesomeIcon
           icon={faPlay}
+          className="ui-button"
+          size="lg"
           title="Pause Video"
         />
       )
@@ -28,6 +30,8 @@ const VideoControls = props => {
       return (
         <FontAwesomeIcon
           icon={faPauseCircle}
+          className="ui-button"
+          size="lg"
           title="Play Video"
         />
       )
@@ -39,6 +43,8 @@ const VideoControls = props => {
       return (
         <FontAwesomeIcon
           icon={faVolumeOff}
+          className="ui-button"
+          size="lg"
           title="Turn the volume back on"
         />
       )
@@ -47,6 +53,8 @@ const VideoControls = props => {
       return (
         <FontAwesomeIcon
           icon={faVolumeHigh}
+          className="ui-button"
+          size="lg"
           title="Mute volume"
         />
       )

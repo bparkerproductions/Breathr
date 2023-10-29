@@ -2,6 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { toggleSearch, toggleTimer, toggleCollection } from './../../../actions/appToggles'
 
+import Box from '@mui/joy/Box'
+import Stack from '@mui/joy/Stack'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch, faClock, faBookmark} from '@fortawesome/free-solid-svg-icons'
+
 const AppToggles = (props) => {
   function getIconClasses(toggleType) {
     return props[toggleType] ? 'ui-button' : 'ui-button turned-off';
@@ -17,20 +22,34 @@ const AppToggles = (props) => {
   }
 
   return (
-    <aside id="app-toggles" className="navbar-col me-2">
-      <div onClick={()=>{toggleIcon('search')}}
-      className={`${getIconClasses('isSearch')} mx-2`}>
-        <i title="Toggle video search" className="fas fa-search fa-md"></i>
-      </div>
-      <div onClick={()=>{toggleIcon('timer')}}
-      className={`${getIconClasses('isTimer')} mx-2`}>
-        <i title="Toggle timer" className="fas fa-clock fa-md"></i>
-      </div>
-      <div onClick={()=>{toggleIcon('collection')}}
-      className={`${getIconClasses('isCollection')} mx-2`}>
-        <i title="Toggle your collection" className="fas fa-bookmark fa-md"></i>
-      </div>
-    </aside>
+    <Box id="app-toggles">
+      <Stack direction="row" spacing={1.5}>
+        <Box
+          onClick={()=>{toggleIcon('search')}}
+          className={getIconClasses('isSearch')}>
+            <FontAwesomeIcon
+              icon={faSearch}
+              title="Toggle video search"
+            />
+        </Box>
+        <Box
+          onClick={()=>{toggleIcon('timer')}}
+          className={getIconClasses('isTimer')}>
+            <FontAwesomeIcon
+              icon={faClock}
+              title="Toggle timer"
+            />
+        </Box>
+        <Box
+          onClick={()=>{toggleIcon('collection')}}
+          className={getIconClasses('isCollection')}>
+            <FontAwesomeIcon
+              icon={faBookmark}
+              title="Toggle your collection"
+            />
+        </Box>
+      </Stack>
+    </Box>
   )
 }
 

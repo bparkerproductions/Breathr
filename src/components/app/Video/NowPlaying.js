@@ -29,7 +29,11 @@ const NowPlaying = props => {
   return (
     <div id="nowPlaying" className="ms-3 ms-lg-0 me-2 pe-2 position-relative">
       <Box onClick={tooltipActivated}>
-        <FontAwesomeIcon icon={faInfoCircle} />
+        <FontAwesomeIcon
+          icon={faInfoCircle}
+          className="ui-button"
+          size="lg"
+        />
       </Box>
       <ToolTip 
         toggledOuter={tooltipToggled} 

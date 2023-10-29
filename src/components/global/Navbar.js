@@ -22,26 +22,26 @@ const Navbar = props => {
 
   return (
     <AppBar>
-        <Grid container>
-          <Grid xs={6}>
-            <Typography>
-              <DailyMinutes></DailyMinutes>
-            </Typography>
-          </Grid>
-
-          {/* <div onClick={() => setContent(!contentToggled)} className="mobile-toggle my-3 mt-lg-0 ps-3 ps-lg-0">
-            <i className={getToggledState()}></i>
-          </div> */}
-
-          <Grid xs={6}>
-            <Stack direction="row" spacing={2}>
-              <NowPlaying />
-              <VideoControls />
-              <AppToggles />
-              <ToggleAll />
-            </Stack>
-          </Grid>
+      <Grid container>
+        <Grid xs={6}>
+          <Typography>
+            <DailyMinutes></DailyMinutes>
+          </Typography>
         </Grid>
+
+        {/* <div onClick={() => setContent(!contentToggled)} className="mobile-toggle my-3 mt-lg-0 ps-3 ps-lg-0">
+          <i className={getToggledState()}></i>
+        </div> */}
+
+        <Grid xs={6}>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <NowPlaying />
+            <VideoControls />
+            <AppToggles />
+            <ToggleAll />
+          </Stack>
+        </Grid>
+      </Grid>
     </AppBar>
   )
 }
