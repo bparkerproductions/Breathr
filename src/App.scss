@@ -27,3 +27,8 @@
 
 // Animations
 @import "style/animations";
+
+#timer-container {
+  height: 350px;
+  @extend %animationTuckAway;
+}

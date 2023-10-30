@@ -13,7 +13,6 @@ import Typography from '@mui/joy/Typography'
 import Divider from '@mui/joy/Divider'
 import CardActions from '@mui/joy/CardActions'
 import CardContent from '@mui/joy/CardContent'
-import { Box } from '@mui/system'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
 
@@ -55,14 +54,24 @@ const TimerControls = (props) => {
     setStart(false)
   }
 
+  function isHidden() {
+    console.log(props.show, props.allToggled)
+    if ( !(props.show && props.allToggled) ) return 'hidden'
+  }
+
   return (
-    <Container component="section">
-      <Card variant="solid" color="primary" invertedColors="true" sx={{
-      "--Card-padding": "29px",
-      "--Card-radius": "12px",
-      mx: "auto",
-      maxWidth: "50%"
-    }}>
+    <Container component="section" id="timer-container" className={isHidden()}>
+      <ComponentControls toggleType="timer"></ComponentControls>
+      <Card
+        variant="solid"
+        color="primary"
+        invertedColors="true"
+        sx={{
+          "--Card-padding": "29px",
+          "--Card-radius": "12px",
+          mx: "auto",
+          maxWidth: "50%"
+        }}>
           <Typography level="title-sm">Start Timing</Typography>
           <Divider />
           <Typography level="h2" color="primary">
