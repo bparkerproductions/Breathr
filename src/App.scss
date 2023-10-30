@@ -32,3 +32,11 @@
   height: 350px;
   @extend %animationTuckAway;
 }
+
+#now-playing {
+  position: relative;
+
+  &.hidden {
+    display: none;
+  }
+}
