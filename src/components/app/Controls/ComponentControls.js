@@ -8,9 +8,9 @@ import { faWindowMinimize } from '@fortawesome/free-solid-svg-icons'
 
 const ComponentControls = props => {
   function toggleComponent() {
-    if (props.toggleType === 'search') props.toggleSearch()
-    if (props.toggleType === 'collection') props.toggleCollection()
-    if (props.toggleType === 'timer') props.toggleTimer()
+    if (props.toggleType === 'search') props.toggleSearch(false)
+    if (props.toggleType === 'collection') props.toggleCollection(false)
+    if (props.toggleType === 'timer') props.toggleTimer(false)
   }
 
   return (

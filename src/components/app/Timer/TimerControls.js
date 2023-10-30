@@ -55,7 +55,6 @@ const TimerControls = (props) => {
   }
 
   function isHidden() {
-    console.log(props.show, props.allToggled)
     if ( !(props.show && props.allToggled) ) return 'hidden'
   }
 

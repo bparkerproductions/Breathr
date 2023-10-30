@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { toggleSearch, toggleTimer, toggleCollection } from './../../../actions/appToggles'
 
@@ -10,9 +10,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faClock, faBookmark} from '@fortawesome/free-solid-svg-icons'
 
 const AppToggles = (props) => {
-  const [value, setValue] = React.useState(getDefaultValues())
+  const [value, setValue] = React.useState(getValues())
 
-  function getDefaultValues() {
+  useEffect(() => {
+    setValue(getValues())
+  }, [props.isSearch, props.isTimer, props.isCollection])
+
+  function getValues() {
     let values = []
 
     if (props.isSearch) values.push('search')
@@ -20,7 +24,6 @@ const AppToggles = (props) => {
     if (props.isCollection) values.push('collection')
 
     return values
-
   }
 
   /**
