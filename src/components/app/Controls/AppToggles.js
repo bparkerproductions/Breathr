@@ -4,51 +4,63 @@ import { toggleSearch, toggleTimer, toggleCollection } from './../../../actions/
 
 import Box from '@mui/joy/Box'
 import Stack from '@mui/joy/Stack'
+import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup'
+import IconButton from '@mui/joy/IconButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faClock, faBookmark} from '@fortawesome/free-solid-svg-icons'
 
 const AppToggles = (props) => {
-  function getIconClasses(toggleType) {
-    return props[toggleType] ? 'ui-button' : 'ui-button turned-off';
+  const [value, setValue] = React.useState(getDefaultValues())
+
+  function getDefaultValues() {
+    let values = []
+
+    if (props.isSearch) values.push('search')
+    if (props.isTimer) values.push('timer')
+    if (props.isCollection) values.push('collection')
+
+    return values
+
   }
 
   /**
    * Toggle either Search, Timer, or Collection. Update redux state to reflect
    */
-  function toggleIcon(toggleType) {
-    if (toggleType === 'search') props.toggleSearch();
-    if (toggleType === 'timer') props.toggleTimer();
-    if (toggleType === 'collection') props.toggleCollection();
+  function toggleComponent(newValue) {
+    console.log(value, value.includes('search'))
+    props.toggleSearch(newValue.includes('search'))
+    if (value.includes('timer')) props.toggleTimer()
+    if (value.includes('collection')) props.toggleCollection()
   }
 
   return (
     <Box id="app-toggles">
-      <Stack direction="row" spacing={1.5}>
-        <Box
-          onClick={()=>{toggleIcon('search')}}
-          className={getIconClasses('isSearch')}>
-            <FontAwesomeIcon
-              icon={faSearch}
-              title="Toggle video search"
-            />
-        </Box>
-        <Box
-          onClick={()=>{toggleIcon('timer')}}
-          className={getIconClasses('isTimer')}>
-            <FontAwesomeIcon
-              icon={faClock}
-              title="Toggle timer"
-            />
-        </Box>
-        <Box
-          onClick={()=>{toggleIcon('collection')}}
-          className={getIconClasses('isCollection')}>
-            <FontAwesomeIcon
-              icon={faBookmark}
-              title="Toggle your collection"
-            />
-        </Box>
-      </Stack>
+      <ToggleButtonGroup
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue)
+          toggleComponent(newValue)
+        }}
+      >
+        <IconButton value="search">
+          <FontAwesomeIcon
+            icon={faSearch}
+            title="Toggle video search"
+          />
+        </IconButton>
+        <IconButton value="timer">
+          <FontAwesomeIcon
+            icon={faClock}
+            title="Toggle timer"
+          />
+        </IconButton>
+        <IconButton value="collection">
+          <FontAwesomeIcon
+            icon={faBookmark}
+            title="Toggle your collection"
+          />
+        </IconButton>
+      </ToggleButtonGroup>
     </Box>
   )
 }

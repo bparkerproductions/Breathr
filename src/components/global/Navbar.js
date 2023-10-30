@@ -34,7 +34,7 @@ const Navbar = props => {
         </div> */}
 
         <Grid xs={6}>
-          <Stack direction="row" spacing={2} alignItems="center">
+          <Stack direction="row" spacing={5} alignItems="center">
             <NowPlaying />
             <VideoControls />
             <AppToggles />

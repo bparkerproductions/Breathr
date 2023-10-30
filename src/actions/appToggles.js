@@ -1,9 +1,10 @@
 /**
  * Called when the toggle icon for the search component is clicked
  */
-export const toggleSearch = () => {
+export const toggleSearch = (toggled=false) => {
   return {
-    type: 'TOGGLE_SEARCH'
+    type: 'TOGGLE_SEARCH',
+    payload: toggled
   }
 }
 

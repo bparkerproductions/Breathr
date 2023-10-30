@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { toggleAll } from './../../../actions/appToggles'
 
 import Box from '@mui/joy/Box'
+import Button from '@mui/joy/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons'
 
@@ -12,23 +13,25 @@ const ToggleAll = (props) => {
   function getToggleAllClass() {
     if (allToggled) {
       return (
-        <FontAwesomeIcon
+        <Button
           onClick={toggleAll}
-          icon={faEyeSlash}
-          title="Untoggle"
-          size="lg"
-          className="ui-button"
-        />
+          size="sm"
+          variant="soft"
+          color="primary"
+          startDecorator={<FontAwesomeIcon icon={faEyeSlash} />}>
+            Hide All
+        </Button>
       )
     } else {
       return (
-        <FontAwesomeIcon
+        <Button
           onClick={toggleAll}
-          icon={faEye}
-          title="Toggle"
-          size="lg"
-          className="ui-button"
-        />
+          size="sm"
+          variant="soft"
+          color="primary"
+          startDecorator={<FontAwesomeIcon icon={faEye} />}>
+            Show All
+        </Button>
       )
     }
   }

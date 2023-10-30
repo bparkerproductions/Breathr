@@ -2,7 +2,7 @@
  * Toggles the state for the search component
  */
 const toggleSearchReducer = (toggled=true, action) => {
-  if (action.type === 'TOGGLE_SEARCH') toggled = !toggled
+  if (action.type === 'TOGGLE_SEARCH') return action.payload
   return toggled
 }
 
