@@ -27,10 +27,9 @@ const AppToggles = (props) => {
    * Toggle either Search, Timer, or Collection. Update redux state to reflect
    */
   function toggleComponent(newValue) {
-    console.log(value, value.includes('search'))
     props.toggleSearch(newValue.includes('search'))
-    if (value.includes('timer')) props.toggleTimer()
-    if (value.includes('collection')) props.toggleCollection()
+    props.toggleTimer(newValue.includes('timer'))
+    props.toggleCollection(newValue.includes('collection'))
   }
 
   return (

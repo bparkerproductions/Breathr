@@ -10,7 +10,7 @@ const toggleSearchReducer = (toggled=true, action) => {
  * Toggles the state for the timer component
  */
 const toggleTimerReducer = (toggled=true, action) => {
-  if (action.type === 'TOGGLE_TIMER') toggled = !toggled
+  if (action.type === 'TOGGLE_TIMER') return action.payload
   return toggled
 }
 
@@ -18,7 +18,7 @@ const toggleTimerReducer = (toggled=true, action) => {
  * Toggles the state for the collection component
  */
 const toggleCollectionReducer = (toggled=false, action) => {
-  if (action.type === 'TOGGLE_COLLECTION') toggled = !toggled
+  if (action.type === 'TOGGLE_COLLECTION') return action.payload
   return toggled
 }
 

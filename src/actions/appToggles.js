@@ -11,18 +11,20 @@ export const toggleSearch = (toggled=false) => {
 /**
  * Called when the toggle icon for the timer component is clicked
  */
-export const toggleTimer = () => {
+export const toggleTimer = (toggled=false) => {
   return {
-    type: 'TOGGLE_TIMER'
+    type: 'TOGGLE_TIMER',
+    payload: toggled
   }
 }
 
 /**
  * Called when the toggle icon for the collection component is clicked
  */
-export const toggleCollection = () => {
+export const toggleCollection = (toggled=false) => {
   return {
-    type: 'TOGGLE_COLLECTION'
+    type: 'TOGGLE_COLLECTION',
+    payload: toggled
   }
 }
 
