@@ -5,16 +5,13 @@ import { incrementVideosPlayed } from './../../../actions'
 import { setPaused } from './../../../actions/appToggles'
 import CycleVideos from './CycleVideos'
 
-import Box from '@mui/joy/Box'
-import Stack from '@mui/joy/Stack'
+import { Box, Stack, Slider } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVolumeOff, faVolumeHigh, faPlay, faPauseCircle } from '@fortawesome/free-solid-svg-icons'
 
 const VideoControls = props => {
   const [muted, setMuted] = useState(false)
   const [localSliderVolume, setLocalSliderVolume] = useState(props.videoVolume)
-
-  const muteClass = (muted || props.videoVolume === 0) ? 'fas fa-volume-off' : 'fas fa-volume-up'
 
   function getPauseOrPlay() {
     if (props.paused) {
@@ -99,24 +96,25 @@ const VideoControls = props => {
 
   return (
     <Box id="video-controls">
-
-      <Stack direction="row" spacing={1.5}>
+      <Stack direction="row" alignItems="center" spacing={1.5}>
         <CycleVideos />
         <Box onClick={togglePause}>
           {getPauseOrPlay()}
         </Box>
-        <Box onClick={toggleMuted}>
+        <Box sx={{width: '30px'}} onClick={toggleMuted}>
           {getMuteOrPlay()}
         </Box>
+        <Slider
+          disabled={muted}
+          color="neutral"
+          variant="soft"
+          value={props.videoVolume || 0}
+          onChange={e => handleVolumeChange(e.target.value)}
+          defaultValue={100}
+          max={100}
+          sx={{width: '100px'}}
+        ></Slider>
       </Stack>
-
-      <Box className={muted || 'disabled'}>
-        {/* <Slider
-          value={props.videoVolume}
-          onChange={handleVolumeChange}
-          tooltip={false}>
-        </Slider> */}
-      </Box>
     </Box>
   )
 }
