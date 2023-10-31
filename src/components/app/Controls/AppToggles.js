@@ -2,10 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { toggleSearch, toggleTimer, toggleCollection } from './../../../actions/appToggles'
 
-import Box from '@mui/joy/Box'
-import Stack from '@mui/joy/Stack'
-import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup'
-import IconButton from '@mui/joy/IconButton'
+import { Box, ToggleButtonGroup, IconButton } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faClock, faBookmark} from '@fortawesome/free-solid-svg-icons'
 

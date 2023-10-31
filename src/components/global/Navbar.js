@@ -5,7 +5,7 @@ import DailyMinutes from './../app/Timer/DailyMinutes'
 import ToggleAll from './../app/Controls/ToggleAll'
 import NowPlaying from './../app/Video/NowPlaying'
 
-import { Stack, Typography, Box, Button, Grid, Container } from '@mui/joy'
+import { Stack, Typography, Grid, Container } from '@mui/joy'
 import AppBar from '@mui/material/AppBar'
 
 const Navbar = props => {

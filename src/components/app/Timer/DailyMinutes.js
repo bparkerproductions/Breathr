@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { Box, Button, Card, Divider, Link, Typography } from '@mui/joy'
+import { Box, Card, Divider, Link, Typography } from '@mui/joy'
 
 const DailyMinutes = (props) => {
   const [isShown, setIsShown] = useState(false)

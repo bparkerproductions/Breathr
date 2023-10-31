@@ -2,8 +2,7 @@ import React, {useState} from 'react'
 import { connect } from 'react-redux'
 import { toggleAll } from './../../../actions/appToggles'
 
-import Box from '@mui/joy/Box'
-import Button from '@mui/joy/Button'
+import { Box, Button } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons'
 

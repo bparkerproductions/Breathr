@@ -5,7 +5,7 @@ import TimerPlayback from './TimerPlayback'
 import ComponentControls from './../Controls/ComponentControls'
 import { incrementSecond } from './../../../actions'
 
-import { Button, Card, Container, Typography, Box, Divider, CardActions } from '@mui/joy'
+import { Button, Card, Container, Typography, Divider, CardActions } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
 

@@ -6,7 +6,6 @@ import { IconButton, Button, Box, Tooltip, Card, Divider, Typography } from '@mu
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { faYoutube } from '@fortawesome/free-brands-svg-icons'
-import { getByDisplayValue } from '@testing-library/react'
 
 const NowPlaying = props => {
   const [tooltipToggled, toggleTooltip] = useState(false)
