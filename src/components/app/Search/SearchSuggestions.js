@@ -2,6 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { connect } from 'react-redux'
 import Thesaurus from '../../../helpers/apis/thesaurus'
 import suggestions from '../../../helpers/initialSearchSuggestions'
+import { Chip, Stack, Box } from '@mui/joy'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLightbulb } from '@fortawesome/free-solid-svg-icons'
 
 const SearchSuggestions = (props) => {
   const [categories, setCategories] = useState([])
@@ -53,44 +57,44 @@ const SearchSuggestions = (props) => {
       categories.map(category => {
         const id = Math.floor(Math.random() * 10000)
         return (
-          <li 
+          <Chip
             key={category + id}
-            className="badge mx-1 py-1 px-2 mb-1"
-            onClick={itemClicked}
-          >{category}
-          </li>
+            color="primary"
+            variant="soft"
+            onClick={() => props.fill(category)}
+            sx={{ 
+              marginX: 0.5,
+              marginBottom: 0.75
+             }}
+          >
+            {category}
+          </Chip>
         )
         })
       )
   }
 
   /**
-   * Populate and search for the suggestion when its clicked on
-   */
-  function itemClicked(event) {
-    props.fill(event.target.textContent)
-  }
-
-  /**
-   * Dont show suggestions if there are no results or if it's "off"
+   * Don't show suggestions if there are no results or if it's "off"
    */
   function isDisabled() {
-    return !categories.length ? 'disabled' : ''
+    if ( !categories.length ) return 'disabled'
   }
 
   return (
-    <div 
-      className={`mb-3 d-flex align-items-center ${isDisabled()}`}
-    >
-      <i 
-        className="fas fa-lightbulb fa-lg text-secondary me-3 cursor-pointer"
-        title="Search Suggestions"
+    <Stack direction="row" className={isDisabled()}>
+      <FontAwesomeIcon
+        icon={faLightbulb}
+        size="lg"
+        color="primary"
+        title="Search suggestions"
         onClick={getRandomTerm}
-      ></i>
-      <ul className="list-unstyled m-0 p-0 d-flex flex-wrap">
+      />
+
+      <Box sx={{ marginLeft: 1 }}>
         {generateSuggestions()}
-      </ul>
-    </div>
+      </Box>
+    </Stack>
   )
 }
 

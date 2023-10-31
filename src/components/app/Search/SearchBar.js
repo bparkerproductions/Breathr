@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import SearchSuggestions from './SearchSuggestions'
+import { Box } from '@mui/joy'
 
 const SearchBar = (props) => {
   const [searchQuery, setSearchQuery] = useState('')
@@ -35,7 +36,7 @@ const SearchBar = (props) => {
   }
 
   return (
-    <div className="search-input-container">
+    <Box className="search-input-container">
       <SearchSuggestions 
         fill={populateSearchFromSuggestion}
         searchChanged={searchedQuery}
@@ -64,7 +65,7 @@ const SearchBar = (props) => {
           </form>
         </div>
       </div>
-    </div>
+    </Box>
   )
 }
 
