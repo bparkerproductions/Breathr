@@ -5,14 +5,7 @@ import TimerPlayback from './TimerPlayback'
 import ComponentControls from './../Controls/ComponentControls'
 import { incrementSecond } from './../../../actions'
 
-import Button from '@mui/joy/Button'
-import Grid from '@mui/joy/Grid'
-import Card from '@mui/joy/Card'
-import Container from '@mui/joy/Container'
-import Typography from '@mui/joy/Typography'
-import Divider from '@mui/joy/Divider'
-import CardActions from '@mui/joy/CardActions'
-import CardContent from '@mui/joy/CardContent'
+import { Button, Card, Container, Typography, Box, Divider, CardActions } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
 
@@ -74,7 +67,7 @@ const TimerControls = (props) => {
           <Typography level="title-sm">Start Timing</Typography>
           <Divider />
           <Typography level="h2" color="primary">
-            <span>{getMinutes()}m</span> : <span>{getSeconds()}s</span>
+          <Typography>{getMinutes()}m</Typography> : <Typography>{getSeconds()}s</Typography>
           </Typography>
 
           <CardActions>

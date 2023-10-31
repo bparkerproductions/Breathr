@@ -2,14 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 // import ToolTip from '../../elements/ToolTip'
 
-import IconButton from '@mui/joy/IconButton'
-import Button from '@mui/joy/Button'
-import Box from '@mui/joy/Box'
-import Tooltip from '@mui/joy/Tooltip'
-import Card from '@mui/joy/Card'
-import Divider from '@mui/joy/Divider'
-import Typography from '@mui/joy/Typography'
-import Link from '@mui/joy/Link'
+import { IconButton, Button, Box, Tooltip, Card, Divider, Typography } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { faYoutube } from '@fortawesome/free-brands-svg-icons'
@@ -42,7 +35,7 @@ const NowPlaying = props => {
   return (
     <Box id="now-playing" sx={{ position: "relative" }}>
       <Tooltip title="Toggle video information" variant="solid">
-        <IconButton onClick={tooltipActivated}>
+        <IconButton onClick={tooltipActivated} variant="plain">
           <FontAwesomeIcon
             icon={faInfoCircle}
             className="ui-button"

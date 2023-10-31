@@ -25,7 +25,7 @@ const Collection = (props) => {
     else {
       return (
         <div className="card">
-          <div class="card-head">
+          <div className="card-head">
             Your Collection
           </div>
           <div className="card-body">
