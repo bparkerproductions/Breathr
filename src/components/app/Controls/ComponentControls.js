@@ -4,7 +4,7 @@ import { toggleSearch, toggleCollection, toggleTimer } from './../../../actions/
 
 import IconButton from '@mui/joy/IconButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faWindowMinimize } from '@fortawesome/free-solid-svg-icons'
+import { faWindowMinimize, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 
 const ComponentControls = props => {
   function toggleComponent() {
@@ -16,11 +16,12 @@ const ComponentControls = props => {
   return (
     <IconButton
       className="component-controls"
-      variant="solid"
-      color="primary"
+      variant="outline"
+      color="warning"
       onClick={toggleComponent}
+      sx={{ position: 'absolute', right: 5 }}
     >
-        <FontAwesomeIcon icon={faWindowMinimize} title="minimize" />
+        <FontAwesomeIcon icon={faTimesCircle} title="Minimize" />
     </IconButton>
   )
 }
