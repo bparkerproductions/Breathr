@@ -5,6 +5,8 @@ import youtube from '../../../helpers/apis/youtube'
 import VideoResult from '../Video/VideoResult'
 import ComponentControls from './../Controls/ComponentControls'
 import { saveSearchedVideos } from './../../../actions/videoList'
+import { Card, Container, Box } from '@mui/joy'
+import { isLabelWithInternallyDisabledControl } from '@testing-library/user-event/dist/utils'
 
 const Search = (props) => {
   const [searchResult, setSearchResult] = useState(null)
@@ -65,19 +67,26 @@ const Search = (props) => {
     }
   }
 
-  /**
-   * searchedClasses: if search result and videos are true, add 'searched' class
-   * showClasses: set hidden based on whether the component is toggled or not
-   */
+
   function getVideoClasses() {
-    const searchedClasses = searchResult && (videos ? 'searched ' : '')
-    const showClasses = (props.show && props.allToggled) ? 'column-center ' : 'column-center hidden '
-    return showClasses + searchedClasses
+    if ( !(props.show && props.allToggled) ) return 'hidden'
+  }
+
+  function isHidden() {
+    if ( !(props.show && props.allToggled) ) return 'none'
   }
 
   return (
-    <section id="video-search" className={`${getVideoClasses()} mt-5`}>
-      <div className="container">
+    <Container
+      component="section"
+      id="video-search"
+      sx={{
+        marginTop: 12.5,
+        marginBottom: 12.5
+      }}
+      className={getVideoClasses()}
+    >
+      <Box>
         <ComponentControls toggleType="search"></ComponentControls>
         <SearchBar 
           searchCallback={userInput => updateSearchResult(userInput, 'search')}
@@ -88,9 +97,9 @@ const Search = (props) => {
           videos={videos}
           canAdd={true}
         />
+      </Box>
         
-      </div>
-    </section>
+    </Container>
   )
 }
 

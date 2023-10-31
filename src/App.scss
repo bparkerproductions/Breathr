@@ -40,3 +40,10 @@
     display: none;
   }
 }
+
+#video-search,
+#video-collection {
+  height: 200px;
+
+  @extend %animationTuckAway;
+}
