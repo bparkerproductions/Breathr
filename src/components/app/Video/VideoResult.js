@@ -2,28 +2,35 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import VideoItem from './VideoItem'
+import { Box, Typography, Alert, Grid } from '@mui/joy'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faWarning } from '@fortawesome/free-solid-svg-icons'
 
 const VideoResult = props => {
   function renderResults(loopObj, isCollection=false) {
     if (loopObj.length) {
       return (
-        <div className="video-results">
+        <Grid container spacing={2} sx={{ flexGrow: 1 }}>
           {loopObj.map(video => {
             return (
-              <VideoItem key={video.etag} video={video}></VideoItem>
+              <Grid xs={12} md={6} xl={4} key={video.etag}>
+                <VideoItem video={video}></VideoItem>
+              </Grid>
             )
           })}
-        </div>
+        </Grid>
       )
     }
     else {
-      const noSearch = 'Nothing came up for your search. Maybe try again with a different term'
+      const noSearch = 'Nothing came up for your search. Maybe try again with a different term.'
       const noCollection = 'You have nothing in your collection. Head over to the search bar and find some!'
 
       return (
-        <div className="notification-card error">
-          <p>{isCollection ? noCollection : noSearch}</p>
-        </div>
+        <Alert
+          variant="soft"
+          color="warning"
+          startDecorator={<FontAwesomeIcon icon={faWarning}/>}
+        >{isCollection ? noCollection : noSearch}</Alert>
       )
     }
   }
@@ -40,16 +47,14 @@ const VideoResult = props => {
     }
     else {
       return (
-        <div className="notification-card">
-          <p>Type to search for videos...</p>
-        </div>
+        <Box className="notification-card">
+          <Typography>Type to search for videos...</Typography>
+        </Box>
       )
     }
   }
 
-  return (
-    <div>{renderVideo()}</div>
-  )
+  return renderVideo()
 }
 
 const mapStateToProps = (state) => {

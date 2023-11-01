@@ -20,7 +20,7 @@ const SearchSuggestions = (props) => {
     fetch(url)
     .then(response => response.json())
     .then(response => {
-      if (response.length) {
+      if (response.length && response[0].meta) {
         const results = response[0].meta.syns
         let resCategories = []
 

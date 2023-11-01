@@ -4,6 +4,9 @@ import CollectionControls from './../Controls/Collection'
 import { selectVideo } from '../../../actions/videoList'
 import { incrementVideosPlayed } from './../../../actions'
 import { setPaused } from './../../../actions/appToggles'
+import { Box, Card, CardContent, CardCover, Typography } from '@mui/joy'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPauseCircle, faPlay } from '@fortawesome/free-solid-svg-icons'
 
 const VideoItem = props => {
   /**
@@ -33,11 +36,12 @@ const VideoItem = props => {
 
   const [isPlaying, setIsPlaying] = useState(false)
 
-  const getPauseOrPlay = isPlaying ?  'far fa-pause-circle' : 'fas fa-play'
 
-  function bgImage() {
-    return {
-      backgroundImage: 'url(' + props.video.snippet.thumbnails.medium.url + ')'
+  function getPauseOrPlay() {
+    if (isPlaying) {
+      return <FontAwesomeIcon size="2xl" color="white" icon={faPauseCircle} />
+    } else {
+      return <FontAwesomeIcon size="2xl" color="white" icon={faPlay} />
     }
   }
 
@@ -108,21 +112,37 @@ const VideoItem = props => {
   }
 
   return (
-    <div onClick={videoSelected} style={bgImage()} className="video-preview">
-      <div className="control-container d-flex align-items-center justify-content-center w-100 h-100">
-        <i className={`${getPauseOrPlay} text-primary fa-3x`}></i>
-      </div>
-      <div className="video-controls">
+    
+    <Card onClick={videoSelected} sx={{ height: '200px', cursor: 'pointer' }}>
+      <CardCover>
+        <img
+          src={props.video.snippet.thumbnails.medium.url}
+          alt={props.video.snippet.description}
+        />
+      </CardCover>
+
+      <CardCover sx={{
+          background:
+            'linear-gradient(to top, rgba(0,0,0,0.2), rgba(0,0,0,0) 200px), linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 300px)',
+            paddingLeft: 3,
+            paddingRight: 3,
+            justifyContent: 'flex-end'
+        }}>
+        <Box>
+          {getPauseOrPlay()}
+        </Box>
+      </CardCover>
+
+      {/* <CardContent sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-start' }}>
         <CollectionControls 
           video={props.video}
         />
-      </div>
-      <div className="overlay-preview">
-        <p className="white title">
-          {props.video.snippet.title}
-        </p>
-      </div>
-    </div>
+      </CardContent> */}
+
+      <CardContent sx={{ justifyContent: 'flex-end'  }}>
+        <Typography level="body-sm" sx={{ color: 'white' }}>{props.video.snippet.title}</Typography>
+      </CardContent>
+    </Card>
   )
 }
 

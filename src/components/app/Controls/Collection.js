@@ -2,6 +2,8 @@ import React from 'react'
 import { NotificationManager } from 'react-notifications'
 import { connect } from 'react-redux'
 import { removeFromCollection, addToCollection } from '../../../actions/videoList'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
 const CollectionControls = props => {
    /**
@@ -49,18 +51,18 @@ const CollectionControls = props => {
   }
 
   if (!doesVideoExist()) {
-    return (
-      <div className="ui-button" onClick={handleAdd}>
-        <i title="Add to collection" className="fas fa-plus-circle text-primary"></i>
-      </div>
-    )
+    return <FontAwesomeIcon
+      icon={faPlusCircle}
+      color="white"
+      onClick={handleAdd}
+    />
   }
   else {
-    return (
-      <div className="ui-button" onClick={handleRemove}>
-        <i title="remove from collection" className="fas fa-minus-circle text-danger"></i>
-      </div>
-    )
+    return <FontAwesomeIcon
+      icon={faMinusCircle}
+      color="red"
+      onClick={handleRemove}
+    />
   }
 }
 
