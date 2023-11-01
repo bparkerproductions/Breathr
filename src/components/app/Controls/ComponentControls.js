@@ -19,7 +19,7 @@ const ComponentControls = props => {
       variant="outline"
       color="warning"
       onClick={toggleComponent}
-      sx={{ position: 'absolute', right: 5 }}
+      sx={{ position: 'absolute', right: 5, top: 3 }}
     >
         <FontAwesomeIcon icon={faTimesCircle} title="Minimize" />
     </IconButton>

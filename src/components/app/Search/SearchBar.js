@@ -1,6 +1,9 @@
 import React, {useState} from 'react'
 import SearchSuggestions from './SearchSuggestions'
-import { Box } from '@mui/joy'
+import { Box, Stack, Input, Tooltip } from '@mui/joy'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faYoutubeSquare } from '@fortawesome/free-brands-svg-icons'
 
 const SearchBar = (props) => {
   const [searchQuery, setSearchQuery] = useState('')
@@ -22,6 +25,7 @@ const SearchBar = (props) => {
   }
 
   function handleKeyDown(event) {
+    console.log(event)
     if (event.key === 'Enter') trackInput()
   }
 
@@ -41,30 +45,37 @@ const SearchBar = (props) => {
         fill={populateSearchFromSuggestion}
         searchChanged={searchedQuery}
       />
-      <div className="d-flex">
-        <div className="search-icon d-flex align-items-center me-3 text-white ui-button" onClick={trackInput}>
-          <i className="fas fa-search fa-lg"></i>
-        </div>
-        <div 
-          onClick={() => setSearchingByUrl(!searchingByUrl)}
-          className="ui-button d-flex align-items-center"
-        >
-          <i className={`fab fa-youtube-square fa-lg pe-2 ${searchingByUrl ? 'text-danger' : 'text-white'}`} title="Search video by YouTube URL"></i>
-        </div>
-        <div className="search-input w-100">
+      <Stack direction="row" alignItems="center" sx={{ marginTop: 1 }}>
           
-          <form onSubmit={ e => e.preventDefault() } className="w-100">
-            <input 
-              type={searchingByUrl ? 'url' : 'text'}
-              className="w-100"
-              placeholder={searchingByUrl ? 'Enter Youtube URL' : 'Search videos'}
+          <Tooltip title="Enter YouTube URL" variant="solid">
+            <Box
+              sx={{ cursor: 'pointer', marginRight: 1 }}
+              onClick={() => setSearchingByUrl(!searchingByUrl)}
+            >
+              <FontAwesomeIcon
+                icon={faYoutubeSquare}
+                size="2xl"
+                color={searchingByUrl ? '#F60000' : 'black'}
+              />
+            </Box>
+          </Tooltip>
+          
+            <Input
+              startDecorator={
+                <FontAwesomeIcon
+                  icon={faSearch}
+                  onClick={trackInput}
+                />
+              }
               onKeyDown={handleKeyDown}
+              type={searchingByUrl ? 'url' : 'text'}
+              variant="soft"
               value={searchQuery}
               onChange={event => setSearchQuery(event.target.value)}
+              placeholder={searchingByUrl ? 'Enter Youtube URL' : 'Search videos'}
+              sx={{ width: '100%' }}
             />
-          </form>
-        </div>
-      </div>
+      </Stack>
     </Box>
   )
 }

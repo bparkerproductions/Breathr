@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { connect } from 'react-redux'
 import Thesaurus from '../../../helpers/apis/thesaurus'
 import suggestions from '../../../helpers/initialSearchSuggestions'
-import { Chip, Stack, Box } from '@mui/joy'
+import { Chip, Stack, Box, Tooltip, IconButton } from '@mui/joy'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons'
@@ -64,7 +64,7 @@ const SearchSuggestions = (props) => {
             onClick={() => props.fill(category)}
             sx={{ 
               marginX: 0.5,
-              marginBottom: 0.75
+              marginY: 0.5
              }}
           >
             {category}
@@ -82,16 +82,19 @@ const SearchSuggestions = (props) => {
   }
 
   return (
-    <Stack direction="row" className={isDisabled()}>
-      <FontAwesomeIcon
-        icon={faLightbulb}
-        size="lg"
-        color="primary"
-        title="Search suggestions"
-        onClick={getRandomTerm}
-      />
+    <Stack direction="row" alignItems="center" className={isDisabled()}>
+      <Tooltip title="Get new suggestions" sx={{ cursor: 'pointer' }}>
+        <IconButton onClick={getRandomTerm}>
+          <FontAwesomeIcon
+            icon={faLightbulb}
+            size="lg"
+            color="primary"
+            title="Search suggestions"
+          />
+        </IconButton>
+      </Tooltip>
 
-      <Box sx={{ marginLeft: 1 }}>
+      <Box sx={{ marginLeft: 1.75 }}>
         {generateSuggestions()}
       </Box>
     </Stack>

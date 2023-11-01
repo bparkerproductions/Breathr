@@ -86,7 +86,8 @@ const Search = (props) => {
       }}
       className={getVideoClasses()}
     >
-      <Box>
+      
+      <Card>
         <ComponentControls toggleType="search"></ComponentControls>
         <SearchBar 
           searchCallback={userInput => updateSearchResult(userInput, 'search')}
@@ -97,7 +98,7 @@ const Search = (props) => {
           videos={videos}
           canAdd={true}
         />
-      </Box>
+      </Card>
         
     </Container>
   )

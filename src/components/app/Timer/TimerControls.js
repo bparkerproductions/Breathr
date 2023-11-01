@@ -63,8 +63,6 @@ const TimerControls = (props) => {
         color="primary"
         invertedColors="true"
         sx={{
-          "--Card-padding": "29px",
-          "--Card-radius": "12px",
           mx: "auto",
           maxWidth: "450px"
         }}>
