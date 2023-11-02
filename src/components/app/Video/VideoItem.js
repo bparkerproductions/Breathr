@@ -88,6 +88,12 @@ const VideoItem = props => {
     }
   }
 
+  function getVideoTitle() {
+    const text = document.createElement("textarea")
+    text.innerHTML = props.video.snippet.title
+    return text.value
+  }
+
   /**
    * When the props.videoPlayer prop changes, useEffect will call this
    * function to set play/pause state and volume
@@ -140,7 +146,7 @@ const VideoItem = props => {
       </CardContent> */}
 
       <CardContent sx={{ justifyContent: 'flex-end'  }}>
-        <Typography level="body-sm" sx={{ color: 'white' }}>{props.video.snippet.title}</Typography>
+        <Typography level="body-sm" sx={{ color: 'white' }}>{getVideoTitle()}</Typography>
       </CardContent>
     </Card>
   )
