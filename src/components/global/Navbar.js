@@ -5,7 +5,7 @@ import DailyMinutes from './../app/Timer/DailyMinutes'
 import ToggleAll from './../app/Controls/ToggleAll'
 import NowPlaying from './../app/Video/NowPlaying'
 
-import { Stack, Typography, Grid, Container } from '@mui/joy'
+import { Stack, Typography, Grid, Container, Divider } from '@mui/joy'
 import AppBar from '@mui/material/AppBar'
 
 const Navbar = props => {
@@ -18,14 +18,14 @@ const Navbar = props => {
   return (
     <AppBar>
       <Container>
-      <Grid container rowSpacing={3}>
-        <Grid xs={6}>
+      <Grid container spacing={2}>
+        <Grid lg={3}>
           <Typography>
             <DailyMinutes></DailyMinutes>
           </Typography>
         </Grid>
 
-        <Grid xs={6} justifyContent="flex-end" alignItems="center">
+        <Grid lg={9} justifyContent="flex-end" alignItems="center">
           <Stack
             direction="row"
             spacing={5}
@@ -34,7 +34,9 @@ const Navbar = props => {
             sx={{height: '100%'}}
           >
             <NowPlaying />
+            <Divider orientation="vertical" />
             <VideoControls />
+            <Divider orientation="vertical" />
             <AppToggles />
             <ToggleAll />
           </Stack>

@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
 
 const TimerControls = (props) => {
-  const [isTimerStarted, setIsTimerStarted] = useState(false)
   const [time, setTime] = useState(0)
   const [start, setStart] = useState(false)
   const [timeInterval, setTimeInterval] = useState(false)
@@ -36,9 +35,9 @@ const TimerControls = (props) => {
     return () => clearInterval(timeInterval)
   }, [start])
 
-  function timerStarted(start) {
-    setIsTimerStarted(true)
-    start()
+  function getIcon() {
+    if (start) return <FontAwesomeIcon icon={faStop} />
+    else return <FontAwesomeIcon icon={faPlay} />
   }
 
   function getSeconds() {
@@ -88,16 +87,11 @@ const TimerControls = (props) => {
 
           <CardActions>
             <Button
-              onClick={() => setStart(true)}
+              onClick={() => setStart(!start)}
               size="sm"
-              startDecorator={<FontAwesomeIcon icon={faPlay} />}>
-                Start
+              startDecorator={getIcon()}>
+                {start ? 'Stop' : 'Start'}
             </Button>
-            <Button
-              onClick={() => setStart(false)}
-              size="sm"
-              startDecorator={<FontAwesomeIcon icon={faStop} />}
-            >Stop</Button>
             <Button
               onClick={ resetStopwatch }
               size="sm"

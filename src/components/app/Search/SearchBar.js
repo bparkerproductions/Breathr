@@ -47,7 +47,7 @@ const SearchBar = (props) => {
       />
       <Stack direction="row" alignItems="center" sx={{ marginTop: 1 }}>
           
-          <Tooltip title="Enter YouTube URL" variant="solid">
+          <Tooltip title="Search By YouTube URL" variant="solid">
             <Box
               sx={{ cursor: 'pointer', marginRight: 1 }}
               onClick={() => setSearchingByUrl(!searchingByUrl)}
