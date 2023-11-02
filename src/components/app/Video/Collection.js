@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import VideoResult from './VideoResult'
 import ComponentControls from './../Controls/ComponentControls'
@@ -8,6 +8,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAddressBook } from '@fortawesome/free-solid-svg-icons'
 
 const Collection = (props) => {
+  const [boxHeight, setBoxHeight] = useState(null)
+  const cardRef = useRef(null)
+
+  useEffect(() => {
+    // Initially set box height
+    if (cardRef.current) {
+      setBoxHeight(cardRef.current.offsetHeight + "px")
+    }
+  })
+
   function getCollectionClasses() {
     if ( !(props.show && props.allToggled) ) return 'hidden'
   }
@@ -35,8 +45,12 @@ const Collection = (props) => {
   }
 
   return (
-    <Container id="video-collection" className={getCollectionClasses()}>
-      <Card>
+    <Container
+      id="video-collection"
+      className={getCollectionClasses()}
+      sx={{ height: boxHeight, marginY: 12.5 }}
+    >
+      <Card ref={cardRef}>
         <ComponentControls toggleType="collection"></ComponentControls>
         <Stack direction="row">
           <FontAwesomeIcon icon={faAddressBook} size="lg" />

@@ -3,6 +3,7 @@ import Youtube from 'react-youtube'
 import { connect } from 'react-redux'
 import { setVideoPlayer } from './../../actions'
 import { options } from './../../helpers/apis/youtube'
+import { Box } from '@mui/joy'
 
 const VideoRender = props => {
   /**
@@ -23,14 +24,22 @@ const VideoRender = props => {
   
   if (props.selectedVideo || props.defaultVideo) {
     return (
-      <div className="video-render">
+      
+      <Box className="video-render" sx={{ 
+        height: '100%',
+        width: '100%',
+        position: 'fixed',
+        top: '50px',
+        left: 0,
+        zIndex: -1
+       }}>
         <Youtube
           videoId={props.selectedVideo || props.defaultVideo}
           opts={options}
           onReady={setPlayingVideo}
         >
         </Youtube>
-      </div>
+      </Box>
     )
   }
   else return null

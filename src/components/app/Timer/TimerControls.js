@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import { connect } from 'react-redux'
 
 import TimerPlayback from './TimerPlayback'
@@ -14,8 +14,15 @@ const TimerControls = (props) => {
   const [time, setTime] = useState(0)
   const [start, setStart] = useState(false)
   const [timeInterval, setTimeInterval] = useState(false)
+  const [boxHeight, setBoxHeight] = useState(null)
+  const cardRef = useRef(null)
 
   useEffect(() => {
+
+    // Set initial height of timer container
+    if (cardRef.current) {
+      setBoxHeight(cardRef.current.offsetHeight + "px")
+    }
 
     if(start) {
       setTimeInterval(setInterval(() => {
@@ -57,12 +64,12 @@ const TimerControls = (props) => {
       id="timer-container"
       className={isHidden()}
       sx={{
-        marginTop: 12.5,
-        marginBottom: 12.5,
-        position: 'relative'
+        marginY: 12.5,
+        height: boxHeight
       }}
     >
       <Card
+        ref={cardRef}
         variant="solid"
         color="primary"
         invertedColors="true"

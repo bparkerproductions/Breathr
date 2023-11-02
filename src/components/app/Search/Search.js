@@ -1,16 +1,23 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import { connect } from 'react-redux'
 import SearchBar from './SearchBar'
 import youtube from '../../../helpers/apis/youtube'
 import VideoResult from '../Video/VideoResult'
 import ComponentControls from './../Controls/ComponentControls'
 import { saveSearchedVideos } from './../../../actions/videoList'
-import { Card, Container, Box } from '@mui/joy'
-import { isLabelWithInternallyDisabledControl } from '@testing-library/user-event/dist/utils'
+import { Card, Container } from '@mui/joy'
 
 const Search = (props) => {
   const [searchResult, setSearchResult] = useState(null)
   const [videos, setVideos] = useState(null)
+  const [boxHeight, setBoxHeight] = useState('auto')
+  const cardRef = useRef(null)
+
+  useEffect(() => {
+    if (cardRef.current) {
+      setBoxHeight(cardRef.current.offsetHeight + "px")
+    }
+  }, [videos])
 
   /**
    * When a search is entered, this callback is called from the <SearchBar > Component.
@@ -77,13 +84,14 @@ const Search = (props) => {
       component="section"
       id="video-search"
       sx={{
-        marginTop: 12.5,
-        marginBottom: 12.5,
+        marginY: 12.5,
+        height: boxHeight,
+        transition: 'all 0.2s ease'
       }}
       className={getVideoClasses()}
     >
       
-      <Card>
+      <Card ref={cardRef}>
         <ComponentControls toggleType="search"></ComponentControls>
         <SearchBar 
           searchCallback={userInput => updateSearchResult(userInput, 'search')}

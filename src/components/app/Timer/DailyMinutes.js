@@ -27,7 +27,6 @@ const DailyMinutes = (props) => {
 
   function getTopHeight() {
     if (dailyMinutesTimer.current) {
-      console.log(dailyMinutesTimer.offsetHeight + 'px')
       return dailyMinutesTimer.current.offsetHeight + 'px'
     }
   }

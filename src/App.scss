@@ -1,41 +1,51 @@
-// Import Bootstrap 5
-
 // $primary: #3ab8ea;
 // $light: #fff;
 // $dark: #23272a;
 // $grey: #ededed;
 // $secondary: #d97cd5;
 
-// Mixins
-@import "style/global/mixins";
+html,
+main {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 
-// Framework and helpers
-@import "style/global/variables";
-@import "style/global/helper-classes";
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
 
-// Extends
-@import "style/global/extends";
-
-// Global
-@import "style/global/main";
-
-// Elements
-@import "style/elements/main";
-
-// Component styles
-@import "style/components/main";
-
-// Animations
-@import "style/animations";
-
-#timer-container {
-  height: 350px;
-  @extend %animationTuckAway;
+  &::-webkit-scrollbar-thumb {
+    background: #EDEDED;
+  }
 }
 
+// Position YouTube iframe
+.video-render iframe {
+  margin-top: -150px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 3;
+  width: 100%;
+  height: calc(100% + 250px);
+}
+
+/* Animation tuck away */
+#timer-container,
 #video-search,
 #video-collection {
-  height: 500px;
+  transition: all 0.45s ease;
+  transform: translate(0, 0);
+  opacity: 1;
+  pointer-events: all;
 
-  @extend %animationTuckAway;
+  &.hidden {
+    height: 0 !important;
+    padding: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(100vw, -175vh);
+  }
 }
