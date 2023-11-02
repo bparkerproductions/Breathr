@@ -8,11 +8,11 @@ import { Button, Card, Container, Typography, Divider, CardActions, Stack } from
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
 
-const TimerControls = (props) => {
+const TimerControls = ({ incrementSecond, show, allToggled }) => {
   const [time, setTime] = useState(0)
   const [start, setStart] = useState(false)
-  const [timeInterval, setTimeInterval] = useState(false)
   const [boxHeight, setBoxHeight] = useState(null)
+  const timeInterval = useRef(false)
   const cardRef = useRef(null)
 
   useEffect(() => {
@@ -22,17 +22,17 @@ const TimerControls = (props) => {
       setBoxHeight(cardRef.current.offsetHeight + "px")
     }
 
-    if(start) {
-      setTimeInterval(setInterval(() => {
+    if (start) {
+      timeInterval.current = setInterval(() => {
         setTime(prevTime => prevTime + 1)
-        props.incrementSecond()
-      }, 1000))
+        incrementSecond()
+      }, 1000)
     } else {
-      clearInterval(timeInterval)
+      clearInterval(timeInterval.current)
     }
 
-    return () => clearInterval(timeInterval)
-  }, [start])
+    return () => clearInterval(timeInterval.current)
+  }, [start, incrementSecond])
 
   function getIcon() {
     if (start) return <FontAwesomeIcon icon={faStop} />
@@ -53,7 +53,7 @@ const TimerControls = (props) => {
   }
 
   function isHidden() {
-    if ( !(props.show && props.allToggled) ) return 'hidden'
+    if ( !(show && allToggled) ) return 'hidden'
   }
 
   return (
@@ -66,6 +66,7 @@ const TimerControls = (props) => {
         height: boxHeight
       }}
     >
+  
       <Card
         ref={cardRef}
         variant="solid"

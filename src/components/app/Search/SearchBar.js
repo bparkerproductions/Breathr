@@ -25,7 +25,6 @@ const SearchBar = (props) => {
   }
 
   function handleKeyDown(event) {
-    console.log(event)
     if (event.key === 'Enter') trackInput()
   }
 

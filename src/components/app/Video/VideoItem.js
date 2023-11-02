@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { connect, useSelector } from 'react-redux'
 import CollectionControls from './../Controls/Collection'
 import { selectVideo } from '../../../actions/videoList'
@@ -8,33 +8,69 @@ import { Box, Card, CardContent, CardCover, Typography } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPauseCircle, faPlay } from '@fortawesome/free-solid-svg-icons'
 
-const VideoItem = props => {
+const VideoItem = ({ videoPlayer, videosPlayed, videoVolume, video, incrementVideosPlayed, selectVideo, setPaused }) => {
+  const [isPlaying, setIsPlaying] = useState(false)
+
+   /**
+   * Compare ID of current video in component with what is selected
+   */
+   const isCurrentVideo = useCallback(() => {
+    if (!videoPlayer) return
+
+    const playingVideoID = videoPlayer.getVideoData().video_id
+    const selectedVideoID = video.id.videoId || video.id
+
+    return playingVideoID === selectedVideoID
+  }, [video, videoPlayer])
+
   /**
-   * Call useEffect function when props.videoPlayer changes 
+   * When the videoPlayer prop changes, useEffect will call this
+   * function to set play/pause state and volume
+   */
+    const setVideoState = useCallback(() => {
+      // No state needs to be updated until a video is played
+      if (videosPlayed === 0) return
+  
+      if (videoPlayer) {
+        videoPlayer.setVolume(videoVolume)
+  
+        // Update local state for video item play icon
+        if (isCurrentVideo()) {
+          // Pause video
+          setIsPlaying(true) 
+        } else {
+          // Play
+          setPaused(false)
+          setIsPlaying(false)
+        }
+      }
+    }, [isCurrentVideo, setPaused, videoPlayer, videoVolume, videosPlayed])
+
+  /**
+   * Call useEffect function when videoPlayer changes 
    * (it means a video was selected and its already in its "loaded" state)
    */
   useEffect(() => {
     // Only run this when video is in its buffering state
-    if (props.videoPlayer && props.videoPlayer.getPlayerState() === 3) {
+    if (videoPlayer && videoPlayer.getPlayerState() === 3) {
       setVideoState()
     }
-  })
+  }, [setVideoState, videoPlayer])
 
   /**
    * Used to update each videoItem when the outside play/pause is activated
    */
   const paused = useSelector( state => state.paused )
+  
   useEffect(() => {
     if (!isCurrentVideo()) return
 
-    if (props.videosPlayed === 0) return
+    if (videosPlayed === 0) return
 
-    const videoIsPlaying = props.videoPlayer.getPlayerState() === 1
+    const videoIsPlaying = videoPlayer.getPlayerState() === 1
 
     videoIsPlaying ? setIsPlaying(false) : setIsPlaying(true)
-  }, [paused])
-
-  const [isPlaying, setIsPlaying] = useState(false)
+  }, [paused, isCurrentVideo, videoPlayer, videosPlayed])
 
 
   function getPauseOrPlay() {
@@ -46,51 +82,39 @@ const VideoItem = props => {
   }
 
   /**
-   * Compare ID of current video in component with what is selected
-   */
-  function isCurrentVideo() {
-    if (!props.videoPlayer) return
-
-    const playingVideoID = props.videoPlayer.getVideoData().video_id
-    const selectedVideoID = props.video.id.videoId || props.video.id
-
-    return playingVideoID === selectedVideoID
-  }
-
-  /**
    * Actions to perform when a new video is selected: 
    * Select a new video, set play/pause state and volume state
    */
   function videoSelected() {
     // Initially increment the video count even if the default video is already selected then played
-    if (props.videosPlayed === 0) props.incrementVideosPlayed()
+    if (videosPlayed === 0) incrementVideosPlayed()
     
     if (isCurrentVideo()) {
       pauseOrPlay()
     } else {
-      props.incrementVideosPlayed()
-      props.selectVideo(props.video.id.videoId || props.video.id)
+      incrementVideosPlayed()
+      selectVideo(video.id.videoId || video.id)
     }
   }
 
   function pauseOrPlay() {
-    const videoIsPlaying = props.videoPlayer.getPlayerState() === 1
+    const videoIsPlaying = videoPlayer.getPlayerState() === 1
 
     if (videoIsPlaying) {
-      props.videoPlayer.pauseVideo()
-      props.setPaused(true)
+      videoPlayer.pauseVideo()
+      setPaused(true)
       setIsPlaying(false)
     }
     else {
-      props.videoPlayer.playVideo()
-      props.setPaused(false)
+      videoPlayer.playVideo()
+      setPaused(false)
       setIsPlaying(true)
     }
   }
 
   function getVideoTitle() {
     const text = document.createElement("textarea")
-    text.innerHTML = props.video.snippet.title
+    text.innerHTML = video.snippet.title
     return text.value
   }
 
@@ -102,33 +126,10 @@ const VideoItem = props => {
     if (authenticated) return (
     <CardContent sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-start' }}>
         <CollectionControls 
-          video={props.video}
+          video={video}
         />
       </CardContent>
     )
-  }
-
-  /**
-   * When the props.videoPlayer prop changes, useEffect will call this
-   * function to set play/pause state and volume
-   */
-  function setVideoState() {
-    // No state needs to be updated until a video is played
-    if (props.videosPlayed === 0) return
-
-    if (props.videoPlayer) {
-      props.videoPlayer.setVolume(props.videoVolume)
-
-      // Update local state for video item play icon
-      if (isCurrentVideo()) {
-        // Pause video
-        setIsPlaying(true) 
-      } else {
-        // Play
-        props.setPaused(false)
-        setIsPlaying(false)
-      }
-    }
   }
 
   return (
@@ -136,8 +137,8 @@ const VideoItem = props => {
     <Card onClick={videoSelected} className="cursor-pointer" sx={{ height: '200px' }}>
       <CardCover>
         <img
-          src={props.video.snippet.thumbnails.medium.url}
-          alt={props.video.snippet.description}
+          src={video.snippet.thumbnails.medium.url}
+          alt={video.snippet.description}
         />
       </CardCover>
 

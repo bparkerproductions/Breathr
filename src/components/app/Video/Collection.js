@@ -16,7 +16,7 @@ const Collection = (props) => {
     if (cardRef.current) {
       setBoxHeight(cardRef.current.offsetHeight + "px")
     }
-  })
+  }, [])
 
   function getCollectionClasses() {
     if ( !(props.show && props.allToggled) ) return 'hidden'
