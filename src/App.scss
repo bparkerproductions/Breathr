@@ -33,14 +33,6 @@
   @extend %animationTuckAway;
 }
 
-#now-playing {
-  position: relative;
-
-  &.hidden {
-    display: none;
-  }
-}
-
 #video-search,
 #video-collection {
   height: 500px;

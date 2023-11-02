@@ -3,11 +3,13 @@ import React from 'react'
 import VideoResult from './VideoResult'
 import ComponentControls from './../Controls/ComponentControls'
 import CycleVideos from './../Controls/CycleVideos'
+import { Stack, Container, Typography, Card, Box, CardContent, Link } from '@mui/joy'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAddressBook } from '@fortawesome/free-solid-svg-icons'
 
 const Collection = (props) => {
   function getCollectionClasses() {
-    const show = props.show && props.allToggled
-    return show ? 'column-center' : 'column-center hidden'
+    if ( !(props.show && props.allToggled) ) return 'hidden'
   }
 
   function renderCollection() {
@@ -24,35 +26,29 @@ const Collection = (props) => {
     }
     else {
       return (
-        <div className="card">
-          <div className="card-head">
-            Your Collection
-          </div>
-          <div className="card-body">
-            <p className="mb-0">Want to save soundscapes? <a href="#">Sign up for a free account</a></p>
-          </div>
-        </div>
+        <CardContent sx={{ paddingTop: 2 }}>
+        <Typography level="body-md">Want to save soundscapes? <Link href="#"> Sign up for a free account</Link>
+        </Typography>
+        </CardContent>
       )
     }
   }
 
   return (
-    <section id="video-collection" className={getCollectionClasses()}>
-      <div className="container">
+    <Container id="video-collection" className={getCollectionClasses()}>
+      <Card>
         <ComponentControls toggleType="collection"></ComponentControls>
-        <header className="general py-3">
-          <i className="fas fa-bookmark icon fa-lg text-white me-2"></i>
-          <h3 className="text-white m-0">Your Collection</h3>
-
-          <div className="text-white ms-3">
+        <Stack direction="row">
+          <FontAwesomeIcon icon={faAddressBook} size="lg" />
+          <Typography level="title-lg" sx={{ marginLeft: 1, marginRight: 1 }}>Your Collection</Typography>
+          <Box sx={{  marginLeft: 1 }}>
             <CycleVideos />
-          </div>
-        </header>
+          </Box>
+        </Stack>
 
         {renderCollection()}
-
-      </div>
-    </section>
+      </Card>
+    </Container>
   )
 }
 

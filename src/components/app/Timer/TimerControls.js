@@ -56,7 +56,11 @@ const TimerControls = (props) => {
       component="section"
       id="timer-container"
       className={isHidden()}
-      sx={{ marginTop: 12.5, marginBottom: 12.5 }}
+      sx={{
+        marginTop: 12.5,
+        marginBottom: 12.5,
+        position: 'relative'
+      }}
     >
       <Card
         variant="solid"

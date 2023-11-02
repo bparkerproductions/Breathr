@@ -72,17 +72,13 @@ const Search = (props) => {
     if ( !(props.show && props.allToggled) ) return 'hidden'
   }
 
-  function isHidden() {
-    if ( !(props.show && props.allToggled) ) return 'none'
-  }
-
   return (
     <Container
       component="section"
       id="video-search"
       sx={{
         marginTop: 12.5,
-        marginBottom: 12.5
+        marginBottom: 12.5,
       }}
       className={getVideoClasses()}
     >
