@@ -31,9 +31,10 @@ export const toggleCollection = (toggled=false) => {
 /**
  * Called when the toggle all icon in the navbar is clicked
  */
-export const toggleAll = () => {
+export const toggleAll = (toggled=true) => {
   return {
-    type: 'TOGGLE_ALL'
+    type: 'TOGGLE_ALL',
+    payload: toggled
   }
 }
 

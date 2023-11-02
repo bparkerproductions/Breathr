@@ -1,39 +1,53 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { toggleSearch, toggleTimer, toggleCollection } from './../../../actions/appToggles'
 
-import { Box, ToggleButtonGroup, IconButton } from '@mui/joy'
+import { Stack, ToggleButtonGroup, IconButton, Tooltip } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faClock, faBookmark} from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faClock, faBookmark, faTimes } from '@fortawesome/free-solid-svg-icons'
 
-const AppToggles = (props) => {
+const AppToggles = ({ isSearch, isTimer, isCollection, toggleSearch, toggleTimer, toggleCollection }) => {
+
+  const getValues = useCallback(() => {
+    let values = []
+
+    if (isSearch) values.push('search')
+    if (isTimer) values.push('timer')
+    if (isCollection) values.push('collection')
+
+    return values
+  }, [isCollection, isSearch, isTimer])
+
+  // Values state
   const [value, setValue] = React.useState(getValues())
 
   useEffect(() => {
     setValue(getValues())
-  }, [props.isSearch, props.isTimer, props.isCollection])
-
-  function getValues() {
-    let values = []
-
-    if (props.isSearch) values.push('search')
-    if (props.isTimer) values.push('timer')
-    if (props.isCollection) values.push('collection')
-
-    return values
-  }
+  }, [isSearch, isTimer, isCollection, getValues])
 
   /**
    * Toggle either Search, Timer, or Collection. Update redux state to reflect
    */
   function toggleComponent(newValue) {
-    props.toggleSearch(newValue.includes('search'))
-    props.toggleTimer(newValue.includes('timer'))
-    props.toggleCollection(newValue.includes('collection'))
+    toggleSearch(newValue.includes('search'))
+    toggleTimer(newValue.includes('timer'))
+    toggleCollection(newValue.includes('collection'))
+  }
+
+  function closeAll() {
+    toggleSearch(false)
+    toggleTimer(false)
+    toggleCollection(false)
   }
 
   return (
-    <Box id="app-toggles">
+    <Stack direction="row" id="app-toggles">
+      <Tooltip title="Close all">
+        <IconButton onClick={closeAll}>
+          <FontAwesomeIcon icon={faTimes} />
+        </IconButton>
+      </Tooltip>
+
       <ToggleButtonGroup
         value={value}
         onChange={(event, newValue) => {
@@ -41,6 +55,7 @@ const AppToggles = (props) => {
           toggleComponent(newValue)
         }}
       >
+      
         <IconButton value="search">
           <FontAwesomeIcon
             icon={faSearch}
@@ -60,7 +75,7 @@ const AppToggles = (props) => {
           />
         </IconButton>
       </ToggleButtonGroup>
-    </Box>
+    </Stack>
   )
 }
 
@@ -75,5 +90,5 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   toggleSearch,
   toggleTimer,
-  toggleCollection
+  toggleCollection,
 })(AppToggles);

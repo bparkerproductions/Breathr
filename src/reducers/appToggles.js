@@ -26,7 +26,7 @@ const toggleCollectionReducer = (toggled=false, action) => {
  * Toggles the state of all page components; hide all/view all
  */
 const toggleAllReducer = (toggled=true, action) => {
-  if (action.type === 'TOGGLE_ALL') toggled = !toggled
+  if (action.type === 'TOGGLE_ALL') return action.payload
   return toggled
 }
 

@@ -2,13 +2,12 @@ import React from 'react'
 import AppToggles from './../app/Controls/AppToggles'
 import VideoControls from './../app/Controls/VideoControls'
 import DailyMinutes from './../app/Timer/DailyMinutes'
-import ToggleAll from './../app/Controls/ToggleAll'
 import NowPlaying from './../app/Video/NowPlaying'
 
 import { Stack, Typography, Grid, Container, Divider } from '@mui/joy'
 import AppBar from '@mui/material/AppBar'
 
-const Navbar = props => {
+const Navbar = () => {
   return (
     <AppBar>
       <Container>
@@ -32,7 +31,7 @@ const Navbar = props => {
             <VideoControls />
             <Divider orientation="vertical" />
             <AppToggles />
-            <ToggleAll />
+            
           </Stack>
         </Grid>
       </Grid>

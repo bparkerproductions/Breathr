@@ -10,6 +10,7 @@ import VideoRender from './global/VideoRender'
 import TimerControls from './app/Timer/TimerControls'
 import Search from './app/Search/Search'
 import Collection from './app/Video/Collection'
+import { Box } from '@mui/joy'
 
 const App = (props) => {
   useEffect(() => {
@@ -18,7 +19,7 @@ const App = (props) => {
   })
 
   return (
-    <main>
+    <Box component="main">
       <NotificationContainer></NotificationContainer>
       <Navbar />
       <IntroModal videoPlayer={props.videoPlayer}></IntroModal>
@@ -38,7 +39,7 @@ const App = (props) => {
       </Collection>
 
       <VideoRender></VideoRender>
-    </main>
+    </Box>
   )
 }
 
