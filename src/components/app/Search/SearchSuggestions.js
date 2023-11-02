@@ -83,7 +83,7 @@ const SearchSuggestions = (props) => {
 
   return (
     <Stack direction="row" alignItems="center" className={isDisabled()}>
-      <Tooltip title="Get new suggestions" sx={{ cursor: 'pointer' }}>
+      <Tooltip title="Get new suggestions">
         <IconButton onClick={getRandomTerm}>
           <FontAwesomeIcon
             icon={faLightbulb}

@@ -6,6 +6,7 @@ import { incrementVideosPlayed } from './../../../actions'
 import Stack from '@mui/joy/Stack';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStepBackward, faStepForward } from '@fortawesome/free-solid-svg-icons'
+import { Box } from '@mui/joy';
 
 const CycleVideos = (props) => {
   function isDisabled() {
@@ -61,7 +62,7 @@ const CycleVideos = (props) => {
       <FontAwesomeIcon
         onClick={previousVideo}
         icon={faStepBackward}
-        className="ui-button"
+        className="cursor-pointer"
         size="lg"
         title="Go to previous video"
       />
@@ -69,7 +70,7 @@ const CycleVideos = (props) => {
       <FontAwesomeIcon
         onClick={nextVideo}
         icon={faStepForward}
-        className="ui-button"
+        className="cursor-pointer"
         size="lg"
         title="Go to next video"
       />

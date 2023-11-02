@@ -113,7 +113,7 @@ const VideoItem = props => {
 
   return (
     
-    <Card onClick={videoSelected} sx={{ height: '200px', cursor: 'pointer' }}>
+    <Card onClick={videoSelected} className="cursor-pointer" sx={{ height: '200px' }}>
       <CardCover>
         <img
           src={props.video.snippet.thumbnails.medium.url}

@@ -18,7 +18,7 @@ const VideoControls = props => {
       return (
         <FontAwesomeIcon
           icon={faPlay}
-          className="ui-button"
+          className="cursor-pointer"
           size="lg"
           title="Pause Video"
         />
@@ -27,7 +27,7 @@ const VideoControls = props => {
       return (
         <FontAwesomeIcon
           icon={faPauseCircle}
-          className="ui-button"
+          className="cursor-pointer"
           size="lg"
           title="Play Video"
         />
@@ -40,7 +40,7 @@ const VideoControls = props => {
       return (
         <FontAwesomeIcon
           icon={faVolumeOff}
-          className="ui-button"
+          className="cursor-pointer"
           size="lg"
           title="Turn the volume back on"
         />
@@ -50,7 +50,7 @@ const VideoControls = props => {
       return (
         <FontAwesomeIcon
           icon={faVolumeHigh}
-          className="ui-button"
+          className="cursor-pointer"
           size="lg"
           title="Mute volume"
         />
@@ -101,7 +101,7 @@ const VideoControls = props => {
         <Box onClick={togglePause}>
           {getPauseOrPlay()}
         </Box>
-        <Box sx={{width: '30px'}} onClick={toggleMuted}>
+        <Box sx={{ width: '30px' }} onClick={toggleMuted}>
           {getMuteOrPlay()}
         </Box>
         <Slider

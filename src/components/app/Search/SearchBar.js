@@ -49,12 +49,13 @@ const SearchBar = (props) => {
           
           <Tooltip title="Search By YouTube URL" variant="solid">
             <Box
-              sx={{ cursor: 'pointer', marginRight: 1 }}
+              sx={{ marginRight: 1 }}
               onClick={() => setSearchingByUrl(!searchingByUrl)}
             >
               <FontAwesomeIcon
                 icon={faYoutubeSquare}
                 size="2xl"
+                className="cursor-pointer"
                 color={searchingByUrl ? '#F60000' : 'black'}
               />
             </Box>

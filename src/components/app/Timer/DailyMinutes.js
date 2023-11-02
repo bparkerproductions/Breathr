@@ -53,7 +53,7 @@ const DailyMinutes = (props) => {
       <Box
         ref={dailyMinutesTimer}
         onClick={() => setIsShown(!isShown)}
-        sx={{cursor: 'pointer'}}
+        className="cursor-pointer"
       >
         <Typography level="h1" sx={{ color: 'white' }}>{getMinutes()}</Typography>
         <Typography sx={{ color: 'white' }}>m</Typography>

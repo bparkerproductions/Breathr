@@ -37,7 +37,7 @@ const NowPlaying = props => {
         <IconButton onClick={tooltipActivated} variant="plain">
           <FontAwesomeIcon
             icon={faInfoCircle}
-            className="ui-button"
+            className="cursor-pointer"
             size="lg"
           />
         </IconButton>
@@ -62,7 +62,7 @@ const NowPlaying = props => {
           href={getPlayerInfo('videoUrl')}
           startDecorator={<FontAwesomeIcon
             icon={faYoutube}
-            className="ui-button"
+            className="cursor-pointer"
             size="lg"
           />}
         >

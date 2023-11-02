@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import AppToggles from './../app/Controls/AppToggles'
 import VideoControls from './../app/Controls/VideoControls'
 import DailyMinutes from './../app/Timer/DailyMinutes'
@@ -9,12 +9,6 @@ import { Stack, Typography, Grid, Container, Divider } from '@mui/joy'
 import AppBar from '@mui/material/AppBar'
 
 const Navbar = props => {
-  const [contentToggled, setContent] = useState(false)
-
-  function getToggledState() {
-    return contentToggled ? 'fas fa-times-circle' : 'fas fa-bars'
-  }
-
   return (
     <AppBar>
       <Container>
