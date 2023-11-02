@@ -94,6 +94,20 @@ const VideoItem = props => {
     return text.value
   }
 
+  function getCollectionControls() {
+
+    // Temporary until backend
+    const authenticated = false
+
+    if (authenticated) return (
+    <CardContent sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-start' }}>
+        <CollectionControls 
+          video={props.video}
+        />
+      </CardContent>
+    )
+  }
+
   /**
    * When the props.videoPlayer prop changes, useEffect will call this
    * function to set play/pause state and volume
@@ -139,11 +153,7 @@ const VideoItem = props => {
         </Box>
       </CardCover>
 
-      {/* <CardContent sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-start' }}>
-        <CollectionControls 
-          video={props.video}
-        />
-      </CardContent> */}
+      {getCollectionControls()}
 
       <CardContent sx={{ justifyContent: 'flex-end'  }}>
         <Typography level="body-sm" sx={{ color: 'white' }}>{getVideoTitle()}</Typography>

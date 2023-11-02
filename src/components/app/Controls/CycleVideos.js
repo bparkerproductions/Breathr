@@ -6,7 +6,6 @@ import { incrementVideosPlayed } from './../../../actions'
 import Stack from '@mui/joy/Stack';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStepBackward, faStepForward } from '@fortawesome/free-solid-svg-icons'
-import { Box } from '@mui/joy';
 
 const CycleVideos = (props) => {
   function isDisabled() {

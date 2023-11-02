@@ -1,7 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react'
 import { connect } from 'react-redux'
 
-import TimerPlayback from './TimerPlayback'
 import ComponentControls from './../Controls/ComponentControls'
 import { incrementSecond } from './../../../actions'
 
