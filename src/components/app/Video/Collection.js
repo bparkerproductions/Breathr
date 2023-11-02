@@ -19,7 +19,7 @@ const Collection = (props) => {
   }, [])
 
   function getCollectionClasses() {
-    if ( !(props.show && props.allToggled) ) return 'hidden'
+    if ( !(props.show) ) return 'hidden'
   }
 
   function renderCollection() {

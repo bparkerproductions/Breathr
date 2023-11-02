@@ -24,17 +24,14 @@ const App = (props) => {
       <Navbar />
       <IntroModal videoPlayer={props.videoPlayer}></IntroModal>
       <TimerControls
-        allToggled={props.allToggled}
         show={props.showTimer}>
       </TimerControls>
 
       <Search
-        allToggled={props.allToggled}
         show={props.showSearch}>
       </Search>
 
       <Collection
-        allToggled={props.allToggled}
         show={props.showCollection}>
       </Collection>
 
@@ -48,7 +45,6 @@ const mapStateToProps = state => {
     showSearch: state.isSearchToggled,
     showTimer: state.isTimerToggled,
     showCollection: state.isCollectionToggled,
-    allToggled: state.allToggled,
     videoPlayer: state.videoPlayer
   }
 }

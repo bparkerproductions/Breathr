@@ -29,16 +29,6 @@ export const toggleCollection = (toggled=false) => {
 }
 
 /**
- * Called when the toggle all icon in the navbar is clicked
- */
-export const toggleAll = (toggled=true) => {
-  return {
-    type: 'TOGGLE_ALL',
-    payload: toggled
-  }
-}
-
-/**
  * Called when a pause/play icon is clicked
  */
 export const setPaused = (paused=true) => {

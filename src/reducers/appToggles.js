@@ -23,14 +23,6 @@ const toggleCollectionReducer = (toggled=false, action) => {
 }
 
 /**
- * Toggles the state of all page components; hide all/view all
- */
-const toggleAllReducer = (toggled=true, action) => {
-  if (action.type === 'TOGGLE_ALL') return action.payload
-  return toggled
-}
-
-/**
  * Sets the state for the YouTube iframe/video playing status
  */
 const setPausedReducer = (paused=true, action) => {
@@ -42,7 +34,6 @@ const appToggleReducers = {
   toggleSearchReducer,
   toggleTimerReducer,
   toggleCollectionReducer,
-  toggleAllReducer,
   setPausedReducer
 }
 

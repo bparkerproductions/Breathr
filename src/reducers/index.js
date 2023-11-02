@@ -37,7 +37,6 @@ export default combineReducers({
   isSearchToggled: appToggles.toggleSearchReducer,
   isTimerToggled: appToggles.toggleTimerReducer,
   isCollectionToggled: appToggles.toggleCollectionReducer,
-  allToggled: appToggles.toggleAllReducer,
   totalSeconds: timer.totalSecondsReducer,
   secondsForDay: timer.secondsForDay,
   paused: appToggles.setPausedReducer

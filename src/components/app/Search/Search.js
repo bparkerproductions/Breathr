@@ -76,7 +76,7 @@ const Search = (props) => {
 
 
   function getVideoClasses() {
-    if ( !(props.show && props.allToggled) ) return 'hidden'
+    if ( !(props.show) ) return 'hidden'
   }
 
   return (

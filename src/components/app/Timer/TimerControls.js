@@ -8,7 +8,7 @@ import { Button, Card, Container, Typography, Divider, CardActions, Stack } from
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
 
-const TimerControls = ({ incrementSecond, show, allToggled }) => {
+const TimerControls = ({ incrementSecond, show }) => {
   const [time, setTime] = useState(0)
   const [start, setStart] = useState(false)
   const [boxHeight, setBoxHeight] = useState(null)
@@ -53,7 +53,7 @@ const TimerControls = ({ incrementSecond, show, allToggled }) => {
   }
 
   function isHidden() {
-    if ( !(show && allToggled) ) return 'hidden'
+    if ( !(show) ) return 'hidden'
   }
 
   return (
