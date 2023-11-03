@@ -51,7 +51,7 @@ const Search = (props) => {
     .then(response => response.json())
     .then(response => {
       setVideos(response.items)
-      saveSearchedVideos(response.items)
+      props.saveSearchedVideos(response.items)
     })
   }
 

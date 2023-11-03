@@ -21,17 +21,16 @@ const Navbar = () => {
         <Grid lg={9} justifyContent="flex-end" alignItems="center">
           <Stack
             direction="row"
-            spacing={5}
+            spacing={2.5}
             justifyContent="end"
             alignItems="center"
             sx={{height: '100%'}}
           >
-            <NowPlaying />
             <Divider orientation="vertical" />
             <VideoControls />
             <Divider orientation="vertical" />
             <AppToggles />
-            
+            <NowPlaying />
           </Stack>
         </Grid>
       </Grid>

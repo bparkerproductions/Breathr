@@ -9,7 +9,7 @@ import { faStepBackward, faStepForward } from '@fortawesome/free-solid-svg-icons
 
 const CycleVideos = (props) => {
   function isDisabled() {
-    return props.videosPlayed === 0 || props.collectionVideos.length <= 1 ? 'disabled' : ''
+    if (props.videosPlayed === 0) return 'disabled'
   }
 
   function nextVideo() {
@@ -19,16 +19,16 @@ const CycleVideos = (props) => {
     const currentlyPlaying = props.videoPlayer.getVideoData().video_id
     let newVideo = null
 
-    for (let i = 0; i < props.collectionVideos.length; i++) {
-      const id = props.collectionVideos[i].id.videoId || props.collectionVideos[i].id
+    for (let i = 0; i < props.searchedVideos.length; i++) {
+      const id = props.searchedVideos[i].id.videoId
 
       if (id === currentlyPlaying) {
-        if (i === props.collectionVideos.length-1) newVideo = props.collectionVideos[0]
-        else newVideo = props.collectionVideos[i+1]
+        if (i === props.searchedVideos.length-1) newVideo = props.searchedVideos[0]
+        else newVideo = props.searchedVideos[i+1]
       }
     }
 
-    selectVideo(newVideo.id.videoId || newVideo.id)
+    selectVideo(newVideo.id.videoId)
   }
 
   function previousVideo() {
@@ -38,17 +38,19 @@ const CycleVideos = (props) => {
     const currentlyPlaying = props.videoPlayer.getVideoData().video_id
     let newVideo = null
 
-    for (let i = 0; i < props.collectionVideos.length; i++) {
-      const id = props.collectionVideos[i].id.videoId || props.collectionVideos[i].id
+    for (let i = 0; i < props.searchedVideos.length; i++) {
+      const id = props.searchedVideos[i].id.videoId
       if (id === currentlyPlaying) {
         if (i === 0) {
-          newVideo = props.collectionVideos[props.collectionVideos.length-1]
+          newVideo = props.searchedVideos[props.searchedVideos.length-1]
         }
-        else newVideo = props.collectionVideos[i-1]
+        else {
+          newVideo = props.searchedVideos[i-1]
+        }
       }
     }
 
-    selectVideo(newVideo.id.videoId || newVideo.id)
+    selectVideo(newVideo.id.videoId)
   }
 
   function selectVideo(id) {
@@ -81,6 +83,7 @@ const mapStateToProps = state => { return {
   videosPlayed: state.videosPlayed,
   collectionVideos: state.videos,
   videoPlayer: state.videoPlayer,
+  searchedVideos: state.searchedVideos
 } }
 
 export default connect(mapStateToProps, {

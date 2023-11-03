@@ -27,6 +27,7 @@ const videosReducer = (initialVideos=getInitialVideos('videoList'), action) => {
  */
 const searchedVideosReducer = (initialVideos=null, action) => {
   if (action.type === 'SAVE_SEARCHED_VIDEOS') {
+    console.log('payload', action.payload)
     return initialVideos || action.payload
   }
 
