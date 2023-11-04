@@ -7,6 +7,7 @@ import IntroModal from '@/Components/IntroModal'
 import Navbar from '@/Components/Navbar'
 import TimerControls from '@/Components/TimerControls'
 import Search from '@/Components/Search'
+import VideoRender from '@/Components/VideoRender'
 
 const Main = ({ ...props }) => {
     return (
@@ -17,6 +18,7 @@ const Main = ({ ...props }) => {
             <IntroModal videoPlayer={props.videoPlayer}></IntroModal>
             <TimerControls show={props.showTimer}></TimerControls>
             <Search show={props.showSearch}></Search>
+            <VideoRender></VideoRender>
         </Box>
     );
 }

@@ -18,7 +18,7 @@ class YoutubeController extends Controller
             'type' => 'video',
             'videoDefinition' => 'high',
             'videoDuration' => 'long',
-            'key' => env('YOUTUBE_API_KEY')
+            'key' => env('API_YOUTUBE_KEY')
         ];
 
         $url = "{$yt['base']}/search?part={$yt['part']}&maxResults={$yt['maxResults']}&videoEmbeddable={$yt['embeddable']}&type={$yt['type']}&videoDefinition={$yt['videoDefinition']}&videoDuration={$yt['videoDuration']}&q={$query}&key={$yt['key']}";

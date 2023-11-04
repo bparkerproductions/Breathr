@@ -15,7 +15,7 @@ const SearchSuggestions = (props) => {
    */
   const getThesaurusCategories = useCallback(async function (term) {
     if (!term) return
-    const url = `${Thesaurus.base}/${term}?key=${Thesaurus.key}`
+    const url = `/thesaurus/suggestions?term=${encodeURIComponent(term)}`
 
     fetch(url)
     .then(response => response.json())
