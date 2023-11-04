@@ -1,7 +1,7 @@
 import React from 'react'
 import { NotificationManager } from 'react-notifications'
 import { connect } from 'react-redux'
-import { removeFromCollection, addToCollection } from '../../../actions/videoList'
+import { removeFromCollection, addToCollection } from '@/actions/videoList'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
