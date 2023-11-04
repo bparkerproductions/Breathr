@@ -1,19 +1,23 @@
 import { Head } from '@inertiajs/react'
 import 'react-notifications/lib/notifications.css'
-import { Box, Typography } from '@mui/joy'
-import Navbar from '@/Components/Navbar'
 import { connect } from 'react-redux'
+import { Box } from '@mui/joy'
+
+import IntroModal from '@/Components/IntroModal'
+import Navbar from '@/Components/Navbar'
+import TimerControls from '@/Components/TimerControls'
+import Search from '@/Components/Search'
 
 const Main = ({ ...props }) => {
     return (
-        <>
+        <Box component="main">
             <Head title="Welcome" />
             {/* <NotificationContainer></NotificationContainer> */}
             <Navbar></Navbar>
-            <Box>
-                <Typography>Hi</Typography>
-            </Box>
-        </>
+            <IntroModal videoPlayer={props.videoPlayer}></IntroModal>
+            <TimerControls show={props.showTimer}></TimerControls>
+            <Search show={props.showSearch}></Search>
+        </Box>
     );
 }
 
