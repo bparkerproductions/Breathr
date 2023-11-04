@@ -7,9 +7,9 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers'
 import { createStore } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel'
-const store = createStore(rootReducer)
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -18,7 +18,7 @@ createInertiaApp({
         const root = createRoot(el);
 
         root.render(
-            <Provider store={store}>
+            <Provider store={createStore(rootReducer, composeWithDevTools())}>
                 <App {...props} />
             </Provider>
         );
