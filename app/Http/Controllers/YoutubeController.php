@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Http;
 
 class YoutubeController extends Controller
 {
-    public function search(Request $request) {
-        $query = $request->input('q');
+    protected $yt;
 
-        $yt = [
+    public function __construct() {
+        $this->yt = [
             'base' => 'https://www.googleapis.com/youtube/v3',
             'part' => 'snippet',
             'maxResults' => '9',
@@ -20,8 +20,26 @@ class YoutubeController extends Controller
             'videoDuration' => 'long',
             'key' => env('API_YOUTUBE_KEY')
         ];
+    }
 
-        $url = "{$yt['base']}/search?part={$yt['part']}&maxResults={$yt['maxResults']}&videoEmbeddable={$yt['embeddable']}&type={$yt['type']}&videoDefinition={$yt['videoDefinition']}&videoDuration={$yt['videoDuration']}&q={$query}&key={$yt['key']}";
+    public function search(Request $request) {
+        $query = $request->input('q');
+
+        $url = "{$this->yt['base']}/search?part={$this->yt['part']}&maxResults={$this->yt['maxResults']}&videoEmbeddable={$this->yt['embeddable']}&type={$this->yt['type']}&videoDefinition={$this->yt['videoDefinition']}&videoDuration={$this->yt['videoDuration']}&q={$query}&key={$this->yt['key']}";
+
+        $response = Http::get($url);
+
+        if ($response->successful()) {
+            return response()->json($response->json());
+        } else {
+            return response()->json(['error' => 'Unable to fetch data from YouTube'], 500);
+        }
+    }
+
+    public function searchURL(Request $request) {
+        $id = $request->input('id');
+
+        $url = "{$this->yt['base']}/videos?id={$id}&part={$this->yt['part']}&key={$this->yt['key']}";
 
         $response = Http::get($url);
 

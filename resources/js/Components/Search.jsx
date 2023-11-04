@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react'
 import { connect } from 'react-redux'
 import SearchBar from '@/Components/SearchBar'
-import youtube from '@/helpers/apis/youtube'
+import youtube from '@/helpers/youtube'
 import VideoResult from '@/Components/VideoResult'
 import ComponentControls from '@/Components/ComponentControls'
 import { saveSearchedVideos } from '@/actions/videoList'
@@ -51,11 +51,7 @@ const Search = (props) => {
     const parseId = q.split('v=')[1]
 
     if (parseId) {
-      const url = `${youtube.base}/videos?
-      id=${parseId}&
-      part=${youtube.part}&
-      key=${youtube.key}`
-      .replace(/\s/g, '')
+      const url = `/youtube/searchURL?id=${encodeURIComponent(parseId)}`
 
       fetch(url)
       .then(response => response.json())

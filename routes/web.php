@@ -32,6 +32,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/youtube/search', [YoutubeController::class, 'search']);
+Route::get('/youtube/searchURL', [YoutubeController::class, 'searchURL']);
 Route::get('/thesaurus/suggestions', [ThesaurusController::class, 'getSuggestions']);
 
 Route::middleware('auth')->group(function () {

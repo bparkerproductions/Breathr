@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Youtube from 'react-youtube'
 import { connect } from 'react-redux'
 import { setVideoPlayer } from '@/actions'
-import { playerVars } from '@/helpers/apis/youtube'
+import options from '@/helpers/youtube'
 import { Box } from '@mui/joy'
 
 const VideoRender = props => {
@@ -11,7 +11,7 @@ const VideoRender = props => {
    * Set autoplay to 0 if no videos have been played yet, otherwise it should be one
    */
   useEffect(() => {
-    props.videosPlayed === 0 ? playerVars.autoplay = 0 : playerVars.autoplay = 1
+    props.videosPlayed === 0 ? options.playerVars.autoplay = 0 : options.playerVars.autoplay = 1
   })
 
   /**
@@ -35,7 +35,7 @@ const VideoRender = props => {
        }}>
         <Youtube
           videoId={props.selectedVideo || props.defaultVideo}
-          opts={playerVars}
+          opts={options}
           onReady={setPlayingVideo}
         >
         </Youtube>
