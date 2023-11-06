@@ -33,7 +33,7 @@ const CollectionControls = props => {
     setOpen(true)
 
     if (!doesVideoExist()) {
-      // props.addToCollection(props.video)
+      props.addToCollection(props.video)
 
       setColor("success")
       setMessage('Your video has successfully been added to your collection!')

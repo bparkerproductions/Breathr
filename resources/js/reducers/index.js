@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
-import videoList from './videoList'
-import appToggles from './appToggles'
-import timer from './timer'
+import videoList from '@/reducers/videoList'
+import appToggles from '@/reducers/appToggles'
+import timer from '@/reducers/timer'
 
 /**
  * Set event.target of the Youtube API Iframe to videoPlayer

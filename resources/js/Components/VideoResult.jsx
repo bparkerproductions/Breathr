@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import VideoItem from '@/Components/VideoItem'
 import { Box, Typography, Alert, Grid } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faWarning } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faWarning } from '@fortawesome/free-solid-svg-icons'
 
 const VideoResult = props => {
   function renderResults(loopObj, isCollection=false) {
@@ -47,9 +47,9 @@ const VideoResult = props => {
     }
     else {
       return (
-        <Box className="notification-card">
-          <Typography>Type to search for videos...</Typography>
-        </Box>
+        <Alert variant="soft" color="primary">
+          <Typography>Begin your search above</Typography>
+        </Alert>
       )
     }
   }

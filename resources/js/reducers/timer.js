@@ -1,4 +1,4 @@
-import { storeSeconds, getTotalSeconds, getTimeForDay } from './../helpers/store/timeStore'
+import { storeSeconds, getTotalSeconds, getTimeForDay } from '@/helpers/store/timeStore'
 
 /**
  * Toggles total seconds elapsed and stores the new result in local storage
