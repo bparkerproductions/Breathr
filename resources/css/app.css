@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* // $primary: #3ab8ea;
 // $light: #fff;
 // $dark: #23272a;
@@ -47,6 +51,3 @@ main {
   cursor: pointer;
 }
 
-#ambedOfficeFrame #m_excelEmbedRenderer_m_ewaEmbedViewerBar{
-  display: none;
-}

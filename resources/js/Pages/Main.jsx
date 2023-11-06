@@ -1,5 +1,5 @@
 import { Head } from '@inertiajs/react'
-import 'react-notifications/lib/notifications.css'
+// import 'react-notifications/lib/notifications.css'
 import { connect } from 'react-redux'
 import { Box } from '@mui/joy'
 
