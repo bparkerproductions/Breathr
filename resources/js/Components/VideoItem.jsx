@@ -1,14 +1,17 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { connect, useSelector } from 'react-redux'
-import CollectionControls from '@/Components/Collection'
+import CollectionControls from '@/Components/CollectionControls'
 import { selectVideo } from '@/actions/videoList'
 import { incrementVideosPlayed } from '@/actions'
 import { setPaused } from '@/actions/appToggles'
 import { Box, Card, CardContent, CardCover, Typography } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPauseCircle, faPlay } from '@fortawesome/free-solid-svg-icons'
+import { usePage } from '@inertiajs/react'
 
 const VideoItem = ({ videoPlayer, videosPlayed, videoVolume, video, incrementVideosPlayed, selectVideo, setPaused }) => {
+
+  const { auth } = usePage().props
   const [isPlaying, setIsPlaying] = useState(false)
 
    /**
@@ -120,15 +123,10 @@ const VideoItem = ({ videoPlayer, videosPlayed, videoVolume, video, incrementVid
 
   function getCollectionControls() {
 
-    // Temporary until backend
-    const authenticated = false
-
-    if (authenticated) return (
-    <CardContent sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-start' }}>
-        <CollectionControls 
-          video={video}
-        />
-      </CardContent>
+    if (auth.user) return (
+      <CardContent sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-start' }}>
+          <CollectionControls video={video} />
+        </CardContent>
     )
   }
 

@@ -1,5 +1,4 @@
 import { Head } from '@inertiajs/react'
-// import 'react-notifications/lib/notifications.css'
 import { connect } from 'react-redux'
 import { Box } from '@mui/joy'
 
@@ -14,7 +13,6 @@ const Main = ({ ...props }) => {
     return (
         <Box component="main">
             <Head title="Welcome" />
-            {/* <NotificationContainer></NotificationContainer> */}
             <Navbar></Navbar>
             <IntroModal videoPlayer={props.videoPlayer}></IntroModal>
             <TimerControls show={props.showTimer}></TimerControls>

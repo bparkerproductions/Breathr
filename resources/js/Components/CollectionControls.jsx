@@ -1,11 +1,15 @@
-import React from 'react'
-import { NotificationManager } from 'react-notifications'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { removeFromCollection, addToCollection } from '@/actions/videoList'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle, faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { Snackbar } from '@mui/joy'
 
 const CollectionControls = props => {
+  const [open, setOpen] = useState(false)
+  const [message, setMessage] = useState("")
+  const [color, setColor] = useState("")
+
    /**
    * Check if video already exists in collection
    */
@@ -26,15 +30,17 @@ const CollectionControls = props => {
    function handleAdd(e) {
     e.stopPropagation()
 
-    if (!doesVideoExist()) {
-      props.addToCollection(props.video)
+    setOpen(true)
 
-      let successMessage = 'Your video has successfully been added to your collection!'
-      NotificationManager.success(successMessage, 'Video Added!', 2000)
+    if (!doesVideoExist()) {
+      // props.addToCollection(props.video)
+
+      setColor("success")
+      setMessage('Your video has successfully been added to your collection!')
     }
     else {
-      let warningMessage = 'This video is already in your collection!'
-      NotificationManager.warning(warningMessage, false, 2000)
+      setColor("warning")
+      setMessage('This video is already in your collection!')
     }
   }
 
@@ -46,24 +52,47 @@ const CollectionControls = props => {
     let videoID = props.video.id.videoId
     props.removeFromCollection(videoID)
 
-    let successMessage = 'Your video has successfully been removed from your collection!'
-    NotificationManager.success(successMessage, 'Video Removed!', 2000)
+    setColor("primary")
+    setOpen(true)
+    setMessage('Your video has successfully been removed from your collection!')
   }
 
-  if (!doesVideoExist()) {
-    return <FontAwesomeIcon
-      icon={faPlusCircle}
-      color="white"
-      onClick={handleAdd}
-    />
-  }
-  else {
-    return <FontAwesomeIcon
+  function getIcon() {
+    if (!doesVideoExist()) {
+      return <FontAwesomeIcon
+        icon={faPlusCircle}
+        color="white"
+        onClick={handleAdd}
+      />
+    }
+    else return <FontAwesomeIcon
       icon={faMinusCircle}
       color="red"
       onClick={handleRemove}
     />
   }
+
+
+    return (
+      <>
+      {getIcon()}
+
+      <Snackbar
+        autoHideDuration={1600}
+        open={open}
+        variant="soft"
+        color={color}
+        size="lg"
+        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+        startDecorator={<FontAwesomeIcon icon={faCheckCircle} />}
+        onClose={() => {setOpen(false)}}
+        sx={{ marginBottom: 2, marginLeft: 2 }}
+      >
+      {message}
+    </Snackbar>
+    </>
+    )
+
 }
 
 const mapStateToProps = state => {

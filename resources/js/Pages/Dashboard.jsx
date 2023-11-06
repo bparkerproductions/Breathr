@@ -1,5 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
+import { Card, Typography, Container } from '@mui/joy';
 
 export default function Dashboard({ auth }) {
     return (
@@ -9,7 +10,14 @@ export default function Dashboard({ auth }) {
         >
             <Head title="Dashboard" />
 
-            
+            <Container>
+                <Card sx={{ marginTop: 5 }}>
+                    <Typography level="h2">Your Time</Typography>
+                </Card>
+                <Card sx={{ marginTop: 5 }}>
+                    <Typography level="h2">Your Collection</Typography>
+                </Card>
+            </Container>
         </AuthenticatedLayout>
     );
 }
