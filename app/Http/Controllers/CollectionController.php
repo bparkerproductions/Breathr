@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CollectionItem;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CollectionController extends Controller
 {

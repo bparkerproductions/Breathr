@@ -1,7 +1,13 @@
 /**
  * Add or remove a video from the videos state, which is reflected in the collection component
  */
+
 const videosReducer = (initialVideos=[], action) => {
+  // Set videos initially
+  if (action.type === 'SET_VIDEOS') {
+    return action.payload;
+  }
+
   if (action.type === 'ADD_TO_COLLECTION') {
     let newState = [...initialVideos, action.payload]
     return newState

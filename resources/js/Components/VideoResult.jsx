@@ -13,7 +13,7 @@ const VideoResult = props => {
         <Grid container spacing={2} sx={{ flexGrow: 1 }}>
           {loopObj.map(video => {
             return (
-              <Grid xs={12} md={6} xl={4} key={video.etag}>
+              <Grid xs={12} md={6} xl={4} key={video.video_id}>
                 <VideoItem video={video}></VideoItem>
               </Grid>
             )

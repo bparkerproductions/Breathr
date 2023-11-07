@@ -135,7 +135,7 @@ const VideoItem = ({ videoPlayer, videosPlayed, videoVolume, video, incrementVid
     <Card onClick={videoSelected} className="cursor-pointer" sx={{ height: '200px' }}>
       <CardCover>
         <img
-          src={video.snippet.thumbnails.medium.url}
+          src={video.snippet.thumbnails.high.url}
           alt={video.snippet.description}
         />
       </CardCover>

@@ -1,4 +1,14 @@
 /**
+ * Called to initially set collection videos from the database
+ */
+export const setVideos = videos => {
+  return {
+    type: 'SET_VIDEOS',
+    payload: videos
+  }
+}
+
+/**
  * Called when the "add to collection" button is clicked
  */
 export const addToCollection = videoObj => {

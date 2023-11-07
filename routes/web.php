@@ -4,6 +4,7 @@ use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ThesaurusController;
 use App\Http\Controllers\YoutubeController;
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -22,7 +23,8 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Main', [
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register')
+        'canRegister' => Route::has('register'),
+        'user' => auth()->user()->load('collectionItems')
     ]);
 });
 

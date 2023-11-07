@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAddressBook } from '@fortawesome/free-solid-svg-icons'
 
 const Collection = (props) => {
-  const { auth } = usePage().props;
+  const { auth } = usePage().props
   const [boxHeight, setBoxHeight] = useState(null)
   const cardRef = useRef(null)
 
