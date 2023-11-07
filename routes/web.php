@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ThesaurusController;
 use App\Http\Controllers\YoutubeController;
@@ -32,6 +33,8 @@ Route::get('/dashboard', function () {
 Route::get('/youtube/search', [YoutubeController::class, 'search']);
 Route::get('/youtube/searchURL', [YoutubeController::class, 'searchURL']);
 Route::get('/thesaurus/suggestions', [ThesaurusController::class, 'getSuggestions']);
+
+Route::post('/collection/store', [CollectionController::class, 'store']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

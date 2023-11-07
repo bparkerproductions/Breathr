@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { router } from '@inertiajs/react';
 import { removeFromCollection, addToCollection } from '@/actions/videoList'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
@@ -8,7 +9,7 @@ import { Snackbar } from '@mui/joy'
 const CollectionControls = props => {
   const [open, setOpen] = useState(false)
   const [message, setMessage] = useState("")
-  const [color, setColor] = useState("")
+  const [color, setColor] = useState("neutral")
 
    /**
    * Check if video already exists in collection
@@ -33,10 +34,7 @@ const CollectionControls = props => {
     setOpen(true)
 
     if (!doesVideoExist()) {
-      props.addToCollection(props.video)
-
-      setColor("success")
-      setMessage('Your video has successfully been added to your collection!')
+      addToCollection()
     }
     else {
       setColor("warning")
@@ -55,6 +53,31 @@ const CollectionControls = props => {
     setColor("primary")
     setOpen(true)
     setMessage('Your video has successfully been removed from your collection!')
+  }
+
+  function addToCollection() {
+    const data = {
+      title: props.video.snippet.title,
+      video_id: props.video.id.videoId,
+      thumbnail_url: props.video.snippet.thumbnails.high.url,
+      description: props.video.snippet.description
+    }
+
+    router.post('/collection/store', data, {
+      onSuccess: () => {
+        // Notify User
+        props.addToCollection(props.video)
+
+        setColor("success")
+        setMessage('Your video has successfully been added to your collection!')
+      },
+      onError: () => {
+        console.log('error')
+        setColor("danger")
+        setOpen(true)
+        setMessage('There was an error adding your video to the collection.')
+      }
+    })
   }
 
   function getIcon() {

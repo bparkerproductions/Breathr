@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
+import { usePage } from '@inertiajs/react'
 import VideoResult from '@/Components/VideoResult'
 import ComponentControls from '@/Components/ComponentControls'
 import CycleVideos from '@/Components/CycleVideos'
@@ -8,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAddressBook } from '@fortawesome/free-solid-svg-icons'
 
 const Collection = (props) => {
+  const { auth } = usePage().props;
   const [boxHeight, setBoxHeight] = useState(null)
   const cardRef = useRef(null)
 
@@ -23,14 +25,10 @@ const Collection = (props) => {
   }
 
   function renderCollection() {
-    // Placeholder until backend
-    const isAuthenticated = false;
-
-    if (isAuthenticated) {
+    if (auth.user) {
       return (
         <VideoResult
-          grabFromCollection={true}
-          canRemove={true}>
+          grabFromCollection={true}>
         </VideoResult>
       )
     }

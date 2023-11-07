@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('collection_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('url');
-            $table->integer('durationInMinutes');
+            $table->string('video_id');
+            $table->string('thumbnail_url');
+            $table->integer('durationInMinutes')->nullable();
             $table->string('title');
+            $table->longText('description');
             $table->timestamps();
         });
     }
