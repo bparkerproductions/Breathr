@@ -35,6 +35,7 @@ Route::get('/youtube/searchURL', [YoutubeController::class, 'searchURL']);
 Route::get('/thesaurus/suggestions', [ThesaurusController::class, 'getSuggestions']);
 
 Route::post('/collection/store', [CollectionController::class, 'store']);
+Route::delete('/collection/{videoId}', [CollectionController::class, 'destroy']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

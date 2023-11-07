@@ -47,12 +47,17 @@ const CollectionControls = props => {
    */
   function handleRemove(e) {
     e.stopPropagation()
-    let videoID = props.video.id.videoId
-    props.removeFromCollection(videoID)
+    const videoID = props.video.id.videoId
+    router.delete(`/collection/${videoID}`, {
+      onSuccess: () => {
+        props.removeFromCollection(videoID)
 
-    setColor("primary")
-    setOpen(true)
-    setMessage('Your video has successfully been removed from your collection!')
+        setColor("primary")
+        setOpen(true)
+        setMessage('Your video has successfully been removed from your collection!')
+      },
+      preserveScroll: true
+    })
   }
 
   function addToCollection() {
@@ -67,7 +72,6 @@ const CollectionControls = props => {
       onSuccess: () => {
         // Notify User
         props.addToCollection(props.video)
-
         setColor("success")
         setMessage('Your video has successfully been added to your collection!')
       },
@@ -76,7 +80,8 @@ const CollectionControls = props => {
         setColor("danger")
         setOpen(true)
         setMessage('There was an error adding your video to the collection.')
-      }
+      },
+      preserveScroll: true
     })
   }
 

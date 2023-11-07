@@ -9,6 +9,7 @@ class CollectionController extends Controller
 {
     public function store(Request $request) {
         $user = auth()->user();
+        $collectionExists = CollectionItem::where('video_id', $request->input('video_id'))->first();
 
         $collection = new CollectionItem([
             'title' => $request->input('title'),
@@ -18,6 +19,16 @@ class CollectionController extends Controller
             'description' => $request->input('description')
         ]);
 
-        $user->collectionItems()->save($collection);
+        if ( !$collectionExists ) {
+            $user->collectionItems()->save($collection);
+        }
+    }
+
+    public function destroy(Request $request, $videoId) {
+        $collection = CollectionItem::where('video_id', $videoId)->first();
+
+        if ($collection) {
+            $collection->delete();
+        }
     }
 }
