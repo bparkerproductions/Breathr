@@ -1,8 +1,29 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
-import { Card, Typography, Container } from '@mui/joy';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
+import { Head, usePage } from '@inertiajs/react'
+import { Card, Typography, Container, CardContent, Divider, Box } from '@mui/joy'
+import CollectionItem from '@/Components/Dashboard/CollectionItem'
 
 export default function Dashboard({ auth }) {
+    const { user } = usePage().props
+
+    function collectionItems() {
+        console.log(user['collection_items'])
+        if (user['collection_items']) {
+            return (
+                <Box>
+                    {user['collection_items'].map( elem => {
+                        return (
+                            <CollectionItem key={elem.video_id} item={elem} />
+                        )
+                    })}
+                    </Box>
+            );
+        }
+        else {
+            return <Typography>You have no collection items.</Typography>
+        }
+    }
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -11,11 +32,12 @@ export default function Dashboard({ auth }) {
             <Head title="Dashboard" />
 
             <Container>
-                <Card sx={{ marginTop: 5 }}>
-                    <Typography level="h2">Your Time</Typography>
-                </Card>
-                <Card sx={{ marginTop: 5 }}>
-                    <Typography level="h2">Your Collection</Typography>
+                <Card variant="soft" color="neutral" sx={{ marginTop: 5 }}>
+                    <Typography level="h3">Your Collection</Typography>
+                    <Divider />
+                    <CardContent>
+                        {collectionItems()}
+                    </CardContent>
                 </Card>
             </Container>
         </AuthenticatedLayout>
