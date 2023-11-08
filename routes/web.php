@@ -40,6 +40,7 @@ Route::get('/thesaurus/suggestions', [ThesaurusController::class, 'getSuggestion
 
 Route::post('/collection/store', [CollectionController::class, 'store']);
 Route::delete('/collection/{videoId}', [CollectionController::class, 'destroy']);
+Route::get('/collection/search', [CollectionController::class,'search']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

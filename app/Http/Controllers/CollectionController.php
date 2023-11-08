@@ -32,4 +32,14 @@ class CollectionController extends Controller
             $collection->delete();
         }
     }
+
+    public function search(Request $request) {
+        $searchTerm = $request->input('search');
+
+        $collectionItems = CollectionItem::where('title', 'LIKE', "%{$searchTerm}%")
+        ->orWhere('description', 'LIKE', "%{$searchTerm}%")
+        ->get();
+
+        return response()->json($collectionItems);
+    }
 }

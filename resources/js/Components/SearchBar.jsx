@@ -63,6 +63,7 @@ const SearchBar = (props) => {
             <Input
               startDecorator={
                 <FontAwesomeIcon
+                  className="cursor-pointer"
                   icon={faSearch}
                   onClick={trackInput}
                 />

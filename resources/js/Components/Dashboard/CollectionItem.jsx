@@ -2,7 +2,7 @@ import { Button, AspectRatio, Typography, CardOverflow, Card, CardContent } from
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faYoutube } from '@fortawesome/free-brands-svg-icons'
 
-export default function CollectionList(props) {
+export default function CollectionItem(props) {
   return (
     <Card
       variant="outlined"
