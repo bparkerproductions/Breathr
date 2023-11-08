@@ -3,6 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faYoutube } from '@fortawesome/free-brands-svg-icons'
 
 export default function CollectionItem(props) {
+  /**
+   * Sanitize text from HTML entities
+   */
+    function getText(textContent) {
+      const text = document.createElement("textarea")
+      text.innerHTML = textContent
+      return text.value
+    }
+
   return (
     <Card
       variant="outlined"
@@ -28,8 +37,8 @@ export default function CollectionItem(props) {
         </CardOverflow>
 
         <CardContent>
-            <Typography level="body-md" fontWeight="bold">{props.item.title}</Typography>
-            <Typography level="body-md">{props.item.description}</Typography>
+            <Typography level="body-md" fontWeight="bold">{getText(props.item.title)}</Typography>
+            <Typography level="body-md">{getText(props.item.description)}</Typography>
             <Button
                 target="_blank"
                 component="a"

@@ -94,7 +94,7 @@ export default function CollectionList(props) {
    * Render the search bar if there are items
    */
   function searchBar() {
-    if (user['collection_items']) {
+    if (user['collection_items'].length) {
       return <Input
       startDecorator={
         <FontAwesomeIcon className="cursor-pointer" icon={faSearch} onClick={search} />
