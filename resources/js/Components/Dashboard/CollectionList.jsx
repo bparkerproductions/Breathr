@@ -1,9 +1,10 @@
-import { Card, Typography, CardContent, Divider, Box, Input } from '@mui/joy'
+import { Card, Typography, CardContent, Divider, Box, Input, Button } from '@mui/joy'
 import CollectionItem from '@/Components/Dashboard/CollectionItem'
+import MLink from '@mui/joy/Link'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { usePage } from '@inertiajs/react'
+import { Link, usePage } from '@inertiajs/react'
 import { useState, useEffect } from 'react'
 
 export default function CollectionList(props) {
@@ -17,8 +18,11 @@ export default function CollectionList(props) {
     setCollectionItems(user['collection_items'])
   }, [])
 
+  /**
+   * Return the list of <CollectionItem> components
+   */
   function collectionItemsResults() {
-    if (user['collection_items']) {
+    if (user['collection_items'].length) {
       return (
         <Box>
           {collectionItems.map( elem => {
@@ -30,18 +34,35 @@ export default function CollectionList(props) {
       );
     }
     else {
-      return <Typography>You have no collection items.</Typography>
+      return (
+        <>
+          <Typography>You have no collection items.</Typography>
+          <Link href={route('main')}>
+            <Button sx={{ maxWidth: '200px', marginTop: 1 }} color="primary">Go add some!</Button>
+          </Link>
+        </>
+      )
     }
   }
 
+  /**
+   * Provide user "results" indicator text if there is a recent search and query
+   */
   function resultsText() {
     if (searchQuery && recentSearch) {
-      return <Typography level="body-lg">Results for <strong>{recentSearch}</strong></Typography>
+      return <Typography level="body-lg">
+        Results for <strong>{recentSearch}</strong>
+        <Typography level="body-sm" sx={{ paddingLeft: 1 }}>
+          <MLink underline="always" color="primary" onClick={clearSearch}>Clear Results</MLink>
+        </Typography>
+      </Typography>
     }
   }
 
+  /**
+   * Query the database for collectionItems and set the result in the React state
+   */
   function search() {
-
     if (searchQuery) {
       fetch(`/collection/search?search=${searchQuery}`)
       .then(response => response.json())
@@ -52,16 +73,41 @@ export default function CollectionList(props) {
     }
   }
 
+  /**
+   * Reset results when the search bar is cleared
+   */
   function clearSearch() {
-    // Reset results when the search bar is cleared
     setRecentSearch("")
     setSearchQuery("")
     setCollectionItems(user['collection_items'])
   }
 
+  /**
+   * Handle searching or clearing the results if the bar becomes empty
+   */
   function handleOnChange(e) {
     if (!e.target.value) clearSearch()
     else setSearchQuery(e.target.value)
+  }
+
+  /**
+   * Render the search bar if there are items
+   */
+  function searchBar() {
+    if (user['collection_items']) {
+      return <Input
+      startDecorator={
+        <FontAwesomeIcon className="cursor-pointer" icon={faSearch} onClick={search} />
+      }
+      onKeyDown={e => { if (e.key === 'Enter') search() }}
+      type="text"
+      color="primary"
+      variant="outlined"
+      value={searchQuery}
+      onChange={handleOnChange}
+      placeholder="Search your collection"
+    />
+    }
   }
 
   return (
@@ -69,18 +115,7 @@ export default function CollectionList(props) {
       <Typography level="h3">Your Collection</Typography>
       <Divider />
       <CardContent>
-      <Input
-        startDecorator={
-          <FontAwesomeIcon className="cursor-pointer" icon={faSearch} onClick={search} />
-        }
-        onKeyDown={e => { if (e.key === 'Enter') search() }}
-        type="text"
-        color="primary"
-        variant="outlined"
-        value={searchQuery}
-        onChange={handleOnChange}
-        placeholder="Search your collection"
-      />
+      {searchBar()}
       </CardContent>
       <CardContent>
         {resultsText()}

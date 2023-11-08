@@ -22,11 +22,9 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Main', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
         'user' => auth()->user() ? auth()->user()->load('collectionItems') : null
     ]);
-});
+})->name('main');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [
