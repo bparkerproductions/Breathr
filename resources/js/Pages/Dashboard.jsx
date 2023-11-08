@@ -2,6 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import { Head } from '@inertiajs/react'
 import { Container } from '@mui/joy'
 import CollectionList from '@/Components/Dashboard/CollectionList'
+import TimeTracks from '@/Components/Dashboard/TimeTracks'
 
 export default function Dashboard({ auth }) {
 
@@ -14,6 +15,7 @@ export default function Dashboard({ auth }) {
 
             <Container>
                 <CollectionList />
+                <TimeTracks />
             </Container>
         </AuthenticatedLayout>
     );
