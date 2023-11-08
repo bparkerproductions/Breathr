@@ -9,12 +9,11 @@
 // $secondary: #d97cd5; */
 
 html,
-body {
+main {
   width: 100%;
   margin: 0;
   padding: 0;
-  /* overflow-x: hidden; */
-  min-height: 100%;
+  overflow-x: hidden;
 }
 
 /* Position YouTube iframe */
@@ -32,7 +31,8 @@ body {
 /* Animation tuck away */
 #timer-container,
 #video-search,
-#video-collection {
+#video-collection,
+#intro-modal {
   transition: all 0.45s ease;
   transform: translate(0, 0);
   opacity: 1;

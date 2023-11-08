@@ -24,13 +24,13 @@ Route::get('/', function () {
     return Inertia::render('Main', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'user' => auth()->user()->load('collectionItems')
+        'user' => auth()->user() ? auth()->user()->load('collectionItems') : null
     ]);
 });
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [
-        'user' => auth()->user()->load('collectionItems')
+        'user' => auth()->user() ? auth()->user()->load('collectionItems') : null
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 

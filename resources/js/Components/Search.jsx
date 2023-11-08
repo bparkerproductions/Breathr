@@ -41,7 +41,6 @@ const Search = (props) => {
     fetch(url)
     .then(response => response.json())
     .then(response => {
-      console.log(response.items)
       setVideos(response.items)
       props.saveSearchedVideos(response.items)
     })

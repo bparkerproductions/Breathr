@@ -3,13 +3,15 @@ import { connect } from 'react-redux'
 import { checkVisitCount } from '@/helpers/store/general'
 import { setPaused } from '@/actions/appToggles'
 import { incrementVideosPlayed } from '@/actions'
-import Button from '@mui/joy/Button'
-import { Box, Card, Typography, CardActions, Container, Divider } from '@mui/joy'
+import { Link, usePage } from '@inertiajs/react'
+
+import MLink from '@mui/joy/Link'
+import { Box, Card, Typography, CardActions, Container, Divider, Button, Alert } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle} from '@fortawesome/free-solid-svg-icons'
 
-
 const IntroModal = (props) => {
+  const { auth } = usePage().props
   const [isShown, setIsShown] = useState(true)
 
   function playVideo() {
@@ -23,7 +25,22 @@ const IntroModal = (props) => {
     props.setPaused(false)
   }
 
+  function signupAlert() {
+    if ( !auth.user ) {
+      return (
+        <Alert>
+            <Typography level="body-sm">Don't have an account?
+              <Link href={route('register')}>
+                <MLink underline="always" sx={{ paddingLeft: 1 }}>Sign up so you can save your times and soundscapes.</MLink>
+              </Link>
+            </Typography>
+          </Alert>
+      )
+    }
+  }
+
   function title() {
+    console.log(checkVisitCount())
     return checkVisitCount() > 1 ? 'Welcome Back!' : 'Welcome to Breathr!'
   }
 
@@ -33,11 +50,16 @@ const IntroModal = (props) => {
     return checkVisitCount() > 1 ? welcomeMessage : firstTimeMessage
   }
 
-  if (props.videosPlayed === 0 && isShown) {
+  function isHidden() {
+    if ( !(props.videosPlayed === 0 && isShown) ) return 'hidden'
+  }
+
     return (
       <Container
+        id="intro-modal"
         component="section"
-        sx={{ marginTop: 12.5, marginBottom: 12.5 }}
+        className={isHidden()}
+        sx={{ marginY: 12.5 }}
       >
         <Card
           color="primary"
@@ -50,6 +72,7 @@ const IntroModal = (props) => {
           <Box>
             <Typography level="body-md" fontWeight="normal">{description()}</Typography>
           </Box>
+          {signupAlert()}
           <CardActions>
             <Button onClick={playVideo}>Start Video Now</Button>
             <Button
@@ -62,9 +85,8 @@ const IntroModal = (props) => {
         </Card>
       </Container>
     )
-  }
-  else return null
 }
+
 const mapStateToProps = state => {
   return {
     videosPlayed: state.videosPlayed,

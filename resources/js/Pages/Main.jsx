@@ -2,6 +2,7 @@ import { Head, usePage } from '@inertiajs/react'
 import { connect } from 'react-redux'
 import { Box } from '@mui/joy'
 
+import { incrementVisitCount } from '@/helpers/store/general'
 import { setVideos } from '@/actions/videoList'
 import IntroModal from '@/Components/IntroModal'
 import Navbar from '@/Components/Navbar'
@@ -16,6 +17,8 @@ const Main = props => {
 
     // Initially populate video state on load
     useEffect(() => {
+        incrementVisitCount()
+        
         if (auth.user) {
 
             // Mimic YouTube response object for search and set the collection

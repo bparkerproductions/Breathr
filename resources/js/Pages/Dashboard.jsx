@@ -7,7 +7,6 @@ export default function Dashboard({ auth }) {
     const { user } = usePage().props
 
     function collectionItems() {
-        console.log(user['collection_items'])
         if (user['collection_items']) {
             return (
                 <Box>

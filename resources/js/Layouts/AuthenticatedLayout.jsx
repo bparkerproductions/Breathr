@@ -39,7 +39,9 @@ export default function Authenticated({ user, header, children }) {
                                     <MenuItem>
                                         <Link href={route('profile.edit')}>Edit Profile</Link>
                                     </MenuItem>
-                                    <MenuItem>Log Out</MenuItem>
+                                    <MenuItem>
+                                        <Link href={route('logout')} method="post">Log Out</Link>
+                                    </MenuItem>
                                 </Menu>
                             </Dropdown>
                         </Grid>
