@@ -23,13 +23,13 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Main', [
-        'user' => auth()->user() ? auth()->user()->load('collectionItems') : null
+        'user' => auth()->user() ? auth()->user()->load('collectionItems')->load('timeTracks') : null
     ]);
 })->name('main');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [
-        'user' => auth()->user() ? auth()->user()->load('collectionItems') : null
+        'user' => auth()->user() ? auth()->user()->load('collectionItems')->load('timeTracks') : null
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -42,6 +42,7 @@ Route::delete('/collection/{videoId}', [CollectionController::class, 'destroy'])
 Route::get('/collection/search', [CollectionController::class,'search']);
 
 Route::post('/time/store', [TimeController::class, 'store']);
+Route::delete('/time/destroy', [TimeController::class, 'destroy']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

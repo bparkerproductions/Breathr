@@ -26,7 +26,7 @@ const TimerControls = ({ incrementSecond, show }) => {
       timeInterval.current = setInterval(() => {
         setTime(prevTime => prevTime + 1)
         incrementSecond()
-      }, 1000)
+      }, 100)
     } else {
       clearInterval(timeInterval.current)
     }

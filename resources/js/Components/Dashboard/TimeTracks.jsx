@@ -1,18 +1,60 @@
-import { Card, Typography, CardContent, Divider, Box, Input, Button } from '@mui/joy'
-import { Link, usePage } from '@inertiajs/react'
+import { Link, router, usePage } from '@inertiajs/react'
 import { useState, useEffect } from 'react'
+
+import { Card, Typography, CardContent, Divider, Snackbar, Button } from '@mui/joy'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
 export default function CollectionList(props) {
   const { user } = usePage().props
+  const [open, setOpen] = useState(false)
+  const [message, setMessage] = useState("")
+
+  useEffect(() => {
+    // console.log(user['time_tracks'])
+  })
+
+  /**
+   * Make a db call to delete all time tracks from a user
+   */
+  function deleteAll() {
+    router.delete('/time/destroy', {
+      onSuccess: () => {
+        setMessage("Your time tracks have successfully been deleted")
+        setOpen(true)
+      }
+    })
+  }
 
 
   return (
-    <Card variant="soft" color="neutral" sx={{ marginTop: 5 }}>
-      <Typography level="h3">Your Time</Typography>
-      <Divider />
-      <CardContent>
-        <Typography>Time tracks</Typography>
-      </CardContent>
-    </Card>
+    <>
+      <Card variant="soft" color="neutral" sx={{ marginTop: 5 }}>
+        <Typography level="h3">Your Time</Typography>
+        <Divider />
+        <CardContent>
+          <Button
+            onClick={deleteAll}
+            color="danger"
+            sx={{ maxWidth: '250px' }}
+            disabled={user['time_tracks'].length ? false : true}
+          >Delete All Data</Button>
+        </CardContent>
+      </Card>
+
+      <Snackbar
+        autoHideDuration={3200}
+        open={open}
+        variant="soft"
+        color="success"
+        size="lg"
+        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+        startDecorator={<FontAwesomeIcon icon={faCheckCircle} />}
+        onClose={() => {setOpen(false)}}
+        sx={{ marginBottom: 2, marginLeft: 2 }}
+      >
+      {message}
+      </Snackbar>
+    </>
   )
 }

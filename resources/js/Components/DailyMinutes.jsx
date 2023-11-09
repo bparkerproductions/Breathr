@@ -27,7 +27,7 @@ const DailyMinutes = ({ ...props }) => {
    */
   function storeMinutes() {
     const data = {
-      time: getMinutes()
+      minutes: getMinutes()
     }
 
     router.post('/time/store', data, {
