@@ -1,5 +1,5 @@
-import { store, getData } from './general'
-import { createTimeTrack } from './general'
+import { store, getData } from '@/helpers/store/general'
+import { createTimeTrack } from '@/helpers/store/general'
 
 export function storeSeconds(seconds) {
   store(seconds, 'totalSeconds')

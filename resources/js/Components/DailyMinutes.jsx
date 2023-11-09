@@ -1,16 +1,27 @@
 import { connect } from 'react-redux'
 
-import { Box, Card, Divider, Link, Typography } from '@mui/joy'
+import { Box, Card, Divider, Typography } from '@mui/joy'
+import MLink from '@mui/joy/Link'
 import { useState, useRef } from 'react'
+import { Link, usePage } from '@inertiajs/react'
+import { useEffect } from 'react'
 
 const DailyMinutes = ({ ...props }) => {
+  const { auth } = usePage().props
   const [isShown, setIsShown] = useState(false)
   const dailyMinutesTimer = useRef(null)
 
+  useEffect(() => {
+    console.log('second incremented')
+  }, [props.secondsForDay])
+
   function getMinutes() {
-    return Math.floor(props.secondsForDay/60);
+    return Math.floor(props.secondsForDay / 60);
   }
 
+  /**
+   * Display their total time if they have at least minute, otherwise give them a default message
+   */
   function getMessage() {
     if (props.secondsForDay < 60) {
       return (
@@ -25,6 +36,9 @@ const DailyMinutes = ({ ...props }) => {
     )
   }
 
+  /**
+   * Get the "top" value for the popout so it's positioned under the <time> element
+   */
   function getTopHeight() {
     if (dailyMinutesTimer.current) {
       return dailyMinutesTimer.current.offsetHeight + 'px'
@@ -38,15 +52,22 @@ const DailyMinutes = ({ ...props }) => {
       sx={{ position: "relative" }}
     >
       <Box sx={{
-          position: "absolute",
+          position: 'absolute',
           display: () => { if (!isShown) return 'none' },
-          top: getTopHeight()
+          top: getTopHeight(),
+          width: '350px'
         }}>
       <Card>
         {getMessage()}
         <Divider />
-        <Typography level="body-sm">Want to save your time and start building a streak?</Typography>
-        <Link level="body-sm">Sign up for an account today</Link>
+        {auth.user ? (
+          <>
+          <Typography level="body-sm">Want to save your time and start building a streak?</Typography>
+          <Link href={route('register')}>
+            <MLink level="body-sm">Sign up for an account today</MLink>
+          </Link>
+          </>
+        ) : ""}
       </Card>
       </Box>
 
