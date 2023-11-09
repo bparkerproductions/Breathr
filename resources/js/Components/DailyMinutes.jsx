@@ -15,6 +15,7 @@ const DailyMinutes = ({ ...props }) => {
     console.log(minutesLogged, getMinutes())
     if (minutesLogged !== getMinutes()) {
       storeMinutes()
+      setMinutesLogged(getMinutes())
     }
   }, [props.secondsForDay])
 
@@ -26,19 +27,7 @@ const DailyMinutes = ({ ...props }) => {
    * Make a POST request to store the current daily amount of minutes
    */
   function storeMinutes() {
-    const data = {
-      minutes: getMinutes()
-    }
-
-    router.post('/time/store', data, {
-      onSuccess: () => {
-        console.log('success')
-      },
-      onError: () => {
-        console.log('error')
-      },
-      preserveScroll: true
-    })
+    router.post('/time/store', { minutes: getMinutes() } , { preserveScroll: true })
   }
 
   /**
