@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import videoList from '@/reducers/videoList'
 import appToggles from '@/reducers/appToggles'
-import { getTimeForDay } from '@/helpers/store/timeStore'
+import { getTimeForDay, storeTime } from '@/helpers/store'
 
 /**
  * Set event.target of the Youtube API Iframe to videoPlayer
@@ -33,7 +33,10 @@ const secondsForDay = (seconds=getTimeForDay(), action) => {
   // Seconds for the current 24h day
   if (seconds === undefined) return 0
 
-  if (action.type === 'INCREMENT_SECOND') seconds++
+  if (action.type === 'INCREMENT_SECOND') {
+    storeTime()
+    seconds++
+  }
   return seconds
 }
 

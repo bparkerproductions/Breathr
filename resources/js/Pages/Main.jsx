@@ -2,7 +2,7 @@ import { Head, usePage } from '@inertiajs/react'
 import { connect } from 'react-redux'
 import { Box } from '@mui/joy'
 
-import { incrementVisitCount } from '@/helpers/store/general'
+import { incrementVisitCount } from '@/helpers/store'
 import { setVideos } from '@/actions/videoList'
 import IntroModal from '@/Components/IntroModal'
 import Navbar from '@/Components/Navbar'

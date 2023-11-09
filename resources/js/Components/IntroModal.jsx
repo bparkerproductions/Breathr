@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { checkVisitCount } from '@/helpers/store/general'
+import { checkVisitCount } from '@/helpers/store'
 import { setPaused } from '@/actions/appToggles'
 import { incrementVideosPlayed } from '@/actions'
 import { Link, usePage } from '@inertiajs/react'

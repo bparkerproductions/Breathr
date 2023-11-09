@@ -1,5 +1,5 @@
-import { Link, usePage } from '@inertiajs/react';
-import { Stack, Typography, Grid, Container, Divider, ButtonGroup, Button } from '@mui/joy'
+import { Link, usePage } from '@inertiajs/react'
+import { Stack, ButtonGroup, Button } from '@mui/joy'
 
 export default function AuthButtons({ ...props }) {
   const { auth } = usePage().props

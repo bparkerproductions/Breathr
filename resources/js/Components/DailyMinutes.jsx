@@ -12,7 +12,7 @@ const DailyMinutes = ({ ...props }) => {
   const dailyMinutesTimer = useRef(null)
 
   useEffect(() => {
-    console.log('second incremented')
+    console.log('second incremented', props.secondsForDay)
   }, [props.secondsForDay])
 
   function getMinutes() {
