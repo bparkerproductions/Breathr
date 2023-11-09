@@ -3,27 +3,42 @@ import { connect } from 'react-redux'
 import { Box, Card, Divider, Typography } from '@mui/joy'
 import MLink from '@mui/joy/Link'
 import { useState, useRef, useEffect } from 'react'
-import { Link, usePage } from '@inertiajs/react'
+import { Link, router, usePage } from '@inertiajs/react'
 
 const DailyMinutes = ({ ...props }) => {
   const { auth } = usePage().props
   const [isShown, setIsShown] = useState(false)
-  const [minutesLogged, setMinutesLogged] = useState(0)
+  const [minutesLogged, setMinutesLogged] = useState(Math.floor(getMinutes()))
   const dailyMinutesTimer = useRef(null)
-
-  useEffect(() => {
-    setMinutesLogged(Math.floor(getMinutes()))
-  }, [])
 
   useEffect(() => {
     console.log(minutesLogged, getMinutes())
     if (minutesLogged !== getMinutes()) {
-      console.log('log db')
+      storeMinutes()
     }
   }, [props.secondsForDay])
 
   function getMinutes() {
     return Math.floor(props.secondsForDay / 60);
+  }
+
+  /**
+   * Make a POST request to store the current daily amount of minutes
+   */
+  function storeMinutes() {
+    const data = {
+      time: getMinutes()
+    }
+
+    router.post('/time/store', data, {
+      onSuccess: () => {
+        console.log('success')
+      },
+      onError: () => {
+        console.log('error')
+      },
+      preserveScroll: true
+    })
   }
 
   /**

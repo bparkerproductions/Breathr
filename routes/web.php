@@ -3,6 +3,7 @@
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ThesaurusController;
+use App\Http\Controllers\TimeController;
 use App\Http\Controllers\YoutubeController;
 use App\Models\User;
 use Illuminate\Foundation\Application;
@@ -39,6 +40,8 @@ Route::get('/thesaurus/suggestions', [ThesaurusController::class, 'getSuggestion
 Route::post('/collection/store', [CollectionController::class, 'store']);
 Route::delete('/collection/{videoId}', [CollectionController::class, 'destroy']);
 Route::get('/collection/search', [CollectionController::class,'search']);
+
+Route::post('/time/store', [TimeController::class, 'store']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
