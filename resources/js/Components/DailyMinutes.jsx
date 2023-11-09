@@ -2,17 +2,24 @@ import { connect } from 'react-redux'
 
 import { Box, Card, Divider, Typography } from '@mui/joy'
 import MLink from '@mui/joy/Link'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Link, usePage } from '@inertiajs/react'
-import { useEffect } from 'react'
 
 const DailyMinutes = ({ ...props }) => {
   const { auth } = usePage().props
   const [isShown, setIsShown] = useState(false)
+  const [minutesLogged, setMinutesLogged] = useState(0)
   const dailyMinutesTimer = useRef(null)
 
   useEffect(() => {
-    console.log('second incremented', props.secondsForDay)
+    setMinutesLogged(Math.floor(getMinutes()))
+  }, [])
+
+  useEffect(() => {
+    console.log(minutesLogged, getMinutes())
+    if (minutesLogged !== getMinutes()) {
+      console.log('log db')
+    }
   }, [props.secondsForDay])
 
   function getMinutes() {

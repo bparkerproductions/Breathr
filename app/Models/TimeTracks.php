@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
-class CollectionItem extends Model
+class TimeTracks extends Model
 {
     use HasFactory;
 
-    protected $fillable = [ 'title', 'video_id', 'thumbnail_url', 'durationInMinutes', 'description' ];
+    protected $fillable = ['day','tracked_minutes'];
 
     public function user() {
         return $this->belongsTo(User::class);
