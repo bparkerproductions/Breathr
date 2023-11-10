@@ -1,12 +1,12 @@
 import { usePage } from "@inertiajs/react"
-import { Table, Typography } from "@mui/joy"
+import { Chip, Table, Typography } from "@mui/joy"
 import { useEffect } from "react"
 import { useState } from "react"
 
 export default function TimeTrackTable(props) {
   const { user } = usePage().props
-  const [entries, setEntries] = useState(getInitialTimeTracks())
-  const [dayColumnOrder, setDayColumnOrder] = useState('ASC')
+  const [entries, setEntries] = useState(user['time_tracks'])
+  const [dayColumnOrder, setDayColumnOrder] = useState('asc')
 
   useEffect(() => {
   }, [])
@@ -14,9 +14,9 @@ export default function TimeTrackTable(props) {
   /**
    * Initially, the time tracks will have a default sorted order
    */
-  function getInitialTimeTracks() {
-    return sortObjByDate(user['time_tracks'])
-  }
+  useEffect(() => {
+    setEntries(sortObjByDate(user['time_tracks']))
+  }, [])
 
   /**
    * Helper function to sort an array of timeTrack objects in desc or asc order
@@ -63,7 +63,13 @@ export default function TimeTrackTable(props) {
   }
 
   function changeColumnOrder() {
-
+    if (dayColumnOrder === 'asc') {
+      setDayColumnOrder('desc')
+      setEntries(sortObjByDate(entries, false))
+    } else {
+      setDayColumnOrder('asc')
+      setEntries(sortObjByDate(entries))
+    }
   }
 
   return (
@@ -72,7 +78,14 @@ export default function TimeTrackTable(props) {
         <Table sx={{ marginTop: 3 }}>
           <thead>
             <tr>
-              <th>Day <p onClick={changeColumnOrder()}>filt</p> </th>
+              <th>
+                Day
+                <Chip
+                  onClick={changeColumnOrder}
+                  color="primary"
+                  sx={{ marginLeft: 1 }}
+                >{dayColumnOrder}</Chip>
+              </th>
               <th>Minutes Logged</th>
             </tr>
           </thead>
@@ -85,5 +98,4 @@ export default function TimeTrackTable(props) {
       )}
     </>
   )
-
 }
