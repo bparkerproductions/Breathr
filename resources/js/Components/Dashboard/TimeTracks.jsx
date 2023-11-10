@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Card, Typography, CardContent, Divider, Snackbar, Button } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import TimeTrackTable from './TimeTrackTable'
 
 export default function CollectionList(props) {
   const { user } = usePage().props
@@ -26,7 +27,6 @@ export default function CollectionList(props) {
     })
   }
 
-
   return (
     <>
       <Card variant="soft" color="neutral" sx={{ marginTop: 5 }}>
@@ -39,6 +39,8 @@ export default function CollectionList(props) {
             sx={{ maxWidth: '250px' }}
             disabled={user['time_tracks'].length ? false : true}
           >Delete All Data</Button>
+
+          <TimeTrackTable />
         </CardContent>
       </Card>
 
