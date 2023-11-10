@@ -1,10 +1,11 @@
 import { Link, router, usePage } from '@inertiajs/react'
 import { useState, useEffect } from 'react'
 
-import { Card, Typography, CardContent, Divider, Snackbar, Button } from '@mui/joy'
+import { Card, Typography, CardContent, Divider, Snackbar, Button, CardActions } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
-import TimeTrackTable from './TimeTrackTable'
+import TimeTrackTable from '@/Components/Dashboard/TimeTrackTable'
+import TimeStats from '@/Components/Dashboard/TimeStats'
 
 export default function CollectionList(props) {
   const { user } = usePage().props
@@ -30,18 +31,20 @@ export default function CollectionList(props) {
   return (
     <>
       <Card variant="soft" color="neutral" sx={{ marginTop: 5 }}>
-        <Typography level="h3">Your Time</Typography>
+        <Typography level="h3">Your Time Report</Typography>
         <Divider />
         <CardContent>
+          <TimeStats />
+          <TimeTrackTable />
+        </CardContent>
+        <CardActions>
           <Button
             onClick={deleteAll}
             color="danger"
-            sx={{ maxWidth: '250px' }}
+            sx={{ maxWidth: '150px' }}
             disabled={user['time_tracks'].length ? false : true}
           >Delete All Data</Button>
-
-          <TimeTrackTable />
-        </CardContent>
+        </CardActions>
       </Card>
 
       <Snackbar
