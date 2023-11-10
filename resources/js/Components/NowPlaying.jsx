@@ -5,9 +5,23 @@ import { IconButton, Button, Box, Tooltip, Card, Divider, Typography } from '@mu
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { faYoutube } from '@fortawesome/free-brands-svg-icons'
+import { useEffect } from 'react'
 
 const NowPlaying = props => {
   const [tooltipToggled, toggleTooltip] = useState(false)
+  const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, [handleClickOutside])
+
+  function handleClickOutside() {
+    setShow(false)
+  }
 
   function getPlayerInfo(item) {
     if (props.videoPlayer && props.videoPlayer.playerInfo) {
@@ -24,10 +38,7 @@ const NowPlaying = props => {
   function tooltipActivated(e) {
     e.stopPropagation()
     toggleTooltip(!tooltipToggled)
-  }
-
-  function getHidden() {
-    if (!tooltipToggled) return 'none'
+    setShow(!show)
   }
 
   return (
@@ -42,14 +53,13 @@ const NowPlaying = props => {
         </IconButton>
       </Tooltip>
 
-      <Card
+      {show && <Card
         orientation="vertical"
         variant="soft"
         id="now-playing-info"
         sx={{
           width: 350,
           position: "absolute",
-          display: getHidden(),
           marginTop: 1
         }}
       >
@@ -78,7 +88,7 @@ const NowPlaying = props => {
           <Typography fontWeight="bold">Duration</Typography>
           <Typography fontWeight="light">{Math.ceil(getPlayerInfo('duration')/60)} minutes</Typography>
         </Box>
-      </Card>
+      </Card>}
     </Box>
   )
 }

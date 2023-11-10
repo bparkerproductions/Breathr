@@ -11,16 +11,36 @@ const DailyMinutes = ({ ...props }) => {
   const [minutesLogged, setMinutesLogged] = useState(Math.floor(getMinutes()))
   const dailyMinutesTimer = useRef(null)
 
+  /**
+   * If the minute is incremented (from the redux store outside of the component),
+   * Update minutesLogged to the new value and store the new value in the db
+   */
   useEffect(() => {
-    console.log(minutesLogged, getMinutes())
     if (minutesLogged !== getMinutes()) {
       storeMinutes()
       setMinutesLogged(getMinutes())
     }
+
+    // Set up click outside event listeners
+    document.addEventListener('click', handleClickOutside)
+  
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+    }
+  
   }, [props.secondsForDay])
+
+  function handleClickOutside() {
+    setIsShown(false)
+  }
 
   function getMinutes() {
     return Math.floor(props.secondsForDay / 60);
+  }
+
+  function handleClick(e) {
+    e.stopPropagation()
+    setIsShown(!isShown)
   }
 
   /**
@@ -62,33 +82,36 @@ const DailyMinutes = ({ ...props }) => {
       id="daily-minutes"
       sx={{ position: "relative" }}
     >
-      <Box sx={{
+      {isShown && <Box sx={{
           position: 'absolute',
-          display: () => { if (!isShown) return 'none' },
           top: getTopHeight(),
           width: '350px'
         }}>
       <Card>
         {getMessage()}
         <Divider />
-        {auth.user ? (
+        {!auth.user ? (
           <>
           <Typography level="body-sm">Want to save your time and start building a streak?</Typography>
           <Link href={route('register')}>
-            <MLink level="body-sm">Sign up for an account today</MLink>
+            <MLink level="body-sm" underline="always">Sign up for an account today</MLink>
           </Link>
           </>
-        ) : ""}
+        ) : (
+          <Link href={route('dashboard')}>
+            <MLink level="body-sm" underline="always">Go to your dashboard to view a detailed report</MLink>
+          </Link>
+        )}
       </Card>
-      </Box>
+      </Box>}
 
       <Box
         ref={dailyMinutesTimer}
-        onClick={() => setIsShown(!isShown)}
+        onClick={handleClick}
         className="cursor-pointer"
       >
         <Typography level="h1" sx={{ color: 'white' }}>{getMinutes()}</Typography>
-        <Typography sx={{ color: 'white' }}>m</Typography>
+        <Typography className="text-white">m</Typography>
       </Box>
     </Box>
   )

@@ -19,22 +19,22 @@ export default function AuthButtons({ ...props }) {
             aria-label="Log in or sign up"
           >
             <Link href={route('login')}>
-              <Button>Log In</Button>
+              <Button color="primary">Log In</Button>
             </Link>
             <Link href={route('register')}>
               <Button>Sign Up</Button>
             </Link>
           </ButtonGroup>) : (
-          <>
 
+          <ButtonGroup variant="soft">
             <Link href={route('logout')} method="post">
-              <Button>Log Out</Button>
+              <Button color="warning">Log Out</Button>
             </Link>
 
             <Link href={route('dashboard')}>
-              <Button>Dashboard</Button>
+              <Button color="primary">Dashboard</Button>
             </Link>
-          </>
+          </ButtonGroup>
         )
         }
       </Stack>
