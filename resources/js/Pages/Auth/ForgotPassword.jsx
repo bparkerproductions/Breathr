@@ -1,9 +1,8 @@
-import GuestLayout from '@/Layouts/GuestLayout'
-import InputError from '@/Components/InputError'
-import PrimaryButton from '@/Components/PrimaryButton'
-import TextInput from '@/Components/TextInput'
-import { Head, useForm } from '@inertiajs/react'
-import { Box, Typography, Button } from '@mui/joy'
+import GuestLayout from '@/Layouts/GuestLayout';
+import InputError from '@/Components/InputError';
+import PrimaryButton from '@/Components/PrimaryButton';
+import TextInput from '@/Components/TextInput';
+import { Head, useForm } from '@inertiajs/react';
 
 export default function ForgotPassword({ status }) {
     const { data, setData, post, processing, errors } = useForm({
@@ -20,12 +19,12 @@ export default function ForgotPassword({ status }) {
         <GuestLayout>
             <Head title="Forgot Password" />
 
-            <Typography sx={{ color: 'white', marginBottom: 2 }}>
+            <p className="mb-4 text-sm text-zinc-900">
                 Forgot your password? No problem. Just let us know your email address and we will email you a password
                 reset link that will allow you to choose a new one.
-            </Typography>
+            </p>
 
-            {status && <div className="mb-4 font-medium text-sm text-green-600 dark:text-green-400">{status}</div>}
+            {status && <div className="mb-4 font-medium text-sm text-green-400">{status}</div>}
 
             <form onSubmit={submit}>
                 <TextInput
@@ -40,11 +39,11 @@ export default function ForgotPassword({ status }) {
 
                 <InputError message={errors.email} className="mt-2" />
 
-                <Box className="flex items-center justify-end mt-4">
-                    <Button className="ml-4" disabled={processing}>
+                <div className="flex items-center justify-end mt-4">
+                    <PrimaryButton className="ml-4" disabled={processing}>
                         Email Password Reset Link
-                    </Button>
-                </Box>
+                    </PrimaryButton>
+                </div>
             </form>
         </GuestLayout>
     );
