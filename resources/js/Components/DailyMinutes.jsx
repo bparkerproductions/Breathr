@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 
 import { Box, Card, Divider, Typography } from '@mui/joy'
-import MLink from '@mui/joy/Link'
 import { useState, useRef, useEffect } from 'react'
 import { Link, router, usePage } from '@inertiajs/react'
 
@@ -93,13 +92,13 @@ const DailyMinutes = ({ ...props }) => {
         {!auth.user ? (
           <>
           <Typography level="body-sm">Want to save your time and start building a streak?</Typography>
-          <Link href={route('register')}>
-            <MLink level="body-sm" underline="always">Sign up for an account today</MLink>
+          <Link className="text-blue-500 underline text-sm" href={route('register')}>
+            Sign up for an account today
           </Link>
           </>
         ) : (
-          <Link href={route('dashboard')}>
-            <MLink level="body-sm" underline="always">Go to your dashboard to view a detailed report</MLink>
+          <Link className="text-blue-500 underline text-sm" href={route('dashboard')}>
+            Go to your dashboard to view a detailed report
           </Link>
         )}
       </Card>

@@ -15,13 +15,14 @@ const ComponentControls = props => {
 
   return (
     <IconButton
-      className="component-controls"
-      variant="outline"
-      color="warning"
       onClick={toggleComponent}
       sx={{ position: 'absolute', right: 5, top: 3 }}
     >
-        <FontAwesomeIcon icon={faTimesCircle} title="Minimize" />
+        <FontAwesomeIcon
+          icon={faTimesCircle}
+          title="Minimize"
+          className="text-blue-700"
+        />
     </IconButton>
   )
 }

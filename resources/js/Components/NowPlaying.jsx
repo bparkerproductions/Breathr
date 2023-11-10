@@ -47,7 +47,7 @@ const NowPlaying = props => {
         <IconButton onClick={tooltipActivated} variant="plain">
           <FontAwesomeIcon
             icon={faInfoCircle}
-            className="cursor-pointer"
+            className="cursor-pointer text-blue-200"
             size="lg"
           />
         </IconButton>

@@ -44,7 +44,7 @@ const AppToggles = ({ isSearch, isTimer, isCollection, toggleSearch, toggleTimer
     <Stack direction="row" id="app-toggles">
       <Tooltip title="Close all">
         <IconButton onClick={closeAll}>
-          <FontAwesomeIcon icon={faTimes} />
+          <FontAwesomeIcon icon={faTimes} className="text-blue-800" />
         </IconButton>
       </Tooltip>
 
@@ -59,18 +59,21 @@ const AppToggles = ({ isSearch, isTimer, isCollection, toggleSearch, toggleTimer
         <IconButton value="search">
           <FontAwesomeIcon
             icon={faSearch}
+            className="text-blue-800"
             title="Toggle video search"
           />
         </IconButton>
         <IconButton value="timer">
           <FontAwesomeIcon
             icon={faClock}
+            className="text-blue-800"
             title="Toggle timer"
           />
         </IconButton>
         <IconButton value="collection">
           <FontAwesomeIcon
             icon={faBookmark}
+            className="text-blue-800"
             title="Toggle your collection"
           />
         </IconButton>

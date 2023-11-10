@@ -1,10 +1,9 @@
 import { Link } from '@inertiajs/react'
-import MLink from '@mui/joy/Link'
 
 export default function Guest({ children }) {
     return (
         <div className="min-h-screen flex flex-col sm:justify-center items-center sm:pt-3 bg-blue-800 px-5">
-                <Link className="text-white" href="/">
+                <Link className="text-white underline" href="/">
                     Back to Home
                 </Link>
 

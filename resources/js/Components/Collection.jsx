@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import { usePage } from '@inertiajs/react'
+import { usePage, Link } from '@inertiajs/react'
 import VideoResult from '@/Components/VideoResult'
 import ComponentControls from '@/Components/ComponentControls'
 import CycleVideos from '@/Components/CycleVideos'
-import { Stack, Container, Typography, Card, Box, CardContent, Link } from '@mui/joy'
+import { Stack, Container, Typography, Card, Box, CardContent } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAddressBook } from '@fortawesome/free-solid-svg-icons'
 
@@ -13,52 +13,40 @@ const Collection = (props) => {
   const [boxHeight, setBoxHeight] = useState(null)
   const cardRef = useRef(null)
 
+  /**
+   * On load, initially set box height depending on how many items are in there
+   */
   useEffect(() => {
-    // Initially set box height
     if (cardRef.current) {
       setBoxHeight(cardRef.current.offsetHeight + "px")
     }
   }, [])
 
-  function getCollectionClasses() {
-    if ( !(props.show) ) return 'hidden'
-  }
-
-  function renderCollection() {
-    if (auth.user) {
-      return (
-        <VideoResult
-          grabFromCollection={true}>
-        </VideoResult>
-      )
-    }
-    else {
-      return (
-        <CardContent sx={{ paddingTop: 2 }}>
-        <Typography level="body-md">Want to save soundscapes? <Link href="#"> Sign up for a free account</Link>
-        </Typography>
-        </CardContent>
-      )
-    }
-  }
-
   return (
     <Container
       id="video-collection"
-      className={getCollectionClasses()}
+      className={props.show || 'hidden'}
       sx={{ height: boxHeight, marginY: 12.5 }}
     >
       <Card ref={cardRef}>
         <ComponentControls toggleType="collection"></ComponentControls>
         <Stack direction="row">
-          <FontAwesomeIcon icon={faAddressBook} size="lg" />
+          <FontAwesomeIcon icon={faAddressBook} size="lg" className="text-blue-500" />
           <Typography level="title-lg" sx={{ marginLeft: 1, marginRight: 1 }}>Your Collection</Typography>
           <Box sx={{  marginLeft: 1 }}>
-            <CycleVideos />
+            { auth.user && <CycleVideos /> }
           </Box>
         </Stack>
 
-        {renderCollection()}
+        {auth.user ? 
+          <VideoResult grabFromCollection={true} /> :
+
+          <CardContent sx={{ paddingTop: 2 }}>
+            <Typography level="body-md">Want to save soundscapes?
+              <Link className="underline text-blue-500" href={route('register')}> Sign up for a free account</Link>
+            </Typography>
+          </CardContent>
+        }
       </Card>
     </Container>
   )

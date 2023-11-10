@@ -5,7 +5,6 @@ import { setPaused } from '@/actions/appToggles'
 import { incrementVideosPlayed } from '@/actions'
 import { Link, usePage } from '@inertiajs/react'
 
-import MLink from '@mui/joy/Link'
 import { Box, Card, Typography, CardActions, Container, Divider, Button, Alert } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle} from '@fortawesome/free-solid-svg-icons'
@@ -30,8 +29,8 @@ const IntroModal = (props) => {
       return (
         <Alert>
             <Typography level="body-sm">Don't have an account?
-              <Link href={route('register')}>
-                <MLink underline="always" sx={{ paddingLeft: 1 }}>Sign up so you can save your times and soundscapes.</MLink>
+              <Link href={route('register')} className="text-white pl-2 underline">
+                Sign up so you can save your times and soundscapes.
               </Link>
             </Typography>
           </Alert>

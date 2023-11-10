@@ -1,6 +1,5 @@
-import { Card, Typography, CardContent, Divider, Box, Input, Button } from '@mui/joy'
+import { Card, Typography, CardContent, Divider, Box, Chip, Input, Button } from '@mui/joy'
 import CollectionItem from '@/Components/Dashboard/CollectionItem'
-import MLink from '@mui/joy/Link'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -52,9 +51,7 @@ export default function CollectionList(props) {
     if (searchQuery && recentSearch) {
       return <Typography level="body-lg">
         Results for <strong>{recentSearch}</strong>
-        <Typography level="body-sm" sx={{ paddingLeft: 1 }}>
-          <MLink underline="always" color="primary" onClick={clearSearch}>Clear Results</MLink>
-        </Typography>
+        <Chip onClick={clearSearch} color="primary" className="ml-3 mb-1" variant="solid">Clear Results</Chip>
       </Typography>
     }
   }

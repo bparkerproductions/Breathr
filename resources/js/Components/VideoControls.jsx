@@ -13,51 +13,6 @@ const VideoControls = props => {
   const [muted, setMuted] = useState(false)
   const [localSliderVolume, setLocalSliderVolume] = useState(props.videoVolume)
 
-  function getPauseOrPlay() {
-    if (props.paused) {
-      return (
-        <FontAwesomeIcon
-          icon={faPlay}
-          className="cursor-pointer"
-          size="lg"
-          title="Pause Video"
-        />
-      )
-    } else {
-      return (
-        <FontAwesomeIcon
-          icon={faPauseCircle}
-          className="cursor-pointer"
-          size="lg"
-          title="Play Video"
-        />
-      )
-    }
-  }
-
-  function getMuteOrPlay() {
-    if (muted || props.videoVolume === 0) {
-      return (
-        <FontAwesomeIcon
-          icon={faVolumeOff}
-          className="cursor-pointer"
-          size="lg"
-          title="Turn the volume back on"
-        />
-      )
-    }
-    else {
-      return (
-        <FontAwesomeIcon
-          icon={faVolumeHigh}
-          className="cursor-pointer"
-          size="lg"
-          title="Mute volume"
-        />
-      )
-    }
-  }
-
   function toggleMuted() {
     setMuted(!muted)
     setLocalSliderVolume(props.videoVolume)
@@ -98,12 +53,38 @@ const VideoControls = props => {
     <Box id="video-controls">
       <Stack direction="row" alignItems="center" spacing={1.5}>
         <CycleVideos />
-        <Box onClick={togglePause}>
-          {getPauseOrPlay()}
+        <Box onClick={togglePause} sx={{ width: '20px' }}>
+          {props.paused ? 
+          <FontAwesomeIcon
+            icon={faPlay}
+            className="cursor-pointer"
+            size="lg"
+            title="Pause Video"
+          /> : 
+          <FontAwesomeIcon
+            icon={faPauseCircle}
+            className="cursor-pointer"
+            size="lg"
+            title="Play Video"
+          />}
         </Box>
+
         <Box sx={{ width: '30px' }} onClick={toggleMuted}>
-          {getMuteOrPlay()}
+          {muted || props.videoVolume === 0 ? 
+          <FontAwesomeIcon
+            icon={faVolumeOff}
+            className="cursor-pointer"
+            size="lg"
+            title="Turn the volume back on"
+          /> : 
+          <FontAwesomeIcon
+            icon={faVolumeHigh}
+            className="cursor-pointer"
+            size="lg"
+            title="Mute volume"
+          />}
         </Box>
+
         <Slider
           disabled={muted}
           color="neutral"

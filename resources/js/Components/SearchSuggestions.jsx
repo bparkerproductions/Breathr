@@ -88,7 +88,7 @@ const SearchSuggestions = (props) => {
           <FontAwesomeIcon
             icon={faLightbulb}
             size="lg"
-            color="primary"
+            className="text-blue-500"
             title="Search suggestions"
           />
         </IconButton>
