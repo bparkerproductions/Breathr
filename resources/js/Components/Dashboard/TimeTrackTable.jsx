@@ -7,6 +7,7 @@ export default function TimeTrackTable(props) {
   const { user } = usePage().props
   const [entries, setEntries] = useState(user['time_tracks'])
   const [dayColumnOrder, setDayColumnOrder] = useState('asc')
+  const [minutesColumnOrder, setMinutesColumnOrder] = useState('none')
 
   useEffect(() => {
   }, [])
@@ -19,7 +20,7 @@ export default function TimeTrackTable(props) {
   }, [])
 
   /**
-   * Helper function to sort an array of timeTrack objects in desc or asc order
+   * Helper function to sort an array of timeTrack objects in desc or asc order by Date
    */
   function sortObjByDate(obj, asc=true) {
     return obj.sort( (a, b) => {
@@ -31,6 +32,20 @@ export default function TimeTrackTable(props) {
       } else {
         // Is DESC
         if (date1 < date2) return -1
+      }
+    });
+  }
+
+  /**
+   * Helper function to sort an array of timeTrack objects in desc or asc order by Minutes Logged
+   */
+  function sortObjByMinutes(obj, asc=true) {
+    return obj.sort( (a, b) => {
+      if (asc) {
+        if (a.tracked_minutes > b.tracked_minutes) return -1
+      } else {
+        // Is DESC
+        if (a.tracked_minutes < b.tracked_minutes) return -1
       }
     });
   }
@@ -62,13 +77,33 @@ export default function TimeTrackTable(props) {
     })
   }
 
-  function changeColumnOrder() {
+  /**
+   * Manage the DESC/ASC state and table ordering for the "Day" column
+   */
+  function changeDayColumnOrder() {
+    setMinutesColumnOrder('none')
+
     if (dayColumnOrder === 'asc') {
       setDayColumnOrder('desc')
       setEntries(sortObjByDate(entries, false))
     } else {
       setDayColumnOrder('asc')
       setEntries(sortObjByDate(entries))
+    }
+  }
+
+  /**
+   * Manage the DESC/ASC state and table ordering for the "Minutes Logged" columns
+   */
+  function changeMinutesColumnOrder() {
+    setDayColumnOrder('none')
+
+    if ( minutesColumnOrder === 'none' || minutesColumnOrder === 'desc' ) {
+      setMinutesColumnOrder('asc')
+      setEntries(sortObjByMinutes(entries))
+    } else {
+      setMinutesColumnOrder('desc')
+      setEntries(sortObjByMinutes(entries, false))
     }
   }
 
@@ -81,12 +116,19 @@ export default function TimeTrackTable(props) {
               <th>
                 Day
                 <Chip
-                  onClick={changeColumnOrder}
+                  onClick={changeDayColumnOrder}
                   color="primary"
                   sx={{ marginLeft: 1 }}
                 >{dayColumnOrder}</Chip>
               </th>
-              <th>Minutes Logged</th>
+              <th>
+                Minutes Logged
+                <Chip
+                  onClick={changeMinutesColumnOrder}
+                  color="primary"
+                  sx={{ marginLeft: 1 }}
+                >{minutesColumnOrder}</Chip>
+              </th>
             </tr>
           </thead>
           <tbody>
