@@ -34,7 +34,7 @@ const Collection = (props) => {
           <FontAwesomeIcon icon={faAddressBook} size="lg" className="text-blue-500" />
           <Typography level="title-lg" sx={{ marginLeft: 1, marginRight: 1 }}>Your Collection</Typography>
           <Box sx={{  marginLeft: 1 }}>
-            { auth.user && <CycleVideos /> }
+            { auth.user && <CycleVideos color="text-blue-500" /> }
           </Box>
         </Stack>
 

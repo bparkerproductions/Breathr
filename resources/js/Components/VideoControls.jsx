@@ -52,7 +52,7 @@ const VideoControls = props => {
   return (
     <Box id="video-controls">
       <Stack direction="row" alignItems="center" spacing={1.5}>
-        <CycleVideos />
+        <CycleVideos color="text-white" />
         <Box onClick={togglePause} sx={{ width: '20px' }}>
           {props.paused ? 
           <FontAwesomeIcon

@@ -63,7 +63,7 @@ const CycleVideos = (props) => {
       <FontAwesomeIcon
         onClick={previousVideo}
         icon={faStepBackward}
-        className="cursor-pointer"
+        className={`cursor-pointer ${props.color}`}
         size="lg"
         title="Go to previous video"
       />
@@ -71,7 +71,7 @@ const CycleVideos = (props) => {
       <FontAwesomeIcon
         onClick={nextVideo}
         icon={faStepForward}
-        className="cursor-pointer"
+        className={`cursor-pointer' ${props.color}`}
         size="lg"
         title="Go to next video"
       />

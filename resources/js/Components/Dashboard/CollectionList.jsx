@@ -18,45 +18,6 @@ export default function CollectionList(props) {
   }, [])
 
   /**
-   * Return the list of <CollectionItem> components
-   */
-  function collectionItemsResults() {
-    if (user['collection_items'].length) {
-      return (
-        <Box>
-          {collectionItems.map( elem => {
-            return (
-              <CollectionItem key={elem.video_id} item={elem} />
-            )
-          })}
-        </Box>
-      );
-    }
-    else {
-      return (
-        <>
-          <Typography>You have no collection items.</Typography>
-          <Link href={route('main')}>
-            <Button sx={{ maxWidth: '200px', marginTop: 1 }} color="primary">Go add some!</Button>
-          </Link>
-        </>
-      )
-    }
-  }
-
-  /**
-   * Provide user "results" indicator text if there is a recent search and query
-   */
-  function resultsText() {
-    if (searchQuery && recentSearch) {
-      return <Typography level="body-lg">
-        Results for <strong>{recentSearch}</strong>
-        <Chip onClick={clearSearch} color="primary" className="ml-3 mb-1" variant="solid">Clear Results</Chip>
-      </Typography>
-    }
-  }
-
-  /**
    * Query the database for collectionItems and set the result in the React state
    */
   function search() {
@@ -115,8 +76,28 @@ export default function CollectionList(props) {
       {searchBar()}
       </CardContent>
       <CardContent>
-        {resultsText()}
-        {collectionItemsResults()}
+        {(searchQuery && recentSearch) && 
+        <Typography level="body-lg">
+          Results for <strong>{recentSearch}</strong>
+          <Chip onClick={clearSearch} color="primary" className="ml-3 mb-1" variant="solid">Clear Results</Chip>
+        </Typography>}
+
+        {user['collection_items'].length ? 
+          <Box>
+            {collectionItems.map( elem => {
+              return (
+                <CollectionItem key={elem.video_id} item={elem} />
+              )
+           })}
+          </Box> :
+          
+          <>
+            <Typography>You have no collection items.</Typography>
+            <Link href={route('main')}>
+              <Button sx={{ maxWidth: '200px', marginTop: 1 }} color="primary">Go add some!</Button>
+            </Link>
+          </>
+        }
       </CardContent>
     </Card>
   )
