@@ -38,15 +38,15 @@ export default function TimeStats(props) {
   return (
     <Sheet variant="outlined" sx={{ p: 2 }}>
       <Grid container>
-        <Grid xs={3}>
+        <Grid xs={12} md={6} lg={4} sx={{ marginBottom: { xs: 2, lg: 0 }} }>
           <Typography level="body-md">Total Minutes:</Typography>
           <Typography level="h1">{totalMinutes()}</Typography>
         </Grid>
-        <Grid xs={3}>
+        <Grid xs={12} md={6} lg={4} sx={{ marginBottom: { xs: 2, lg: 0 }} }>
           <Typography level="body-md">Total Minutes (last 7 days):</Typography>
           <Typography level="h1">{totalMinutesOfLastWeek()}</Typography>
         </Grid>
-        <Grid xs={3}>
+        <Grid xs={12} md={6} lg={4}>
           <Typography level="body-md">Total Visits:</Typography>
           <Typography level="h1">{checkVisitCount()}</Typography>
         </Grid>

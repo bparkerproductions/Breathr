@@ -30,7 +30,7 @@ export default function CollectionList(props) {
 
   return (
     <>
-      <Card variant="soft" color="neutral" sx={{ marginTop: 5 }}>
+      <Card variant="soft" color="neutral" sx={{ marginY: 5 }}>
         <Typography level="h3">Your Time Report</Typography>
         <Divider />
         <CardContent>

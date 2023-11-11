@@ -20,6 +20,7 @@ export default function CollectionItem(props) {
         bgcolor: 'neutral.softBg',
         display: 'flex',
         flexDirection: { xs: 'column', sm: 'row' },
+        marginBottom: 2
       }}
     >
         <CardOverflow>
@@ -27,7 +28,14 @@ export default function CollectionItem(props) {
             ratio="4:3"
             flex
             sx={{
-                minWidth: { sm: 120, md: 160 },
+                minWidth: 300,
+                minHeight: 200,
+                mr: { xs: 'var(--CardOverflow-offset)', sm: 0 },
+                mb: { xs: 0, sm: 'var(--CardOverflow-offset)' },
+                '--AspectRatio-radius': {
+                  xs: 'calc(var(--CardOverflow-radius) - var(--variant-borderWidth, 0px)) calc(var(--CardOverflow-radius) - var(--variant-borderWidth, 0px)) 0 0',
+                  sm: 'calc(var(--CardOverflow-radius) - var(--variant-borderWidth, 0px)) 0 0 calc(var(--CardOverflow-radius) - var(--variant-borderWidth, 0px))',
+                },
                 '--AspectRatio-maxHeight': { xs: '160px', sm: '9999px' },
             }}
             >
@@ -36,7 +44,7 @@ export default function CollectionItem(props) {
             </AspectRatio>
         </CardOverflow>
 
-        <CardContent>
+        <CardContent sx={{ paddingTop: 2 }}>
             <Typography level="body-md" fontWeight="bold">{getText(props.item.title)}</Typography>
             <Typography level="body-md">{getText(props.item.description)}</Typography>
             <Button
