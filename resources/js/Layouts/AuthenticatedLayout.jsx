@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import Dropdown from '@/Components/Dropdown';
-import NavLink from '@/Components/NavLink';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
+import Dropdown from '@/Components/Form/Dropdown';
+import ResponsiveNavLink from '@/Components/Form/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 import { Container } from '@mui/joy';
 
