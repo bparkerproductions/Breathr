@@ -85,25 +85,21 @@ const CollectionControls = props => {
     })
   }
 
-  function getIcon() {
-    if (!doesVideoExist()) {
-      return <FontAwesomeIcon
-        icon={faPlusCircle}
-        color="white"
-        onClick={handleAdd}
-      />
-    }
-    else return <FontAwesomeIcon
-      icon={faMinusCircle}
-      color="red"
-      onClick={handleRemove}
-    />
-  }
-
-
     return (
       <>
-      {getIcon()}
+      {!doesVideoExist() ? 
+        <FontAwesomeIcon
+          icon={faPlusCircle}
+          color="white"
+          onClick={handleAdd}
+        /> :
+
+        <FontAwesomeIcon
+          icon={faMinusCircle}
+          color="red"
+          onClick={handleRemove}
+        />
+      }
 
       <Snackbar
         autoHideDuration={1600}

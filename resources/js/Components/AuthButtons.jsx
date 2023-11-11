@@ -10,7 +10,7 @@ export default function AuthButtons({ ...props }) {
         spacing={2.5}
         alignItems="center"
         justifyContent="flex-end"
-        sx={{ height: '100%' }}
+        sx={{ height: '100%', paddingBottom: {xs: 2, lg: 0} }}
       >
 
         {!auth.user ? (

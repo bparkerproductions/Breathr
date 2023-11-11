@@ -57,13 +57,13 @@ const VideoControls = props => {
           {props.paused ? 
           <FontAwesomeIcon
             icon={faPlay}
-            className="cursor-pointer"
+            className="cursor-pointer text-white"
             size="lg"
             title="Pause Video"
           /> : 
           <FontAwesomeIcon
             icon={faPauseCircle}
-            className="cursor-pointer"
+            className="cursor-pointer text-white"
             size="lg"
             title="Play Video"
           />}
@@ -73,13 +73,13 @@ const VideoControls = props => {
           {muted || props.videoVolume === 0 ? 
           <FontAwesomeIcon
             icon={faVolumeOff}
-            className="cursor-pointer"
+            className="cursor-pointer text-white"
             size="lg"
             title="Turn the volume back on"
           /> : 
           <FontAwesomeIcon
             icon={faVolumeHigh}
-            className="cursor-pointer"
+            className="cursor-pointer text-white"
             size="lg"
             title="Mute volume"
           />}
