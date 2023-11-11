@@ -24,10 +24,6 @@ const SearchBar = (props) => {
       props.searchCallback(searchQuery)
   }
 
-  function handleKeyDown(event) {
-    if (event.key === 'Enter') trackInput()
-  }
-
   /**
    * A value was passed down from searchSuggestions, populate and search for it
    */
@@ -40,7 +36,8 @@ const SearchBar = (props) => {
 
   return (
     <Box className="search-input-container">
-      <SearchSuggestions 
+      <SearchSuggestions
+        searchSuggestionsSet={suggestions => props.searchTermsChanged(suggestions) }
         fill={populateSearchFromSuggestion}
         searchChanged={searchedQuery}
       />
@@ -54,7 +51,7 @@ const SearchBar = (props) => {
               <FontAwesomeIcon
                 icon={faYoutubeSquare}
                 size="2xl"
-                className="cursor-pointer"
+                className="cursor-pointer text-red-500"
                 color={searchingByUrl ? '#F60000' : 'black'}
               />
             </Box>
@@ -68,7 +65,7 @@ const SearchBar = (props) => {
                   onClick={trackInput}
                 />
               }
-              onKeyDown={handleKeyDown}
+              onKeyDown={e => { e.key === 'Enter' && trackInput() }}
               type={searchingByUrl ? 'url' : 'text'}
               variant="soft"
               value={searchQuery}

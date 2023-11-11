@@ -24,25 +24,6 @@ const IntroModal = (props) => {
     props.setPaused(false)
   }
 
-  function signupAlert() {
-    if ( !auth.user ) {
-      return (
-        <Alert>
-            <Typography level="body-sm">Don't have an account?
-              <Link href={route('register')} className="text-white pl-2 underline">
-                Sign up so you can save your times and soundscapes.
-              </Link>
-            </Typography>
-          </Alert>
-      )
-    }
-  }
-
-  function title() {
-    console.log(checkVisitCount())
-    return checkVisitCount() > 1 ? 'Welcome Back!' : 'Welcome to Breathr!'
-  }
-
   function description() {
     const welcomeMessage = 'Pick up where you left off.'
     const firstTimeMessage = 'Breathr lets you choose and collect your favorite soundscapes/moods for meditation and relaxation. No special subscriptions, no extras.'
@@ -58,7 +39,7 @@ const IntroModal = (props) => {
         id="intro-modal"
         component="section"
         className={isHidden()}
-        sx={{ marginY: 12.5 }}
+        sx={{ marginY: { xs: 5, lg: 12.5 } }}
       >
         <Card
           color="primary"
@@ -66,12 +47,22 @@ const IntroModal = (props) => {
           invertedColors
           sx={{ maxWidth: '750px', mx: 'auto' }}
         >
-          <Typography level="title-lg">{title()}</Typography>
+          <Typography level="title-lg">
+            {checkVisitCount() > 1 ? 'Welcome Back!' : 'Welcome to Breathr!'}
+          </Typography>
           <Divider />
           <Box>
             <Typography level="body-md" fontWeight="normal">{description()}</Typography>
           </Box>
-          {signupAlert()}
+
+          {!auth.user && <Alert>
+            <Typography level="body-sm">Don't have an account?
+              <Link href={route('register')} className="text-white pl-2 underline">
+                Sign up so you can save your times and soundscapes.
+              </Link>
+            </Typography>
+          </Alert>
+          }
           <CardActions>
             <Button onClick={playVideo}>Start Video Now</Button>
             <Button

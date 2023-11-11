@@ -10,7 +10,11 @@ export default function Navbar({ ...props }) {
         <Box
           component="nav"
           className="bg-blue-500 flex"
-          sx={{ position: 'fixed', width: '100%', zIndex: 5 }}
+          sx={{
+            position: 'fixed',
+            width: '100%',
+            zIndex: 5
+          }}
         >
           <Container>
             <Grid container spacing={2}>

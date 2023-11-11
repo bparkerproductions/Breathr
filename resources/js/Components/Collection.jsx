@@ -26,7 +26,7 @@ const Collection = (props) => {
     <Container
       id="video-collection"
       className={props.show || 'hidden'}
-      sx={{ height: boxHeight, marginY: 12.5 }}
+      sx={{ height: boxHeight, marginY: { xs: 5, lg: 12.5 } }}
     >
       <Card ref={cardRef}>
         <ComponentControls toggleType="collection"></ComponentControls>

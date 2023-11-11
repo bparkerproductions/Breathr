@@ -25,9 +25,10 @@ const SearchSuggestions = (props) => {
         let resCategories = []
 
         results.forEach(elem => resCategories.push(...elem))
-        const limitedArr = resCategories.slice(0, 15) // 15 Suggestions maximum
+        const limitedArr = resCategories.slice(0, 15) // 10 Suggestions maximum
 
         setCategories(limitedArr)
+        props.searchSuggestionsSet(limitedArr)
       }
     })
   }, [])
@@ -46,15 +47,33 @@ const SearchSuggestions = (props) => {
     getThesaurusCategories(props.searchChanged)
   }, [props.searchChanged, getThesaurusCategories])
 
+  /**
+   * Get values from a helper array and select a random term to fill the initial search suggestions
+   */
   function getRandomTerm() {
     const randomInt = Math.floor(Math.random() * (suggestions.length-1))
     const randomTerm = suggestions[randomInt]
     getThesaurusCategories(randomTerm)
   }
 
-  function generateSuggestions() {
-    return(
-      categories.map(category => {
+  return (
+    <Stack sx={{
+      flexDirection: {xs: 'column', sm: 'row'},
+      alignItems: 'center'
+    }}>
+      <Tooltip title="Get new suggestions">
+        <IconButton onClick={getRandomTerm}>
+          <FontAwesomeIcon
+            icon={faLightbulb}
+            size="lg"
+            className="text-blue-500"
+            title="Search suggestions"
+          />
+        </IconButton>
+      </Tooltip>
+
+      <Box sx={{ marginLeft: 1.75 }}>
+        {categories.map(category => {
         const id = Math.floor(Math.random() * 10000)
         return (
           <Chip
@@ -70,32 +89,7 @@ const SearchSuggestions = (props) => {
             {category}
           </Chip>
         )
-        })
-      )
-  }
-
-  /**
-   * Don't show suggestions if there are no results or if it's "off"
-   */
-  function isDisabled() {
-    if ( !categories.length ) return 'disabled'
-  }
-
-  return (
-    <Stack direction="row" alignItems="center" className={isDisabled()}>
-      <Tooltip title="Get new suggestions">
-        <IconButton onClick={getRandomTerm}>
-          <FontAwesomeIcon
-            icon={faLightbulb}
-            size="lg"
-            className="text-blue-500"
-            title="Search suggestions"
-          />
-        </IconButton>
-      </Tooltip>
-
-      <Box sx={{ marginLeft: 1.75 }}>
-        {generateSuggestions()}
+        })}
       </Box>
     </Stack>
   )

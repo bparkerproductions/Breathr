@@ -62,7 +62,7 @@ const TimerControls = ({ incrementSecond, show }) => {
       id="timer-container"
       className={isHidden()}
       sx={{
-        marginY: 12.5,
+        marginBottom: { xs: 5, lg: 12.5 },
         height: boxHeight
       }}
     >

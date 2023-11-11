@@ -12,10 +12,6 @@ export default function CollectionList(props) {
   const [open, setOpen] = useState(false)
   const [message, setMessage] = useState("")
 
-  useEffect(() => {
-    // console.log(user['time_tracks'])
-  })
-
   /**
    * Make a db call to delete all time tracks from a user
    */
