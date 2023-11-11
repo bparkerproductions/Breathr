@@ -87,7 +87,12 @@ export default function DeleteUserForm({ className = '' }) {
                     <div className="mt-6 flex justify-end">
                         <Button color="neutral" variant="soft" onClick={closeModal}>Cancel</Button>
 
-                        <Button color="danger" sx={{ marginLeft: 2 }} disabled={processing}>
+                        <Button
+                          color="danger"
+                          sx={{ marginLeft: 2 }}
+                          disabled={processing}
+                          type=""
+                        >
                             Delete Account
                         </Button>
                     </div>

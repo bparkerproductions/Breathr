@@ -1,10 +1,10 @@
 import { useRef } from 'react'
 import InputError from '@/Components/Form/InputError'
 import InputLabel from '@/Components/Form/InputLabel'
-import PrimaryButton from '@/Components/Form/PrimaryButton'
 import TextInput from '@/Components/Form/TextInput'
 import { useForm } from '@inertiajs/react'
 import { Transition } from '@headlessui/react'
+import { Button } from '@mui/joy'
 
 export default function UpdatePasswordForm({ className = '' }) {
     const passwordInput = useRef();
@@ -95,7 +95,7 @@ export default function UpdatePasswordForm({ className = '' }) {
                 </div>
 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
+                    <Button type="" disabled={processing}>Save</Button>
 
                     <Transition
                         show={recentlySuccessful}

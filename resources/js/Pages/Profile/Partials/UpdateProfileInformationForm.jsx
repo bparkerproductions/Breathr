@@ -1,7 +1,7 @@
 import InputError from '@/Components/Form/InputError'
 import InputLabel from '@/Components/Form/InputLabel'
-import PrimaryButton from '@/Components/Form/PrimaryButton'
 import TextInput from '@/Components/Form/TextInput'
+import { Button } from '@mui/joy'
 import { Link, useForm, usePage } from '@inertiajs/react'
 import { Transition } from '@headlessui/react'
 
@@ -85,7 +85,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                 )}
 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
+                    <Button color="primary" type="" disabled={processing}>Save</Button>
 
                     <Transition
                         show={recentlySuccessful}
