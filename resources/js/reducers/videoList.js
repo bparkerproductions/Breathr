@@ -37,8 +37,11 @@ const searchedVideosReducer = (initialVideos=null, action) => {
 /**
  * Grab the first collection video saved or the default rainforest video
  */
-const defaultVideoReducer = () => {
-  return 'Ftm2uv7-Ybw'
+const defaultVideoReducer = (initialVideo=null, action) => {
+  if (action.type === 'SET_DEFAULT_VIDEO_ID') {
+    return action.payload
+  }
+  return initialVideo
 }
 
 /**

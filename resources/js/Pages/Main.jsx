@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Box } from '@mui/joy'
 
 import { incrementVisitCount } from '@/helpers/store'
-import { setVideos } from '@/actions/videoList'
+import { setVideos, setInitialVideo } from '@/actions/videoList'
 import IntroModal from '@/Components/IntroModal'
 import Navbar from '@/Components/Navbar'
 import TimerControls from '@/Components/TimerControls'
@@ -15,7 +15,11 @@ import { useEffect } from 'react'
 const Main = props => {
     const { auth, user } = usePage().props
 
-    // Initially populate video state on load
+    /**
+     * Increment the user's visitcount with localStorage,
+     * Initially populate video state on load from db,
+     * Set initial video with an action creator
+     */
     useEffect(() => {
         incrementVisitCount()
         
@@ -41,7 +45,15 @@ const Main = props => {
             })
 
             props.setVideos(objects)
+
+            // Set default video with action call
+            if (auth.user && objects.length) {
+                props.setInitialVideo(objects[0]['id']['videoId'])
+            } else {
+                props.setInitialVideo('Ftm2uv7-Ybw')
+            }
         }
+
     }, [])
 
     return (
@@ -62,11 +74,13 @@ const mapStateToProps = state => {
       showSearch: state.isSearchToggled,
       showTimer: state.isTimerToggled,
       showCollection: state.isCollectionToggled,
-      videoPlayer: state.videoPlayer
+      videoPlayer: state.videoPlayer,
+      videos: state.videos
     }
   }
   
   export default connect(mapStateToProps, {
-    setVideos
+    setVideos,
+    setInitialVideo
   })(Main)
 

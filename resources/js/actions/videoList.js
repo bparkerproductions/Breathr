@@ -57,3 +57,13 @@ export const setVideoVolume = volume => {
     payload: volume
   }
 }
+
+/**
+ * Set the default video that is loaded initially
+ */
+export const setInitialVideo = videoId => {
+  return {
+    type: 'SET_DEFAULT_VIDEO_ID',
+    payload: videoId
+  }
+}
