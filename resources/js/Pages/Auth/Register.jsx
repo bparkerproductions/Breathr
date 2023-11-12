@@ -107,7 +107,7 @@ export default function Register() {
                         Already registered?
                     </Link>
 
-                    <Button sx={{marginLeft: 2}} disabled={processing}>
+                    <Button sx={{marginLeft: 2}} type="" disabled={processing}>
                         Register
                     </Button>
                 </div>

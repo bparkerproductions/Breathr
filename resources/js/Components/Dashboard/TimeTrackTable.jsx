@@ -1,5 +1,5 @@
-import { usePage } from "@inertiajs/react"
-import { Chip, Table, Typography } from "@mui/joy"
+import { Link, usePage } from "@inertiajs/react"
+import { Button, Chip, Table, Typography } from "@mui/joy"
 import { useEffect } from "react"
 import { useState } from "react"
 
@@ -109,7 +109,7 @@ export default function TimeTrackTable(props) {
 
   return (
     <>
-      { user['time_tracks'] ? (
+      { user['time_tracks'].length ? (
         <Table sx={{ marginTop: 3 }}>
           <thead>
             <tr>
@@ -136,7 +136,12 @@ export default function TimeTrackTable(props) {
           </tbody>
         </Table>
       ) : (
-        <Typography>You have no current time entries.</Typography>
+        <>
+          <Typography sx={{ marginTop: 3 }}>You have no current time entries.</Typography>
+          <Link href={route('main')}>
+            <Button sx={{ marginTop: 1 }}>Go log some time!</Button>
+          </Link>
+        </>
       )}
     </>
   )

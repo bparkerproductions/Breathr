@@ -18,7 +18,7 @@ export default function Navbar({ ...props }) {
         >
           <Container>
             <Grid container spacing={2}>
-              <Grid xs={12} lg={8} sx={{ overflowX: 'auto' }}>
+              <Grid xs={12} lg={8} sx={{ overflowX: { xs:'auto', md: 'inherit' }}}>
                 <Stack
                   direction="row"
                   alignItems="center"
