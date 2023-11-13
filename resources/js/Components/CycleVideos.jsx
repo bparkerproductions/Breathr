@@ -29,7 +29,7 @@ const CycleVideos = (props) => {
       }
     }
 
-    selectVideo(newVideo.id.videoId)
+    selectNewVideo(newVideo.id.videoId)
   }
 
   function previousVideo() {
@@ -52,10 +52,10 @@ const CycleVideos = (props) => {
       }
     }
 
-    selectVideo(newVideo.id.videoId)
+    selectNewVideo(newVideo.id.videoId)
   }
 
-  function selectVideo(id) {
+  function selectNewVideo(id) {
     props.incrementVideosPlayed()
     props.selectVideo(id)
   }

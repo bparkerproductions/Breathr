@@ -16,10 +16,7 @@ const CollectionControls = props => {
    */
    function doesVideoExist() {
     for (let i = 0; i < props.videos.length; i++) {
-      const videoID = props.videos[i].id.videoId
-      const selectedVideoID = props.video.id.videoId
-
-      if (videoID === selectedVideoID) return true
+      if (props.videos[i].id.videoId === props.video.id.videoId) return true
     }
 
     return false

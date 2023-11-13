@@ -18,12 +18,9 @@ const VideoItem = ({ videoPlayer, videosPlayed, videoVolume, video, incrementVid
    * Compare ID of current video in component with what is selected
    */
    const isCurrentVideo = useCallback(() => {
-    if (!videoPlayer) return
-
-    const playingVideoID = videoPlayer.getVideoData().video_id
-    const selectedVideoID = video.id.videoId || video.id
-
-    return playingVideoID === selectedVideoID
+    if (videoPlayer) {
+      return videoPlayer.getVideoData().video_id === video.id.videoId
+    }
   }, [video, videoPlayer])
 
   /**
@@ -87,7 +84,7 @@ const VideoItem = ({ videoPlayer, videosPlayed, videoVolume, video, incrementVid
       pauseOrPlay()
     } else {
       incrementVideosPlayed()
-      selectVideo(video.id.videoId || video.id)
+      selectVideo(video.id.videoId)
     }
   }
 
@@ -158,7 +155,6 @@ const VideoItem = ({ videoPlayer, videosPlayed, videoVolume, video, incrementVid
 const mapStateToProps = state => {
   return {
     paused: state.paused,
-    selectedVideo: state.selectedVideo,
     videosPlayed: state.videosPlayed,
     videoVolume: state.videoVolume,
     videoPlayer: state.videoPlayer,
