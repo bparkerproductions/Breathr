@@ -52,17 +52,13 @@ const TimerControls = ({ incrementSecond, show }) => {
     setStart(false)
   }
 
-  function isHidden() {
-    if ( !(show) ) return 'hidden'
-  }
-
   return (
     <Container
       component="section"
       id="timer-container"
-      className={isHidden()}
+      className={!show && 'hidden'}
       sx={{
-        marginBottom: { xs: 5, lg: 12.5 },
+        marginBottom: { xs: !show ? 0 : 5, lg: !show ? 0 : 10 },
         height: boxHeight
       }}
     >
@@ -78,7 +74,7 @@ const TimerControls = ({ incrementSecond, show }) => {
         }}>
           <Stack direction="row" justifyContent="space-between" alignItems="flex-end">
             <Typography level="title-sm">Start Timing</Typography>
-            <ComponentControls toggleType="timer"></ComponentControls>
+            <ComponentControls toggleType="timer" color="text-white"></ComponentControls>
           </Stack>
           <Divider />
           <Typography level="h2" color="primary">

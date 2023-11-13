@@ -66,9 +66,8 @@ const Search = (props) => {
       component="section"
       id="video-search"
       sx={{
-        marginY: { xs: 5, lg: 12.5 },
+        marginBottom: { xs: !props.show ? 0 : 5, lg: !props.show ? 0 : 10 },
         height: boxHeight,
-        transition: 'all 0.2s ease'
       }}
       className={!props.show && 'hidden'}
     >

@@ -21,7 +21,7 @@ const ComponentControls = props => {
         <FontAwesomeIcon
           icon={faTimesCircle}
           title="Minimize"
-          className="text-blue-700"
+          className={props.color || 'text-blue-700'}
         />
     </IconButton>
   )

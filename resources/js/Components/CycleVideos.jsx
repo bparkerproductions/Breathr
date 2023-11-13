@@ -18,13 +18,14 @@ const CycleVideos = (props) => {
 
     const currentlyPlaying = props.videoPlayer.getVideoData().video_id
     let newVideo = null
+    const videoList = props.isCollection ? props.videos : props.searchedVideos
 
-    for (let i = 0; i < props.searchedVideos.length; i++) {
-      const id = props.searchedVideos[i].id.videoId
+    for (let i = 0; i < videoList.length; i++) {
+      const id = videoList[i].id.videoId
 
       if (id === currentlyPlaying) {
-        if (i === props.searchedVideos.length-1) newVideo = props.searchedVideos[0]
-        else newVideo = props.searchedVideos[i+1]
+        if (i === videoList.length-1) newVideo = videoList[0]
+        else newVideo = videoList[i+1]
       }
     }
 
@@ -37,15 +38,16 @@ const CycleVideos = (props) => {
 
     const currentlyPlaying = props.videoPlayer.getVideoData().video_id
     let newVideo = null
+    const videoList = props.isCollection ? props.videos : props.searchedVideos
 
-    for (let i = 0; i < props.searchedVideos.length; i++) {
-      const id = props.searchedVideos[i].id.videoId
+    for (let i = 0; i < videoList.length; i++) {
+      const id = videoList[i].id.videoId
       if (id === currentlyPlaying) {
         if (i === 0) {
-          newVideo = props.searchedVideos[props.searchedVideos.length-1]
+          newVideo = videoList[videoList.length-1]
         }
         else {
-          newVideo = props.searchedVideos[i-1]
+          newVideo = videoList[i-1]
         }
       }
     }
@@ -71,7 +73,7 @@ const CycleVideos = (props) => {
       <FontAwesomeIcon
         onClick={nextVideo}
         icon={faStepForward}
-        className={`cursor-pointer' ${props.color}`}
+        className={`cursor-pointer ${props.color}`}
         size="lg"
         title="Go to next video"
       />
@@ -81,7 +83,7 @@ const CycleVideos = (props) => {
 
 const mapStateToProps = state => { return {
   videosPlayed: state.videosPlayed,
-  collectionVideos: state.videos,
+  videos: state.videos,
   videoPlayer: state.videoPlayer,
   searchedVideos: state.searchedVideos
 } }

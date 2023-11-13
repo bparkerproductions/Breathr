@@ -12,6 +12,7 @@ import { faTimesCircle} from '@fortawesome/free-solid-svg-icons'
 const IntroModal = (props) => {
   const { auth } = usePage().props
   const [isShown, setIsShown] = useState(true)
+  const isHidden = !(props.videosPlayed === 0 && isShown)
 
   function playVideo() {
     // The only time a video count can be incremented is when initially clicking the 
@@ -30,16 +31,12 @@ const IntroModal = (props) => {
     return checkVisitCount() > 1 ? welcomeMessage : firstTimeMessage
   }
 
-  function isHidden() {
-    if ( !(props.videosPlayed === 0 && isShown) ) return 'hidden'
-  }
-
     return (
       <Container
         id="intro-modal"
         component="section"
-        className={isHidden()}
-        sx={{ marginY: { xs: 5, lg: 12.5 } }}
+        className={ isHidden && 'hidden' }
+        sx={{ marginBottom: { xs: isHidden ? 0 : 5, lg: isHidden ? 0 : 10 } }}
       >
         <Card
           color="primary"

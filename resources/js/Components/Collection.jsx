@@ -17,24 +17,30 @@ const Collection = (props) => {
    * On load, initially set box height depending on how many items are in there
    */
   useEffect(() => {
+    adjustBoxHeight()
+  }, [adjustBoxHeight])
+
+  function adjustBoxHeight() {
     if (cardRef.current) {
       setBoxHeight(cardRef.current.offsetHeight + "px")
     }
-  }, [])
+  }
 
   return (
     <Container
       id="video-collection"
-      className={props.show || 'hidden'}
-      sx={{ height: boxHeight, marginY: { xs: 5, lg: 12.5 } }}
-    >
+      className={!props.show && 'hidden'}
+      sx={{
+        height: boxHeight,
+        marginBottom: { xs: !props.show ? 0 : 5, lg: !props.show ? 0 : 10 } }}
+      >
       <Card ref={cardRef}>
         <ComponentControls toggleType="collection"></ComponentControls>
         <Stack direction="row">
           <FontAwesomeIcon icon={faAddressBook} size="lg" className="text-blue-500" />
           <Typography level="title-lg" sx={{ marginLeft: 1, marginRight: 1 }}>Your Collection</Typography>
           <Box sx={{  marginLeft: 1 }}>
-            { auth.user && <CycleVideos color="text-blue-500" /> }
+            { auth.user && <CycleVideos color="text-blue-500" isCollection={true} /> }
           </Box>
         </Stack>
 

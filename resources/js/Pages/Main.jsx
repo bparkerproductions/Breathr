@@ -47,11 +47,10 @@ const Main = props => {
             props.setVideos(objects)
 
             // Set default video with action call
-            if (auth.user && objects.length) {
-                props.setInitialVideo(objects[0]['id']['videoId'])
-            } else {
-                props.setInitialVideo('Ftm2uv7-Ybw')
-            }
+            if (objects.length) props.setInitialVideo(objects[0]['id']['videoId'])
+            else props.setInitialVideo('Ftm2uv7-Ybw')
+        } else {
+            props.setInitialVideo('Ftm2uv7-Ybw')
         }
 
     }, [])
