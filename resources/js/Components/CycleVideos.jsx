@@ -7,9 +7,17 @@ import Stack from '@mui/joy/Stack';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStepBackward, faStepForward } from '@fortawesome/free-solid-svg-icons'
 
-const CycleVideos = (props) => {
+const CycleVideos = props => {
   function isDisabled() {
-    if (props.videosPlayed === 0) return 'disabled'
+    // Disable if no video has been played or the "no collection" default video is playing
+    if ( props.videosPlayed === 0 || props.videoContext.isDefault) return 'disabled'
+
+    // Disable if this component is in <Collection> but the video is playing from search
+    if ( !props.videoContext.isFromCollection && props.isCollection ) return 'disabled'
+  }
+
+  function videoList() {
+    return (props.isCollection || props.videoContext.isFromCollection) ? props.videos : props.searchedVideos
   }
 
   function nextVideo() {
@@ -18,14 +26,13 @@ const CycleVideos = (props) => {
 
     const currentlyPlaying = props.videoPlayer.getVideoData().video_id
     let newVideo = null
-    const videoList = props.isCollection ? props.videos : props.searchedVideos
 
-    for (let i = 0; i < videoList.length; i++) {
-      const id = videoList[i].id.videoId
+    for (let i = 0; i < videoList().length; i++) {
+      const id = videoList()[i].id.videoId
 
       if (id === currentlyPlaying) {
-        if (i === videoList.length-1) newVideo = videoList[0]
-        else newVideo = videoList[i+1]
+        if (i === videoList().length-1) newVideo = videoList()[0]
+        else newVideo = videoList()[i+1]
       }
     }
 
@@ -38,16 +45,15 @@ const CycleVideos = (props) => {
 
     const currentlyPlaying = props.videoPlayer.getVideoData().video_id
     let newVideo = null
-    const videoList = props.isCollection ? props.videos : props.searchedVideos
 
-    for (let i = 0; i < videoList.length; i++) {
-      const id = videoList[i].id.videoId
+    for (let i = 0; i < videoList().length; i++) {
+      const id = videoList()[i].id.videoId
       if (id === currentlyPlaying) {
         if (i === 0) {
-          newVideo = videoList[videoList.length-1]
+          newVideo = videoList()[videoList().length-1]
         }
         else {
-          newVideo = videoList[i-1]
+          newVideo = videoList()[i-1]
         }
       }
     }
@@ -85,7 +91,8 @@ const mapStateToProps = state => { return {
   videosPlayed: state.videosPlayed,
   videos: state.videos,
   videoPlayer: state.videoPlayer,
-  searchedVideos: state.searchedVideos
+  searchedVideos: state.searchedVideos,
+  videoContext: state.videoContext
 } }
 
 export default connect(mapStateToProps, {

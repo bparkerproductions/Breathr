@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { connect, useSelector } from 'react-redux'
 import CollectionControls from '@/Components/CollectionControls'
-import { selectVideo } from '@/actions/videoList'
+import { selectVideo, setVideoContext } from '@/actions/videoList'
 import { incrementVideosPlayed } from '@/actions'
 import { setPaused } from '@/actions/appToggles'
 import { Box, Card, CardContent, CardCover, Typography } from '@mui/joy'
@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPauseCircle, faPlay } from '@fortawesome/free-solid-svg-icons'
 import { usePage } from '@inertiajs/react'
 
-const VideoItem = ({ videoPlayer, videosPlayed, videoVolume, video, incrementVideosPlayed, selectVideo, setPaused }) => {
+const VideoItem = ({ videoPlayer, videosPlayed, videoVolume, video, incrementVideosPlayed, selectVideo, setPaused, isCollection, setVideoContext }) => {
 
   const { auth } = usePage().props
   const [isPlaying, setIsPlaying] = useState(false)
@@ -85,6 +85,7 @@ const VideoItem = ({ videoPlayer, videosPlayed, videoVolume, video, incrementVid
     } else {
       incrementVideosPlayed()
       selectVideo(video.id.videoId)
+      setVideoContext({ isFromCollection: isCollection }) 
     }
   }
 
@@ -165,5 +166,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   selectVideo,
   setPaused,
-  incrementVideosPlayed
+  incrementVideosPlayed,
+  setVideoContext
 })(VideoItem)

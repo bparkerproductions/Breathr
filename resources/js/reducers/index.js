@@ -45,6 +45,7 @@ export default combineReducers({
   selectedVideo: videoList.selectedVideoReducer,
   searchedVideos: videoList.searchedVideosReducer,
   defaultVideo: videoList.defaultVideoReducer,
+  videoContext: videoList.videoContextReducer,
   videoPlayer: setVideoReducer,
   videoVolume: setVideoVolumeReducer,
   videosPlayed,

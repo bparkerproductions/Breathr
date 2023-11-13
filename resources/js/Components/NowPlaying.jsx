@@ -41,6 +41,19 @@ const NowPlaying = props => {
     setShow(!show)
   }
 
+  function getPlayingFromText() {
+    if (!Object.keys(props.videoContext).length) return
+    let playingFrom
+
+    if (props.videoContext.isDefault) playingFrom = 'Default Video'
+    else if (props.videoContext.isFromCollection) playingFrom = 'Collection'
+    else playingFrom = 'Search'
+
+    return <p className="text-sm text-gray-500">
+      Playing from: {playingFrom}
+      </p>
+  }
+
   return (
     <Box id="now-playing" sx={{ position: "relative" }}>
       <Tooltip title="Toggle video information" variant="solid">
@@ -80,6 +93,7 @@ const NowPlaying = props => {
         <Divider />
         <Box>
           <Typography level="body-md" fontWeight="bold" marginBottom="0">Now Playing</Typography>
+          {getPlayingFromText()}
           <Typography level="body-md" fontWeight="light">{getVideoData('title')}</Typography>
         </Box>
         <Divider />
@@ -96,6 +110,7 @@ const NowPlaying = props => {
 const mapStateToProps = state => {
   return {
     videoPlayer: state.videoPlayer,
+    videoContext: state.videoContext
   }
 }
 

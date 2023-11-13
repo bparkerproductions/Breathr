@@ -56,3 +56,7 @@ main {
   cursor: pointer;
 }
 
+.disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}

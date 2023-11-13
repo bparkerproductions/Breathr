@@ -49,6 +49,16 @@ export const selectVideo = video => {
 }
 
 /**
+ * Used to give video context, such as if it was clicked from a collection or search
+ */
+export const setVideoContext = context => {
+  return {
+    type: 'SET_VIDEO_CONTEXT',
+    payload: context // pass context object
+  }
+}
+
+/**
  * Called when a control for changing volume or muting a video is activated
  */
 export const setVideoVolume = volume => {

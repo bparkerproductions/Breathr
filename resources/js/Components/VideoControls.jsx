@@ -1,15 +1,19 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { setVideoVolume } from '@/actions/videoList'
+import { setVideoVolume, setVideoContext } from '@/actions/videoList'
 import { incrementVideosPlayed } from '@/actions'
 import { setPaused } from '@/actions/appToggles'
+
 import CycleVideos from '@/Components/CycleVideos'
 
 import { Box, Stack, Slider } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVolumeOff, faVolumeHigh, faPlay, faPauseCircle } from '@fortawesome/free-solid-svg-icons'
+import { usePage } from '@inertiajs/react'
 
 const VideoControls = props => {
+  const { user } = usePage().props
+
   const [muted, setMuted] = useState(false)
   const [localSliderVolume, setLocalSliderVolume] = useState(props.videoVolume)
 
@@ -42,6 +46,17 @@ const VideoControls = props => {
     // The only time a video count can be incremented is when initially clicking the 
     // play button on app load (it will start playing the default selected video)
     if (props.videosPlayed === 0) {
+
+      // If the user has any collection videos, the first click on the play
+      // button will play that first collection video. Set the context if the
+      // user collection array isn't empty
+      const hasCollectionItems = user['collection_items'].length ? true : false
+
+      props.setVideoContext({
+        isFromCollection: hasCollectionItems,
+        isDefault: !hasCollectionItems
+      })
+      
       props.incrementVideosPlayed()
     }
 
@@ -113,4 +128,5 @@ export default connect(mapStateToProps, {
   setPaused,
   setVideoVolume,
   incrementVideosPlayed,
+  setVideoContext
 })(VideoControls)

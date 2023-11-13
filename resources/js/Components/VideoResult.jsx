@@ -14,7 +14,7 @@ const VideoResult = props => {
           {loopObj.map(video => {
             return (
               <Grid xs={12} md={6} xl={4} key={video.video_id}>
-                <VideoItem video={video}></VideoItem>
+                <VideoItem video={video} isCollection={isCollection}></VideoItem>
               </Grid>
             )
           })}

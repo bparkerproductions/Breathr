@@ -45,6 +45,17 @@ const defaultVideoReducer = (initialVideo=null, action) => {
 }
 
 /**
+ * Keeps video context such as if it was clicked from a collection.
+ * Expects an object parameter.
+ */
+const videoContextReducer = (context={}, action) => {
+  if (action.type === 'SET_VIDEO_CONTEXT') {
+    return action.payload
+  }
+  return context
+}
+
+/**
  * Sets the state for the currently playing video
  */
 const selectedVideoReducer = (selectedVideo=null, action) => {
@@ -56,7 +67,8 @@ const videoListReducers = {
   videosReducer,
   defaultVideoReducer,
   selectedVideoReducer,
-  searchedVideosReducer
+  searchedVideosReducer,
+  videoContextReducer
 }
 
 export default videoListReducers
