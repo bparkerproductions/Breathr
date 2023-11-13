@@ -75,15 +75,6 @@ const VideoItem = ({ videoPlayer, videosPlayed, videoVolume, video, incrementVid
     videoIsPlaying ? setIsPlaying(false) : setIsPlaying(true)
   }, [paused, isCurrentVideo, videoPlayer, videosPlayed])
 
-
-  function getPauseOrPlay() {
-    if (isPlaying) {
-      return <FontAwesomeIcon size="2xl" color="white" icon={faPauseCircle} />
-    } else {
-      return <FontAwesomeIcon size="2xl" color="white" icon={faPlay} />
-    }
-  }
-
   /**
    * Actions to perform when a new video is selected: 
    * Select a new video, set play/pause state and volume state
@@ -121,18 +112,12 @@ const VideoItem = ({ videoPlayer, videosPlayed, videoVolume, video, incrementVid
     return text.value
   }
 
-  function getCollectionControls() {
-
-    if (auth.user) return (
-      <CardContent sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-start' }}>
-          <CollectionControls video={video} />
-        </CardContent>
-    )
-  }
-
   return (
-    
-    <Card onClick={videoSelected} className="cursor-pointer" sx={{ height: '200px' }}>
+    <Card
+      onClick={videoSelected}
+      className="cursor-pointer"
+      sx={{ height: '200px' }}
+    >
       <CardCover>
         <img
           src={video.snippet.thumbnails.high.url}
@@ -148,11 +133,20 @@ const VideoItem = ({ videoPlayer, videosPlayed, videoVolume, video, incrementVid
             justifyContent: 'flex-end'
         }}>
         <Box>
-          {getPauseOrPlay()}
+          {isPlaying ?
+          <FontAwesomeIcon size="2xl" color="white" icon={faPauseCircle} /> :
+
+          <FontAwesomeIcon size="2xl" color="white" icon={faPlay} />
+          }
         </Box>
       </CardCover>
 
-      {getCollectionControls()}
+      {auth.user && 
+      <CardContent 
+        sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-start' }}>
+        <CollectionControls video={video} />
+      </CardContent> 
+      }
 
       <CardContent sx={{ justifyContent: 'flex-end'  }}>
         <Typography level="body-sm" sx={{ color: 'white' }}>{getVideoTitle()}</Typography>

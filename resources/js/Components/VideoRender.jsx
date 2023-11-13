@@ -13,14 +13,6 @@ const VideoRender = props => {
   useEffect(() => {
     props.videosPlayed === 0 ? options.playerVars.autoplay = 0 : options.playerVars.autoplay = 1
   })
-
-  /**
-   * When the iframe is loaded, call the setVideoPlayer action 
-   * when the player state is set as playing
-   */
-  function setPlayingVideo(event) {
-    props.setVideoPlayer(event.target)
-  }
   
   if (props.selectedVideo || props.defaultVideo) {
     return (
@@ -36,7 +28,7 @@ const VideoRender = props => {
         <Youtube
           videoId={props.selectedVideo || props.defaultVideo}
           opts={options}
-          onReady={setPlayingVideo}
+          onReady={e => props.setVideoPlayer(e.target)}
         >
         </Youtube>
       </Box>
