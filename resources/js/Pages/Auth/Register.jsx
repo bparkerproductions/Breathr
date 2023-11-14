@@ -5,12 +5,14 @@ import InputLabel from '@/Components/Form/InputLabel'
 import TextInput from '@/Components/Form/TextInput'
 import { Head, Link, useForm } from '@inertiajs/react'
 import { Button } from '@mui/joy'
+import { getTimeForDay } from '@/helpers/store'
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
         password: '',
+        minutes: getMinutes(),
         password_confirmation: '',
     })
 
@@ -22,9 +24,17 @@ export default function Register() {
 
     const submit = (e) => {
         e.preventDefault()
-
         post(route('register'))
-    };
+    }
+
+    /**
+     * If any minutes were logged locally, we want them to be added to a new user for today's date. 
+     * Send the information along with the form data
+     */
+    function getMinutes() {
+        const minutes = Math.floor(getTimeForDay() / 60)
+        return minutes || null
+    }
 
     return (
         <GuestLayout>

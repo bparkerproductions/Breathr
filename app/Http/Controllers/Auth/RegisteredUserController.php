@@ -38,6 +38,16 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        // Create initial timeTrack item if any minutes exist
+        if ($request->minutes) {
+            $timetrack = $user->timeTracks()->firstOrNew([
+                'day' => now()->format('Y-m-d')
+            ]);
+
+            $timetrack->tracked_minutes = $request->minutes;
+            $user->timeTracks()->save($timetrack);
+        }
+
         event(new Registered($user));
 
         Auth::login($user);
