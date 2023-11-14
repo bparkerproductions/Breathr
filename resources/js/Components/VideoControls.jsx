@@ -74,13 +74,13 @@ const VideoControls = props => {
             icon={faPlay}
             className="cursor-pointer text-white"
             size="lg"
-            title="Pause Video"
+            title="Play Video"
           /> : 
           <FontAwesomeIcon
             icon={faPauseCircle}
             className="cursor-pointer text-white"
             size="lg"
-            title="Play Video"
+            title="Pause Video"
           />}
         </Box>
 
@@ -90,7 +90,6 @@ const VideoControls = props => {
             icon={faVolumeOff}
             className="cursor-pointer text-white"
             size="lg"
-            title="Turn the volume back on"
           /> : 
           <FontAwesomeIcon
             icon={faVolumeHigh}

@@ -12,26 +12,36 @@ const TimerControls = ({ incrementSecond, show }) => {
   const [time, setTime] = useState(0)
   const [start, setStart] = useState(false)
   const [boxHeight, setBoxHeight] = useState(null)
-  const timeInterval = useRef(false)
   const cardRef = useRef(null)
 
   useEffect(() => {
+    let animationFrameId
+    let lastUpdate = Date.now()
+    const timeTick = 1000
 
     // Set initial height of timer container
     if (cardRef.current) {
       setBoxHeight(cardRef.current.offsetHeight + "px")
     }
 
-    if (start) {
-      timeInterval.current = setInterval(() => {
-        setTime(prevTime => prevTime + 1)
+    const updateTimer = () => {
+      const now = Date.now()
+      const elapsedTime = now - lastUpdate
+  
+      // Update only when more than 1000ms (1 second) have passed
+      if (elapsedTime >= timeTick) {
+        setTime(prevTime => prevTime + Math.floor(elapsedTime / timeTick))
+        lastUpdate = now
         incrementSecond()
-      }, 100)
-    } else {
-      clearInterval(timeInterval.current)
-    }
+      }
 
-    return () => clearInterval(timeInterval.current)
+      animationFrameId = requestAnimationFrame(updateTimer)
+    }
+  
+    if (start) animationFrameId = requestAnimationFrame(updateTimer)
+    else cancelAnimationFrame(animationFrameId)
+  
+    return () => cancelAnimationFrame(animationFrameId)
   }, [start, incrementSecond])
 
   function getIcon() {
@@ -39,12 +49,27 @@ const TimerControls = ({ incrementSecond, show }) => {
     else return <FontAwesomeIcon icon={faPlay} />
   }
 
+  /**
+   * Basic timer functions. Track for seconds, minutes and hours.
+   * Don't show hours unless minutes are actually > 60
+   * Show minutes and seconds always
+   */
   function getSeconds() {
-    return ("0" + Math.floor((time % 60))).slice(-2)
+    const seconds = time % 60
+    return ( "0" + Math.floor(seconds) ).slice(-2)
   }
 
   function getMinutes() {
-    return ("0" + Math.floor(((time / 60) % 60))).slice(-2)
+    const minutes = (time / 60) % 60
+    return ( "0" + Math.floor(minutes) ).slice(-2)
+  }
+
+  function getHours() {
+    const minutes = Math.floor( time / 60 )
+    if ( minutes > 60 ) {
+      const hours = minutes / 60
+      return Math.floor(hours) + 'h : '
+    }
   }
 
   function resetStopwatch() {
@@ -78,7 +103,7 @@ const TimerControls = ({ incrementSecond, show }) => {
           </Stack>
           <Divider />
           <Typography level="h2" color="primary">
-          <Typography>{getMinutes()}m</Typography> : <Typography>{getSeconds()}s</Typography>
+          <Typography>{getHours()} {getMinutes()}m</Typography> : <Typography>{getSeconds()}s</Typography>
           </Typography>
 
           <CardActions>
