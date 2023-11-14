@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { router } from '@inertiajs/react';
+import { router } from '@inertiajs/react'
+import { setSnackbarOpen, setSnackbarMessage } from '@/actions'
+
 import { removeFromCollection, addToCollection } from '@/actions/videoList'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle, faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
-import { Snackbar } from '@mui/joy'
+import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
 const CollectionControls = props => {
-  const [open, setOpen] = useState(false)
-  const [message, setMessage] = useState("")
-  const [color, setColor] = useState("neutral")
 
    /**
    * Check if video already exists in collection
@@ -28,14 +26,9 @@ const CollectionControls = props => {
    function handleAdd(e) {
     e.stopPropagation()
 
-    setOpen(true)
-
-    if (!doesVideoExist()) {
-      addToCollection()
-    }
+    if (!doesVideoExist()) addToCollection()
     else {
-      setColor("warning")
-      setMessage('This video is already in your collection!')
+      props.setSnackbarMessage('This video is already in your collection!')
     }
   }
 
@@ -49,9 +42,8 @@ const CollectionControls = props => {
       onSuccess: () => {
         props.removeFromCollection(videoID)
 
-        setColor("primary")
-        setOpen(true)
-        setMessage('Your video has successfully been removed from your collection!')
+        props.setSnackbarOpen(true)
+        props.setSnackbarMessage('Your video has successfully been removed from your collection!')
       },
       preserveScroll: true
     })
@@ -69,14 +61,12 @@ const CollectionControls = props => {
       onSuccess: () => {
         // Notify User
         props.addToCollection(props.video)
-        setColor("success")
-        setMessage('Your video has successfully been added to your collection!')
+        props.setSnackbarOpen(true)
+        props.setSnackbarMessage('New video has successfully been added to your collection!')
       },
       onError: () => {
-        console.log('error')
-        setColor("danger")
-        setOpen(true)
-        setMessage('There was an error adding your video to the collection.')
+        props.setSnackbarOpen(true)
+        props.setSnackbarMessage('There was an error adding your video to the collection.')
       },
       preserveScroll: true
     })
@@ -97,20 +87,6 @@ const CollectionControls = props => {
           onClick={handleRemove}
         />
       }
-
-      <Snackbar
-        autoHideDuration={1600}
-        open={open}
-        variant="soft"
-        color={color}
-        size="lg"
-        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
-        startDecorator={<FontAwesomeIcon icon={faCheckCircle} />}
-        onClose={() => {setOpen(false)}}
-        sx={{ marginBottom: 2, marginLeft: 2 }}
-      >
-      {message}
-    </Snackbar>
     </>
     )
 
@@ -124,5 +100,7 @@ const mapStateToProps = state => {
   
 export default connect(mapStateToProps, {
   removeFromCollection,
-  addToCollection
+  addToCollection,
+  setSnackbarOpen,
+  setSnackbarMessage
 })(CollectionControls)

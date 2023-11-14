@@ -33,7 +33,7 @@ const Dashboard = props => {
         onClose={() => {props.setSnackbarOpen(false)}}
         sx={{ marginBottom: 2, marginLeft: 2 }}
       >
-      {props.message}
+        {props.message}
       </Snackbar>
     </AuthenticatedLayout>
   );

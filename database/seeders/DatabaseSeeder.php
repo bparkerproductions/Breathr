@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         for ($i = 0; $i < $numberOfTimeTracks; $i++) {
             \App\Models\TimeTracks::factory()->create([
                 'user_id' => $user->id,
-                'day' => $startDate->copy()->subDays($i)->format('Y-m-d'),
+                'day' => $startDate->copy()->subDays($i+1)->format('Y-m-d'),
             ]);
         }
     }
