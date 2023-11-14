@@ -14,9 +14,20 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $user = \App\Models\User::factory()->create([
+            'name' => 'Eval User',
+            'email' => 'evaluser@test.com',
+            'password' => 'evalpassword'
+        ]);
+
+        $numberOfTimeTracks = 10;
+        $startDate = now();
+
+        for ($i = 0; $i < $numberOfTimeTracks; $i++) {
+            \App\Models\TimeTracks::factory()->create([
+                'user_id' => $user->id,
+                'day' => $startDate->copy()->subDays($i)->format('Y-m-d'),
+            ]);
+        }
     }
 }
