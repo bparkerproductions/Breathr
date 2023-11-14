@@ -1,16 +1,17 @@
-import { Button, AspectRatio, Typography, CardOverflow, Card, CardContent } from '@mui/joy'
+import { Button, AspectRatio, Typography, CardOverflow, Card, CardContent, CardActions } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faYoutube } from '@fortawesome/free-brands-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 export default function CollectionItem(props) {
   /**
    * Sanitize text from HTML entities
-   */
-    function getText(textContent) {
-      const text = document.createElement("textarea")
-      text.innerHTML = textContent
-      return text.value
-    }
+  */
+  function getText(textContent) {
+    const text = document.createElement("textarea")
+    text.innerHTML = textContent
+    return text.value
+  }
 
   return (
     <Card
@@ -44,23 +45,34 @@ export default function CollectionItem(props) {
             </AspectRatio>
         </CardOverflow>
 
-        <CardContent sx={{ paddingTop: 2 }}>
+        <CardContent>
             <Typography level="body-md" fontWeight="bold">{getText(props.item.title)}</Typography>
             <Typography level="body-md">{getText(props.item.description)}</Typography>
-            <Button
+
+            <CardActions>
+              <Button
                 target="_blank"
                 component="a"
                 href={`https://www.youtube.com/watch?v=${props.item.video_id}`}
                 size="sm"
                 color="danger"
-                sx={{ width: '200px', marginTop: 1 }}
+                sx={{ width: '200px'}}
                 startDecorator={<FontAwesomeIcon
-                    icon={faYoutube}
-                    className="cursor-pointer"
-                    size="lg"
-                  />}
-            >Go to video</Button>
+                  icon={faYoutube}
+                  className="cursor-pointer"
+                  size="lg"
+                />}
+              >Go to video</Button>
+              <Button
+                color="danger"
+                size="sm"
+                sx={{ marginLeft: 1 }}
+                onClick={() => props.deleteItem(props.item.video_id)}
+                startDecorator={ <FontAwesomeIcon icon={faTrash}/> }
+              >Remove</Button>
+            </CardActions>
         </CardContent>
+        
         
     </Card>
   )

@@ -1,12 +1,14 @@
 import { Card, Typography, CardContent, Divider, Box, Chip, Input, Button } from '@mui/joy'
 import CollectionItem from '@/Components/Dashboard/CollectionItem'
+import { setSnackbarOpen, setSnackbarMessage } from '@/actions'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { Link, usePage } from '@inertiajs/react'
+import { Link, router, usePage } from '@inertiajs/react'
 import { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 
-export default function CollectionList(props) {
+const CollectionList = props => {
   const { auth, user } = usePage().props
   const [searchQuery, setSearchQuery] = useState("")
   const [collectionItems, setCollectionItems] = useState([])
@@ -70,6 +72,26 @@ export default function CollectionList(props) {
     }
   }
 
+  /**
+   * Delete a specific collection item from the db then update the local state
+   */
+  function deleteItem(video_id) {
+    router.delete(`/collection/${video_id}`, {
+      onSuccess: () => {
+
+        const newItems = collectionItems.filter(elem => {
+          return elem.video_id !== video_id
+        })
+        setCollectionItems(newItems)
+
+        // Set snackbar state
+        props.setSnackbarOpen(true)
+        props.setSnackbarMessage(`Your video with video_id of ${video_id} has successfully been removed from your collection!`)
+      },
+      preserveScroll: true
+    })
+  }
+
   return (
     <Card variant="soft" color="neutral" sx={{ marginTop: 5 }}>
       <Typography level="h3">Your Collection</Typography>
@@ -88,7 +110,7 @@ export default function CollectionList(props) {
           <Box>
             {collectionItems.map( elem => {
               return (
-                <CollectionItem key={elem.video_id} item={elem} />
+                <CollectionItem deleteItem={deleteItem} key={elem.video_id} item={elem} />
               )
            })}
           </Box> :
@@ -104,3 +126,12 @@ export default function CollectionList(props) {
     </Card>
   )
 }
+
+const mapStateToProps = state => {
+  return {}
+}
+
+export default connect(mapStateToProps, {
+  setSnackbarOpen,
+  setSnackbarMessage
+})(CollectionList)

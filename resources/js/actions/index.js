@@ -25,3 +25,23 @@ export const incrementVideosPlayed = () => {
     type: 'INCREMENT_VIDEOS_PLAYED'
   }
 }
+
+/**
+ * Called to set the snackbar/alert message "Open" indicator globally using MUI's <Snackbar component>
+ */
+export const setSnackbarOpen = isOpen => {
+  return {
+    type: 'SET_SNACKBAR_OPEN',
+    payload: isOpen
+  }
+}
+
+/**
+ * Called to set the snackbar/alert message "Message" indicator globally using MUI's <Snackbar component>
+ */
+export const setSnackbarMessage = message => {
+  return {
+    type: 'SET_SNACKBAR_MESSAGE',
+    payload: message
+  }
+}

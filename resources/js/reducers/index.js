@@ -40,6 +40,24 @@ const secondsForDay = (seconds=getTimeForDay(), action) => {
   return seconds
 }
 
+/**
+ * Snackbar functions: setSnackbarOpenReducer(): open state
+ * setSnackbarMessageReducer(): set message state
+ */
+const setSnackbarOpenReducer = (open=false, action) => {
+  if (action.type === 'SET_SNACKBAR_OPEN') {
+    return action.payload
+  }
+  return open
+}
+
+const setSnackbarMessageReducer = (message='', action) => {
+  if (action.type === 'SET_SNACKBAR_MESSAGE') {
+    return action.payload
+  }
+  return message
+}
+
 export default combineReducers({
   videos: videoList.videosReducer,
   selectedVideo: videoList.selectedVideoReducer,
@@ -53,5 +71,7 @@ export default combineReducers({
   isSearchToggled: appToggles.toggleSearchReducer,
   isTimerToggled: appToggles.toggleTimerReducer,
   isCollectionToggled: appToggles.toggleCollectionReducer,
-  paused: appToggles.setPausedReducer
+  paused: appToggles.setPausedReducer,
+  snackbarOpen: setSnackbarOpenReducer,
+  snackbarMessage: setSnackbarMessageReducer
 })

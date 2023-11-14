@@ -1,16 +1,13 @@
-import { Link, router, usePage } from '@inertiajs/react'
-import { useState, useEffect } from 'react'
+import { router, usePage } from '@inertiajs/react'
+import { setSnackbarOpen, setSnackbarMessage } from '@/actions'
 
-import { Card, Typography, CardContent, Divider, Snackbar, Button, CardActions } from '@mui/joy'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { Card, Typography, CardContent, Divider, Button, CardActions } from '@mui/joy'
 import TimeTrackTable from '@/Components/Dashboard/TimeTrackTable'
 import TimeStats from '@/Components/Dashboard/TimeStats'
+import { connect } from 'react-redux'
 
-export default function CollectionList(props) {
+const TimeTracks = props => {
   const { user } = usePage().props
-  const [open, setOpen] = useState(false)
-  const [message, setMessage] = useState("")
 
   /**
    * Make a db call to delete all time tracks from a user
@@ -18,44 +15,37 @@ export default function CollectionList(props) {
   function deleteAll() {
     router.delete('/time/destroy', {
       onSuccess: () => {
-        setMessage("Your time tracks have successfully been deleted")
-        setOpen(true)
+        props.setSnackbarMessage("Your time tracks have successfully been deleted")
+        props.setSnackbarOpen(true)
       }
     })
   }
 
   return (
-    <>
-      <Card variant="soft" color="neutral" sx={{ marginY: 5 }}>
-        <Typography level="h3">Your Time Report</Typography>
-        <Divider />
-        <CardContent>
-          <TimeStats />
-          <TimeTrackTable />
-        </CardContent>
-        <CardActions>
-          <Button
-            onClick={deleteAll}
-            color="danger"
-            sx={{ maxWidth: '150px' }}
-            disabled={user['time_tracks'].length ? false : true}
-          >Delete All Data</Button>
-        </CardActions>
-      </Card>
-
-      <Snackbar
-        autoHideDuration={3200}
-        open={open}
-        variant="soft"
-        color="success"
-        size="lg"
-        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
-        startDecorator={<FontAwesomeIcon icon={faCheckCircle} />}
-        onClose={() => {setOpen(false)}}
-        sx={{ marginBottom: 2, marginLeft: 2 }}
-      >
-      {message}
-      </Snackbar>
-    </>
+    <Card variant="soft" color="neutral" sx={{ marginY: 5 }}>
+      <Typography level="h3">Your Time Report</Typography>
+      <Divider />
+      <CardContent>
+        <TimeStats />
+        <TimeTrackTable />
+      </CardContent>
+      <CardActions>
+        <Button
+          onClick={deleteAll}
+          color="danger"
+          sx={{ maxWidth: '150px' }}
+          disabled={user['time_tracks'].length ? false : true}
+        >Delete All Data</Button>
+      </CardActions>
+    </Card>
   )
 }
+
+const mapStateToProps = state => {
+  return {}
+}
+
+export default connect(mapStateToProps, {
+  setSnackbarOpen,
+  setSnackbarMessage
+})(TimeTracks)
