@@ -15,8 +15,9 @@ const CycleVideos = props => {
     // Disable if no video has been played or the "no collection" default video is playing
     if ( props.videosPlayed === 0 || props.videoContext.isDefault) return 'disabled'
 
+    const isPlayingFromCollection = !props.videoContext.isFromCollection && props.isCollection
     // Disable if this component is in <Collection> but the video is playing from search
-    if ( !props.videoContext.isFromCollection && props.isCollection ) return 'disabled'
+    if ( isPlayingFromCollection || videoList().length === 1 ) return 'disabled'
   }
 
   function videoList() {
@@ -55,12 +56,8 @@ const CycleVideos = props => {
     for (let i = 0; i < videoList().length; i++) {
       const id = videoList()[i].id.videoId
       if (id === currentlyPlaying) {
-        if (i === 0) {
-          newVideo = videoList()[videoList().length-1]
-        }
-        else {
-          newVideo = videoList()[i-1]
-        }
+        if (i === 0) newVideo = videoList()[videoList().length-1]
+        else newVideo = videoList()[i-1]
       }
     }
 
