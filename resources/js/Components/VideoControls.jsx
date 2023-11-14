@@ -12,7 +12,7 @@ import { faVolumeOff, faVolumeHigh, faPlay, faPauseCircle } from '@fortawesome/f
 import { usePage } from '@inertiajs/react'
 
 const VideoControls = props => {
-  const { user } = usePage().props
+  const { auth, user } = usePage().props
 
   const [muted, setMuted] = useState(false)
   const [localSliderVolume, setLocalSliderVolume] = useState(props.videoVolume)
@@ -47,21 +47,36 @@ const VideoControls = props => {
     // play button on app load (it will start playing the default selected video)
     if (props.videosPlayed === 0) {
 
-      // If the user has any collection videos, the first click on the play
-      // button will play that first collection video. Set the context if the
-      // user collection array isn't empty
-      const hasCollectionItems = user['collection_items'].length ? true : false
-
-      props.setVideoContext({
-        isFromCollection: hasCollectionItems,
-        isDefault: !hasCollectionItems
-      })
+      handleVideoContext()
       
       props.incrementVideosPlayed()
     }
 
     props.setPaused(!props.paused)
     !props.paused ? props.videoPlayer.pauseVideo() : props.videoPlayer.playVideo()
+  }
+
+  /**
+   * If the user has any collection videos, the first click on the play
+   * button will play that first collection video. Set the context if the
+   * user collection array isn't empty
+   */
+  function handleVideoContext() {
+    if (auth.user) {
+      const hasCollectionItems = user['collection_items'].length ? true : false
+
+      props.setVideoContext({
+        isFromCollection: hasCollectionItems,
+        isDefault: !hasCollectionItems
+      })
+    } 
+    else {
+      // User is logged out, we know they will be on a default video (when no videos have been played) and that it can't be from a collection
+      props.setVideoContext({
+        ifFromCollection: false,
+        isDefault: true
+      })
+    }
   }
 
   return (

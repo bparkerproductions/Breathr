@@ -7,14 +7,16 @@ import { Link, usePage } from '@inertiajs/react'
 import { useState, useEffect } from 'react'
 
 export default function CollectionList(props) {
-  const { user } = usePage().props
+  const { auth, user } = usePage().props
   const [searchQuery, setSearchQuery] = useState("")
   const [collectionItems, setCollectionItems] = useState([])
   const [recentSearch, setRecentSearch] = useState("")
 
   useEffect(() => {
-    // Initially set collection items from the database
-    setCollectionItems(user['collection_items'])
+    // Initially set collection items from the database if logged in
+    if (auth.user) {
+      setCollectionItems(user['collection_items'])
+    }
   }, [])
 
   /**

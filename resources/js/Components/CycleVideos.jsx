@@ -6,8 +6,11 @@ import { incrementVideosPlayed } from '@/actions'
 import Stack from '@mui/joy/Stack';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStepBackward, faStepForward } from '@fortawesome/free-solid-svg-icons'
+import { usePage } from '@inertiajs/react';
 
 const CycleVideos = props => {
+  const { auth } = usePage().props
+  
   function isDisabled() {
     // Disable if no video has been played or the "no collection" default video is playing
     if ( props.videosPlayed === 0 || props.videoContext.isDefault) return 'disabled'
@@ -17,7 +20,10 @@ const CycleVideos = props => {
   }
 
   function videoList() {
-    return (props.isCollection || props.videoContext.isFromCollection) ? props.videos : props.searchedVideos
+    if ( !auth.user ) return props.searchedVideos
+    else {
+      return (props.isCollection || props.videoContext.isFromCollection) ? props.videos : props.searchedVideos
+    }
   }
 
   function nextVideo() {
