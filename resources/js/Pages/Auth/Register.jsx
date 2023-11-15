@@ -1,4 +1,7 @@
 import { useEffect } from 'react'
+import { setSnackbarOpen, setSnackbarMessage } from '@/actions'
+import { connect } from 'react-redux'
+
 import GuestLayout from '@/Layouts/GuestLayout'
 import InputError from '@/Components/Form/InputError'
 import InputLabel from '@/Components/Form/InputLabel'
@@ -7,7 +10,7 @@ import { Head, Link, useForm } from '@inertiajs/react'
 import { Button } from '@mui/joy'
 import { getTimeForDay } from '@/helpers/store'
 
-export default function Register() {
+const Register = function(props) {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
@@ -24,7 +27,17 @@ export default function Register() {
 
     const submit = (e) => {
         e.preventDefault()
-        post(route('register'))
+        post(route('register'), {
+            onSuccess: data => {
+                
+                // Welcome user
+                props.setSnackbarOpen(true)
+                props.setSnackbarMessage(`Welcome to Breathr, ${data.props.user.name}!`)
+
+                // Reset visit count from local storage
+                localStorage.removeItem('visitAmounts')
+            }
+        })
     }
 
     /**
@@ -125,3 +138,12 @@ export default function Register() {
         </GuestLayout>
     );
 }
+
+const mapStateToProps = state => {
+    return {}
+  }
+  
+  export default connect(mapStateToProps, {
+    setSnackbarMessage,
+    setSnackbarOpen
+  })(Register)

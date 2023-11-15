@@ -48,7 +48,7 @@ export default function TimeStats(props) {
         </Grid>
         <Grid xs={12} md={6} lg={4}>
           <Typography level="body-md">Total Visits:</Typography>
-          <Typography level="h1">{checkVisitCount()}</Typography>
+          <Typography level="h1">{checkVisitCount() || 0}</Typography>
         </Grid>
       </Grid>
     </Sheet>

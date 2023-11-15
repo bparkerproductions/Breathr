@@ -17,7 +17,7 @@ const TimerControls = ({ incrementSecond, show }) => {
   useEffect(() => {
     let animationFrameId
     let lastUpdate = Date.now()
-    const timeTick = 100
+    const timeTick = 1000
 
     // Set initial height of timer container
     if (cardRef.current) {
