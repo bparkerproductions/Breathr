@@ -108,8 +108,10 @@ const DailyMinutes = ({ ...props }) => {
         onClick={handleClick}
         className="cursor-pointer"
       >
-        <Typography level="h1" sx={{ color: 'white' }}>{getMinutes()}</Typography>
-        <Typography className="text-white">m</Typography>
+        <Typography level="h1" sx={{ color: 'white' }}>
+          {getMinutes()}<span style={{fontSize: '25px'}} className="text-white text-md">m</span>
+        </Typography>
+        
       </Box>
 
       <Modal

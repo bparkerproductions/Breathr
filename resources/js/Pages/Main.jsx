@@ -32,7 +32,8 @@ const Main = props => {
       const objects = user['collection_items'].map( obj => {
         return {
           "id": {
-            "videoId": obj.video_id
+            "videoId": obj.video_id,
+            "db_id": obj.id
           },
           "snippet": {
             "title": obj.title,

@@ -9,17 +9,13 @@ import { faWarning } from '@fortawesome/free-solid-svg-icons'
 const VideoResult = props => {
   function renderResults(loopObj, isCollection=false) {
     if (loopObj.length) {
-      return (
-        <Grid container spacing={2} sx={{ flexGrow: 1 }}>
-          {loopObj.map(video => {
-            return (
-              <Grid xs={12} md={6} xl={4} key={video.video_id}>
-                <VideoItem video={video} isCollection={isCollection}></VideoItem>
-              </Grid>
-            )
+      return <Grid container spacing={2} sx={{ flexGrow: 1 }}>
+          {loopObj.map( (video, index) => {
+            return <Grid xs={12} md={6} xl={4} key={video.id.db_id || video.etag}>
+                    <VideoItem video={video} isCollection={isCollection}></VideoItem>
+                  </Grid>
           })}
         </Grid>
-      )
     }
     else {
       const noSearch = 'Nothing came up for your search. Maybe try again with a different term.'

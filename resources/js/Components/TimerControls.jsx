@@ -92,7 +92,7 @@ const TimerControls = ({ incrementSecond, show }) => {
         ref={cardRef}
         variant="solid"
         color="primary"
-        invertedColors="true"
+        invertedColors={true}
         sx={{
           mx: "auto",
           maxWidth: "450px"

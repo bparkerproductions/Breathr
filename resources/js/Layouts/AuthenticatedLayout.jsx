@@ -21,9 +21,7 @@ const Authenticated = function ({ user, header, children, setSnackbarMessage, se
         <Container>
           <div className="flex justify-between h-16">
             <div className="flex items-center text-white">
-            {header && (
-              <p>{header}</p>
-            )}
+              {header}
               <Link href={route('main')} className="underline pl-5">Go back to App</Link>
             </div>
 

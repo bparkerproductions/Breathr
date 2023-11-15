@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('video_id');
-            $table->string('thumbnail_url');
+            $table->string('thumbnail_url')->nullable();
             $table->integer('durationInMinutes')->nullable();
             $table->string('title');
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

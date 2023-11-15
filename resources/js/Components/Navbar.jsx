@@ -41,9 +41,7 @@ export default function Navbar(props) {
                 spacing={5}
                 sx={{ height: '100%', paddingY: 1 }}
               >
-                <Typography>
-                  <DailyMinutes></DailyMinutes>
-                </Typography>
+                <DailyMinutes></DailyMinutes>
                 <VideoControls />
                 <AppToggles />
                 <NowPlaying />
