@@ -1,9 +1,21 @@
 import { Button, AspectRatio, Typography, CardOverflow, Card, CardContent, CardActions } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faYoutube } from '@fortawesome/free-brands-svg-icons'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
+import TextInput from '@/Components/Form/TextInput'
+import InputError from '@/Components/Form/InputError'
 
-export default function CollectionItem(props) {
+import { setSnackbarOpen, setSnackbarMessage } from '@/actions'
+import { useState } from 'react'
+import { router } from '@inertiajs/react'
+import { connect } from 'react-redux'
+
+const CollectionItem = props => {
+  const [title, setTitle] = useState("")
+  const [newTitle, setNewTitle] = useState(props.item.title)
+  const [showTitleField, setShowTitleField] = useState(false)
+  const [titleError, setTitleError] = useState(null)
+
   /**
    * Sanitize text from HTML entities
   */
@@ -11,6 +23,26 @@ export default function CollectionItem(props) {
     const text = document.createElement("textarea")
     text.innerHTML = textContent
     return text.value
+  }
+
+  /**
+   * Make a PUT request to edit the collection item's title in the DB
+   */
+  function persistTitle() {
+
+    router.put(route('collection.editTitle', props.item.id), { title }, {
+      onSuccess: () => {
+        setTitleError(null)
+        setNewTitle(title)
+        props.setSnackbarOpen(true)
+        props.setSnackbarMessage('Title updated successfully.')
+        setShowTitleField(false)
+      },
+      onError: () => {
+        setTitleError('The title cannot be empty.')
+      },
+      preserveScroll: true
+    })
   }
 
   return (
@@ -46,7 +78,31 @@ export default function CollectionItem(props) {
         </CardOverflow>
 
         <CardContent>
-          <Typography level="body-md" fontWeight="bold">{getText(props.item.title)}</Typography>
+          <Typography
+            level="body-md"
+            fontWeight="bold"
+            sx={{ marginBottom: showTitleField ? 1 : 0 }}
+          >
+            <FontAwesomeIcon
+              icon={faPen}
+              title="Edit title"
+              className="text-blue-700 cursor-pointer mr-2"
+              onClick={() => setShowTitleField(!showTitleField)}
+            /> {getText(newTitle)}
+          </Typography>
+          {showTitleField && <TextInput
+            id={props.item.video_id}
+            type="text"
+            name="title"
+            value={title}
+            className="mt-3 block w-full"
+            placeholder="Create new title"
+            isFocused={true}
+            onChange={e => setTitle(e.target.value)}
+            onKeyDown={e => { e.key === 'Enter' && persistTitle() }}
+          />
+          }
+          <InputError message={titleError} className="mt-2" />
           <Typography level="body-md">{getText(props.item.description)}</Typography>
 
           <CardActions>
@@ -75,3 +131,8 @@ export default function CollectionItem(props) {
     </Card>
   )
 }
+
+export default connect(null, {
+  setSnackbarOpen,
+  setSnackbarMessage
+})(CollectionItem)

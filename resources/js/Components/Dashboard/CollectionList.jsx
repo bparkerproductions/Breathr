@@ -127,11 +127,7 @@ const CollectionList = props => {
   )
 }
 
-const mapStateToProps = state => {
-  return {}
-}
-
-export default connect(mapStateToProps, {
+export default connect(null, {
   setSnackbarOpen,
   setSnackbarMessage
 })(CollectionList)

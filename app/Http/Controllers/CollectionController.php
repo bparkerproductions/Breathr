@@ -42,4 +42,14 @@ class CollectionController extends Controller
 
         return response()->json($collectionItems);
     }
+
+    public function editTitle(Request $request, $id) {
+        $request->validate([
+            'title' => 'required|max:255'
+        ]);
+        
+        CollectionItem::where('id', $id)->update([
+            'title'=> $request->input('title')
+        ]);
+    }
 }
