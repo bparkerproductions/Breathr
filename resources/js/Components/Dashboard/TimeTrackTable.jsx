@@ -1,7 +1,6 @@
 import { Link, usePage } from "@inertiajs/react"
 import { Button, Chip, Table, Typography } from "@mui/joy"
-import { useEffect } from "react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function TimeTrackTable(props) {
   const { user } = usePage().props
@@ -33,7 +32,7 @@ export default function TimeTrackTable(props) {
         // Is DESC
         if (date1 < date2) return -1
       }
-    });
+    })
   }
 
   /**
@@ -47,7 +46,7 @@ export default function TimeTrackTable(props) {
         // Is DESC
         if (a.tracked_minutes < b.tracked_minutes) return -1
       }
-    });
+    })
   }
 
   /**

@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { useCallback, useEffect } from 'react'
+import { connect } from 'react-redux'
 import { toggleSearch, toggleTimer, toggleCollection } from '@/actions/appToggles'
 
 import { Stack, ToggleButtonGroup, IconButton, Tooltip } from '@mui/joy'
@@ -94,4 +94,4 @@ export default connect(mapStateToProps, {
   toggleSearch,
   toggleTimer,
   toggleCollection,
-})(AppToggles);
+})(AppToggles)

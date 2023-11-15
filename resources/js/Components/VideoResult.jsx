@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import VideoItem from '@/Components/VideoItem'
-import { Box, Typography, Alert, Grid } from '@mui/joy'
+import { Typography, Alert, Grid } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faWarning } from '@fortawesome/free-solid-svg-icons'
+import { faWarning } from '@fortawesome/free-solid-svg-icons'
 
 const VideoResult = props => {
   function renderResults(loopObj, isCollection=false) {

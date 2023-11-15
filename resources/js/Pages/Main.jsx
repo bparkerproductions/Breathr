@@ -43,7 +43,6 @@ const Main = props => {
               }
             }
           }
-          
         }
       })
 
@@ -95,11 +94,11 @@ const mapStateToProps = state => {
     snackbarOpen: state.snackbarOpen,
     snackbarMessage: state.snackbarMessage
   }
-  }
+}
   
-  export default connect(mapStateToProps, {
+export default connect(mapStateToProps, {
   setVideos,
   setInitialVideo,
   setSnackbarOpen
-  })(Main)
+})(Main)
 

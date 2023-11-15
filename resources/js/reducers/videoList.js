@@ -5,7 +5,7 @@
 const videosReducer = (initialVideos=[], action) => {
   // Set videos initially
   if (action.type === 'SET_VIDEOS') {
-    return action.payload;
+    return action.payload
   }
 
   if (action.type === 'ADD_TO_COLLECTION') {

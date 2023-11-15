@@ -3,13 +3,12 @@ import { connect } from 'react-redux'
 import { setVideoVolume, setVideoContext } from '@/actions/videoList'
 import { incrementVideosPlayed } from '@/actions'
 import { setPaused } from '@/actions/appToggles'
-
+import { usePage } from '@inertiajs/react'
 import CycleVideos from '@/Components/CycleVideos'
 
 import { Box, Stack, Slider } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVolumeOff, faVolumeHigh, faPlay, faPauseCircle } from '@fortawesome/free-solid-svg-icons'
-import { usePage } from '@inertiajs/react'
 
 const VideoControls = props => {
   const { auth, user } = usePage().props

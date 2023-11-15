@@ -68,7 +68,7 @@ const Authenticated = function ({ user, header, children, setSnackbarMessage, se
             <div className="-mr-2 flex items-center sm:hidden">
               <button
                 onClick={() => setShowingNavigationDropdown((previousState) => !previousState)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out"
+                className="inline-flex items-center justify-center p-2 rounded-md text-white focus:outline-none transition duration-150 ease-in-out"
               >
                 <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                   <path
@@ -98,13 +98,8 @@ const Authenticated = function ({ user, header, children, setSnackbarMessage, se
             </ResponsiveNavLink>
           </div>
 
-          <div className="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
-            <div className="px-4">
-              <div className="font-medium text-base text-gray-800 dark:text-gray-200">{user.name}</div>
-              <div className="font-medium text-sm text-gray-500">{user.email}</div>
-            </div>
-
-            <div className="mt-3 space-y-1">
+          <div className="pt-4 pb-1 border-t border-blue-500">
+            <div className="space-y-1">
               <ResponsiveNavLink href={route('profile.edit')}>Profile</ResponsiveNavLink>
               <ResponsiveNavLink method="post" href={route('logout')} as="button">
                 Log Out

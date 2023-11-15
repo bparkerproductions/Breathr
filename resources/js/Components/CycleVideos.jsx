@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { selectVideo } from '@/actions/videoList'
 import { incrementVideosPlayed } from '@/actions'
 
-import Stack from '@mui/joy/Stack';
+import Stack from '@mui/joy/Stack'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStepBackward, faStepForward } from '@fortawesome/free-solid-svg-icons'
-import { usePage } from '@inertiajs/react';
+import { usePage } from '@inertiajs/react'
 
 const CycleVideos = props => {
   const { auth } = usePage().props

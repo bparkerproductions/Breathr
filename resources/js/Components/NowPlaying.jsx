@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import { IconButton, Button, Box, Tooltip, Card, Divider, Typography } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { faYoutube } from '@fortawesome/free-brands-svg-icons'
-import { useEffect } from 'react'
 
 const NowPlaying = props => {
   const [tooltipToggled, toggleTooltip] = useState(false)

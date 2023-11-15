@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { connect } from 'react-redux'
-// import Thesaurus from '@/helpers/apis/thesaurus'
 import suggestions from '@/helpers/initialSearchSuggestions'
 import { Chip, Stack, Box, Tooltip, IconButton } from '@mui/joy'
 

@@ -36,7 +36,7 @@ const Dashboard = props => {
         {props.message}
       </Snackbar>
     </AuthenticatedLayout>
-  );
+  )
 }
 
 const mapStateToProps = state => {
