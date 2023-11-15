@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { Box, Card, Divider, Modal, Sheet, Typography, cardContentClasses } from '@mui/joy'
+import { Box, Card, Divider, Modal, Sheet, Typography } from '@mui/joy'
 import { useState, useRef, useEffect } from 'react'
 import { Link, router, usePage } from '@inertiajs/react'
 

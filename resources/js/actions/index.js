@@ -18,6 +18,15 @@ export const incrementSecond = () => {
 }
 
 /**
+ * Reset timer seconds state, such as when time data is deleted
+ */
+export const resetSeconds = () => {
+  return {
+    type: 'RESET_SECONDS'
+  }
+}
+
+/**
  * Called when an action that causes a video to play is activated(play/pause and video click)
  */
 export const incrementVideosPlayed = () => {

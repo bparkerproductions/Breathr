@@ -31,7 +31,7 @@ const videosPlayed = (state=0, action) => {
  */
 const secondsForDay = (seconds=getTimeForDay(), action) => {
   // Seconds for the current 24h day
-  if (seconds === undefined) return 0
+  if (seconds === undefined || action.type === 'RESET_SECONDS') return 0
 
   if (action.type === 'INCREMENT_SECOND') {
     storeTime()

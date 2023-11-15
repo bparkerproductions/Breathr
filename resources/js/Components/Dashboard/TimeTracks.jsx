@@ -1,10 +1,11 @@
 import { router, usePage } from '@inertiajs/react'
-import { setSnackbarOpen, setSnackbarMessage } from '@/actions'
+import { setSnackbarOpen, setSnackbarMessage, resetSeconds } from '@/actions'
 
 import { Card, Typography, CardContent, Divider, Button, CardActions } from '@mui/joy'
 import TimeTrackTable from '@/Components/Dashboard/TimeTrackTable'
 import TimeStats from '@/Components/Dashboard/TimeStats'
 import { connect } from 'react-redux'
+import { store } from '@/helpers/store'
 
 const TimeTracks = props => {
   const { user } = usePage().props
@@ -17,6 +18,12 @@ const TimeTracks = props => {
       onSuccess: () => {
         props.setSnackbarMessage("Your time tracks have successfully been deleted")
         props.setSnackbarOpen(true)
+
+        // Delete tracked time in local storage
+        store({}, 'timeTrack')
+        
+        // Update state
+        props.resetSeconds()
       }
     })
   }
@@ -47,5 +54,6 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   setSnackbarOpen,
-  setSnackbarMessage
+  setSnackbarMessage,
+  resetSeconds
 })(TimeTracks)
