@@ -11,8 +11,8 @@ import { router } from '@inertiajs/react'
 import { connect } from 'react-redux'
 
 const CollectionItem = props => {
-  const [title, setTitle] = useState("")
-  const [newTitle, setNewTitle] = useState(props.item.title)
+  const [inputTitle, setInputTitle] = useState(props.item.title)
+  const [title, setTitle] = useState(props.item.title)
   const [showTitleField, setShowTitleField] = useState(false)
   const [titleError, setTitleError] = useState(null)
 
@@ -30,10 +30,10 @@ const CollectionItem = props => {
    */
   function persistTitle() {
 
-    router.put(route('collection.editTitle', props.item.id), { title }, {
+    router.put(route('collection.editTitle', props.item.id), { title: inputTitle }, {
       onSuccess: () => {
         setTitleError(null)
-        setNewTitle(title)
+        setTitle(inputTitle)
         props.setSnackbarOpen(true)
         props.setSnackbarMessage('Title updated successfully.')
         setShowTitleField(false)
@@ -88,17 +88,17 @@ const CollectionItem = props => {
               title="Edit title"
               className="text-blue-700 cursor-pointer mr-2"
               onClick={() => setShowTitleField(!showTitleField)}
-            /> {getText(newTitle)}
+            /> {getText(title)}
           </Typography>
           {showTitleField && <TextInput
             id={props.item.video_id}
             type="text"
             name="title"
-            value={title}
+            value={inputTitle}
             className="mt-3 block w-full"
-            placeholder="Create new title"
+            placeholder="Edit title"
             isFocused={true}
-            onChange={e => setTitle(e.target.value)}
+            onChange={e => setInputTitle(e.target.value)}
             onKeyDown={e => { e.key === 'Enter' && persistTitle() }}
           />
           }
