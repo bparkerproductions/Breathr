@@ -99,7 +99,7 @@ const DailyMinutes = ({ ...props }) => {
           width: '350px'
         }}>
       <Card>
-       {cardContent()}
+        {cardContent()}
       </Card>
       </Box>}
 
@@ -117,16 +117,16 @@ const DailyMinutes = ({ ...props }) => {
         onClose={() => setModalOpen(false)}
         sx={{ marginTop: 5, marginX: 2 }}
       >
-          <Sheet
-            variant="soft"
-            sx={{
-              maxWidth: 500,
-              borderRadius: 'md',
-              p: 3,
-              boxShadow: 'lg',
-            }}>
-            {cardContent()}
-          </Sheet>
+        <Sheet
+          variant="soft"
+          sx={{
+            width: '100%',
+            borderRadius: 'md',
+            p: 3,
+            boxShadow: 'lg',
+          }}>
+          {cardContent()}
+        </Sheet>
       </Modal>
     </Box>
   )

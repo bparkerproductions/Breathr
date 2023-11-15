@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { IconButton, Button, Box, Tooltip, Card, Divider, Typography } from '@mui/joy'
+import { IconButton, Button, Box, Tooltip, Card, Divider, Typography, Modal, CardContent } from '@mui/joy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { faYoutube } from '@fortawesome/free-brands-svg-icons'
 
 const NowPlaying = props => {
   const [tooltipToggled, toggleTooltip] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
   const [show, setShow] = useState(false)
 
   useEffect(() => {
@@ -20,6 +21,7 @@ const NowPlaying = props => {
 
   function handleClickOutside() {
     setShow(false)
+    setModalOpen(false)
   }
 
   function getPlayerInfo(item) {
@@ -37,7 +39,39 @@ const NowPlaying = props => {
   function tooltipActivated(e) {
     e.stopPropagation()
     toggleTooltip(!tooltipToggled)
-    setShow(!show)
+
+    if (window.innerWidth > 900) setShow(!show)
+    else setModalOpen(true) // Open modal instead
+  }
+
+  function cardContent() {
+    return <CardContent>
+      <Button
+        target="_blank"
+        component="a"
+        color="danger"
+        href={getPlayerInfo('videoUrl')}
+        sx={{ marginBottom: 1 }}
+        startDecorator={<FontAwesomeIcon
+          icon={faYoutube}
+          className="cursor-pointer"
+          size="lg"
+        />}
+      >
+        Open in youtube
+      </Button>
+      <Box>
+        <Typography level="body-md" fontWeight="bold" marginBottom="0">Now Playing</Typography>
+        {getPlayingFromText()}
+        <Typography level="body-md" fontWeight="light">{getVideoData('title')}</Typography>
+      </Box>
+      <Divider sx={{ marginY: 1 }} />
+
+      <Box>
+        <Typography fontWeight="bold">Duration</Typography>
+        <Typography fontWeight="light">{Math.ceil(getPlayerInfo('duration')/60)} minutes</Typography>
+      </Box>
+    </CardContent>
   }
 
   function getPlayingFromText() {
@@ -76,32 +110,25 @@ const NowPlaying = props => {
         }}
       >
 
-        <Button
-          target="_blank"
-          component="a"
-          color="danger"
-          href={getPlayerInfo('videoUrl')}
-          startDecorator={<FontAwesomeIcon
-            icon={faYoutube}
-            className="cursor-pointer"
-            size="lg"
-          />}
-        >
-          Open in youtube
-        </Button>
-        <Divider />
-        <Box>
-          <Typography level="body-md" fontWeight="bold" marginBottom="0">Now Playing</Typography>
-          {getPlayingFromText()}
-          <Typography level="body-md" fontWeight="light">{getVideoData('title')}</Typography>
-        </Box>
-        <Divider />
-
-        <Box>
-          <Typography fontWeight="bold">Duration</Typography>
-          <Typography fontWeight="light">{Math.ceil(getPlayerInfo('duration')/60)} minutes</Typography>
-        </Box>
+        {cardContent()}
       </Card>}
+
+      {modalOpen && <Modal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        sx={{ marginTop: 5, marginX: 2 }}
+      >
+          <Card
+            variant="soft"
+            sx={{
+              width: '100%',
+              borderRadius: 'md',
+              p: 3,
+              boxShadow: 'lg',
+            }}>
+            {cardContent()}
+          </Card>
+      </Modal>}
     </Box>
   )
 }
