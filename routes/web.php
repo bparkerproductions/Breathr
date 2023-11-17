@@ -38,7 +38,7 @@ Route::get('/youtube/searchURL', [YoutubeController::class, 'searchURL']);
 Route::get('/thesaurus/suggestions', [ThesaurusController::class, 'getSuggestions']);
 
 Route::post('/collection/store', [CollectionController::class, 'store']);
-Route::delete('/collection/{videoId}', [CollectionController::class, 'destroy']);
+Route::delete('/collection/{videoId}', [CollectionController::class, 'destroy'])->name('collection.deleteItem');
 Route::get('/collection/search', [CollectionController::class, 'search']);
 Route::put('/collection/{id}', [CollectionController::class, 'editTitle'])->name('collection.editTitle');
 
