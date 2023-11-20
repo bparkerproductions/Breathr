@@ -1,4 +1,10 @@
 {
+    "name": "Breathr",
+    "version": "1.0.0",
+    "engines": {
+        "node": "18.x",
+        "npm": "9.x"
+    },
     "private": true,
     "type": "module",
     "scripts": {
