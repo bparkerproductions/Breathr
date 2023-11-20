@@ -42,8 +42,8 @@ Route::delete('/collection/{videoId}', [CollectionController::class, 'destroy'])
 Route::get('/collection/search', [CollectionController::class, 'search']);
 Route::put('/collection/{id}', [CollectionController::class, 'editTitle'])->name('collection.editTitle');
 
-Route::post('/time/store', [TimeController::class, 'store']);
-Route::delete('/time/destroy', [TimeController::class, 'destroy']);
+Route::post('/time/store', [TimeController::class, 'store'])->name('time.store');
+Route::delete('/time/destroy', [TimeController::class, 'destroy'])->name('time.deleteAll');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
