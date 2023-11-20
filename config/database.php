@@ -45,12 +45,12 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'url' => env('JAWSDB_URL'),
+            'host' => parse_url(env('JAWSDB_URL'), PHP_URL_HOST),
+            'port' => parse_url(env('JAWSDB_URL'), PHP_URL_PORT),
+            'database' => substr(parse_url(env('JAWSDB_URL'), PHP_URL_PATH), 1),
+            'username' => parse_url(env('JAWSDB_URL'), PHP_URL_USER),
+            'password' => parse_url(env('JAWSDB_URL'), PHP_URL_PASS),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
