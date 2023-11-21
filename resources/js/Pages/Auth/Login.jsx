@@ -86,14 +86,14 @@ const Login = function({ status, canResetPassword, setSnackbarOpen, setSnackbarM
         </div>
 
         <div className="flex items-center justify-end mt-4">
-          {canResetPassword && (
+          {/* {canResetPassword && (
             <Link
               href={route('password.request')}
               className="underline text-sm text-zinc-900 rounded-md"
             >
               Forgot your password?
             </Link>
-          )}
+          )} */}
 
           <Button type="" sx={{ marginLeft: 2 }} disabled={processing}>
             Log in
