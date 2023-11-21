@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+main {
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+/* Position YouTube iframe */
+.video-render iframe {
+  margin-top: -150px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 3;
+  width: 100%;
+  height: calc(100% + 250px);
+}
+
+/* Animation tuck away */
+#timer-container,
+#video-search,
+#video-collection,
+#intro-modal {
+  transition: all 0.45s ease;
+  transform: translate(0, 0);
+  opacity: 1;
+  pointer-events: all;
+
+  &.hidden {
+    height: 0 !important;
+    padding: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(100vw, -175vh);
+  }
+}
+
+/* Helpers */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
