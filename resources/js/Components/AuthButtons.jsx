@@ -25,10 +25,10 @@ const AuthButtons = props => {
               aria-label="Log in or sign up"
             >
               <Link href={route('login')}>
-                <Button color="primary">Log In</Button>
+                <Button>Log In</Button>
               </Link>
               <Link href={route('register')}>
-                <Button>Sign Up</Button>
+                <Button color="primary">Register</Button>
               </Link>
             </ButtonGroup>) : (
 
